@@ -80,8 +80,7 @@ public class StartScreenActivity extends SuperAppCompactActivity implements Circ
     private TextView tvTelemedicine;
     private ArrayList<ArrayList<UserDetailDataResPayload>> userInfoResPayload;
     private String vurvId;
-
-
+    private LinearLayout ll;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.start_screen);
