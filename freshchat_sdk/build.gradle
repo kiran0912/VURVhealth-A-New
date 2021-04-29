@@ -1,0 +1,57 @@
+apply plugin: 'com.android.library'
+apply plugin: 'com.github.dcendents.android-maven'
+group='com.github.freshdesk'
+
+def static getEscapedString(value) {
+    return "\"$value\"";
+}
+
+def getScmRevision = {
+    //val rev = 'git rev-parse --short HEAD'.execute().text.trim()
+    return getEscapedString("git rev-parse --short HEAD'.execute().text.trim()")
+}
+
+def getScmBranch = {
+    //val branch = "git rev-parse --abbrev-ref HEAD".execute().text.trim()
+    return getEscapedString("git rev-parse --abbrev-ref HEAD\".execute().text.trim()")
+}
+
+android {
+    compileSdkVersion 26
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
+    }
+
+    defaultConfig {
+        minSdkVersion 16
+        versionCode 241
+        versionName "2.4.1"
+        targetSdkVersion 26
+        consumerProguardFiles 'consumer-proguard-rules.pro'
+        buildConfigField "long", 'BUILT_AT', System.currentTimeMillis() + 'L'
+        buildConfigField "String", "SCM_REV", getScmRevision()
+        buildConfigField "String", "SCM_BRANCH", getScmBranch()
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'sdk-proguard-rules.pro'
+        }
+    }
+}
+
+ext {
+    gsonVersion             = '2.8.0'
+    picassoVersion          = '2.5.2'
+    supportLibraryVersion   = '26.1.0'
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "com.google.code.gson:gson:$gsonVersion"
+    implementation "com.squareup.picasso:picasso:$picassoVersion"
+    implementation "com.android.support:appcompat-v7:$supportLibraryVersion"
+    implementation "com.android.support:recyclerview-v7:$supportLibraryVersion"
+}

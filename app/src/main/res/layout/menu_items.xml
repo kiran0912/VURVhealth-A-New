@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:circle="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/ll_rx_image"
+        android:layout_width="100dp"
+        android:layout_height="80dp"
+        android:gravity="center"
+        android:layout_marginTop="2dp"
+        android:orientation="vertical">
+
+        <com.VURVhealth.vurvhealth.circleView.CircleImageView
+            android:id="@+id/main_rx_image"
+            android:layout_width="46dp"
+            android:layout_height="46dp"
+            android:elevation="2dp"
+            android:src="@drawable/rx_ic"
+            circle:name="PRESCRIPTION" />
+
+        <TextView
+            android:id="@+id/tvRx"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:visibility="invisible"
+            android:text="@string/prescription"
+            android:textSize="9dp" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/ll_medical_image"
+        android:layout_width="100dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="2dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <com.VURVhealth.vurvhealth.circleView.CircleImageView
+            android:id="@+id/main_medical_image"
+            android:layout_width="46dp"
+            android:layout_height="46dp"
+            android:elevation="2dp"
+            android:src="@drawable/category_ic_medical"
+            circle:name="MEDICAL" />
+
+        <TextView
+            android:id="@+id/tvMedical"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="@string/medical"
+            android:textSize="9dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_dental_image"
+        android:layout_width="100dp"
+        android:layout_height="80dp"
+        android:gravity="center"
+        android:layout_marginTop="2dp"
+        android:orientation="vertical">
+
+        <com.VURVhealth.vurvhealth.circleView.CircleImageView
+            android:id="@+id/main_dental_image"
+            android:layout_width="46dp"
+            android:layout_height="46dp"
+            android:elevation="2dp"
+            android:gravity="center"
+            android:scaleType="fitXY"
+            android:src="@drawable/category_ic_dental"
+            circle:name="DENTAL" />
+
+        <TextView
+            android:id="@+id/tvDental"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:text="@string/dental"
+            android:textSize="9dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_telemed_image"
+        android:layout_width="100dp"
+        android:layout_height="80dp"
+        android:gravity="center"
+        android:layout_marginTop="2dp"
+        android:orientation="vertical">
+
+        <com.VURVhealth.vurvhealth.circleView.CircleImageView
+            android:id="@+id/main_telemed_image"
+            android:layout_width="46dp"
+            android:layout_height="46dp"
+            android:elevation="2dp"
+            android:src="@drawable/category_ic_alt"
+            circle:name="Alt Health" />
+
+        <TextView
+            android:id="@+id/tvTelemed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="@string/alt_health"
+            android:textSize="9dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_optical_image"
+        android:layout_width="100dp"
+        android:layout_height="80dp"
+        android:gravity="center"
+        android:layout_marginTop="2dp"
+        android:orientation="vertical">
+
+        <com.VURVhealth.vurvhealth.circleView.CircleImageView
+            android:id="@+id/main_optical_image"
+            android:layout_width="46dp"
+            android:layout_height="46dp"
+            android:src="@drawable/category_ic_vision"
+            circle:name="VISION" />
+
+        <TextView
+            android:id="@+id/tvOptical"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="@string/vision"
+            android:textSize="9dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_telemedicine_image"
+        android:layout_width="100dp"
+        android:layout_height="80dp"
+        android:gravity="center"
+        android:layout_marginTop="2dp"
+        android:orientation="vertical">
+
+        <com.VURVhealth.vurvhealth.circleView.CircleImageView
+            android:id="@+id/main_telemedicince_image"
+            android:layout_width="46dp"
+            android:layout_height="46dp"
+            android:elevation="2dp"
+            android:src="@drawable/telemednew"
+            circle:name="TELEMEDICINE" />
+
+        <TextView
+            android:id="@+id/tvTelemedicine"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="@string/telemedecine2"
+            android:textSize="9dp" />
+
+    </LinearLayout>
+
+</merge>

@@ -1,0 +1,388 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/view_bg"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/htab_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@color/view_bg"
+        android:gravity="top|center"
+        android:minHeight="?attr/actionBarSize">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvApply"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:lines="1"
+                android:text="@string/apply"
+                android:textColor="@color/blue"
+                android:textSize="16dp" />
+
+            <TextView
+                android:id="@+id/tvFilter"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_marginLeft="@dimen/margin_10dp"
+                android:gravity="center"
+                android:text="@string/filter"
+                android:textColor="@color/blue"
+                android:textSize="16dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvReset"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginRight="@dimen/margin_10dp"
+                android:gravity="center"
+                android:lines="1"
+                android:text="@string/reset"
+                android:textColor="@color/blue"
+                android:textSize="16dp" />
+
+
+        </LinearLayout>
+
+    </android.support.v7.widget.Toolbar>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:layout_marginBottom="@dimen/margin_10dp"
+        android:background="@drawable/gradient_vurv" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@color/view_bg">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="10dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvSortBy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:lines="1"
+                android:text="@string/sort_by"
+                android:textColor="@color/blue"
+                android:textSize="16dp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:alpha="0.3"
+                android:background="@color/black" />
+
+            <LinearLayout
+                android:id="@+id/llPrice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:lines="1"
+                    android:padding="10dp"
+                    android:gravity="center_vertical"
+                    android:text="@string/price"
+                    android:textColor="@color/blue"
+                    android:textSize="16dp" />
+
+                <ImageView
+                    android:id="@+id/sort_check2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="10dp"
+                    android:visibility="invisible"
+                    android:background="@drawable/check_ic" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:alpha="0.3"
+                android:background="@color/black" />
+
+            <LinearLayout
+                android:id="@+id/llDistance"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvDistance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:lines="1"
+                    android:padding="10dp"
+                    android:gravity="center_vertical"
+                    android:text="@string/distance"
+                    android:textColor="@color/blue"
+                    android:textSize="16dp" />
+
+                <ImageView
+                    android:id="@+id/sort_check1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/check_ic"
+                    android:visibility="gone"/>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:alpha="0.3"
+                android:background="@color/black" />
+
+
+        <!--    <TextView
+                android:id="@+id/tvForm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:gravity="center_vertical"
+                android:lines="1"
+                android:text="@string/form"
+                android:textColor="@color/blue"
+                android:textSize="16dp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:alpha="0.3"
+                android:background="@color/black" />
+
+
+            <LinearLayout
+                android:id="@+id/llTablet"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvTablet"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:lines="1"
+                    android:padding="10dp"
+                    android:text="@string/tablet"
+                    android:textColor="@color/blue"
+                    android:textSize="16dp" />
+
+                <ImageView
+                    android:id="@+id/form_check"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/ic_check_ic_2" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:alpha="0.3"
+                android:layout_marginBottom="20dp"
+                android:background="@color/black" />
+
+
+            <TextView
+                android:id="@+id/tvDosage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:lines="1"
+                android:text="@string/dosage"
+                android:textColor="@color/blue"
+                android:textSize="16dp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:alpha="0.3"
+                android:background="@color/black" />
+
+            <LinearLayout
+                android:id="@+id/llDosage10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvDosage10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:lines="1"
+                    android:gravity="center_vertical"
+                    android:padding="10dp"
+                    android:text="@string/tvDosageno1"
+                    android:textColor="@color/blue"
+                    android:textSize="16dp" />
+
+                <ImageView
+                    android:id="@+id/dosage_check1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/ic_check_ic_2" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:alpha="0.3"
+                android:background="@color/black" />
+
+            <LinearLayout
+                android:id="@+id/llDosage20"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvDosage20"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:lines="1"
+                    android:gravity="center_vertical"
+                    android:padding="10dp"
+                    android:text="@string/tvDosageno2"
+                    android:textColor="@color/blue"
+                    android:textSize="16dp" />
+
+                <ImageView
+                    android:id="@+id/dosage_check2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/ic_check_ic_2"
+                    android:visibility="invisible" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:alpha="0.3"
+                android:background="@color/black" />
+
+            <LinearLayout
+                android:id="@+id/llDosage40"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvDosage40"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:lines="1"
+                    android:padding="10dp"
+                    android:text="@string/tvDosageno3"
+                    android:textColor="@color/blue"
+                    android:textSize="16dp" />
+
+                <ImageView
+                    android:id="@+id/dosage_check3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/ic_check_ic_2"
+                    android:visibility="invisible" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:alpha="0.3"
+                android:background="@color/black" />
+
+            <LinearLayout
+                android:id="@+id/llDosage80"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvDosage80"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:lines="1"
+                    android:padding="10dp"
+                    android:text="@string/tvDosageno4"
+                    android:textColor="@color/blue"
+                    android:textSize="16dp" />
+
+                <ImageView
+                    android:id="@+id/dosage_check4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/ic_check_ic_2"
+                    android:visibility="invisible" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:alpha="0.3"
+                android:background="@color/black" />-->
+
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+
+</LinearLayout>

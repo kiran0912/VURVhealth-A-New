@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/transparent">
+
+    <Button
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_gravity="right"
+        android:background="@drawable/cancel_new"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:id="@+id/select_str_txt"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:gravity="center"
+            android:text="Strengths"
+            android:textColor="@color/blue"
+            android:textSize="16dp"
+            android:textStyle="bold" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="6dp"
+            android:background="@drawable/gradient_vurv" />
+
+        <ListView
+            android:id="@+id/strength_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:divider="@color/colorPrimaryDark"
+            android:dividerHeight="1dp" />
+
+        <!--<ListView-->
+        <!--android:id="@+id/str_area"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:divider="@color/textHint"-->
+        <!--android:dividerHeight="1dp"-->
+        <!--android:layout_gravity="center"-->
+        <!--android:layout_weight="1"-->
+        <!--android:scrollingCache="false"-->
+        <!--android:smoothScrollbar="true"-->
+        <!--android:duplicateParentState="false"-->
+        <!--android:choiceMode="singleChoice"/>-->
+    </LinearLayout>
+
+</FrameLayout>
+
+
+

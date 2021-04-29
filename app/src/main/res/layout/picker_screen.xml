@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="@android:color/transparent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!--<com.yqlabs.vurvhealth.WheelView
+        android:id="@+id/main_wv"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_gravity="bottom"/>-->
+
+    <ListView
+        android:id="@+id/spinnerlist"
+        android:layout_width="match_parent"
+        android:dividerHeight="0.1dp"
+        android:layout_gravity="center"
+        android:layout_height="300dp"
+        android:textAlignment="center"
+        android:divider="@color/page_inactive"
+        android:background="@color/white"
+        android:scrollbars="none">
+
+    </ListView>
+
+    <!--<Button
+        android:id="@+id/ok"
+        android:layout_width="match_parent"
+        android:layout_height="42dp"
+        android:layout_margin="20dp"
+        android:text="Ok"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:background="@drawable/gradient_button_background"/>-->
+
+</LinearLayout>

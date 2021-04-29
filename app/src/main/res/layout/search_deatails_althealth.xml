@@ -1,0 +1,461 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/view_bg"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/htab_toolbar"
+        android:layout_width="fill_parent"
+        android:layout_height="45.0dip"
+        android:background="@color/view_bg"
+        android:gravity="center|top"
+        android:minHeight="?actionBarSize">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="?actionBarSize"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="?actionBarSize"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/backBtn"
+                    android:layout_width="20.0dip"
+                    android:layout_height="20.0dip"
+                    android:layout_gravity="center"
+                    android:src="@drawable/back_btn"
+                    android:textSize="14.0dip" />
+
+                <TextView
+                    android:id="@+id/doctor_name"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="20.0dip"
+                    android:gravity="center_vertical"
+                    android:text="Brian W Balbon, MD"
+                    android:textColor="@color/blue"
+                    android:textSize="16.0dip"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </LinearLayout>
+    </android.support.v7.widget.Toolbar>
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="10.0dip"
+        android:background="@drawable/gradient_vurv" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20.0dip"
+        android:layout_marginTop="10.0dip"
+        android:layout_marginRight="20.0dip"
+        android:background="@color/light_blue"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnAbout"
+            android:layout_width="fill_parent"
+            android:layout_height="40.0dip"
+            android:layout_margin="1.0dip"
+            android:layout_weight="1.0"
+            android:background="@color/light_blue"
+            android:text="@string/about"
+            android:textAllCaps="false"
+            android:textColor="@color/white" />
+
+        <Button
+            android:id="@+id/btnContactInfo"
+            android:layout_width="fill_parent"
+            android:layout_height="40.0dip"
+            android:layout_margin="1.0dip"
+            android:layout_weight="1.0"
+            android:background="@color/view_bg"
+            android:text="@string/contact_info"
+            android:textAllCaps="false"
+            android:textColor="@color/light_blue" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="1.0"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/llAbout"
+            android:layout_width="fill_parent"
+            android:layout_height="0.0dip"
+            android:layout_marginLeft="@dimen/margin_10dp"
+            android:layout_marginTop="@dimen/margin_10dp"
+            android:layout_marginRight="@dimen/margin_10dp"
+            android:layout_marginBottom="0.0dip"
+            android:layout_weight="1.0"
+            android:orientation="vertical"
+            android:visibility="visible">
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/img_prf"
+                    android:layout_width="60.0dip"
+                    android:layout_height="60.0dip"
+                    android:layout_marginRight="@dimen/margin_10dp"
+                    android:src="@drawable/profile_noimage_ic" />
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/specialities"
+                        android:textColor="@color/blue" />
+
+                    <TextView
+                        android:id="@+id/tvSpeciality"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/pediatrics_critical"
+                        android:textColor="@color/blue"
+                        android:textSize="15.0dip"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="0.0dip"
+                android:layout_marginTop="@dimen/margin_10dp"
+                android:layout_weight="1.0"
+                android:background="@drawable/package_border"
+                android:orientation="vertical">
+
+                <ScrollView
+                    android:layout_width="fill_parent"
+                    android:layout_height="0.0dip"
+                    android:layout_weight="1.0">
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="top"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="fill_parent"
+                            android:layout_margin="@dimen/margin_10dp"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="fill_parent"
+                                android:layout_height="fill_parent"
+                                android:layout_weight="1.0"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="@dimen/margin_10dp"
+                                    android:lines="1"
+                                    android:text="@string/clinic"
+                                    android:textColor="@color/blue" />
+
+                                <TextView
+                                    android:id="@+id/tvClinicName"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:lines="1"
+                                    android:text=""
+                                    android:textColor="@color/blue"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="fill_parent"
+                                android:layout_height="fill_parent"
+                                android:layout_marginTop="@dimen/margin_10dp"
+                                android:layout_weight="1.0"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1.0"
+                                    android:lines="1"
+                                    android:text="@string/program_degree"
+                                    android:textColor="@color/blue" />
+
+                                <TextView
+                                    android:id="@+id/tvDegree"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:lines="1"
+                                    android:text=""
+                                    android:textColor="@color/blue"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+                </ScrollView>
+
+                <FrameLayout
+                    android:id="@+id/flBanner"
+                    android:layout_width="fill_parent"
+                    android:layout_height="50.0dip"
+                    android:layout_margin="@dimen/margin_10dp"
+                    android:background="@drawable/banner_bg">
+
+                    <TextView
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:paddingLeft="50.0dip"
+                        android:text="@string/present_your_vurv_id_to_the_health_n_care_provider_to_receive_a_discount"
+                        android:textColor="@color/white"
+                        android:textSize="12.0dip" />
+                </FrameLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llContactInfo"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <fragment
+                android:id="@+id/map"
+                class="com.google.android.gms.maps.SupportMapFragment"
+                android:layout_width="fill_parent"
+                android:layout_height="120.0dip"
+                android:layout_marginTop="@dimen/margin_10dp" />
+
+            <ScrollView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_margin="@dimen/margin_10dp"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_marginBottom="@dimen/margin_10dp"
+                        android:background="@drawable/package_border"
+                        android:orientation="vertical"
+                        android:padding="@dimen/margin_10dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/margin_10dp"
+                            android:layout_weight="1.0"
+                            android:lines="1"
+                            android:text="@string/adress"
+                            android:textColor="@color/blue" />
+
+                        <LinearLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="start"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/tvAddress"
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="2.0dip"
+                                android:layout_weight="1.0"
+                                android:maxLines="2"
+                                android:text="2300 S. 16th Street"
+                                android:textColor="@color/blue"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="2.0dip"
+                                android:layout_weight="3.0"
+                                android:text=""
+                                android:textColor="@color/blue"
+                                android:textStyle="bold"
+                                android:visibility="gone" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/margin_10dp"
+                            android:gravity="start"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/tvPhone"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="right"
+                                android:lines="1"
+                                android:text="@string/phone"
+                                android:textColor="@color/blue" />
+
+                            <TextView
+                                android:id="@+id/tvPhoneNumber"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="2.0dip"
+                                android:gravity="right"
+                                android:inputType="phone"
+                                android:lines="1"
+                                android:text="323-223-4462"
+                                android:textColor="@color/blue"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <FrameLayout
+                            android:id="@+id/flBanner2"
+                            android:layout_width="fill_parent"
+                            android:layout_height="50.0dip"
+                            android:layout_marginTop="20.0dip"
+                            android:background="@drawable/banner_bg">
+
+                            <TextView
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:gravity="center"
+                                android:paddingLeft="50.0dip"
+                                android:text="@string/present_your_vurv_id_to_the_health_n_care_provider_to_receive_a_discount"
+                                android:textColor="@color/white"
+                                android:textSize="12.0dip" />
+                        </FrameLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </ScrollView>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="60.0dip"
+        android:layout_margin="@dimen/margin_10dp"
+        android:background="@drawable/package_border"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/ll_call"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.0"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/imgCall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/toolbar_call_ic" />
+
+            <TextView
+                android:id="@+id/tvCall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2.0dip"
+                android:text="@string/call"
+                android:textColor="@color/black"
+                android:textSize="11.0dip" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_save"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.0"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/imgSave"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/toolbar_star_ic" />
+
+            <TextView
+                android:id="@+id/tvSave"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:lines="1"
+                android:text="@string/save_for_later"
+                android:textColor="@color/black"
+                android:textSize="11.0dip" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llShare"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.0"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/imgShare"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/toolbar_share_ic" />
+
+            <TextView
+                android:id="@+id/tvShare"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2.0dip"
+                android:lines="1"
+                android:text="@string/share"
+                android:textColor="@color/black"
+                android:textSize="11.0dip" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_direction"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.0"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/imgDirections"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/toolbar_getdirections_ic" />
+
+            <TextView
+                android:id="@+id/tvDirection"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:lines="1"
+                android:text="@string/get_directions"
+                android:textColor="@color/black"
+                android:textSize="11.0dip" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

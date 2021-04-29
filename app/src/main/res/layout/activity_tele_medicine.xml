@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/view_bg"
+    android:orientation="vertical">
+
+  <Button
+      android:layout_width="match_parent"
+      android:layout_height="7dp"
+      android:background="@drawable/gradient_vurv"
+      android:elevation="2dp" />
+
+  <WebView
+      android:id="@+id/webview"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:layout_marginRight="@dimen/margin_10dp"
+      android:layout_marginTop="@dimen/margin_10dp"
+      android:layout_marginLeft="@dimen/margin_10dp"
+      android:layout_above="@id/view"/>
+
+  <View
+      android:id="@+id/view"
+      android:layout_width="match_parent"
+      android:layout_height="0.5dp"
+      android:alpha="0.3"
+      android:layout_gravity="bottom"
+      android:layout_above="@id/ll_bn"
+      android:background="@color/black" />
+
+  <LinearLayout
+      android:id="@+id/ll_bn"
+      android:layout_width="match_parent"
+      android:layout_height="50dp"
+      android:layout_gravity="bottom"
+      android:background="@color/white"
+      android:layout_alignParentBottom="true"
+      android:orientation="horizontal">
+
+    <LinearLayout
+        android:id="@+id/llSearch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical">
+
+      <ImageView
+          android:layout_width="26dp"
+          android:layout_height="26dp"
+          android:src="@drawable/tabbar_selected_search_ic" />
+
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="2dp"
+          android:text="@string/search"
+          android:textColor="@color/blue"
+          android:textSize="10dp" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/llSaved"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical">
+
+      <ImageView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:src="@drawable/tabbar_saved_ic" />
+
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="2dp"
+          android:text="@string/saved"
+          android:textSize="10dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llVurv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:layout_marginTop="5dp"
+        android:orientation="vertical">
+
+      <ImageView
+          android:layout_width="26dp"
+          android:layout_height="26dp"
+          android:src="@drawable/tabbar_vurv_ic" />
+
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="2dp"
+          android:text="@string/vurv_id"
+          android:textSize="10dp" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/llProfile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical">
+
+      <ImageView
+          android:layout_width="26dp"
+          android:layout_height="26dp"
+          android:src="@drawable/tabbar_profile_ic" />
+
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="2dp"
+          android:lines="1"
+          android:text="@string/my_profile"
+          android:textSize="10dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llHelp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical">
+
+      <ImageView
+          android:layout_width="26dp"
+          android:layout_height="26dp"
+          android:src="@drawable/tabbar_help_ic" />
+
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="2dp"
+          android:text="@string/help"
+          android:textSize="10dp" />
+
+    </LinearLayout>
+
+  </LinearLayout>
+</RelativeLayout>

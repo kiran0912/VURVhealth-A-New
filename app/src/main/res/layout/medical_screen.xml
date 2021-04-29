@@ -1,0 +1,681 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:rsv="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/view_bg"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/htab_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@color/view_bg"
+        android:gravity="top|center"
+        android:minHeight="?attr/actionBarSize">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/backBtn"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/back_btn"
+                    android:textSize="14dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="20dp"
+                    android:gravity="center_vertical"
+                    android:text="@string/medical"
+                    android:textColor="@color/blue"
+                    android:textSize="16dp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </android.support.v7.widget.Toolbar>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="@drawable/gradient_vurv" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            android:id="@+id/llTab"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:background="@color/light_blue"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_doctor"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_margin="1dp"
+                android:layout_weight="1"
+                android:background="@color/light_blue"
+                android:stateListAnimator="@null"
+                android:text="@string/doctors"
+                android:textAllCaps="false"
+                android:textColor="@color/white" />
+
+            <Button
+                android:id="@+id/btn_facilities"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_margin="1dp"
+                android:layout_weight="1"
+                android:background="@color/view_bg"
+                android:stateListAnimator="@null"
+                android:text="@string/facilities"
+                android:textAllCaps="false"
+                android:textColor="@color/light_blue" />
+
+        </LinearLayout>
+
+
+        <ScrollView
+            android:id="@+id/scrollView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:scrollbars="none">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+
+                <LinearLayout
+                    android:id="@+id/llDoctors"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:orientation="vertical"
+                    android:visibility="visible">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:background="@drawable/border_line"
+                        android:orientation="horizontal">
+
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:paddingLeft="10dp"
+                            android:src="@drawable/doctors_ic" />
+
+                        <Button
+                            android:id="@+id/tvSpeciality"
+                            style="@style/TextAppearance.AppCompat.Medium"
+                            android:layout_width="match_parent"
+                            android:layout_height="38dp"
+                            android:layout_gravity="center"
+                            android:background="@color/white"
+                            android:gravity="start|center"
+                            android:hint="@string/choose_speciality"
+                            android:lines="1"
+                            android:paddingLeft="10dp"
+                            android:layout_marginRight="2dp"
+                            android:singleLine="true"
+                            android:textAllCaps="false"
+                            android:stateListAnimator="@null"
+                            android:textColor="@color/blue"
+                            android:textColorHint="@color/hintColor" />
+
+                    </LinearLayout>
+
+                    <EditText
+                        android:id="@+id/tv_zipodeDoctors"
+                        style="@style/TextAppearance.AppCompat.Medium"
+                        android:layout_width="match_parent"
+                        android:layout_height="38dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/margin_10dp"
+                        android:background="@drawable/border_line"
+                        android:hint="@string/zip_code"
+                        android:inputType="number"
+                        android:lines="1"
+                        android:maxLength="5"
+                        android:paddingLeft="10dp"
+                        android:singleLine="true"
+                        android:imeOptions="actionNext"
+                        android:textColor="@color/blue"
+                        android:textColorHint="@color/hintColor" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_10dp"
+                        android:orientation="horizontal">
+
+                        <EditText
+                            android:id="@+id/etCityDoctors"
+                            android:layout_width="match_parent"
+                            android:layout_height="38dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/border_line"
+                            android:hint="@string/city"
+                            android:paddingLeft="@dimen/margin_10dp"
+                            android:inputType="textNoSuggestions"
+                            android:keepScreenOn="true"
+                            android:singleLine="true"
+                            android:textColor="@color/blue"
+                            android:textColorHint="@color/hintColor" />
+
+                        <Spinner
+                            android:id="@+id/spinnerStateDoctors"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_weight="2"
+                            style="@style/spinner_style" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_10dp"
+                        android:layout_marginBottom="5dp"
+                        android:text="Doctor's Name"
+                        android:textColor="@color/blue" />
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="38dp"
+                        android:orientation="horizontal">
+
+                        <EditText
+                            android:id="@+id/tvDovtorsFirstName"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@drawable/border_line"
+                            android:hint="@string/first_name"
+                            android:inputType="textNoSuggestions"
+                            android:paddingLeft="@dimen/margin_10dp"
+                            android:singleLine="true"
+                            android:textColor="@color/blue"
+                            android:imeOptions="actionNext"
+                            android:textColorHint="@color/hintColor" />
+
+                        <EditText
+                            android:id="@+id/tvDovtorsLastName"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="10dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/border_line"
+                            android:hint="@string/last_name"
+                            android:paddingLeft="@dimen/margin_10dp"
+                            android:inputType="textNoSuggestions"
+                            android:singleLine="true"
+                            android:textColor="@color/blue"
+                            android:textColorHint="@color/hintColor" />
+
+
+                    </LinearLayout>
+
+                    <Button
+                        android:id="@+id/tv_language"
+                        style="@style/TextAppearance.AppCompat.Medium"
+                        android:layout_width="match_parent"
+                        android:layout_height="38dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/border_line"
+                        android:gravity="start|center"
+                        android:hint="@string/language"
+                        android:lines="1"
+                        android:paddingLeft="10dp"
+                        android:singleLine="true"
+                        android:textAllCaps="false"
+                        android:stateListAnimator="@null"
+                        android:textColor="@color/blue"
+                        android:textColorHint="@color/hintColor" />
+
+
+                    <Button
+                        android:id="@+id/tvHospitalAffiliation"
+                        style="@style/TextAppearance.AppCompat.Medium"
+                        android:layout_width="match_parent"
+                        android:layout_height="38dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/border_line"
+                        android:gravity="start|center"
+                        android:hint="@string/hospital_affiliations"
+                        android:lines="1"
+                        android:paddingLeft="10dp"
+                        android:singleLine="true"
+                        android:textAllCaps="false"
+                        android:stateListAnimator="@null"
+                        android:textColor="@color/blue"
+                        android:textColorHint="@color/hintColor" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_Facilities"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:background="@drawable/border_line"
+                        android:orientation="horizontal">
+
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:paddingLeft="10dp"
+                            android:src="@drawable/facilities_ic" />
+
+                        <Button
+                            android:id="@+id/tv_typeFacility"
+                            style="@style/TextAppearance.AppCompat.Medium"
+                            android:layout_width="match_parent"
+                            android:layout_height="38dp"
+                            android:layout_gravity="center"
+                            android:layout_marginRight="2dp"
+                            android:background="@color/white"
+                            android:gravity="start|center"
+                            android:hint="@string/type_facility"
+                            android:lines="1"
+                            android:paddingLeft="10dp"
+                            android:textAllCaps="false"
+                            android:singleLine="true"
+                            android:stateListAnimator="@null"
+                            android:textColor="@color/blue"
+                            android:textColorHint="@color/hintColor" />
+
+                    </LinearLayout>
+
+                    <Button
+                        android:id="@+id/tvFacilitySubtype"
+                        style="@style/TextAppearance.AppCompat.Medium"
+                        android:layout_width="match_parent"
+                        android:layout_height="38dp"
+                        android:layout_gravity="start|center"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/border_line"
+                        android:gravity="start|center"
+                        android:hint="@string/choose_speciality"
+                        android:lines="1"
+                        android:singleLine="true"
+                        android:paddingLeft="10dp"
+                        android:textAllCaps="false"
+                        android:stateListAnimator="@null"
+                        android:textColor="@color/blue"
+                        android:textColorHint="@color/hintColor"
+                        android:visibility="gone" />
+
+                    <!-- <TextView
+                         android:layout_width="match_parent"
+                         android:layout_height="wrap_content"
+                         android:layout_marginTop="@dimen/margin_10dp"
+                         android:text="@string/zip_code_or_city_state"
+                         android:textColor="@color/blue" />-->
+
+                    <EditText
+                        android:id="@+id/tv_zipcodeFacility"
+                        style="@style/TextAppearance.AppCompat.Medium"
+                        android:layout_width="match_parent"
+                        android:layout_height="38dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/margin_10dp"
+                        android:background="@drawable/border_line"
+                        android:hint="@string/zip_code"
+                        android:inputType="number"
+                        android:lines="1"
+                        android:maxLength="5"
+                        android:paddingLeft="10dp"
+                        android:singleLine="true"
+                        android:imeOptions="actionNext"
+                        android:textColor="@color/blue"
+                        android:textColorHint="@color/hintColor" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_10dp"
+                        android:orientation="horizontal">
+
+                        <EditText
+                            android:id="@+id/spinnerCityFacility"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/border_line"
+                            android:hint="@string/city"
+                            android:paddingLeft="@dimen/margin_10dp"
+                            android:singleLine="true"
+                            android:imeOptions="actionNext"
+                            android:textColor="@color/blue"
+                            android:textColorHint="@color/hintColor" />
+
+                        <Spinner
+                            android:id="@+id/spinnerStateFacility"
+                            android:layout_width="match_parent"
+                            android:layout_height="38dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_weight="2"
+                            style="@style/spinner_style" />
+
+                    </LinearLayout>
+
+
+                    <EditText
+                        android:id="@+id/tv_facilityName"
+                        style="@style/TextAppearance.AppCompat.Medium"
+                        android:layout_width="match_parent"
+                        android:layout_height="38dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/border_line"
+                        android:hint="@string/name_facility"
+                        android:inputType="textNoSuggestions"
+                        android:lines="1"
+                        android:paddingLeft="10dp"
+                        android:singleLine="true"
+                        android:textColor="@color/blue"
+                        android:textColorHint="@color/hintColor" />
+
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_10dp"
+                    android:text="@string/within_miles"
+                    android:textColor="@color/blue" />
+
+                <com.VURVhealth.vurvhealth.medical.seekbar.RangeSliderView
+                    android:id="@+id/seekbarDoctors"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    rsv:barHeightPercent="0.1"
+                    rsv:emptyColor="#a8aeb8"
+                    rsv:filledColor="#005FB6"
+                    rsv:rangeCount="5" />
+
+
+                <LinearLayout
+                    android:id="@+id/llCheck"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <CheckBox
+                        android:id="@+id/chkMale"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="30dp"
+                        android:text="@string/male"
+                        android:textSize="16dp"
+                        android:padding="@dimen/margin_15dp"
+                        android:button="@drawable/customdrawablecheckbox"/>
+
+                    <CheckBox
+                        android:id="@+id/chkFemale"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30dp"
+                        android:text="@string/female"
+                        android:textSize="16dp"
+                        android:padding="@dimen/margin_15dp"
+                        android:button="@drawable/customdrawablecheckbox"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="38dp"
+                    android:layout_gravity="bottom"
+                    android:layout_margin="20dp"
+                    android:orientation="horizontal"
+                    android:visibility="visible">
+
+                    <Button
+                        android:id="@+id/btn_doctor_reset"
+                        android:layout_width="match_parent"
+                        android:layout_height="38dp"
+                        android:layout_marginRight="@dimen/margin_10dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/button_background_disable"
+                        android:stateListAnimator="@null"
+                        android:text="@string/reset"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white" />
+
+
+                    <Button
+                        android:id="@+id/btn_inactive_doctor_search"
+                        android:layout_width="match_parent"
+                        android:layout_height="38dp"
+                        android:layout_weight="1"
+                        android:alpha="0.48"
+                        android:background="@drawable/button_background_disable"
+                        android:stateListAnimator="@null"
+                        android:text="@string/search"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:visibility="gone" />
+
+
+                    <Button
+                        android:id="@+id/btn_doctor_search"
+                        android:layout_width="match_parent"
+                        android:layout_height="38dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/gradient_button_background"
+                        android:stateListAnimator="@null"
+                        android:text="@string/search"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:visibility="visible" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+        </ScrollView>
+
+
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/tvBanner"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="@dimen/margin_10dp"
+        android:padding="5dp"
+        android:gravity="center"
+        android:background="@color/light_blue"
+        android:text="@string/your_VURV_ID_medical"
+        android:textSize="12dp"
+        android:textStyle="bold"
+        android:textColor="@color/white"/>
+
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:alpha="0.3"
+        android:background="@color/black" />
+
+    <LinearLayout
+        android:id="@+id/llBottomTab"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="bottom"
+        android:background="@color/white"
+        android:gravity="bottom"
+        android:orientation="horizontal"
+        android:padding="5dp">
+
+        <LinearLayout
+            android:id="@+id/llSearch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/tabbar_selected_search_ic" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="@string/search"
+                android:textColor="@color/blue"
+                android:textSize="11dp" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/llSaved"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/tabbar_saved_ic" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="@string/saved"
+                android:textSize="11dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llVurv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/tabbar_vurv_ic" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="@string/vurv_id"
+                android:textSize="11dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llProfile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/tabbar_profile_ic" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="@string/my_profile"
+                android:maxLines="1"
+                android:textSize="11dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llHelp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/tabbar_help_ic" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="@string/help"
+                android:textSize="11dp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,449 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/view_bg"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/htab_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@color/view_bg"
+        android:gravity="top|center"
+        android:minHeight="?attr/actionBarSize">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/backBtn"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/back_btn"
+                    android:textSize="14dp" />
+
+                <TextView
+                    android:id="@+id/toolbar_txt"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="20dp"
+                    android:gravity="center_vertical"
+                    android:text="Rx"
+                    android:textColor="@color/blue"
+                    android:textSize="16dp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </android.support.v7.widget.Toolbar>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="@drawable/gradient_vurv" />
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/desc_heading"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/rx_desc"
+                android:textColor="@color/blue" />
+
+            <TextView
+                android:id="@+id/desc_para"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/rx_desc"
+                android:textColor="@color/black"
+                android:textSize="12dp" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="30dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/llPrescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/package_border"
+                    android:orientation="horizontal">
+
+
+                    <ImageView
+                        android:id="@+id/checkPrescription"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="2"
+                        android:src="@drawable/check_ic" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="@dimen/margin_10dp"
+                        android:layout_weight="1">
+
+
+                        <ImageView
+                            android:id="@+id/imgRx"
+                            android:layout_width="32dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginRight="20dp"
+                            android:src="@drawable/rx_ic" />
+
+                        <TextView
+                            android:id="@+id/tvRx"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:text="@string/prescription"
+                            android:textColor="@color/blue"
+                            android:textSize="15dp" />
+
+                    </LinearLayout>
+
+
+                    <ImageView
+                        android:id="@+id/infoRx"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="2"
+                        android:onClick="infoPrescCustomAlertDialog"
+                        android:src="@drawable/info_ic" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llDoctors"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="@dimen/margin_10dp"
+                    android:background="@drawable/package_border"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+
+
+                    <ImageView
+                        android:id="@+id/checkDoctor"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="2"
+                        android:src="@drawable/check_ic" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="@dimen/margin_10dp"
+                        android:layout_weight="1">
+
+
+                        <ImageView
+                            android:id="@+id/img_doctor"
+                            android:layout_width="32dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginRight="20dp"
+                            android:src="@drawable/doctors_ic" />
+
+                        <TextView
+                            android:id="@+id/tv_doctor"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:text="@string/doctors"
+                            android:textColor="@color/blue"
+                            android:textSize="15dp" />
+                    </LinearLayout>
+
+
+                    <ImageView
+                        android:id="@+id/infoDoctor"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="2"
+                        android:clickable="true"
+                        android:onClick="infoDoctorCustomAlertDialog"
+                        android:src="@drawable/info_ic" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llFacilities"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="@dimen/margin_10dp"
+                    android:background="@drawable/package_border"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+
+
+                    <ImageView
+                        android:id="@+id/checkFacility"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="2"
+                        android:src="@drawable/check_ic" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="@dimen/margin_10dp"
+                        android:layout_weight="1">
+
+                        <ImageView
+                            android:id="@+id/img_facility"
+                            android:layout_width="32dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginRight="20dp"
+                            android:src="@drawable/facilities_ic" />
+
+                        <TextView
+                            android:id="@+id/tv_faciliity"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:text="@string/facilities"
+                            android:textColor="@color/blue"
+                            android:textSize="15dp" />
+                    </LinearLayout>
+
+
+                    <ImageView
+                        android:id="@+id/infoFacility"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="2"
+                        android:onClick="infoFacilityCustomAlertDialog"
+                        android:src="@drawable/info_ic" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llDental"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="@dimen/margin_10dp"
+                    android:background="@drawable/package_border"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+
+
+                    <ImageView
+                        android:id="@+id/checkDental"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="2"
+                        android:src="@drawable/check_ic" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="@dimen/margin_10dp"
+                        android:layout_weight="1">
+
+
+                        <ImageView
+                            android:id="@+id/img_dental"
+                            android:layout_width="32dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginRight="20dp"
+                            android:src="@drawable/dental_ic" />
+
+                        <TextView
+                            android:id="@+id/tv_dental"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:text="@string/dental"
+                            android:textColor="@color/blue"
+                            android:textSize="15dp" />
+                    </LinearLayout>
+
+
+                    <ImageView
+                        android:id="@+id/infoDental"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="2"
+                        android:src="@drawable/info_ic" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llVision"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="@dimen/margin_10dp"
+                    android:background="@drawable/package_border"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+
+
+                    <ImageView
+                        android:id="@+id/checkVision"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="2"
+                        android:src="@drawable/check_ic" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="@dimen/margin_10dp"
+                        android:layout_weight="1">
+
+                        <ImageView
+                            android:id="@+id/img_vision"
+                            android:layout_width="32dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginRight="20dp"
+                            android:src="@drawable/vision_ic" />
+
+                        <TextView
+                            android:id="@+id/tv_vision"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:text="@string/vision"
+                            android:textColor="@color/blue"
+                            android:textSize="15dp" />
+                    </LinearLayout>
+
+
+                    <ImageView
+                        android:id="@+id/infoVision"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="2"
+                        android:src="@drawable/info_ic" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llTelemed"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="@dimen/margin_10dp"
+                    android:background="@drawable/package_border"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+
+
+                    <ImageView
+                        android:id="@+id/checkTelemed"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="2"
+                        android:src="@drawable/check_ic" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="@dimen/margin_10dp"
+                        android:layout_weight="1">
+
+                        <ImageView
+                            android:id="@+id/img_Telemed"
+                            android:layout_width="32dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginRight="20dp"
+                            android:src="@drawable/alt_ic" />
+
+                        <TextView
+                            android:id="@+id/tv_Telemed"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center|left"
+                            android:gravity="center"
+                            android:text="@string/telemed"
+                            android:textColor="@color/blue"
+                            android:textSize="15dp" />
+                    </LinearLayout>
+
+
+                    <ImageView
+                        android:id="@+id/infoTelemed"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="2"
+                        android:src="@drawable/info_ic" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+
+    <TextView
+        android:id="@+id/tvRateBanner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/light_blue"
+        android:gravity="center"
+        android:padding="15dp"
+        android:text=""
+        android:textColor="@color/white"
+        android:textStyle="bold" />
+
+</LinearLayout>

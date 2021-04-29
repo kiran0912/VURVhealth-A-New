@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="20dp"
+    android:background="@color/view_bg"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/img_cancelBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/margin_20dp"
+        android:layout_gravity="end"
+        android:src="@drawable/close" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:gravity="center"
+        android:text="@string/term_condition"
+        android:textColor="@color/blue"
+        android:textSize="17dp"
+        android:textStyle="bold" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp"
+        android:background="@color/view_bg"
+        android:scrollbars="none">
+
+        <WebView
+            android:id="@+id/tvTC"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/margin_10dp"
+            android:background="@color/view_bg"
+            android:text=""
+            android:visibility="visible"
+            android:textSize="15dp"
+            android:textColor="@color/black" />
+    </ScrollView>
+
+</LinearLayout>

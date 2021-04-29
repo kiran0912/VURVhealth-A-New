@@ -1,0 +1,910 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="abc_action_bar_home_description">Navigate home</string>
+    <string name="abc_action_bar_home_description_format">%1$s, %2$s</string>
+    <string name="abc_action_bar_home_subtitle_description_format">%1$s, %2$s, %3$s</string>
+    <string name="abc_action_bar_up_description">Navigate up</string>
+    <string name="abc_action_menu_overflow_description">More options</string>
+    <string name="abc_action_mode_done">Done</string>
+    <string name="abc_activity_chooser_view_see_all">See all</string>
+    <string name="abc_activitychooserview_choose_application">Choose an app</string>
+    <string name="abc_capital_off">OFF</string>
+    <string name="abc_capital_on">ON</string>
+    <string name="abc_search_hint">Search…</string>
+    <string name="abc_searchview_description_clear">Clear query</string>
+    <string name="abc_searchview_description_query">Search query</string>
+    <string name="abc_searchview_description_search">Search</string>
+    <string name="abc_searchview_description_submit">Submit query</string>
+    <string name="abc_searchview_description_voice">Voice search</string>
+    <string name="abc_shareactionprovider_share_with">Share with</string>
+    <string name="abc_shareactionprovider_share_with_application">Share with %s</string>
+    <string name="abc_toolbar_collapse_description">Collapse</string>
+    <string name="cast_casting_to_device">Casting to %1$s</string>
+    <string name="cast_closed_captions">Closed captions</string>
+    <string name="cast_closed_captions_unavailable">Closed captions unavailable</string>
+    <string name="cast_disconnect">Disconnect</string>
+    <string name="cast_expanded_controller_background_image">Album art</string>
+    <string name="cast_expanded_controller_loading">Loading…</string>
+    <string name="cast_forward">Forward</string>
+    <string name="cast_forward_10">Forward ten seconds</string>
+    <string name="cast_forward_30">Forward thirty seconds</string>
+    <string name="cast_intro_overlay_button_text">@android:string/ok</string>
+    <string name="cast_mute">Mute</string>
+    <string name="cast_notification_connected_message">Connected to %1$s</string>
+    <string name="cast_notification_connecting_message">Connecting to %1$s</string>
+    <string name="cast_notification_disconnect">Disconnect</string>
+    <string name="cast_pause">Pause</string>
+    <string name="cast_play">Play</string>
+    <string name="cast_rewind">Rewind</string>
+    <string name="cast_rewind_10">Rewind ten seconds</string>
+    <string name="cast_rewind_30">Rewind thirty seconds</string>
+    <string name="cast_seek_bar">Playback seek control</string>
+    <string name="cast_skip_next">Skip to next item</string>
+    <string name="cast_skip_prev">Skip to previous item</string>
+    <string name="cast_stop">Stop</string>
+    <string name="cast_stop_live_stream">Stop live stream</string>
+    <string name="cast_tracks_chooser_dialog_audio">Audio</string>
+    <string name="cast_tracks_chooser_dialog_cancel">Cancel</string>
+    <string name="cast_tracks_chooser_dialog_default_track_name">Track %1$d</string>
+    <string name="cast_tracks_chooser_dialog_no_audio_tracks">No Audio Tracks Available</string>
+    <string name="cast_tracks_chooser_dialog_no_text_tracks">No Text Tracks Available</string>
+    <string name="cast_tracks_chooser_dialog_no_tracks_available">No tracks available</string>
+    <string name="cast_tracks_chooser_dialog_none">None</string>
+    <string name="cast_tracks_chooser_dialog_ok">OK</string>
+    <string name="cast_tracks_chooser_dialog_subtitles">Subtitles</string>
+    <string name="cast_unmute">Unmute</string>
+    <string name="common_google_play_services_enable_button">Enable</string>
+    <string name="common_google_play_services_enable_text">"%1$s won't work unless you enable Google Play services."</string>
+    <string name="common_google_play_services_enable_title">Enable Google Play services</string>
+    <string name="common_google_play_services_install_button">Get Google Play services</string>
+    <string name="common_google_play_services_install_text_phone">"%1$s won't run without Google Play services, which are missing from your phone."</string>
+    <string name="common_google_play_services_install_text_tablet">"%1$s won't run without Google Play services, which are missing from your tablet."</string>
+    <string name="common_google_play_services_install_title">Get Google Play services</string>
+    <string name="common_google_play_services_notification_ticker">Google Play services error</string>
+    <string name="common_google_play_services_unknown_issue">%1$s is having trouble with Google Play services. If the problem persists, please contact the developer for assistance.</string>
+    <string name="common_google_play_services_unsupported_text">%1$s relies on Google Play services, which is not supported by your device. Contact the manufacturer for assistance.</string>
+    <string name="common_google_play_services_unsupported_title">Google Play services</string>
+    <string name="common_google_play_services_update_button">Update</string>
+    <string name="common_google_play_services_update_text">"%1$s won't run unless you update Google Play services."</string>
+    <string name="common_google_play_services_update_title">Update Google Play services</string>
+    <string name="common_google_play_services_updating_text">"%1$s won't run without Google Play services, which are currently updating."</string>
+    <string name="common_google_play_services_updating_title">Google Play services are updating</string>
+    <string name="common_google_play_services_wear_update_text">New version of Google Play services needed. It will update itself shortly.</string>
+    <string name="common_open_on_phone">Open on phone</string>
+    <string name="common_signin_button_text">Sign in</string>
+    <string name="common_signin_button_text_long">Sign in with Google</string>
+    <string name="mr_media_route_button_content_description">Cast</string>
+    <string name="mr_media_route_chooser_searching">Searching for devices…</string>
+    <string name="mr_media_route_chooser_title">Connect to device</string>
+    <string name="mr_media_route_controller_disconnect">Disconnect</string>
+    <string name="mr_media_route_controller_no_info_available">No info available</string>
+    <string name="mr_media_route_controller_pause">Pause</string>
+    <string name="mr_media_route_controller_play">Play</string>
+    <string name="mr_media_route_controller_settings_description">Route settings</string>
+    <string name="mr_media_route_controller_stop">Stop casting</string>
+    <string name="mr_system_route_name">System</string>
+    <string name="mr_user_route_category_name">Devices</string>
+    <string name="place_autocomplete_clear_button">Clear search</string>
+    <string name="place_autocomplete_search_hint">Search</string>
+    <string name="search_menu_title">Search</string>
+    <string name="status_bar_notification_info_overflow">999+</string>
+    <string name="wallet_buy_button_place_holder">Buy with Google</string>
+    <string name="Accredited_by">Accredited by the joint commission</string>
+    <string name="_13_50">$13.50</string>
+    <string name="_360_package">360 Package</string>
+    <string name="about">About</string>
+    <string name="accepting">Accepting</string>
+    <string name="accepting_new_patients">Accepting new patients:</string>
+    <string name="accepts_new_patients">Accepts new patients</string>
+    <string name="ada_accessible">ADA Accessible</string>
+    <string name="ada_accessible_">ADA Accessible:</string>
+    <string name="add_member">Add Member</string>
+    <string name="add_members">Add Members</string>
+    <string name="add_new_member">Add New Member</string>
+    <string name="add_upto">You can add up to 3 additional members from your household.</string>
+    <string name="added_fav">Added as favourite</string>
+    <string name="additional_10_month">Additional $10 / Month</string>
+    <string name="additional_info">For additional information, please visit: www.VURVhealth.com.</string>
+    <string name="address_details">Address Details:</string>
+    <string name="address_line_1">Address 1</string>
+    <string name="address_line_2">Address 2</string>
+    <string name="adress">Address:</string>
+    <string name="all_plans_hav">All plans have a 30 day money back guarantee. You can cancel or upgrade at any time!</string>
+    <string name="alt_caps">ALTERNATIVE HEALTH</string>
+    <string name="alt_health">Alt Health</string>
+    <string name="alt_plan">Alternative Health Plan Not Included</string>
+    <string name="alt_vurv_txt">&lt;b>Patient:&lt;/b> Use the Search tool to locate a participating ChooseHealthy® provider. Present this card to a participating ChooseHealthy® provider for immediate savings off regular fees to a wide variety of credentialed specialty health care providers.</string>
+    <!--<string name="alt_vurv_txt">&lt;b>Patient:&lt;/b> Present this card to a participating ChooseHealthy provider for savings off regular fees to a wide variety of credentialed specialty health care practitioners.</string>-->
+    <string name="alt_vurv_txt1">For assistance, call the following number:
+        &lt;br /&gt; &lt;b>(800) 290-0523&lt;/b> </string>
+    <!--<string name="alt_vurv_txt1">For additional information please visit &lt;a href="www.vurvhealth.com/home/help">www.vurvhealth.com/home/help &lt;a>  or call &lt;b>(800) 290-0523&lt;/b> for further assistance.</string>-->
+
+    <!--<string name="alt_vurv_txt1">For additional information please visit &lt;a href="www.vurvhealth.com/home/help">www.vurvhealth.com/home/help &lt;a> &gt;  or call &lt;b>(800) 290-0523&lt;/b> for further assistance.</string>-->
+    <!--<string name="alt_vurv_txt1">For additional information, visit www.VURVhealth.com or call &lt;b>(866) 770–4151&lt;/b>.</string>-->
+    <string name="ammount">Total</string>
+    <string name="annual_membership">Annual Membership</string>
+    <string name="annual_subscription">Pulse Single Monthly Subscription</string>
+    <string name="app_mgmt">App Management</string>
+    <string name="app_name">VURVhealth</string>
+    <string name="app_qtn1" translatable="false">How do I update my information?</string>
+    <string name="app_qtn1A">Updating your information is quick and easy. Simply login to your account through your VURVhealth app or on the website, and update the information directly. Your information will instantly save and update.</string>
+    <string name="app_qtn2">How do I change my password?</string>
+    <string name="app_qtn2A">You can change your password directly in the profile section of the VURVhealth app or within your account on a desktop computer.</string>
+    <string name="application_language">Application Language</string>
+    <string name="apply">Apply</string>
+    <string name="best_price">Best Prices Nearby</string>
+    <string name="bill_payment">Billing &amp; Payment</string>
+    <string name="billing">Billing</string>
+    <string name="billing_addrs">Billing Address</string>
+    <string name="billing_adrs">Update Address</string>
+    <string name="billing_information">Billing Information</string>
+    <string name="bin">BIN \u0020\u0020\u0020 018323</string>
+    <string name="brand">Brand</string>
+    <string name="button_to_return">button when you find a doctor, facility or pharmacy that you want to return to.</string>
+    <string name="call">Call</string>
+    <string name="cancel">Cancel</string>
+    <string name="card_information">Card Information</string>
+    <string name="card_no">Card Number</string>
+    <string name="card_provider">&lt;b>Provider:&lt;/b> Visit www.vurvhealth.com/validate for member eligibility.</string>
+    <string name="care">Care</string>
+    <string name="care_desc">Just need really reliable and affordable Dental &amp;amp; Vision? &lt;b>VURVPULSE&lt;/b> discount plan gives you just that! Save instantly on most all dental exams and procedures, including root canals, crowns, and even cosmetic dentistry. Save instantly on eye exams and eyeglasses. &lt;b>VURVCARE&lt;/b> also gets you free access to Alternate Health consultations with physicians, 24 hours a day, 365 days a year.</string>
+    <string name="care_heading">Smile with savings discounts on most dental procedures including exams, root canals, crowns, and even cosmetic dentistry. See instant savings on eye exams and eyeglasses.</string>
+    <string name="care_package">Care Package</string>
+    <string name="carrington_t_amp_c_s">Careington</string>
+    <string name="center">Center:</string>
+    <string name="change_password">Change Password</string>
+    <string name="chinese">简体中文）</string>
+    <string name="choose_hospital">Choose Hospital Affiliations</string>
+    <string name="choose_language">Choose Language</string>
+    <string name="choose_library">Choose from Library</string>
+    <string name="choose_office">Choose Office Specialty</string>
+    <string name="choose_speciality">Choose Specialty</string>
+    <string name="city">City</string>
+    <string name="city_zip">City or Zip Code</string>
+    <string name="clear">Clear</string>
+    <string name="clinic">Clinic:</string>
+    <string name="clinical_education">Clinical Education:</string>
+    <string name="closed">Closed</string>
+    <string name="cnf_pwd">Re-type Password</string>
+    <string name="code">Code:</string>
+    <string name="confirm_and_submit_payment">Confirm and Submit Payment</string>
+    <string name="contact_info">Contact Info</string>
+    <string name="contact_no">Contact No</string>
+    <string name="contact_saved">Contact saved successfully</string>
+    <string name="country">Country</string>
+    <string name="create_accnt">Create Your Account</string>
+    <string name="create_account">sign up</string>
+    <string name="create_vurvid">Create VURVhealth ID</string>
+    <string name="current_location">Current Location</string>
+    <string name="current_password">Current Password</string>
+    <string name="current_plan">Current Plan</string>
+    <string name="cvs_pharmacy">CVS Pharmacy</string>
+    <string name="delete_member">Are you sure if you want to delete the member?</string>
+    <string name="dental">Dental</string>
+    <string name="dental_amp_vision">Dental &amp; Vision</string>
+    <string name="dental_caps">DENTAL</string>
+    <string name="dental_plan">Dental Plan Not Included</string>
+    <string name="dental_txt">Get up to 50% off dental procedures in the largest network in America.  Now that’s something to smile about.  Search now.</string>
+    <string name="dental_txt1">Find the right dentist for preventative and diagnostic care, routine procedures, oral surgery and dental specialties.</string>
+
+    <string name="dental_txt_card">&lt;b>Patient:&lt;/b> Use the Search tool to locate a participating provider. Present this card to a participating healthcare provider to receive a discount on your medical services.</string>
+    <string name="dental_txt_card2">&lt;b>Healthcare Provider:&lt;/b>  Card must be presented to receive program benefits.
+For reimbursement information, call the following number:
+         &lt;br /&gt; &lt;b> (888) 858-7427&lt;/b> </string>
+
+    <!--<string name="dental_txt_card">&lt;b>Patient:&lt;/b> Present this card to a participating ChooseHealthy provider for savings off regular fees to a wide variety of credentialed specialty health care practitioners.</string>-->
+    <!--<string name="dental_txt_card2">For additional information, visit www.VURVhealth.com or call &lt;b>(866) 770–4151&lt;/b>.</string>-->
+
+    <string name="dental_vurv_txt">&lt;b>Patient:&lt;/b> Use the Search tool to locate a participating provider. Present this card to a participating Careington Dental Network provider to receive a discount on your dental services.</string>
+    <!--<string name="dental_vurv_txt">&lt;b>Patient:&lt;/b> Present this card to a participating Careington Dental Network provider to receive a discount on your dental services. </string>-->
+    <string name="dental_vurv_txt1"> For assistance, call the following number:
+         &lt;br /&gt; &lt;b>(800) 290-0523&lt;/b></string>
+
+
+    <!--<string name="dental_vurv_txt1">To locate a participating provider, please call &lt;b>(866) 770–4151&lt;/b> or access our online provider search.</string>-->
+    <string name="desc360">"&lt;b>VURV360&lt;/b> has you totally covered! Enjoy all savings of &lt;b>VURVPULSE&lt;/b> and &lt;b>VURVCARE&lt;/b> in one ultimate package and see what a difference this easy, affordable discount plan makes to manage your and your family's good health. It's as easy as sign-up and show up with your card. That's it!"</string>
+    <string name="distance">Distance</string>
+    <string name="dob_txt">Date of Birth (MM / DD / YY)</string>
+    <string name="doctor_hours">Doctor Hours:</string>
+    <string name="doctor_languages">Doctor Languages:</string>
+    <string name="doctor_s_name">"Doctor's Name"</string>
+    <string name="doctor_special_interest">Doctor special interest:</string>
+    <string name="doctors">Doctors</string>
+    <string name="doctors_amp_medical_facilities">Medical - Doctors &amp; Facilities</string>
+    <string name="doent_match">Password does not match.</string>
+    <string name="done">Done</string>
+    <string name="dosage">DOSAGE</string>
+    <string name="drug_details">Drug details:</string>
+    <string name="drug_not_found">No drug found</string>
+    <string name="each_member">Each member will be an additional $XX.XX to your annual bill.</string>
+    <string name="edit_photo">Edit Photo</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="edit_sec">Edit Secondary Member</string>
+    <string name="effect_date">&lt;b>Effective Date:&lt;/b></string>
+    <string name="email_doctor">Email Doctor</string>
+    <string name="email_instructions">An email with instructions to reset your password has been sent to:</string>
+    <string name="email_not_found">Your email address not found</string>
+    <string name="email_sent">Email Sent!</string>
+    <string name="email_txt">Email / Mobile No / VURV ID</string>
+    <string name="email_txt1">Email / Mobile No</string>
+    <string name="enable_loc">Enable Location Services</string>
+    <string name="english">English</string>
+    <string name="enjoy_the_full_savings">Enjoy the full savings discounts of Pulse and Care in one ultimate package!</string>
+    <string name="enter_adrs1">Please enter address1</string>
+    <string name="enter_city">Please enter city</string>
+    <string name="enter_current_pwd">Please enter current password</string>
+    <string name="enter_dob">Please enter DOB</string>
+    <string name="enter_fname">Please enter first name</string>
+    <string name="enter_lname">Please enter last name</string>
+    <string name="enter_new_pwd">Please enter new password</string>
+    <string name="enter_state">Please select State</string>
+    <string name="enter_valid_zip">Please enter valid zip code</string>
+    <string name="enter_zip">Please enter zip code</string>
+    <string name="error_msg_one">No pharmacies at your current location</string>
+    <string name="error_msg_two">Location could not found</string>
+    <string name="essential">Essential community provider</string>
+    <string name="exp_date">Expiration Date (MM / YY)</string>
+    <string name="expires">Expires :</string>
+    <string name="facilities">Facilities</string>
+    <string name="facilities_txt1">Search for participating VURVhealth hospitals, urgent care, medical service centers, practices and clinics.</string>
+    <string name="facility">Facility:</string>
+    <string name="facility_sub_type">Facility Sub Type</string>
+    <string name="female">Female</string>
+    <string name="filter">Filter</string>
+    <string name="filter_option">Filter option not available</string>
+    <string name="filters">FILTERS</string>
+    <string name="first_child_position">firstChildPosition</string>
+    <string name="first_name">First Name</string>
+    <string name="flip_txt">&lt;b>Pharmacist:&lt;/b> Card must be presented to receive program benefits.</string>
+    <string name="for_additional">For additional information, please visit:</string>
+    <!--<string name="for_gen_info">For general inquiries or billing questions, please contact VURVhealth at</string>-->
+    <string name="for_gen_info">For general inquiries, billing or membership related questions, please contact</string>
+    <string name="for_member">for member eligibility</string>
+    <string name="for_processing_que">For processing questions, please call Argus Health Systems, Inc. at 1-866-921-7286.</string>
+    <string name="forgot_pswd">I forgot my password</string>
+    <string name="form">FORM</string>
+    <string name="frgt_pwd">Forgot Password</string>
+    <string name="frgt_pwd_txt">Please enter your email or mobile number and we will send you instructions to reset your password.</string>
+    <string name="fri">FRI:</string>
+    <string name="gen_qtn1">How do I upgrade my membership?</string>
+    <string name="gen_qtn1A">Once we have your billing information, upgrades are simple and instant. You can upgrade your existing membership inside the VURVhealth app by navigating to Change Package under your profile or by clicking here.</string>
+    <string name="gen_qtn2">How can I pay for my VURVhealth membership?</string>
+    <string name="gen_qtn2A">VURVhealth memberships can be paid monthly or annually using most major credit and debit Cards. You can enter or edit your billing information by navigating to your profile within the VURVhealth app and click on Edit Billing.</string>
+    <string name="gen_qtn3">How often will I be charged?</string>
+    <string name="gen_qtn3A">Premium VURVhealth memberships bill in monthly cycles, but you can save 20% by clicking here to lock in annual pricing.</string>
+    <string name="gen_qtn4">How does your cancellation policy work?</string>
+    <string name="gen_qtn4A">We believe that the cancellation process should be as easy as the sign-up process. Simply navigate to your profile within the VURVhealth app and click on Stop Subscription and follow the prompts. We hope you come back soon</string>
+    <string name="gender">GENDER</string>
+    <string name="gender_">Gender:</string>
+    <string name="general_dentistry">General Dentistry</string>
+    <!--<string name="general_inquiries">For general inquiries or billing please contact VURVhealth at &lt;b>(866) 770-4151&lt;/b> or visit &lt;a href=www.VURVhealth.com>www.VURVhealth.com&lt;/a></string>-->
+    <string name="general_inquiries">For general inquiries, billing or membership related questions, please contact &lt;a href=help@vurvhealth.com>help@vurvhealth.com&lt;/a> or visit
+        &lt;br /&gt;   &lt;a href=www.vurvhealth.com/help>www.VURVhealth.com/help&lt;/a></string>
+
+    <string name="generic">Generic</string>
+    <string name="get_VURVID">Before you can get a VURV ID, we need to collect some information.</string>
+    <string name="get_directions">Get Directions</string>
+    <string name="get_started">Get Started</string>
+    <string name="getting_location">Please wait getting your location…</string>
+    <string name="go_to_settings_enable">Please go to settings and enable location services for VURVhealth</string>
+    <string name="group">Group</string>
+    <string name="grp">GRP VURV</string>
+    <string name="handicapped_accessible">Handicapped accessible</string>
+    <string name="hd_speciality">Choose Specialty</string>
+    <string name="heading360">Enjoy the full savings discounts of Pulse and Care in one ultimate package!</string>
+    <string name="health_care">&lt;b>Health care provider:&lt;/b> Call 888–858–7427 for reimbursement information</string>
+    <string name="help">Help</string>
+    <string name="helpPPtxt1">Present your &lt;b>VURV ID&lt;/b> to a participating pharmacy to receive a discount on your prescription.</string>
+    <string name="helpPPtxt2">For additional information, please visit: &lt;a href=www.VURVhealth.com>www.VURVhealth.com&lt;/a>.</string>
+    <string name="help_alt_txt">What is VURVhealth Alternative Health?</string>
+    <string name="help_alt_txt2">Is this a covered benefit under my health plan?</string>
+    <string name="help_alt_txt21">No, it is a program that offers VURVhealth members up to a 25 percent discount on health improvement services.</string>
+    <string name="help_alt_txt3">Chiropractic care, podiatry, physical therapy, and occupational therapy are already included as part of my health plan benefit. How does this discount program impact my current benefit?</string>
+    <string name="help_alt_txt31">If you have a chiropractic, podiatry, physical therapy, or occupational therapy medical benefit under your health plan, you may want to use this discount program after you have reached your annual plan limits, or for services not covered under that benefit.</string>
+    <string name="help_alt_txt4">Do I need a referral or pre-authorization?</string>
+    <string name="help_alt_txt41">"No. Whether you are an HMO, POS or PPO member, you do not need to get referrals or pre-authorizations to take advantage of this discount program. Just follow the three-step process of: 
+1) selecting a participating provider, 
+2) scheduling an appointment, and 
+3) receiving and paying for services."</string>
+    <string name="help_alt_txt5">Do I need to submit claim forms?</string>
+    <string name="help_alt_txt51">No.</string>
+    <string name="help_alt_txt6">Do I need permission to change participating providers in the middle of a treatment plan?</string>
+    <string name="help_alt_txt61">No. You may change providers at any time.</string>
+    <string name="help_alt_txtA">VURVhealth has partnered with the ChooseHealthy Program administered by American Specialty Health Administrators, Inc. to give members access to more than 37,000 credentialed specialty healthcare practitioners and health improvement services including:</string>
+    <string name="help_alt_txta">Chiropractors,</string>
+    <string name="help_alt_txtb">Acupuncturists,</string>
+    <string name="help_alt_txtc">Massage Therapists,</string>
+    <string name="help_alt_txtd">Registered Dietitians,</string>
+    <string name="help_alt_txte">Physical &amp; Occupational Therapists,</string>
+    <string name="help_alt_txtf">Podiatrists.</string>
+    <string name="help_d_txt">What is VURVhealth Dental?</string>
+    <string name="help_d_txt1">What types of discounts can I expect?</string>
+    <string name="help_d_txt1a" formatted="false">Save 20% to 50% on most dental procedures including routine oral exams, unlimited cleanings, and major work such as dentures, root canals, and crowns</string>
+    <string name="help_d_txt1b">20% savings on orthodontics including braces and retainers for children and adults</string>
+    <string name="help_d_txt1c">"20% reduction on specialist's normal fees. Specialties include: Endodontics, Oral Surgery, Pediatric Dentistry, Periodontics, and Prosthodontics where available"</string>
+    <string name="help_d_txt1d">Cosmetic dentistry such as bonding and veneers also included</string>
+    <string name="help_d_txt1e">All dentists must meet highly selective credentialing standards based on education, background, license standing and other requirements</string>
+    <string name="help_d_txt1f">Members may visit any participating dentist on the plan and change providers at any time</string>
+    <string name="help_d_txt21">All VURVhealth plan members subscribed to the Care Package Discount Plan.</string>
+    <string name="help_d_txt3">"What if I'm unhappy with my service and want to change the dentists?"</string>
+    <string name="help_d_txt31">Members may visit any participating dentist on the plan and change providers at any time. All dentists must meet highly selective credentialing standards based on education, background, license standing and other requirements.</string>
+    <string name="help_d_txtA">VURVhealth members may take advantage of savings offered by an industry leader in dental care. Careington International Corporation is one of the most recognized professional dental networks in the nation and boasts one of the largest dental networks nationally with a focus on neighborhood dentists. Careington networks are a leader in member-transparent pricing with robust fee schedules.</string>
+    <string name="help_gen_qtn1">What is VURVhealth?</string>
+    <string name="help_gen_qtn1A">"VURVhealth is a new way for all Americans to save on their out-of-pocket medical costs. Our nationwide database of quality physicians, facilities, and health specialists provides access to low, pre-negotiated cash prices on thousands of health and wellness treatments and services.
+
+We are the cure for high out-of-pocket medical costs. No matter if you're insured, uninsured, or something in between you may be paying too much for the care you need. VURVhealth helps make health and wellness accessible, affordable, and hassle-free where traditional insurance falls short."</string>
+    <string name="help_gen_qtn2">How does VUVRhealth save me money?</string>
+    <string name="help_gen_qtn2A">"Most health care providers offer discounted cash prices to patients who pay cash upfront (or \"out-of-pocket\") instead of using insurance. VURVhealth negotiates on behalf of our members to lock in EVEN MORE SAVINGS off the cash rate.
+
+Think of your VURVhealth membership like a coupon that you apply at checkout. When you visit a doctor or facility from our nationwide database, you'll save instantly with the lowest possible out-of-pocket rate. There's no paperwork, hassles, or waiting to be reimbursed."</string>
+    <string name="help_gen_qtn3">Who can save money with VURVhealth?</string>
+    <string name="help_gen_qtn31">"When you're not insured."</string>
+    <string name="help_gen_qtn32">"When your current insurance doesn't cover the care you need."</string>
+    <string name="help_gen_qtn33">"When you're not meeting a high insurance deductible."</string>
+    <string name="help_gen_qtn3A">Anyone stuck paying out-of-pocket for their health care can use VURVhealth. Here are a few common cases where VURVhealth can help you save time and money:</string>
+    <string name="help_gen_qtn4">Is VURVhealth insurance?</string>
+    <string name="help_gen_qtn41">"No. VURV is an affordable solution to high out-of-pocket costs that are common with or without traditional insurance. Our plans provide you with savings on a wide range of health care and wellness services, and you'll get these discounts when you pay out-of-pocket with the provider instead of using insurance."</string>
+    <string name="help_gen_qtn42">I already have insurance. Why do I need a VURVhealth membership?</string>
+    <string name="help_gen_qtn4A">"There are many common insurance cases where a VURVhealth membership could save you money.
+
+Many insurance plans do not include vision or dental. Perhaps you are stuck paying thousands of dollars toward a deductible that you'll never meet. Or you just have the minimum insurance plan (aka \"catastrophic insurance\") that only covers the big stuff. Maybe you'd like to upgrade your insurance to cover more services, but the cost of doing so is ridiculously high.
+
+If you're insured, but still paying out-of-pocket for the care you need, VURVhealth offers a hassle-free solution at an affordable price."</string>
+    <string name="help_gen_qtn5">Will paying for health care with my VURVhealth membership count towards my deductible?</string>
+    <string name="help_gen_qtn5A">"You will need to contact your insurance provider to confirm whether purchases through VURVhealth count toward your deductible. In most cases, the answer will be no.
+
+VURVhealth operates outside of any health insurance coverage you may have. Dealing with insurance reimbursements is a costly hassle for health care providers, so doctors and facilities offer discounts to patients who simply pay cash. VURVhealth maximizes those discounted rates for their members upfront without the hassle of forms or reimbursements."</string>
+    <string name="help_gen_qtn6">What about the rest of my family?</string>
+    <string name="help_gen_qtn6A">"Your free VURVRx plan saves on prescriptions for the whole family. Even pets. Showing your Card at the pharmacy check-out will save you instantly, regardless of who the prescription is for.
+
+You can add a family member to an already existing VURVhealth Family Discount Plan."</string>
+    <string name="help_gen_qtn7">How does VURVhealth make money?</string>
+    <string name="help_gen_qtn7A">"VURVhealth is a subscription service that helps you find quality, affordable options when you're paying out-of-pocket for health care. We offer access to our nationwide database of discounted providers in return for a monthly or annual fee.
+
+That's it. We do not sell your information, and we do not make a commission from referrals or your individual treatments."</string>
+    <string name="help_gen_qtn8">Is my information kept private?</string>
+    <string name="help_gen_qtn8A">Absolutely. Your trust is our top priority. VURVhealth will never sell or distribute any of your information. We help connect you to great, affordable health care providers, but your treatments and services are confidential between you and your provider.</string>
+    <string name="help_m_txt">What is VURVhealth Medical Services?</string>
+    <string name="help_m_txt1A">All VURVhealth plan members subscribed to the Pulse Discount Plan.</string>
+    <string name="help_m_txt2">How do I schedule an appointment with a VURVhealth medical doctor or service?</string>
+    <string name="help_m_txt21">"Call the phone number associated with the doctor or facility within our directory to directly schedule an appointment. Because we continually update our database of providers, please call the doctor's office within 24 hours of your appointment to confirm their participation in the VURVhealth ValuePoint program by MultiPlan."</string>
+    <string name="help_m_txt3">"How will the doctor's office know that I am part of VURVhealth?"</string>
+    <string name="help_m_txt31">Upon arriving at your appointment, present your VURVhealth ID Card directly from the mobile app which features the ValuePoint by MultiPlan logo and member expiration date. You will not be able to participate in the discounted rates if you cannot show your valid VURVhealth ID Card and expiration date.</string>
+    <string name="help_m_txt4">How do I know how much I owe for my medical office visit?</string>
+    <string name="help_m_txt41">As an eligible VURVhealth ID Card holder, your discounts are offered only in exchange for payment in full at the time of medical service, or per a payment agreement between you and the medical provider.</string>
+    <string name="help_m_txt5">"There is a provider listed in your network, but when I called to schedule an appointment I was told this provider doesn't participate with you."</string>
+    <string name="help_m_txt51">"Although we update our database of providers daily, it's possible that providers drop out of the network or that personnel at the provider's office are unaware of their participation in the VURVhealth ValuePoint by MultiPlan program. If the provider indicates that they do not participate, please contact ValuePoint by MultiPlan directly at (866) 750-7427 to bring the matter to our attention. This telephone number is also listed on your VURVhealth ID Medical Card."</string>
+    <string name="help_m_txt6">How do I make arrangements for admission into a medical facility?</string>
+    <string name="help_m_txt61">For non-emergency services, select your facility from our database and call the admissions office directly to make an appointment and have your questions answered. The facility will require your VURVhealth ID Card information to verify eligibility in the ValuePoint by MultiPlan program over the phone or when you arrive at the facility.</string>
+    <string name="help_m_txtA">"VURVhealth has partnered with ValuePoint by MultiPlan to give members access to medical providers that offer discounts to reduce the balance they owe the provider at the point of service so they'll know exactly how much they need to pay. This payment is to be made either in full, or per an agreed upon payment arrangement between the member and the medical provider."</string>
+    <string name="help_pkg_qtn1">How do I use my membership?</string>
+    <string name="help_pkg_qtn1A">"First, use our convenient app or website to search for the closest providers of the type of health care you need.
+
+Then, when you find the doctor or facility you like, simply use the phone number provided to schedule an appointment with the provider directly. Have your VURVhealth ID ready in case they need it. It's also a good idea to confirm your appointment the day before and double-check that they're still accepting VURVhealth plans.
+
+Finally, on the day of your appointment, present your valid VURVhealth ID Card upon arrival so they know to offer you the special cash rates we've negotiated with them at checkout."</string>
+    <string name="help_pkg_qtn2">I just upgraded, when can I use my new VURVhealth plan?</string>
+    <string name="help_pkg_qtn2A">"Right away! Once you've chosen a plan, you're eligible to save immediately. Simply find a provider in our database and schedule an appointment."</string>
+    <string name="help_pkg_qtn3">Where can I use my VURVhealth ID Card?</string>
+    <string name="help_pkg_qtn3A">Our searchable database is constantly updated to keep you informed of the affordable health care options in your area. These options will vary based on your membership level. You can view the database on the VURVhealth app or on the web by clicking here.</string>
+    <string name="help_pkg_qtn4">How do I know how much I will spend and save using my membership?</string>
+    <string name="help_pkg_qtn4A">"This will vary with every appointment, but know that using VURVhealth means you're getting the best discount on a provider's out-of-pocket rate.
+
+Your provider should be able to quote you on the cost of your visit before you arrive. However, this price won't include any additional treatments or services that may occur during your visit. When you're paying out-of-pocket, it's always a good idea to ask your provider about additional costs before agreeing to treatment to avoid surprises."</string>
+    <string name="help_pkg_qtn5">I already have a provider I love, can I use VURVhealth with them?</string>
+    <string name="help_pkg_qtn5A">"If they're in our database, yes! However, your VURVhealth Card will not work with providers that aren't included in the database."</string>
+    <string name="help_pkg_qtn6">"What if a provider from the database doesn't recognize VURVhealth or my VURVhealth ID?"</string>
+    <string name="help_pkg_qtn6A">"Not to worry, it's possible the staff isn't familiar with VURVhealth. In this case, they can call 866-750-7427 with questions or for help. This number is also printed on your VURVhealth ID.
+
+It's also possible this provider has dropped out of our network and the database hasn't updated yet. We're constantly updating our database to ensure you're best informed of your health care options."</string>
+    <string name="help_pkg_qtn7">"I'm shopping around and getting quotes, why are costs different between providers?"</string>
+    <string name="help_pkg_qtn7A">"One provider may bill the same procedure differently than another, which can lead to price differences. It's not a bad idea to call ahead and get real numbers over the phone so you know what to expect when you pay for your visit.
+
+Regardless, using VURVhealth will ensure you are getting a provider's lowest price."</string>
+    <string name="help_pkg_qtn8">Is there any additional paperwork or forms to fill out?</string>
+    <string name="help_pkg_qtn8A">"Nope. Once you've created an account with us and signed up for a VURVhealth plan, you're done filling out paperwork."</string>
+    <string name="help_pp_txt11">How do I find the VURVhealth discount price on my medication?</string>
+    <string name="help_pp_txt111">Search our prescription database by inputting your medication and location. Your VURVhealth discount price will be listed with each matching pharmacy.</string>
+    <string name="help_pp_txt12">Why are prices different between pharmacies?</string>
+    <string name="help_pp_txt121">"Prices differ from city to city, and even pharmacy to pharmacy, based on the different deals pharmacies make with drug companies, which affect their pricing formulas and this changes constantly. It's always a good idea to check your prescription against the VURVhealth database before filling and refilling."</string>
+    <string name="help_pp_txt13">Can I use VURVRx to save on over-the-counter medications?</string>
+    <string name="help_pp_txt131">Yes, your VURVRx Card can also be used for over-the-counter medications written on a valid prescription pad with the appropriate GCN/NDC numbers associated with them, and on pet prescription medications purchased at a pharmacy.</string>
+    <string name="help_pp_txt14">Does my Card expire?</string>
+    <string name="help_pp_txt141">No! Your VURVRx Card does not expire.</string>
+    <string name="help_pp_txt15">Are there limits to how often I can use my Card?</string>
+    <string name="help_pp_txt151">No! Your VURVRx Card has unlimited usage, save with it as often as you like.</string>
+    <string name="help_pp_txt16">"What if my pharmacist isn't familiar with VURVRx?"</string>
+    <string name="help_pp_txt161">"Don't panic. Some pharmacists aren't aware of the contracts their pharmacies have with us. They should process the Card like any normal insurance card, but if they have questions we have a support team ready 24/7 to help at (866) 921-7286. You can also reach out to us directly through our Contact Us page or at support@VURVhealth.com."</string>
+    <string name="help_pp_txt17">What do I do if I have prescription coverage with my health insurance?</string>
+    <string name="help_pp_txt171">The VURVhealth Rx Card can still help those with insurance. Have the pharmacist use the VURVhealth Rx Card instead of your insurance to see if the cost is lower. Oftentimes, our prices on certain prescriptions and brand name drugs are lower than insurance co-pays. See for yourself!</string>
+    <string name="help_pp_txt18">Does the VURVhealth Rx Card count towards my insurance deductible?</string>
+    <string name="help_pp_txt181">The VURVhealth Rx Card program will SOMETIMES count towards a deductible. As not all medical insurance plans are the same, we recommend users to contact their plan administrator to get the specific information regarding their medical insurance plan.</string>
+    <string name="help_pp_txt19">Can the VURVhealth Rx Card help Medicare users?</string>
+    <string name="help_pp_txt191">Although the VURVhealth Rx Card discount can be used as a Medicare Part D supplement by covering drugs once participants reach the \"donut hole,\" drugs purchased with this discount program will not count toward your Medicare deductible and therefore will not allow you to exceed your deductible and get out of the \"donut hole. \" We suggest you contact your plan administrator to get the specifics, because not all plans are the same.</string>
+    <string name="help_pp_txt3">THIS IS NOT INSURANCE</string>
+    <string name="help_pp_txt4">"This program is a prescription drug coupon. 
+This Card cannot be used in combination with any third-party payer program, including but not limited to Medicare and Medicaid."</string>
+    <string name="help_pp_txt5">For processing questions, please call Argus Health Systems, Inc. at &lt;b>(866) 770–4151.&lt;/b></string>
+    <string name="help_pp_txt6">Where can I use my free VURVRx ID Card?</string>
+    <string name="help_pp_txt61">Your free membership works at over 63,000 pharmacies nationwide, including local shops and major chains like Walgreens, CVS, Ride Aid, Walmart, &amp; Target. You can search for the closest participating pharmacy using the VURVhealth app or on the web by clicking here.</string>
+    <string name="help_pp_txt7">Who is eligible?</string>
+    <string name="help_pp_txt71">All VURVhealth plan members receive a free Rx Membership. The VURVhealth Rx Card is included in all subscription packages: Rx, Pulse and Care Discount Plans.</string>
+    <string name="help_pp_txt8">How do I use my Card?</string>
+    <string name="help_pp_txt81">Simply present your digital Card from the VURVhealth mobile app to the pharmacist when you fill or refill a prescription. Discount amounts vary per prescription, with savings as high as 80% off retail prices.</string>
+    <string name="help_pp_txt9">Do I have to show my Card each time I go to the pharmacy?</string>
+    <string name="help_pp_txt91">"After your first visit using your VURVRx Card it should remain on file at that specific pharmacy. However, we recommend you present your Card at each visit to be sure yout're getting the savings you deserve."</string>
+    <string name="help_v_txt">What is VURVhealth Vision?</string>
+    <string name="help_v_txt1">What types of discounts are included?</string>
+    <string name="help_v_txt1a">20% discount off the WellVision Eye Exam</string>
+    <string name="help_v_txt1b">20% discount off frames and lenses when a complete pair of glasses is purchased</string>
+    <string name="help_v_txt1c">15% discount off contact lens exams, including fitting and evaluation</string>
+    <string name="help_v_txt1d">20% off lens options like progressives, scratch-resistant, and anti-reflective coatings</string>
+    <string name="help_v_txt1e">20% off additional glasses and sunglasses, including lens options, from any VSP doctor within 12 months of your last WellVision exam</string>
+    <string name="help_v_txt1f" formatted="false">Laser Vision Correction at 15% off the regular price or 5% off the promotional price; discounts only available from contracted facilities</string>
+    <string name="help_v_txt2">How big is your network?</string>
+    <string name="help_v_txt21">"With your VURVhealth membership, you can choose a doctor from the nation's largest eye care doctor network which includes access to 23,000 nationwide locations and 34,000 participating providers."</string>
+    <string name="help_v_txtA">VURVhealth and Vision Service Plan (VSP), help keep you and your eyes healthy through personalized care from doctors you can trust. Your eyes say a lot about you and can even tell your VSP doctor about you.</string>
+    <string name="hi_name">Hi</string>
+    <string name="home_addrs">Home address</string>
+    <string name="hospital_affiliations">Hospital Affiliations</string>
+    <string name="hospital_affiliations_">Hospital Affiliations:</string>
+    <string name="how_many_household">Please select subscription type</string>
+    <string name="in_progress">In progress</string>
+    <string name="include_generic_drugs">Include generic drugs</string>
+    <string name="includes_discnt">Includes discounts on:</string>
+    <string name="incorrect_login">Your login or password does not match. Please try again.</string>
+    <string name="info">Information</string>
+    <string name="instant_discount">"Instant discounts on medical visits, treatments and services at over 430,000 doctors' offices nationwide."</string>
+    <string name="invalid_date">Invalid date, please try again</string>
+    <string name="invite_friends">Invite Friends</string>
+    <string name="is_rotating">isRotating</string>
+    <string name="language">Language</string>
+    <string name="languages">Languages:</string>
+    <string name="last_name">Last Name</string>
+    <string name="like_us_on_facebook">Like us on Facebook</string>
+    <string name="login">Login</string>
+    <string name="logout_txt">Are you sure if you want to logout?</string>
+    <string name="looking_for">What are you looking for today?</string>
+    <string name="main_any_view">Any view</string>
+    <string name="main_attributes">XML attributes</string>
+    <string name="main_dynamic_attributes">Dynamic attributes</string>
+    <string name="main_dynamic_children">Dynamic children</string>
+    <string name="main_no_rotation">No rotation</string>
+    <string name="main_sample">Sample Circle menu</string>
+    <string name="male">Male</string>
+    <string name="male_female">Male, Female</string>
+    <string name="mastercard_ending_in_0833">Mastercard ending in 0833</string>
+    <string name="medical">Medical</string>
+    <string name="medical_caps">MEDICAL</string>
+    <string name="medical_no_plan">Medical Plan Not Included</string>
+    <string name="medical_plan">Medical Plan Not Included</string>
+    <string name="medical_txt">Straight-forward savings of up to 38% on Doctors, Hospitals and medical facilities nationwide. No paperwork. No waiting. Search for a provider now.</string>
+    <string name="medical_txt2" />
+    <string name="memName">&lt;b>Member Name &amp; Address:&lt;/b></string>
+    <string name="member_id">AUTH# VURV</string>
+    <string name="memberid">&lt;b>Member ID:&lt;/b></string>
+    <string name="members">Members</string>
+    <string name="membership_agreement">Membership Agreement</string>
+    <string name="mixed_out">Maxed out</string>
+    <string name="mon">MON:</string>
+    <string name="more">More</string>
+    <string name="more_qtn">More Questions</string>
+    <string name="more_qtnA">"We're always here to help. Use the Contact Us page on our website to get in touch or shoot us a note at support@VURVhealth.com."</string>
+    <string name="more_qtnQ">"My question wasn't answered in the FAQ, how do I get help?"</string>
+    <string name="my_member">My member</string>
+    <string name="my_members">My Members</string>
+    <string name="my_profile">My Profile</string>
+    <string name="name_dentist">Name of dentist</string>
+    <string name="name_docotor">Name of Doctor</string>
+    <string name="name_drug">Name of Drug</string>
+    <string name="name_facility">Facility Name</string>
+    <string name="new_password">New Password</string>
+    <string name="new_patient_visit">New Patient Visit:</string>
+    <string name="next">Next</string>
+    <string name="no_data">No data found</string>
+    <string name="no_data_found">No data found in your search, Please try again</string>
+    <string name="no_equivalent_brand_drug_available">No equivalent brand drug available</string>
+    <string name="no_equivalent_generic_drug_available">No equivalent generic drug available</string>
+    <string name="no_location">Your location not found zipcode enter manually</string>
+    <string name="no_network">Network connection is not available. Please check and try again</string>
+    <string name="no_pharma">No Pharmacies found in your search area, please try again</string>
+    <string name="no_results">No Results</string>
+    <string name="no_setup_fee">No setup fee</string>
+    <string name="no_thanks_not_now">No Thanks, Not Now</string>
+    <string name="no_user">No user found</string>
+    <string name="office_hours">Office Hours:</string>
+    <string name="office_languages">Office Languages:</string>
+    <string name="office_special_interest">Office special interest:</string>
+    <string name="ok">OK</string>
+    <string name="onboarding1">The new way for all Americans to &lt;b>save instantly&lt;/b> on out-of-pocket health and wellness costs.</string>
+    <string name="onboarding2">"No matter if you're insured, uninsured, or something in between, VURVhealth plans offer &lt;b>instant, hassle-free savings&lt;/b> on many common out-of-pocket health expenses."</string>
+    <string name="onboarding3">-Over 430,000 quality doctors&lt;br/>-More than 60,000 hospitals &amp;amp; facilities&lt;br/>-Dental and vision specialists&lt;br/>-All major retail pharmacies&lt;br/>&lt;br/>VURVhealth gives you &lt;b>access&lt;/b> and &lt;b>options&lt;/b> to find the care you need at an &lt;b>affordable&lt;/b> price.</string>
+    <string name="onboarding4">"Your VURV ID works like a &lt;b>coupon&lt;/b> with our providers, You'll &lt;b>save instantly&lt;/b> when paying out-of-pocket for health and wellness services.&lt;br/>&lt;br/>No waiting. No hassles. No paperwork."</string>
+    <string name="one_result">1 Result</string>
+    <string name="open">Open</string>
+    <string name="open_on_weekends">Open on weekends</string>
+    <string name="optional">Optional</string>
+    <string name="or_visit">or visit</string>
+    <string name="password">Password</string>
+    <string name="password_must_contain">Password must be at least 8 characters, contain at least 1 upper case, 1 numeric and 1 special character.</string>
+    <string name="password_instructions">A confirmation has been sent to the email that is registered with this account</string>
+    <string name="password_title"> Password has been changed</string>
+    <string name="payment">Payment</string>
+    <string name="pcn">PCNVURV</string>
+    <string name="pediatrics_critical">Pediatrics, Critical care Medicine - Board Certified</string>
+    <string name="phone">Phone:</string>
+    <string name="phone_number">Mobile number</string>
+    <string name="plan">Plan :</string>
+    <string name="plan360">Plan: 360</string>
+    <string name="please_wait">Please wait...</string>
+    <string name="practice_type">Practice Type:</string>
+    <string name="pres_card_txt">&lt;b>Patient:&lt;/b> Simply present this card to a participating pharmacy to receive a discount on your prescription.</string>
+    <string name="presc_txt">Search for the lowest price on 10,000+ prescription medications for you, your family, and even your pets, at pharmacies within your zip code</string>
+    <string name="prescription">Prescriptions</string>
+    <string name="prescription_caps">PRESCRIPTIONS</string>
+    <string name="prescription_id1">&lt;b>Patient: &lt;/b>  Use the Search tool to locate a participating pharmacy.  Show this coupon card to your pharmacist to save on prescriptions.</string>
+    <!--<string name="prescription_id1">&lt;b>Patient: &lt;/b>Present this card to a participating pharmacy to receive a discount on your prescription.</string>-->
+    <string name="prescription_txt">Cut out the middle-man and save up to 80% for you and your pets.  Search for huge discounts on your prescriptions now.</string>
+    <string name="prescription_txt2">"• Designed to lower the cost prescription medications by up to 80%.
+ 
+• No income, insurance, age or residency requirements.
+ 
+• Can be used immediately with no activation required.
+ 
+• Over 10,000 drugs covered."</string>
+    <string name="prescriptions_amp_pharmacies">Prescriptions &amp; Pharmacies</string>
+    <string name="prescrption_id2">&lt;b>Pharmacist:&lt;/b> Card must be presented to receive program benefits.For processing questions, call
+        &lt;br /&gt; &lt;b>(855) 533-0677&lt;/b></string>
+    <!--<string name="prescrption_id2">&lt;b>Pharmacist:&lt;/b> Card must be presented to receive program benefits. For processing questions, call Argus Health Systems at &lt;b>(866) 921–7286&lt;/b>.</string>-->
+    <string name="present_vurvid">Present your VURV ID at a participating pharmacy to receive your discount.</string>
+    <string name="present_vurvid_pres">Present your VURV ID to a participating pharmacy to receive a discount on your prescription.</string>
+    <string name="present_your_vurv_id_to_the_health_n_care_provider_to_receive_a_discount">Present your VURV ID to the health care provider to receive a discount.</string>
+    <string name="press_star">Press the star button when youfind a doctor, facility or pharmacy that you want to return to.</string>
+    <string name="press_the">Press the</string>
+    <string name="price">Price</string>
+    <string name="price_annual">Price - $14.95</string>
+    <string name="price_month">$17.95 / month</string>
+    <string name="primary_member">Primary Member</string>
+    <string name="privacy">Privacy</string>
+    <string name="privacy_policy">Privacy Policy</string>
+    <string name="privacy_text">We respect your privacy and do not tolerate spam and will never sell or give away your information.</string>
+    <string name="procedures">Procedures performed</string>
+    <string name="procedures_per">Procedures performed:</string>
+    <string name="product">Product</string>
+    <string name="profile_updated">Profile updated successfully</string>
+    <string name="program_degree">Program Degree:</string>
+    <string name="provide_email">Please use the system generated VURV ID as the username and password to login. The VURV ID can be obtained from the My Members screen.</string>
+    <!--<string name="provider"><b>Provider:</b></string>-->
+    <string name="provider">&lt;b>Provider:&lt;/b></string>
+
+
+    <string name="pulse">Pulse</string>
+    <string name="pulse_desc">&lt;b>VURVPULSE&lt;/b> is as easy as it gets to save instantly on managing your health. This is not insurance, but it works with or without any insurance plan to give instant and affordable discounts on medical visits, treatments and services at over 430,000 participating facilities in our huge network nationwide. No paperwork. No deductibles. No hassles. Just show your card and save.</string>
+    <string name="pulse_heading">"Instant discounts on medical visits, treatments and services at over 430,000 doctor's offices nationwide."</string>
+    <string name="pulse_package">Pulse Package</string>
+    <string name="pulse_setup_fee">$20 setup fee</string>
+    <string name="radius">radius</string>
+    <string name="rate_us_in_play_store">Rate us in Play Store</string>
+    <string name="re_enter_pwd">Current password is incorrect, Please check and re-enter</string>
+    <string name="related_search">RECENT SEARCHES</string>
+    <string name="remove">Remove</string>
+    <string name="remove_members">Please remove members to upgrade the plan</string>
+    <string name="remove_qtn">Are you sure you want to remove?</string>
+    <string name="reset">Reset</string>
+    <string name="results">Results</string>
+    <string name="retype_pwd">Please retype the password</string>
+    <string name="review_pulse_package">Review PULSE Package</string>
+    <string name="routine_visits">Routine visits:</string>
+    <string name="rx">Rx</string>
+    <string name="rx_desc">"There's no reason to go one more day without saving on your prescriptions! &lt;b>VURVRX&lt;/b> card is free and pre-activated for savings up to 80% at 63,000+ pharmacies across the U.S., including Target, Walgreens, CVS, Rite Aid and Kroger. Unlimited usage and savings for the whole family, even pets! Just show at the pharmacy."</string>
+    <string name="rx_heading">Savings up to 80% off prescription medications for your whole family, and even pets!</string>
+    <string name="rx_package">Rx Package</string>
+    <string name="sat">SAT:</string>
+    <string name="save">Save</string>
+    <string name="save_address">Save Billing Address</string>
+    <string name="save_billing_info">Save Billing Information</string>
+    <string name="save_for_later">Save for Later</string>
+    <string name="save_to_contacts">Save to Contacts</string>
+    <string name="saved">Saved</string>
+    <string name="savings">% Savings</string>
+    <string name="savings_up">Savings up to 80% off prescription medications for your whole family, and even pets!</string>
+    <string name="search">Search</string>
+    <string name="secondary_member">Secondary Member</string>
+    <string name="security_code">Card Security Code</string>
+    <string name="select_doctor">Select Doctor Specialty</string>
+    <string name="select_language">Select Language</string>
+    <string name="select_ofc">Select Office Specialty</string>
+    <string name="select_specialty">Select Specialty</string>
+    <string name="select_term">Please select Term</string>
+    <string name="select_this_package">Select this package</string>
+    <string name="send_mail">Send Email</string>
+    <string name="server_not_found">Could not connect to the server. Please try again later</string>
+    <string name="share">Share</string>
+    <string name="share_with">Share with</string>
+    <string name="sign_out">Sign out</string>
+    <string name="single_text">"You can't add members under this plan but currently more than one member. Please remove members."</string>
+    <string name="smile_with">Smile with discounts on most dental procedures and see instant savings on eye exams and eye glasses</string>
+    <string name="solo_practitioner">Solo Practitioner</string>
+    <string name="some_providers">Some providers from your search criteria are in restricted state(s):</string>
+    <string name="sort_by">SORT BY</string>
+    <string name="specialist">Specialist</string>
+    <string name="specialities">Specialties:</string>
+    <string name="speed">speed</string>
+    <string name="spouse_text">You can add only one member under this plan but currently you have more than one member. Please remove members.</string>
+    <string name="starting_at">Starting at $</string>
+    <string name="state">State</string>
+    <string name="status">Status</string>
+    <string name="status_">Status:</string>
+    <string name="step_01">Step 01</string>
+    <string name="step_02">Step 02</string>
+    <string name="step_03">Step 03</string>
+    <string name="step_txt1">Choose your subscription</string>
+    <string name="step_txt2">Search providers and prescriptions</string>
+    <string name="step_txt3">Show your VURV ID and save</string>
+    <string name="stop_subscription">Stop Subscription</string>
+    <string name="street">Street</string>
+    <string name="string_choose_image">Select Image to Upload</string>
+    <string name="sub_txt">"You can pause your suscription for the next month. We'll send an email reminder with you Subscription is about to start again."</string>
+    <string name="sub_txt2">"Don't want to use VURVhealth anymore? No problem."</string>
+    <string name="sun">SUN:</string>
+    <string name="tablet">Tablet</string>
+    <string name="take_photo">Take Photo</string>
+    <string name="telemed_txt">Connect with state-licensed physicians for online video consultations.</string>
+    <string name="telemed_txt1">Feel your best with 25% off all chiropractors, acupuncture, massage, nutrition, physical &amp; occupational therapists and podiatrists.  Look after yourself and search now.</string>
+    <string name="telemedecine">Alternative Health</string>
+    <string name="telemedecine1">Tele-Mental</string>
+    <string name="telemedecine1_txt">No waiting, see a Doctor now with FREE unlimited telehealth visits 24/7 and the most affordable Mental Health care in the US at only $15 per session with a licensed professional Counselor. Available Nationwide.</string>
+    <string name="term">&lt;b>Term:&lt;/b></string>
+    <string name="term_condition">Terms and Conditions</string>
+    <string name="text_multiple_dentists">Multiple Dentists</string>
+    <string name="text_multiple_doctors">Multiple Doctors</string>
+    <string name="text_multiple_providers">Multiple Providers</string>
+    <string name="their_email">Email Address</string>
+    <string name="their_first_name">First Name</string>
+    <string name="their_last_name">Last Name</string>
+    <string name="their_middle_name">Middle Name</string>
+    <string name="this_is_not_insurance">THIS IS A DOM HEALTHPLAN. THIS IS NOT INSURANCE .</string>
+    <!--<string name="this_is_not_insurance">THIS IS NOT INSURANCE</string>-->
+    <string name="this_program">This program is a prescription drug coupon. This card cannot be used in with any third-party payer program, including but not limited to Medicare and Medicaid</string>
+    <string name="thu">THU:</string>
+    <string name="timinghours">Timing Hours:</string>
+    <string name="total">Total</string>
+    <string name="total_fee">&lt;b>Total Fees:&lt;/b></string>
+    <string name="total_fee_text">Classification: [ ]; Mode of Payment: [ ]; Periodic Charge: [ ]; Processing Fee: [ ]</string>
+    <string name="tue">TUE:</string>
+    <string name="tvDosageno1">10 mg</string>
+    <string name="tvDosageno2">20 mg</string>
+    <string name="tvDosageno3">40 mg</string>
+    <string name="tvDosageno4">80 mg</string>
+    <string name="type_dentist">Type of Dentist</string>
+    <string name="type_doctor">Type of Doctor</string>
+    <string name="type_facility">Type of Facility</string>
+    <string name="upgrade">&lt;b>Upgrade Today&lt;/b></string>
+    <string name="upgrade_subscription">Upgrade Subscription</string>
+    <string name="urgent_care">Urgent Care:</string>
+    <string name="usa">USA</string>
+    <string name="valid_email">Please enter valid email address</string>
+    <string name="valid_mobile">Please enter 10 digit valid mobile number</string>
+    <string name="valid_zip">Please enter valid zip code</string>
+    <string name="valid_zip_city">Please enter valid zip code/City</string>
+    <string name="vision">Vision</string>
+    <string name="vision_caps">VISION</string>
+    <string name="vision_plan">Vision Plan Not Included</string>
+    <string name="vision_txt">See clear savings on all your vision care.  Search now for exams, glasses, sunglasses and contact lenses.</string>
+    <string name="vision_txt1">Select an eye examiner and take advantage of instant savings on eye exams, glasses and Lasik Vision Correction.</string>
+    <string name="vision_vurv_txt">"&lt;b>Patient:&lt;/b>  Use the Search tool to locate a participating VSP® doctor. Present this card to a participating VSP® doctor to receive a discount on your vision services.</string>
+    <!--<string name="vision_vurv_txt">"&lt;b>Patient:&lt;/b> To find a VSP doctor, call &lt;b>(800) 770-4151&lt;/b> or visit www.VURVhealth.com.</string>-->
+    <string name="vision_vurv_text1"> At the time of your appointment, tell your VSP® doctor that you’re a VSP® member for immediate savings on eye exams and eyewear. &lt;br /&gt;  &lt;br /&gt;   For assistance, call the following number:
+        &lt;br /&gt; &lt;b>(800) 290-0523&lt;/b> </string>
+    <!--<string name="vision_vurv_text1">At your appointment, tell your VSP doctor that you\'re a VSP member for immediate savings on eye exams and eye wear.</string>-->
+    <string name="visit">Visit</string>
+    <string name="vurvC">VURVPulse, VURVCare, VURV360</string>
+    <string name="vurv_id">VURV ID</string>
+    <string name="vurv_t_amp_c_s">VURVhealth</string>
+    <string name="vurvcare_plan">"We're sorry, the VURVCare Plan is currently unavailable in your selected state(s):"</string>
+    <string name="vurvhealth">VURVhealth</string>
+    <string name="wait_time">Wait time: &lt;b>N/A&lt;/b>&lt;br/>Routine Visits: &lt;b>1 Week&lt;/b>&lt;br/>Urgent Care: &lt;b>2 days&lt;/b>&lt;br/>New patient Visit: &lt;b>2 days&lt;/b></string>
+    <string name="wait_time_">Wait time:</string>
+    <string name="walgreens">Walgreens</string>
+    <string name="we_are_sorry">"We're sorry, no providers are currently available in your search area. Please try another Zip Code or adjust your search distance and try again."</string>
+    <string name="wed">WED:</string>
+    <string name="welcome_name">Welcome,</string>
+    <string name="welcome_to_vurvhealth">Welcome to VURVhealth</string>
+    <string name="within_miles">Within: [miles]</string>
+    <string name="yes">Yes</string>
+    <string name="yes_remove">Yes, Remove</string>
+    <string name="you_have_to">"You have been added to your household's Pulse subscription."</string>
+    <string name="you_ve_not_saved_anything">"You haven't saved anything!"</string>
+    <string name="your_VURV_ID">Your VURV ID does not include dental. Tap here to upgrade.</string>
+    <string name="your_VURV_ID__not_vision">Your VURV ID does not include vision.</string>
+    <string name="your_VURV_ID_althealth">Your VURV ID does not include alternative health.</string>
+    <string name="your_VURV_ID_dental">Your VURV ID does not include dental.</string>
+    <string name="your_VURV_ID_medical">Your VURV ID does not include medical.</string>
+    <string name="your_VURV_ID_vision">Your VURV ID does not include vision. Tap here to upgrade.</string>
+    <string name="your_address">Home Address</string>
+    <string name="your_email">Your Email Address</string>
+    <string name="your_email_mobile">Email Address</string>
+    <string name="your_first_name">Your First Name</string>
+    <string name="your_last_name">Your Last Name</string>
+    <string name="your_memberId">Your member ID includes the free Rx Package.</string>
+    <string name="your_middle_name">Your Middle Name</string>
+    <string name="your_order">Your order</string>
+    <string name="your_password">Create a Password</string>
+    <string name="your_phone_number">Your Mobile Number</string>
+    <string name="zip_4">ZIP+4</string>
+    <string name="zip_code">Zip Code</string>
+    <string name="zip_code_or_city_state">Zip Code or City &amp; State</string>
+    <string name="zipcode_validation">Zip code validation should be min 3 max 5 digits and should allow the numerics only.</string>
+    <string name="abc_font_family_body_1_material">sans-serif</string>
+    <string name="abc_font_family_body_2_material">sans-serif-medium</string>
+    <string name="abc_font_family_button_material">sans-serif-medium</string>
+    <string name="abc_font_family_caption_material">sans-serif</string>
+    <string name="abc_font_family_display_1_material">sans-serif</string>
+    <string name="abc_font_family_display_2_material">sans-serif</string>
+    <string name="abc_font_family_display_3_material">sans-serif</string>
+    <string name="abc_font_family_display_4_material">sans-serif-light</string>
+    <string name="abc_font_family_headline_material">sans-serif</string>
+    <string name="abc_font_family_menu_material">sans-serif</string>
+    <string name="abc_font_family_subhead_material">sans-serif</string>
+    <string name="abc_font_family_title_material">sans-serif-medium</string>
+    <string name="accept">Accept</string>
+    <string name="appbar_scrolling_view_behavior">android.support.design.widget.AppBarLayout$ScrollingViewBehavior</string>
+    <string name="bottom_sheet_behavior">android.support.design.widget.BottomSheetBehavior</string>
+    <string name="cast_invalid_stream_duration_text">--:--</string>
+    <string name="cast_invalid_stream_position_text">--:--</string>
+    <string name="character_counter_pattern">%1$d / %2$d</string>
+    <string name="create_calendar_message">Allow Ad to create a calendar event?</string>
+    <string name="create_calendar_title">Create calendar event</string>
+    <string name="decline">Decline</string>
+    <string name="password_toggle_content_description">Toggle password visibility</string>
+    <string name="path_password_eye">M12,4.5C7,4.5 2.73,7.61 1,12c1.73,4.39 6,7.5 11,7.5s9.27,-3.11 11,-7.5c-1.73,-4.39 -6,-7.5 -11,-7.5zM12,17c-2.76,0 -5,-2.24 -5,-5s2.24,-5 5,-5 5,2.24 5,5 -2.24,5 -5,5zM12,9c-1.66,0 -3,1.34 -3,3s1.34,3 3,3 3,-1.34 3,-3 -1.34,-3 -3,-3z</string>
+    <string name="path_password_eye_mask_strike_through">M2,4.27 L19.73,22 L22.27,19.46 L4.54,1.73 L4.54,1 L23,1 L23,23 L1,23 L1,4.27 Z</string>
+    <string name="path_password_eye_mask_visible">M2,4.27 L2,4.27 L4.54,1.73 L4.54,1.73 L4.54,1 L23,1 L23,23 L1,23 L1,4.27 Z</string>
+    <string name="path_password_strike_through">M3.27,4.27 L19.74,20.74</string>
+    <string name="plese_try_again">Please try again</string>
+    <string name="select_member">Select Member</string>
+    <string name="store_picture_message">Allow Ad to store image in Picture gallery?</string>
+    <string name="store_picture_title">Save image</string>
+    <string name="tagmanager_preview_dialog_button">Continue</string>
+    <string name="tagmanager_preview_dialog_message">Preview mode updated.</string>
+    <string name="tagmanager_preview_dialog_title">Preview</string>
+    <string name="their_dob_txt">Date of Birth (MM / DD / YY)</string>
+
+    <!--billing & account management-->
+    <string name="billing_qun1">What is my VURVhealth Billing Account?</string>
+    <string name="billing_ans1">Your VURVhealth Billing Account is created at the time of enrollment into one of the VURVhealth plans. This account is different than your VURVhealth mobile app account and is only intended for the responsible billing party of your group or organization to manage all aspects relating to your VURVhealth subscription.</string>
+    <string name="billing_qun2">How do I manage my VURVhealth Billing Account?</string>
+    <string name="billing_ans2">You can manage all aspects of your VURVhealth Billing Account, including updating contact information, adding new payment methods, viewing and printing your current and past invoices, by logging into our <a href="https://www.vurvhealth.com/home/login/">Member Portal</a> using your billing account email address and password.</string>
+    <string name="billing_qun3">What’s the VURVhealth Member Portal?</string>
+    <string name="billing_ans3">The VURVhealth Member Portal is where the responsible billing party for a group or organization can manage all areas of their VURVhealth subscription including the following: add additional payment methods, update contact information, add a new address or update existing contact information and view and print invoices. You can login to the Member Portal by using your billing account email address and password.</string>
+    <string name="billing_qun4">How do I login to the VURVhealth Member Portal? </string>
+    <string name="billing_ans4">You can login to the VURVhealth <a href="https://www.vurvhealth.com/home/login/">Member Portal</a> by clicking Login from the VURVhealth homepage and enter your VURVhealth Billing Account username and password. Please note, your VURVhealth Billing Account is separate and different then your VURVhealth mobile app account and is only available to the responsible party of the group or organization.</string>
+    <string name="billing_qun5">How do I upgrade or downgrade my current plan?</string>
+    <string name="billing_ans5">VURVhealth plans are designed to best meet your current needs. If you need to make a change to your plan and would like to upgrade or downgrade, please fill out a support request by going to our help page or by emailing us directly at <b>help@vurvhealth.com</b> and one of our amazing team members will follow up with you in order to best meet your needs. Please note, the responsible billing party is the only contact authorized to make changes to an account.</string>
+    <string name="billing_qun6">How do I add or remove members from an active subscription plan?</string>
+    <string name="billing_ans6">You can add or remove members from your VURVhealth membership at any time by sending a support request to <b>help@vurvhealth.com</b> or by going to our help page and submitting a ticket request.  Please provide details of your change in membership numbers and one of our team members will be glad to help. Please note that all changes in membership numbers will be active on the future months as VURVhealth does NOT provide prorated refunds for the current month. Furthermore, the responsible billing party is the only contact authorized to make changes to an account.</string>
+    <string name="billing_qun7">How do I add a new Payment Method to my VURVhealth Billing Account?</string>
+    <string name="billing_ans7">Adding a new payment method to the VURVhealth Billing Account is easy. Simply login to the VURVhealth <a href="https://www.vurvhealth.com/home/login/">Member Portal</a> using your billing account email address and password. Once you’re logged in, look for ‘Payment Methods’ in the navigation menu and follow the required steps to add the additional payment method.</string>
+    <string name="billing_qun8">How do I choose the Default credit card to be billed?</string>
+    <string name="billing_ans8">If you’ve added more than one payment method to your VURVhealth Billing Account, you have the option to select the preferred default payment method for upcoming invoices. Simply login to the VURVhealth <a href="https://www.vurvhealth.com/home/login/">Member Portal</a> and select “Payment Methods” from the navigation menu. Scroll down to view your payment method options; click “Set as Default” for your preferred payment method. Please note, if you only have one payment method available this option will not be available to you.</string>
+    <string name="billing_qun9">How do I update my VURVhealth Billing Account Profile Information?</string>
+    <string name="billing_ans9">You can update your VURVhealth Billing Account information at any time by logging into the VURVhealth <a href="https://www.vurvhealth.com/home/login/">Member Portal</a> and selecting the option “My Profile” from the navigation menu. From there, you can add a new address, or edit an existing address.</string>
+    <string name="billing_qun10">How do I add a New Contact Address?</string>
+    <string name="billing_ans10">You can add a new contact address by simply logging in to the <a href="https://www.vurvhealth.com/home/login/">Member Portal</a> and selecting “My Profile.”  From there, select the option to create a new address in the top left corner and complete the required steps.</string>
+    <string name="billing_qun11">Why am I receiving VURVhealth Billing Account emails?</string>
+    <string name="billing_ans11">If you are the responsible and authorized billing party for your group or organization and your email address was used to create the VURVhealth subscription, you are automatically subscribed and required to receive notices with regards to all aspects of your VURVhealth subscription. You can update this email address by logging into the <a href="https://www.vurvhealth.com/home/login/">Member Portal</a> and updating your billing account contact information.</string>
+    <string name="billing_qun12">How can I look at my billing history and view specific, prior invoices?</string>
+    <string name="billing_ans12">You can look at your billing account history at any time by logging into the VURVhealth <a href="https://www.vurvhealth.com/home/login/">Member Portal</a>. Once you’ve logged into the VURVhealth <a href="https://www.vurvhealth.com/home/login/">Member Portal</a>, you can view a specific invoice by selecting “billing history” on the navigation menu. Simply click “view link” on the far right hand side of the invoice in question and the specific invoice details will be displayed for your review. If you would like to print an invoice in PDF simply select the print button under invoice details, from there you can download and save the PDF invoice.</string>
+    <string name="billing_qun13">How do I view upcoming and future invoices? </string>
+    <string name="billing_ans13">You can view all upcoming and future invoices by logging into the VURVhealth Member Portal. From there, you can view the current month’s invoice on the dashboard calendar. To view future invoices on a month by month basis, use the arrow keys on the top right corner of the calendar to navigate ahead to future months. From there, you will see the upcoming invoice and payment notification on the corresponding due date.</string>
+    <string name="billing_qun14">How can I download a copy of an invoice in PDF?</string>
+    <string name="billing_ans14">You can download a copy of both current and past invoices in PDF format by logging into the VURVhealth <a href="https://www.vurvhealth.com/home/login/">Member Portal</a> and navigating to the “Billing History” tab. From there, select the appropriate invoice by clicking on “View Link.” Look for the Invoice Details section and select the print button in order to download and save a copy of your invoice in PDF.</string>
+    <string name="billing_qun15">How do I add my employees and activate our group or organizational account?</string>
+    <string name="billing_ans15">If you are part of an enterprise or group plan with VURVhealth, you will need to complete the employee list in order to activate the subscription.</string>
+    <string name="billing_qun16">Where can I find the employee list template to complete?</string>
+    <string name="billing_ans16">If you are part of an enterprise or group plan with VURVhealth, you will need to complete the employee list in order to activate your subscription. To do this, log into the VURVhealth <a href="https://www.vurvhealth.com/home/login/">Member Portal</a> and navigate to the “Downloads” tab. From the Downloads page, you will see a link to download the Employee List template. Please complete the employee list according to the instructions provided in the worksheet and email the completed employee list to <b>setup@vurvhealth.com</b> so that a VURVhealth team member can complete your subscription activation. Please note, we are unable to activate subscriptions with incomplete worksheets.</string>
+    <string name="billing_qun17">How do I activate my group or enterprise account?</string>
+    <string name="billing_ans17">If you are part of an enterprise or group plan with VURVhealth you will need to complete the employee list in order to activate your subscription for all of your employees or members. To do this, please log into the VURVhealth <a href="https://www.vurvhealth.com/home/login/">Member Portal</a> and navigate to the downloads tab.  Please complete the employee list according to the instructions provided in the worksheet and email the completed employee list to <b>setup@vurvhealth.com</b> so that a VURVhealth team member can complete your subscription activation.</string>
+    <string name="billing_qun18">Do employees have access to the VURVhealth Billing Account and Member Portal?</string>
+    <string name="billing_ans18">If your group or organization is providing VURVhealth to employees as a Single Payor, then employees WILL NOT have access to the VURVhealth Billing Account Member Portal.  Member Portal and Billing Account details will be designated to the authorized billing account representative within your group.  Active subscribed employees will ONLY have access to the VURVhealth mobile app using their designated email address and password.  Please note, if your group or organization requires employees to pay directly for VURVhealth network access, then each employee will be required to create their own VURVhealth billing account.</string>
+    <string name="billing_qun19">Why is my VURVhealth Billing Account login different from my VURVhealth Mobile App login?</string>
+    <string name="billing_ans19">In order to protect your privacy and safeguard against potential security threats, VURVhealth strategically designated two different sets of logins between authorized billing representatives and employees. Therefore, we require two different sets of logins.  If you are part of a Single Payor group or organization and have questions about your VURVhealth plan or billing account, please contact the authorized representative within your group or organization. If you are an employee or member of a VURVhealth group plan and need assistance with your mobile app access, please fill out a support request by going to our help page or by emailing us directly at <b>help@vurvhealth.com</b>.</string>
+    <string name="billing_qun20">How do I cancel my subscription?</string>
+    <string name="billing_ans20">VURVhealth constantly strives to bring discounted health benefits to all of our active members. We understand that from time to time, needs change and you may wish to cancel an existing subscription. You can do so at any time by logging into the <a href="https://www.vurvhealth.com/home/login/">Member Portal</a> or fill out a support request by going to our help page or by emailing us directly at <b>help@vurvhealth.com</b>.  Please note, while you can cancel an active subscription at any time, VURVhealth does NOT prorate the current months network access fees and therefore cancellation requests of active subscriptions MUST be received before the 25th of the current month in order to terminate for the following month. Please refer to our billing <a href="https://www.vurvhealth.com/home/legal/">terms and conditions</a> for additional details.</string>
+    <string name="billing_qun21">How do I request a refund?</string>
+    <string name="billing_ans21">Refunds are available to new accounts within their first 30 days of subscribing, excluding the $20 one-time enrollment fee. VURVhealth does NOT provide prorated refunds on active subscriptions. If you believe you have been billed in error, please notify us immediately at <b>help@vurvhealth.com</b> or fill out a support request by going to our help page and one of our team members will assist you. For further details and information outlining VURVhealth billing policies, please view our <a href="https://www.vurvhealth.com/home/legal/">terms and conditions</a>.</string>
+    <string name="billing_qun22">Are prorated refunds available?</string>
+    <string name="billing_ans22">Due to the discounted nature of VURVhealth’s network, we are unable to offer any prorated refunds at this time. If you believe you’ve been billed in error, we are happy to assist you.  Notify us immediately at <b>help@vurvhealth.com</b> or fill out a support request by going to our help page and one of our team members will assist you.</string>
+    <string name="billing_qun23">How do I start a new subscription?</string>
+    <string name="billing_ans23">If you are not currently an active VURVhealth subscriber you can join the VURVhealth network at any time by visiting vurvhealth.com/plans and selecting the VURVhealth plan that best meets you and your organization’s needs. In the event that you are already an active subscriber and would like to add to an existing subscription, upgrade or downgrade an existing subscription, please email us at <b>help@vurvhealth.com</b> or complete a support ticket request and one of our support team members will assist you.</string>
+    <string name="billing_qun24">What payment options do you accept?</string>
+    <string name="billing_ans24">VURVhealth is pleased to accept any major credit or debit card from a US based authorized banking institution. For group or organizational accounts generating invoices greater than $7,500 per month in recurring billing, all payments must be made electronically via ACH (Automatic Clearing House).</string>
+    <string name="billing_qun25">Does VURVhealth accept cash for payments?</string>
+    <string name="billing_ans25">VURVhealth does not accept cash payments for membership or network access, but we do accept any major credit or debit card from a US based authorized banking institution.</string>
+    <string name="billing_qun26">When is my future rebilling date?</string>
+    <string name="billing_ans26">Your VURVhealth active subscription will automatically attempt to charge the default payment method on file based on the date of your original subscription. For example, if you signed up on the 5<sup>th</sup> of the month, your future rebilling date will be on the 5th of the next month. You can determine your future billing dates by logging into the VURVhealth Member Portal with your username and password. From there you can see your current invoice as well as navigate to future invoices on the dashboard calendar.</string>
+    <string name="billing_qun27">Is it possible to prepay future invoices?</string>
+    <string name="billing_ans27">Yes! You can prepay any future invoices for your current number of active members by logging into the VURVhealth <a href="https://www.vurvhealth.com/home/login/">Member Portal</a> and selecting the dashboard link to navigate the calendar to view the desired month you wish to prepay. To do this, click the arrows on the top right of the calendar to the desired month and select the upcoming payment due date. Once selected, (if you have more than one payment option) select the payment method of choice by using the drop down menu under “Invoice Options”, then press the blue “Use Card” button. Next, click the green “Pay Invoice” button. You will then be asked to confirm payment.</string>
+
+    <!--Other Questions-->
+    <string name="others_qun1">My question wasn’t answered in the FAQ, how do I get help?</string>
+    <string name="others_ans1">We’re always here to help. Use the Contact Us page on our website to get in touch or shoot us a note at <b>support@VURVhealth.com</b>.</string>
+
+    <string name="general_qu">General/How It Works</string>
+    <string name="membership">Membership</string>
+    <string name="others_qtns">Other Questions</string>
+    <string name="billing_account">Billing &amp; Account Management </string>
+    <string name="management" translatable="false">Management</string>
+    <string name="networkl_provider">Network &amp; Providers</string>
+    <string name="vurvhealth_app">VURVhealth App</string>
+    <string name="vurvhealth_rx">VURVhealth Rx</string>
+    <string name="vurvhealth_medical">VURVhealth Medical</string>
+    <string name="vurvhealth_dental">VURVhealth Dental</string>
+    <string name="vurvhealth_vision">VURVhealth Vision</string>
+    <string name="vurvhealth_alternative">VURVhealth Alternative Health</string>
+    <string name="health">Health</string>
+    <string name="others">Other Questions/Support</string>
+    <string name="telemed">Alternative Health</string>
+    <string name="lipitor_10_mg_tablet">Lipitor 10 mg tablet</string>
+    <string name="althealth_VURV_ID">Your VURV ID does not include alt health. Tap here to upgrade.</string>
+    <string name="city_name">San Francisco, CA</string>
+    <string name="hi_sec_name">Welcome, Brain</string>
+
+    <string name="freshchat_file_provider_authority">com.VURVhealth.vurvhealth</string>
+    <string name="send">Send Email/SMS</string>
+    <string name="invalid_email_mobile">Invalid email address or mobile number</string>
+    <string name="mobile_instructions">An SMS with instructions to reset your password has been sent to:</string>
+    <string name="invali_mobile">Your mobile number not found</string>
+    <string name="price_variation">Prices can vary by pharmacy and subject to change without notice.
+        \n Patient assumes full responsibility for brand/generic purchase decision at the point of sale.</string>
+    <string name="update">Update</string>
+
+    <string name="str_drug">Strength of Drug</string>
+    <string name="qnt_drug">Quantity of Drug</string>
+    <string name="plz_str_drug">Please select strength of the drug</string>
+    <string name="plz_qnt_drug">Please select quantity of the drug</string>
+
+
+    <string-array name="qnt_array_sample">
+        <item>1 Sheet</item>
+        <item>2 Sheets</item>
+        <item>3 Sheets</item>
+        <item>4 Sheets</item>
+        <item>5 Sheets</item>
+    </string-array>
+
+    <string-array name="strength_array_sample">
+        <item>60 Mg</item>
+        <item>40 Mg</item>
+        <item>30 Mg</item>
+        <item>20 Mg</item>
+        <item>10 Mg</item>
+    </string-array>
+
+    <string name="telemedican_txt">&lt;b>Patient:&lt;/b> Get 24/7 phone and video access to state-licensed physicians.</string>
+
+    <string name="telemedican_txt1">
+        For additional information please visit  &lt;br /&gt;
+        &lt;a href=www.vurvhealth.com/home/help>www.vurvhealth.com/home/help&lt;/a></string>
+
+
+    <!--<string name="telemedican_txt2"> Get 24/7 phone and video access to state-licensed physicians no matter where you are.-->
+    <!--&lt;br /&gt;  &lt;br /&gt; No additional monthly or consultation fees required.-->
+    <!--&lt;br /&gt;  &lt;br /&gt;For additional information please visit-->
+    <!--&lt;a href=www.vurvhealth.com/home/help>www.vurvhealth.com/home/help&lt;/a> or call-->
+    <!--&lt;b>(855) 335-2255. &lt;/b> &lt;br /&gt;  &lt;br /&gt; &lt;b>Patient: &lt;/b>  Use your VURV ID or email address to login when prompted. Click here-->
+
+
+    <string name="telemedican_txt2">For additional information please visit &lt;a href=www.vurvhealth.com/help>www.vurvhealth.com/help&lt;/a>
+            or call &lt;b>(855) 533-0677. \n &lt;br /&gt; &lt;br /&gt;</string>
+    <string name="telemedican_txt3">No additional monthly or consultation fees required.\n &lt;br /&gt; &lt;br /&gt;</string>
+    <string name="telemedican_txt4">Use your VURV ID or email address to login when prompted. Click here</string>
+    <string name="telemedican_txt5"></string>
+    <string name="no_token_created">Token is empty</string>
+    <string name="card_data1">Present this card to your pharmacist every time you fill your prescription.</string>
+    <string name="telemedecine11">TELEMEDICINE</string>
+    <string name="reset_pwd">Reset Password</string>
+    <string name="telemedecine2">TELEMED/MENTAL HEALTH</string>
+
+
+</resources>

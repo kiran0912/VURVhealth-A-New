@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="text_description_marg">20dp</dimen>
+
+    <item name="slide_bar_text" type="dimen" format="float">20.0</item>
+</resources>

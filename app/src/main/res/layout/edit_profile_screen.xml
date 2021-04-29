@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/view_bg"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/htab_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@color/view_bg"
+        android:gravity="top|center"
+        android:minHeight="?attr/actionBarSize">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvDone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/done"
+                    android:textColor="@color/blue"
+                    android:textSize="16dp" />
+
+                <TextView
+                    android:id="@+id/tb_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/edit_profile"
+                    android:textColor="@color/blue"
+                    android:textSize="16dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvCancel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="@dimen/margin_10dp"
+                    android:text="@string/cancel"
+                    android:textColor="@color/blue"
+                    android:textSize="16dp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </android.support.v7.widget.Toolbar>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="@drawable/gradient_vurv" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/margin_20dp"
+        android:orientation="vertical">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/img_prf"
+                        android:layout_width="93dp"
+                        android:layout_height="92dp"
+                        android:layout_gravity="center"
+                        android:background="@drawable/profile_noimage_ic" />
+
+                    <TextView
+                        android:id="@+id/tvEditPhoto"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="@dimen/margin_20dp"
+                        android:text="@string/edit_photo"
+                        android:textColor="@color/blue"
+                        android:textSize="18dp" />
+                </LinearLayout>
+
+                <EditText
+                    android:id="@+id/tvEmail"
+                    style="@style/TextAppearance.AppCompat.Medium"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="30dp"
+                    android:background="@drawable/border_line"
+                    android:hint="@string/your_email"
+                    android:inputType="textEmailAddress"
+                    android:lines="1"
+                    android:maxLength="50"
+                    android:paddingLeft="10dp"
+                    android:singleLine="true"
+                    android:textColor="@color/blue"
+                    android:textColorHint="@color/hintColor" />
+
+                <EditText
+                    android:id="@+id/tvMobile"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/border_line"
+                    android:hint="@string/your_phone_number"
+                    android:inputType="phone"
+                    android:lines="1"
+                    android:maxLength="12"
+                    android:paddingLeft="10dp"
+                    android:singleLine="true"
+                    android:textColor="@color/blue"
+                    android:textColorHint="@color/hintColor" />
+
+
+                <EditText
+                    android:id="@+id/tvFirstName"
+                    style="@style/TextAppearance.AppCompat.Medium"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="@dimen/margin_10dp"
+                    android:background="@drawable/border_line"
+                    android:hint="@string/your_first_name"
+                    android:inputType="textNoSuggestions"
+                    android:lines="1"
+                    android:maxLength="25"
+                    android:paddingLeft="10dp"
+                    android:singleLine="true"
+                    android:textColor="@color/blue"
+                    android:textColorHint="@color/hintColor" />
+
+                <EditText
+                    android:id="@+id/tvlastName"
+                    style="@style/TextAppearance.AppCompat.Medium"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/border_line"
+                    android:hint="@string/your_last_name"
+                    android:inputType="textNoSuggestions"
+                    android:lines="1"
+                    android:maxLength="25"
+                    android:paddingLeft="10dp"
+                    android:singleLine="true"
+                    android:textColor="@color/blue"
+                    android:textColorHint="@color/hintColor" />
+
+                <Button
+                    android:id="@+id/tvDoB"
+                    style="@style/TextAppearance.AppCompat.Medium"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/border_line"
+                    android:gravity="start|center"
+                    android:hint="@string/dob_txt"
+                    android:lines="1"
+                    android:paddingLeft="10dp"
+                    android:singleLine="true"
+                    android:stateListAnimator="@null"
+                    android:textColor="@color/blue"
+                    android:textColorHint="@color/hintColor" />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+                    android:orientation="horizontal">
+
+                    <CheckBox
+                        android:id="@+id/chkMale"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:button="@drawable/customdrawablecheckbox"
+                        android:clickable="false"
+                        android:padding="@dimen/margin_15dp"
+                        android:text="@string/male"
+                        android:textSize="16dp" />
+
+                    <CheckBox
+                        android:id="@+id/chkFemale"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:button="@drawable/customdrawablecheckbox"
+                        android:clickable="false"
+                        android:padding="@dimen/margin_15dp"
+                        android:text="@string/female"
+                        android:textSize="16dp" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+        </ScrollView>
+
+
+    </LinearLayout>
+
+</LinearLayout>
