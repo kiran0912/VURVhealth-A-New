@@ -57,10 +57,9 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import static com.VURVhealth.vurvhealth.prescriptions.PrescriptionSearchActivity.brandSearchResultResPayLoads;
-import static com.VURVhealth.vurvhealth.prescriptions.PrescriptionSearchActivity.brandsearchResultResPayLoads1;
-import static com.VURVhealth.vurvhealth.prescriptions.PrescriptionSearchActivity.genericSearchResultResPayLoads;
-import static com.VURVhealth.vurvhealth.prescriptions.PrescriptionSearchActivity.genericsearchResultResPayLoads1;
+
+import static com.VURVhealth.vurvhealth.prescriptions.BestPricesNearbyActivity.brandsearchResultResPayLoads1;
+import static com.VURVhealth.vurvhealth.prescriptions.BestPricesNearbyActivity.genericsearchResultResPayLoads1;
 import static com.VURVhealth.vurvhealth.prescriptions.PrescriptionSearchActivity.isGeneric;
 
 

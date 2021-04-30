@@ -73,10 +73,10 @@ public class SuperAppCompactActivity extends AppCompatActivity {
 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.client = new Builder(this).addApi(AppIndex.API).addApi(LocationServices.API).build();
-        this.fullFormList = new ArrayList();
-        this.prefsLoginData = getSharedPreferences("VURVProfileDetails", 0);
-        this.loginEditor = this.prefsLoginData.edit();
+        client = new Builder(this).addApi(AppIndex.API).addApi(LocationServices.API).build();
+        fullFormList = new ArrayList();
+        prefsLoginData = getSharedPreferences("VURVProfileDetails", 0);
+        loginEditor = prefsLoginData.edit();
 
     }
 
@@ -97,28 +97,31 @@ public class SuperAppCompactActivity extends AppCompatActivity {
     }
 
     protected void showProgressDialog(Context context) {
-        this.pDialog = new ProgressDialog(context);
-        this.pDialog.setMessage(getString(R.string.please_wait));
-        this.pDialog.setCancelable(false);
-        this.pDialog.show();
+        pDialog = new ProgressDialog(context);
+        pDialog.setMessage(getString(R.string.please_wait));
+        pDialog.setCancelable(false);
+        if (pDialog != null&&!pDialog.isShowing()){
+            pDialog.show(); 
+        }
+        
     }
 
     protected void dismissProgressDialog() {
-        if (this.pDialog != null && this.pDialog.isShowing()) {
-            this.pDialog.dismiss();
+        if (pDialog != null && pDialog.isShowing()) {
+            pDialog.dismiss();
         }
-        this.pDialog = null;
+        pDialog = null;
     }
 
     public void askForGPS(final Activity context) {
-        this.mLocationRequest = LocationRequest.create();
-        this.mLocationRequest.setPriority(100);
-        this.mLocationRequest.setInterval(NotificationOptions.SKIP_STEP_THIRTY_SECONDS_IN_MS);
-        this.mLocationRequest.setFastestInterval(5000);
-        LocationSettingsRequest.Builder builder = new LocationSettingsRequest.Builder().addLocationRequest(this.mLocationRequest);
+        mLocationRequest = LocationRequest.create();
+        mLocationRequest.setPriority(100);
+        mLocationRequest.setInterval(NotificationOptions.SKIP_STEP_THIRTY_SECONDS_IN_MS);
+        mLocationRequest.setFastestInterval(5000);
+        LocationSettingsRequest.Builder builder = new LocationSettingsRequest.Builder().addLocationRequest(mLocationRequest);
         builder.setAlwaysShow(true);
-        this.result = LocationServices.SettingsApi.checkLocationSettings(this.client, builder.build());
-        this.result.setResultCallback(new ResultCallback<LocationSettingsResult>() {
+        result = LocationServices.SettingsApi.checkLocationSettings(client, builder.build());
+        result.setResultCallback(new ResultCallback<LocationSettingsResult>() {
             public void onResult(LocationSettingsResult result) {
                 Status status = result.getStatus();
                 switch (status.getStatusCode()) {

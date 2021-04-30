@@ -4,14 +4,13 @@
     android:layout_width="470dp"
     android:layout_height="340dp"
     android:layout_gravity="center"
-    android:background="@drawable/card_rx_large1"
+    android:background="@drawable/card_rx_large2"
     android:visibility="visible"
     android:rotation="90.0">
 
 <!--
     android:rotation="90.0"
 -->
-
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -160,7 +159,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
-            android:layout_marginTop="14dp"
+            android:layout_marginTop="5dp"
             android:layout_marginBottom="@dimen/margin_10dp"
             android:background="@null"
             android:weightSum="100"

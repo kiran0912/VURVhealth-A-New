@@ -65,6 +65,8 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 
+import static com.VURVhealth.vurvhealth.prescriptions.BestPricesNearbyActivity.brandsearchResultResPayLoads1;
+
 public class PrescriptionMapActivity extends FragmentActivity implements OnMapReadyCallback, ConnectionCallbacks, OnConnectionFailedListener, LocationListener {
     static final /* synthetic */ boolean $assertionsDisabled = (!PrescriptionMapActivity.class.desiredAssertionStatus());
     public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
@@ -104,20 +106,18 @@ public class PrescriptionMapActivity extends FragmentActivity implements OnMapRe
             switchGeneric = getIntent().getBooleanExtra("switchGeneric", true);
         }
         resultList = new ArrayList<>();
-        if (PrescriptionSearchActivity.brandsearchResultResPayLoads1 != null && PrescriptionSearchActivity.brandsearchResultResPayLoads1.size() > 0) {
+        if (BestPricesNearbyActivity.brandsearchResultResPayLoads1 != null && BestPricesNearbyActivity.brandsearchResultResPayLoads1.size() > 0) {
             resultList.clear();
-            resultList = PrescriptionSearchActivity.brandsearchResultResPayLoads1;
-            if (PrescriptionSearchActivity.genericsearchResultResPayLoads1 != null && PrescriptionSearchActivity.genericsearchResultResPayLoads1.size() >0 && switchGeneric) {
-                resultList.addAll(PrescriptionSearchActivity.genericsearchResultResPayLoads1);
+            resultList = BestPricesNearbyActivity.brandsearchResultResPayLoads1;
+            if (BestPricesNearbyActivity.genericsearchResultResPayLoads1 != null && BestPricesNearbyActivity.genericsearchResultResPayLoads1.size() >0 && switchGeneric) {
+                resultList.addAll(BestPricesNearbyActivity.genericsearchResultResPayLoads1);
             }
         } else {
-            if (PrescriptionSearchActivity.genericsearchResultResPayLoads1 != null && PrescriptionSearchActivity.genericsearchResultResPayLoads1.size() >0 && switchGeneric) {
+            if (BestPricesNearbyActivity.genericsearchResultResPayLoads1 != null && BestPricesNearbyActivity.genericsearchResultResPayLoads1.size() >0 && switchGeneric) {
                 resultList.clear();
-                resultList = PrescriptionSearchActivity.genericsearchResultResPayLoads1;
+                resultList = BestPricesNearbyActivity.genericsearchResultResPayLoads1;
             }
         }
-
-
 
         backBtn = (ImageView) findViewById(R.id.backBtn);
         TextView tvresult = (TextView) findViewById(R.id.tvresult);

@@ -39,7 +39,7 @@ public class UpgradeAltHealthFlipActivity extends AppCompatActivity implements O
     public static class CardBackFragment extends Fragment {
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             View v = inflater.inflate(R.layout.fragment_card_back, container, false);
-            ((FrameLayout) v.findViewById(R.id.cardImg)).setBackgroundResource(R.drawable.card_altback);
+            ((FrameLayout) v.findViewById(R.id.cardImg)).setBackgroundResource(R.drawable.card_altback1);
             return v;
         }
     }
@@ -100,7 +100,7 @@ public class UpgradeAltHealthFlipActivity extends AppCompatActivity implements O
 //            plan.setText(getString(R.string.plan) + " "+ prefsData.getString("post_title", ""));
 
 //            plan.setText(getString(R.string.plan) + " CARE");
-            ((FrameLayout) v.findViewById(R.id.cardImg)).setBackgroundResource(R.drawable.card_alt_large);
+            ((FrameLayout) v.findViewById(R.id.cardImg)).setBackgroundResource(R.drawable.card_alt);
             tvRxBin.setVisibility(View.INVISIBLE);
             rxPcNum.setVisibility(View.INVISIBLE);
             rxGRP.setVisibility(View.INVISIBLE);

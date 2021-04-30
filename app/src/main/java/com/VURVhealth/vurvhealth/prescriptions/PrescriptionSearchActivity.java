@@ -104,8 +104,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class PrescriptionSearchActivity extends SuperAppCompactActivity {
     public static List<DrugSearchResultResPayLoad.Datum> brandSearchResultResPayLoads;
-    public static  List<DrugSearchResultResPayLoad1.Result.PharmacyPricing> brandsearchResultResPayLoads1;
-    public static List<DrugSearchResultResPayLoad1.Result.PharmacyPricing> genericsearchResultResPayLoads1;
 
     static ArrayList<DrugInfoResponse> drugInfo;
     static DrugNameRes drugNamesArray;
@@ -439,17 +437,17 @@ public class PrescriptionSearchActivity extends SuperAppCompactActivity {
                     editor.putString("drugDose", drugDose);
                     editor.putString("DrugName", drugName);
                     editor.putString("drugForm", drugForm);
-                    editor.putString("drugNDC", drugNDC);
                     editor.putString("drugGenNDC", drugGenNDC);
                     editor.putString(Param.LOCATION, tv_CityorZipcode.getText().toString().trim());
-                    editor.commit();
-                    if (checkInternet()) {
-                        zipCode = tv_CityorZipcode.getText().toString().trim();
-                        getSavedDateForStar("brand");
 
-                        return;
-                    }
-                    Toast.makeText(PrescriptionSearchActivity.this, getResources().getString(R.string.no_network), Toast.LENGTH_SHORT).show();
+                    editor.putString("drugNDC", drugNDC);
+                    editor.putString("zipCode", tv_CityorZipcode.getText().toString().trim());
+                    editor.putString("token", token);
+                    editor.putString("drugNDC1", drugNDC1);
+                    editor.putString("quantity",drug_qnt_array.get(qnt_of_drug_spinner.getSelectedItemPosition()));
+                    editor.commit();
+                    hideKeyboard(PrescriptionSearchActivity.this);
+                    startActivity(new Intent(context, BestPricesNearbyActivity.class));
                 }
             }
         });
@@ -537,18 +535,6 @@ public class PrescriptionSearchActivity extends SuperAppCompactActivity {
             }
         });
 
-    }
-
-
-    private void getSavedDateForStar(final String drugType) {
-
-        if (isGeneric == false) {
-            getBrandSearchResultService1(token, drugNDC, zipCode, drug_qnt_array.get(qnt_of_drug_spinner.getSelectedItemPosition()));
-        } else {
-            if (switchGeneric == true || switchGeneric == false) {
-                getGenericSearchResultService1(token, drugNDC1, zipCode, drug_qnt_array.get(qnt_of_drug_spinner.getSelectedItemPosition()));
-            }
-        }
     }
 
     protected void onRestart() {
@@ -1155,7 +1141,6 @@ public class PrescriptionSearchActivity extends SuperAppCompactActivity {
     }
 
     private void getDrugNameService1(String token, String query, final String recentDrug) {
-        showProgressDialog(context);
         ApiInterface apiService = ApiClient.getClient1(context).create(ApiInterface.class);
         apiService.getDrugName1(token, query).enqueue(new Callback<ArrayList<DrugNameRes1>>() {
             @Override
@@ -1182,11 +1167,9 @@ public class PrescriptionSearchActivity extends SuperAppCompactActivity {
                     }
 
                 } else {
-                    dismissProgressDialog();
                     Toast.makeText(getApplicationContext(), getResources().getString(R.string.server_not_found), Toast.LENGTH_SHORT).show();
 
                 }
-                dismissProgressDialog();
             }
 
             @Override
@@ -1194,7 +1177,6 @@ public class PrescriptionSearchActivity extends SuperAppCompactActivity {
                 dismissProgressDialog();
                 Log.v("Presc:", "Error: " + t.getMessage());
                 Toast.makeText(getApplicationContext(), getResources().getString(R.string.server_not_found), Toast.LENGTH_SHORT).show();
-                dismissProgressDialog();
             }
         });
     }
@@ -1417,132 +1399,6 @@ public class PrescriptionSearchActivity extends SuperAppCompactActivity {
         });
     }
 
-    private void getBrandSearchResultService1(final String token, String ndc, final String zipCode, String quantity) {
-        showProgressDialog(context);
-        ApiInterface apiService = ApiClient.getClient1(context).create(ApiInterface.class);
-        apiService.getPrice1(token, ndc, zipCode, quantity).enqueue(new Callback<DrugSearchResultResPayLoad1>() {
-            @Override
-            public void onResponse(Call<DrugSearchResultResPayLoad1> call, Response<DrugSearchResultResPayLoad1> response) {
-                if (response.isSuccessful()) {
-                    brandsearchResultResPayLoads1 = new ArrayList<>();
-                    brandsearchResultResPayLoads1.clear();
-                    if (brandsearchResultResPayLoads1 != null && response.body().getResult().getPharmacyPricings().size() > 0) {
-                        for (int i = 0; i < response.body().getResult().getPharmacyPricings().size(); i++) {
-                            DrugSearchResultResPayLoad1.Result.PharmacyPricing pharmacyPricing = new DrugSearchResultResPayLoad1.Result.PharmacyPricing();
-
-                            DrugSearchResultResPayLoad1.Result.PharmacyPricing.Pharmacy pharmacy = new DrugSearchResultResPayLoad1.Result.PharmacyPricing.Pharmacy();
-                            pharmacy.setName(response.body().getResult().getPharmacyPricings().get(i).getPharmacy().getName());
-                            pharmacy.setDistance(response.body().getResult().getPharmacyPricings().get(i).getPharmacy().getDistance());
-
-                            DrugSearchResultResPayLoad1.Result.PharmacyPricing.Pharmacy.Address address = new DrugSearchResultResPayLoad1.Result.PharmacyPricing.Pharmacy.Address();
-                            address.setCity(response.body().getResult().getPharmacyPricings().get(i).getPharmacy().getAddress().getCity());
-                            address.setState(response.body().getResult().getPharmacyPricings().get(i).getPharmacy().getAddress().getState());
-                            address.setPostalCode(response.body().getResult().getPharmacyPricings().get(i).getPharmacy().getAddress().getPostalCode());
-                            address.setLatitude(response.body().getResult().getPharmacyPricings().get(i).getPharmacy().getAddress().getLatitude());
-                            address.setLongitude(response.body().getResult().getPharmacyPricings().get(i).getPharmacy().getAddress().getLongitude());
-                            address.setFullAddress(response.body().getResult().getPharmacyPricings().get(i).getPharmacy().getAddress().getFullAddress());
-                            address.setAddress1(response.body().getResult().getPharmacyPricings().get(i).getPharmacy().getAddress().getAddress1());
-                            pharmacy.setAddress(address);
-
-                            pharmacyPricing.setDrugType("Brand");
-                            pharmacyPricing.setPrices(response.body().getResult().getPharmacyPricings().get(i).getPrices());
-                            pharmacyPricing.setPharmacy(pharmacy);
-                            brandsearchResultResPayLoads1.add(pharmacyPricing);
-
-                        }
-                        if (isGeneric == false && brandsearchResultResPayLoads1.size() > 0) {
-                            if (drugNDC1 != null && drugNDC1.length()!=0) {
-                                getGenericSearchResultService1(token, drugNDC1, zipCode, drug_qnt_array.get(qnt_of_drug_spinner.getSelectedItemPosition()));
-                            } else {
-                                UserSharedPreferences.getInstance(PrescriptionSearchActivity.this).SaveData("zipCode", tv_CityorZipcode.getText().toString());
-                                insertRecentSeach();
-                                Intent intent = new Intent(PrescriptionSearchActivity.this, BestPricesNearbyActivity.class);
-                                intent.putExtra("isGeneric", isGeneric);
-                                intent.putExtra("switchGeneric", switchGeneric);
-                                startActivity(intent);
-                            }
-                        }
-                    }
-                    dismissProgressDialog();
-                } else {
-                    Toast.makeText(getApplicationContext(), getResources().getString(R.string.server_not_found), Toast.LENGTH_SHORT).show();
-                    dismissProgressDialog();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<DrugSearchResultResPayLoad1> call, Throwable t) {
-                dismissProgressDialog();
-                DialogClass.createDActionAlertDialog(PrescriptionSearchActivity.this, "Server not found");
-            }
-        });
-    }
-
-    private void getGenericSearchResultService1(String token, String ndc, String zipCode, String quantity) {
-        showProgressDialog(context);
-        ApiInterface apiService = ApiClient.getClient1(context).create(ApiInterface.class);
-        apiService.getPrice1(token, ndc, zipCode, quantity).enqueue(new Callback<DrugSearchResultResPayLoad1>() {
-            @Override
-            public void onResponse(Call<DrugSearchResultResPayLoad1> call, Response<DrugSearchResultResPayLoad1> response) {
-                if (response.isSuccessful()) {
-                    genericsearchResultResPayLoads1 = new ArrayList<>();
-                    genericsearchResultResPayLoads1.clear();
-                    if (response.body().getResult() != null) {
-                        if (genericsearchResultResPayLoads1 != null && response.body().getResult().getPharmacyPricings().size() > 0) {
-                            for (int i = 0; i < response.body().getResult().getPharmacyPricings().size(); i++) {
-                                DrugSearchResultResPayLoad1.Result.PharmacyPricing pharmacyPricing = new DrugSearchResultResPayLoad1.Result.PharmacyPricing();
-
-                                DrugSearchResultResPayLoad1.Result.PharmacyPricing.Pharmacy pharmacy = new DrugSearchResultResPayLoad1.Result.PharmacyPricing.Pharmacy();
-                                pharmacy.setName(response.body().getResult().getPharmacyPricings().get(i).getPharmacy().getName());
-                                pharmacy.setDistance(response.body().getResult().getPharmacyPricings().get(i).getPharmacy().getDistance());
-
-                                DrugSearchResultResPayLoad1.Result.PharmacyPricing.Pharmacy.Address address = new DrugSearchResultResPayLoad1.Result.PharmacyPricing.Pharmacy.Address();
-                                address.setCity(response.body().getResult().getPharmacyPricings().get(i).getPharmacy().getAddress().getCity());
-                                address.setState(response.body().getResult().getPharmacyPricings().get(i).getPharmacy().getAddress().getState());
-                                address.setPostalCode(response.body().getResult().getPharmacyPricings().get(i).getPharmacy().getAddress().getPostalCode());
-                                address.setLatitude(response.body().getResult().getPharmacyPricings().get(i).getPharmacy().getAddress().getLatitude());
-                                address.setLongitude(response.body().getResult().getPharmacyPricings().get(i).getPharmacy().getAddress().getLongitude());
-                                address.setFullAddress(response.body().getResult().getPharmacyPricings().get(i).getPharmacy().getAddress().getFullAddress());
-                                address.setAddress1(response.body().getResult().getPharmacyPricings().get(i).getPharmacy().getAddress().getAddress1());
-                                pharmacy.setAddress(address);
-
-                                pharmacyPricing.setDrugType("Generic");
-                                pharmacyPricing.setPrices(response.body().getResult().getPharmacyPricings().get(i).getPrices());
-                                pharmacyPricing.setPharmacy(pharmacy);
-                                genericsearchResultResPayLoads1.add(pharmacyPricing);
-                            }
-                            if (genericsearchResultResPayLoads1.size() > 0) {
-                                UserSharedPreferences.getInstance(PrescriptionSearchActivity.this).SaveData("zipCode", tv_CityorZipcode.getText().toString());
-                                insertRecentSeach();
-                                Intent intent = new Intent(PrescriptionSearchActivity.this, BestPricesNearbyActivity.class);
-                                intent.putExtra("isGeneric", isGeneric);
-                                intent.putExtra("switchGeneric", switchGeneric);
-                                startActivity(intent);
-                            } else {
-                                DialogClass.createDAlertDialog(PrescriptionSearchActivity.this, drugNDC == "" ? getResources().getString(R.string.drug_not_found) : getResources().getString(R.string.no_pharma));
-                            }
-                        } else {
-                            DialogClass.createDAlertDialog(PrescriptionSearchActivity.this, drugNDC == "" ? getResources().getString(R.string.drug_not_found) : getResources().getString(R.string.no_pharma));
-                        }
-                    } else {
-                        Toast.makeText(PrescriptionSearchActivity.this, "Zip Code not correct", Toast.LENGTH_SHORT).show();
-                    }
-
-                } else {
-                    Toast.makeText(getApplicationContext(), getResources().getString(R.string.server_not_found), Toast.LENGTH_SHORT).show();
-
-                }
-                dismissProgressDialog();
-
-            }
-
-            @Override
-            public void onFailure(Call<DrugSearchResultResPayLoad1> call, Throwable t) {
-                dismissProgressDialog();
-                DialogClass.createDActionAlertDialog(PrescriptionSearchActivity.this, "Server not found");
-            }
-        });
-    }
 
     public class CustomAdapter2 extends RecyclerView.Adapter<CustomAdapter2.MyViewHolder> {
 

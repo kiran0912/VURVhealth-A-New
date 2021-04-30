@@ -5,6 +5,6 @@
     android:layout_height="340dp"
     android:layout_gravity="center"
     android:layout_margin="10.0dip"
-    android:background="@drawable/card_rxback1"
+    android:background="@drawable/card_rxback"
     android:rotation="90.0"
     android:visibility="visible"/>

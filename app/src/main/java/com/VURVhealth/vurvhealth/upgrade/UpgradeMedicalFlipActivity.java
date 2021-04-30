@@ -45,7 +45,7 @@ public class UpgradeMedicalFlipActivity extends AppCompatActivity implements Fra
     public static class CardBackFragment extends Fragment {
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             View v = inflater.inflate(R.layout.fragment_card_back, container, false);
-            ((FrameLayout) v.findViewById(R.id.cardImg)).setBackgroundResource(R.drawable.card_medicalback);
+            ((FrameLayout) v.findViewById(R.id.cardImg)).setBackgroundResource(R.drawable.card_medicalback1);
             return v;
         }
     }
@@ -78,14 +78,11 @@ public class UpgradeMedicalFlipActivity extends AppCompatActivity implements Fra
             TextView plan = (TextView) v.findViewById(R.id.plan);
             TextView tvCardProvider = (TextView) v.findViewById(R.id.tvCardProvider);
             TextView tv_thisis = (TextView) v.findViewById(R.id.tv_thisis);
-            LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) tvCardProvider.getLayoutParams();
+           /* LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) tvCardProvider.getLayoutParams();
             params.setMargins(60,20,0,0);
-            tvCardProvider.setLayoutParams(params);
+            tvCardProvider.setLayoutParams(params);*/
             tvCardProvider.setVisibility(View.VISIBLE);
             customTextView(tvCardProvider);
-            /*LinearLayout.LayoutParams params1 = (LinearLayout.LayoutParams) tvCardProvider.getLayoutParams();
-            params.setMargins(0,0,0,10);u
-            tv_thisis.setLayoutParams(params1);*/
             if (UpgradeMedicalFlipActivity.flipClick) {
                 Animation animationScaleUp = AnimationUtils.loadAnimation(getActivity(), R.anim.zoom_in);
                 AnimationSet growShrink = new AnimationSet(true);
@@ -99,7 +96,7 @@ public class UpgradeMedicalFlipActivity extends AppCompatActivity implements Fra
             plan.setText(getString(R.string.plan) + " " + prefsData.getString("packageName", ""));
             //            plan.setText(getString(R.string.plan) + " "+ prefsData.getString("post_title", ""));
 
-            cardImg.setBackgroundResource(R.drawable.card_medical);
+            cardImg.setBackgroundResource(R.drawable.card_medical1);
             tvRxBin.setVisibility(View.INVISIBLE);
             rxPcNum.setVisibility(View.INVISIBLE);
             rxGRP.setVisibility(View.INVISIBLE);

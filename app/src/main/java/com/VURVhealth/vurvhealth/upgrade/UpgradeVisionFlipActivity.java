@@ -40,7 +40,7 @@ public class UpgradeVisionFlipActivity extends AppCompatActivity implements OnBa
     public static class CardBackFragment extends Fragment {
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             View v = inflater.inflate(R.layout.fragment_card_back, container, false);
-            ((FrameLayout) v.findViewById(R.id.cardImg)).setBackgroundResource(R.drawable.card_visionback);
+            ((FrameLayout) v.findViewById(R.id.cardImg)).setBackgroundResource(R.drawable.vision_back);
             return v;
         }
     }
@@ -88,7 +88,7 @@ public class UpgradeVisionFlipActivity extends AppCompatActivity implements OnBa
 //            plan.setText(getString(R.string.plan) + " "+ prefsData.getString("post_title", ""));
 
 //            plan.setText(getString(R.string.plan) + " CARE");
-            ((FrameLayout) v.findViewById(R.id.cardImg)).setBackgroundResource(R.drawable.card_vision);
+            ((FrameLayout) v.findViewById(R.id.cardImg)).setBackgroundResource(R.drawable.card_vision1);
             tvRxBin.setVisibility(View.GONE);
             rxPcNum.setVisibility(View.GONE);
             rxGRP.setVisibility(View.GONE);

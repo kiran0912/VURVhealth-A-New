@@ -63,8 +63,6 @@ public class UpgradeRxFlipActivity extends AppCompatActivity implements OnBackSt
         fullname = userSharedPreferences.getData("secondaryUserName");
         vurvId = userSharedPreferences.getData("secondaryUserVurvId");
 
-
-
         getIntentData();
         if (savedInstanceState == null) {
             getFragmentManager().beginTransaction().add(R.id.container, new CardFrontFragment(activity, fullname, vurvId)).commit();
@@ -118,7 +116,7 @@ public class UpgradeRxFlipActivity extends AppCompatActivity implements OnBackSt
     public static class CardBackFragment extends Fragment {
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             View v = inflater.inflate(R.layout.fragment_card_back, container, false);
-            ((FrameLayout) v.findViewById(R.id.cardImg)).setBackgroundResource(R.drawable.card_rxback1);
+            ((FrameLayout) v.findViewById(R.id.cardImg)).setBackgroundResource(R.drawable.card_rxback);
             return v;
         }
     }
@@ -163,7 +161,7 @@ public class UpgradeRxFlipActivity extends AppCompatActivity implements OnBackSt
             plan.setVisibility(View.INVISIBLE);
             expires.setVisibility(View.GONE);
             vurv_id.setVisibility(View.INVISIBLE);
-            cardImg.setBackgroundResource(R.drawable.card_rx_large1);
+            cardImg.setBackgroundResource(R.drawable.card_rx_large2);
             if (this.activity.equalsIgnoreCase("MyMembersActivity")) {
                 name.setText(this.fullName);
 

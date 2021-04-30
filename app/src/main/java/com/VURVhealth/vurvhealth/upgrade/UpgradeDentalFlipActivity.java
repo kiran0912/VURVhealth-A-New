@@ -40,7 +40,7 @@ public class UpgradeDentalFlipActivity extends AppCompatActivity implements OnBa
     public static class CardBackFragment extends Fragment {
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             View v = inflater.inflate(R.layout.fragment_card_back, container, false);
-            ((FrameLayout) v.findViewById(R.id.cardImg)).setBackgroundResource(R.drawable.card_dentalback);
+            ((FrameLayout) v.findViewById(R.id.cardImg)).setBackgroundResource(R.drawable.dental_back1);
             return v;
         }
     }
@@ -91,9 +91,9 @@ public class UpgradeDentalFlipActivity extends AppCompatActivity implements OnBa
             TextView plan = (TextView) v.findViewById(R.id.plan);
             TextView tvCardProvider = (TextView) v.findViewById(R.id.tvCardProvider);
             tvCardProvider.setVisibility(View.VISIBLE);
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+            /*LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
             params.setMargins(60,20,0,0);
-            tvCardProvider.setLayoutParams(params);
+            tvCardProvider.setLayoutParams(params);*/
             expires.setVisibility(View.VISIBLE);
             customTextView(tvCardProvider);
             plan.setText(getString(R.string.plan) + " "+ prefsData.getString("packageName", ""));
@@ -101,7 +101,7 @@ public class UpgradeDentalFlipActivity extends AppCompatActivity implements OnBa
 
 //            plan.setText(getString(R.string.plan) + " CARE");
             plan.setVisibility(View.VISIBLE);
-            cardImg.setBackgroundResource(R.drawable.card_dental);
+            cardImg.setBackgroundResource(R.drawable.card_dental1);
             tvRxBin.setVisibility(View.GONE);
             rxPcNum.setVisibility(View.GONE);
             rxGRP.setVisibility(View.GONE);

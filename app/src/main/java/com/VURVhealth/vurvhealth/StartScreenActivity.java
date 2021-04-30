@@ -179,7 +179,6 @@ public class StartScreenActivity extends SuperAppCompactActivity implements Circ
                     if(intent == null) {
                         intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id="+packageName));
                     }*/
-
                     startActivity(new Intent(StartScreenActivity.this, TeleMedicineActivity.class));
                     /*Uri uri = Uri.parse("https://member.dialcare.com/login"); // missing 'http://' will cause crashed
                     Intent intent = new Intent(Intent.ACTION_VIEW, uri);
