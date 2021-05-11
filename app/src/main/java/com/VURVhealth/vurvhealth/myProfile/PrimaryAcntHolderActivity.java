@@ -2,6 +2,7 @@ package com.VURVhealth.vurvhealth.myProfile;
 
 import android.annotation.TargetApi;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
@@ -13,6 +14,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -27,7 +29,6 @@ import com.VURVhealth.vurvhealth.R;
 import com.VURVhealth.vurvhealth.StartScreenActivity;
 import com.VURVhealth.vurvhealth.authentication.LoginActivity;
 import com.VURVhealth.vurvhealth.freshdesk_help.FreshdeskMainListActivity;
-import com.VURVhealth.vurvhealth.help.HelpActivity;
 import com.VURVhealth.vurvhealth.medical.MedicalScreenActivity;
 import com.VURVhealth.vurvhealth.myProfile.pojos.EditPhotoResPayload;
 import com.VURVhealth.vurvhealth.myProfile.pojos.MyMemberListPayload;
@@ -339,8 +340,16 @@ public class PrimaryAcntHolderActivity extends SuperAppCompactActivity {
     }
 
     public void onBackPressed() {
-        super.onBackPressed();
-        finish();
+        new AlertDialog.Builder(this).setIcon((int) R.drawable.vurv_logo_r).setTitle((CharSequence) getString(R.string.app_name)).setMessage((CharSequence) "Are you sure you want to close this App?").setPositiveButton((CharSequence) "Yes", (DialogInterface.OnClickListener) new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialogInterface, int i) {
+                Intent intent = new Intent(Intent.ACTION_MAIN);
+                intent.addCategory(Intent.CATEGORY_HOME);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+                finish();
+                System.exit(0);
+            }
+        }).setNegativeButton((CharSequence) "No", (DialogInterface.OnClickListener) null).show();
     }
 
     private void myUserDetailsService() {

@@ -3,9 +3,6 @@
 
     <bool name="default_circle_indicator_centered">true</bool>
 
-    <color name="default_circle_indicator_fill_color">#FFFF0000</color>
-    <color name="default_circle_indicator_page_color">#00000000</color>
-
     <integer name="default_circle_indicator_orientation">0</integer>
 
     <dimen name="default_circle_indicator_radius">3dp</dimen>
@@ -17,19 +14,9 @@
     <dimen name="default_circle_indicator_stroke_width">1dp</dimen>
 
     <!-- Line Indicator -->
-    <dimen name="default_line_indicator_line_width">12dp</dimen>
-    <dimen name="default_line_indicator_gap_width">4dp</dimen>
-    <dimen name="default_line_indicator_stroke_width">1dp</dimen>
-    <color name="default_line_indicator_selected_color">#FF33B5E5</color>
-    <color name="default_line_indicator_unselected_color">#FFBBBBBB</color>
-    <bool name="default_line_indicator_centered">true</bool>
     <!-- Line Indicator ends -->
 
     <!-- UnderLine Indicator -->
-    <bool name="default_underline_indicator_fades">true</bool>
-    <integer name="default_underline_indicator_fade_delay">300</integer>
-    <integer name="default_underline_indicator_fade_length">400</integer>
-    <color name="default_underline_indicator_selected_color">#FF33B5E5</color>
     <!-- UnderLine Indicator ends -->
 
     <declare-styleable name="ViewPagerIndicator">

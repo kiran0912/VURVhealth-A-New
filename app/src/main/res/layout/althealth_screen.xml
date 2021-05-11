@@ -96,7 +96,7 @@
                     android:background="@color/white"
                     android:stateListAnimator="@null"
                     android:textAllCaps="false"
-                    android:hint="@string/select_specialty"
+                    android:hint="@string/specialty_req"
                     android:lines="1"
                     android:singleLine="true"
                     android:paddingLeft="5dp"
@@ -284,7 +284,6 @@
 
 
     <LinearLayout
-        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"

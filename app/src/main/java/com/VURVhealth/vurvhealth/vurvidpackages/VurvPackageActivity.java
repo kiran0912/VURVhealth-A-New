@@ -1,6 +1,7 @@
 package com.VURVhealth.vurvhealth.vurvidpackages;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
@@ -10,11 +11,14 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AlertDialog;
 import android.text.Html;
+import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
+import android.text.style.StyleSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,13 +27,13 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.VURVhealth.vurvhealth.TeleMedicineActivity;
 import com.VURVhealth.vurvhealth.freshdesk_help.FreshdeskMainListActivity;
 import com.VURVhealth.vurvhealth.myProfile.MyMembersActivity;
 import com.VURVhealth.vurvhealth.myProfile.pojos.CurrentPackageResPayload;
 import com.VURVhealth.vurvhealth.save.NoSavedItemActivity;
 import com.VURVhealth.vurvhealth.R;
 import com.VURVhealth.vurvhealth.StartScreenActivity;
-import com.VURVhealth.vurvhealth.help.HelpActivity;
 import com.VURVhealth.vurvhealth.myProfile.PrimaryAcntHolderActivity;
 import com.VURVhealth.vurvhealth.superappcompact.SuperAppCompactActivity;
 import com.VURVhealth.vurvhealth.upgrade.UpgradeAltHealthFlipActivity;
@@ -151,9 +155,9 @@ public class VurvPackageActivity extends SuperAppCompactActivity {
                 if (packagesList.get(position).isActiveStatus()) {
                     button.setText(getResources().getString(R.string.open));
                     heading1.setTextSize(14.0f);
-                    //heading1.setGravity(3);
                     //heading2.setGravity(3);
                     heading2.setVisibility(View.VISIBLE);
+                    heading2.setLinksClickable(true);
                     button.setVisibility(View.VISIBLE);
                     heading1.setTypeface(null, Typeface.NORMAL);
                     heading1.setText(fromHtml(((PackageData) packagesList.get(position)).getHeading()));
@@ -165,9 +169,8 @@ public class VurvPackageActivity extends SuperAppCompactActivity {
                 } else {
                     //heading1.setTypeface(null, Typeface.BOLD);
                     heading1.setTextSize(14.0f);
+                    heading2.setLinksClickable(true);
                     heading1.setText(fromHtml(((PackageData) packagesList.get(position)).getHeading()));
-                    //heading1.setGravity(17);
-                    //heading2.setGravity(17);
                     heading2.setVisibility(View.VISIBLE);
 //                    heading2.setText(fromHtml(((PackageData) packagesList.get(position)).getDescription()));
                     customTextView1(heading2, ((PackageData) packagesList.get(position)).getDescription(), ((PackageData) packagesList.get(position)).getCardName());
@@ -445,8 +448,22 @@ public class VurvPackageActivity extends SuperAppCompactActivity {
         startActivity(intent);
     }
 
+    private void moveToTelemedActivity() {
+        Intent intent = new Intent(VurvPackageActivity.this, TeleMedicineActivity.class);
+        startActivity(intent);
+    }
+
     public void onBackPressed() {
-        super.onBackPressed();
+        new AlertDialog.Builder(this).setIcon((int) R.drawable.vurv_logo_r).setTitle((CharSequence) getString(R.string.app_name)).setMessage((CharSequence) "Are you sure you want to close this App?").setPositiveButton((CharSequence) "Yes", (DialogInterface.OnClickListener) new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialogInterface, int i) {
+                Intent intent = new Intent(Intent.ACTION_MAIN);
+                intent.addCategory(Intent.CATEGORY_HOME);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+                finish();
+                System.exit(0);
+            }
+        }).setNegativeButton((CharSequence) "No", (DialogInterface.OnClickListener) null).show();
     }
 
     private class MyPagerAdapter extends PagerAdapter {
@@ -552,9 +569,13 @@ public class VurvPackageActivity extends SuperAppCompactActivity {
                                 moveToNextActivity();
                             }*/
 //                        moveToAltHealthActvity();
-                        Uri uri = Uri.parse("https://member.dialcare.com/login"); // missing 'http://' will cause crashed
+                        /*Uri uri = Uri.parse("https://member.dialcare.com/login"); // missing 'http://' will cause crashed
                         Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                        startActivity(intent);*/
+                        Intent intent = new Intent(VurvPackageActivity.this, TeleMedicineActivity.class);
+                        intent.putExtra("move","VurvPackage");
                         startActivity(intent);
+                        finish();
                     }
                 }
             });
@@ -795,21 +816,25 @@ public class VurvPackageActivity extends SuperAppCompactActivity {
         //    view.setText(fromHtml(text1));
         if (text2.equalsIgnoreCase("TeleMedicine")) {
             SpannableStringBuilder spanTxt = new SpannableStringBuilder(Html.fromHtml(getString(R.string.telemedican_txt2)));
-            spanTxt.append(Html.fromHtml(getString(R.string.telemedican_txt4)));
-            //spanTxt.append(Html.fromHtml(getString(R.string.telemedican_txt5)));
+            spanTxt.append("For additional information, please visit");
+            spanTxt.append(" www.vurvhealth.com/help");
             spanTxt.setSpan(new ClickableSpan() {
                 @Override
-                public void onClick(@NonNull View view) {
+                public void onClick(View widget) {
                     Intent i = new Intent("android.intent.action.VIEW");
-                    i.setData(Uri.parse("https://member.dialcare.com/login"));
+                    i.setData(Uri.parse("http://www.vurvhealth.com/help"));
                     startActivity(i);
                 }
-            }, spanTxt.length() - "Click here".length(), spanTxt.length(), 0);
+            }, spanTxt.length() - "www.vurvhealth.com/help".length(), spanTxt.length(), 0);
+            spanTxt.append(" or call (855) 335-2255.");
+            spanTxt.setSpan(new StyleSpan(Typeface.BOLD), 137, 152,Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+            view.setLinksClickable(true);
             view.setMovementMethod(LinkMovementMethod.getInstance());
             view.setText(spanTxt, TextView.BufferType.SPANNABLE);
 
         } else {
             SpannableStringBuilder spanTxt = new SpannableStringBuilder(fromHtml(text1));
+            view.setLinksClickable(true);
             view.setMovementMethod(LinkMovementMethod.getInstance());
             view.setText(spanTxt, TextView.BufferType.SPANNABLE);
         }

@@ -429,25 +429,29 @@ public class PrescriptionSearchActivity extends SuperAppCompactActivity {
                     Toast.makeText(getApplicationContext(), getResources().getString(R.string.plz_str_drug), Toast.LENGTH_SHORT).show();
                 } else if (drugQntPos == 0) {
                     Toast.makeText(getApplicationContext(), getResources().getString(R.string.plz_qnt_drug), Toast.LENGTH_SHORT).show();
-                } else if (tv_CityorZipcode.getText().toString().trim().length() < 3) {
+                } else if (tv_CityorZipcode.getText().toString().trim().length() < 5) {
                     Toast.makeText(getApplicationContext(), getResources().getString(R.string.valid_zip), Toast.LENGTH_SHORT).show();
                 }else {
-                    Editor editor = getSharedPreferences("SearchData", 0).edit();
-                    editor.putString("drugId", drugId);
-                    editor.putString("drugDose", drugDose);
-                    editor.putString("DrugName", drugName);
-                    editor.putString("drugForm", drugForm);
-                    editor.putString("drugGenNDC", drugGenNDC);
-                    editor.putString(Param.LOCATION, tv_CityorZipcode.getText().toString().trim());
+                    if(drug_qnt_array!=null) {
+                        Editor editor = getSharedPreferences("SearchData", 0).edit();
+                        editor.putString("drugId", drugId);
+                        editor.putString("drugDose", drugDose);
+                        editor.putString("DrugName", drugName);
+                        editor.putString("drugForm", drugForm);
+                        editor.putString("drugGenNDC", drugGenNDC);
+                        editor.putString(Param.LOCATION, tv_CityorZipcode.getText().toString().trim());
 
-                    editor.putString("drugNDC", drugNDC);
-                    editor.putString("zipCode", tv_CityorZipcode.getText().toString().trim());
-                    editor.putString("token", token);
-                    editor.putString("drugNDC1", drugNDC1);
-                    editor.putString("quantity",drug_qnt_array.get(qnt_of_drug_spinner.getSelectedItemPosition()));
-                    editor.commit();
-                    hideKeyboard(PrescriptionSearchActivity.this);
-                    startActivity(new Intent(context, BestPricesNearbyActivity.class));
+                        editor.putString("drugNDC", drugNDC);
+                        editor.putString("zipCode", tv_CityorZipcode.getText().toString().trim());
+                        editor.putString("token", token);
+                        editor.putString("drugNDC1", drugNDC1);
+                        editor.putString("quantity", drug_qnt_array.get(qnt_of_drug_spinner.getSelectedItemPosition()));
+                        editor.commit();
+                        hideKeyboard(PrescriptionSearchActivity.this);
+                        startActivity(new Intent(context, BestPricesNearbyActivity.class));
+                    }else {
+                        Toast.makeText(context, R.string.server_not_found, Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         });

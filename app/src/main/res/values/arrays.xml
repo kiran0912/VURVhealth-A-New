@@ -1,33 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
-    <array name="entries">
-
-        <item>@drawable/category_ic_medical</item>
-        <item>@drawable/category_ic_dental</item>
-        <item>@drawable/category_ic_alt</item>
-        <item>@drawable/category_ic_vision</item>
-        <item>@drawable/category_ic_rx</item>
-    </array>
-
-
-    <array name="selected_entries">
-
-        <item>@drawable/selected_ic_doctors</item>
-        <item>@drawable/selected_ic_dental</item>
-        <item>@drawable/selected_ic_alt</item>
-        <item>@drawable/selected_ic_vision</item>
-        <item>@drawable/selected_ic_rx</item>
-    </array>
-
-
-    <array name="names">
-        <item>\n MEDICAL</item>
-        <item>\n DENTAL</item>
-        <item>\n Alt Health</item>
-        <item>\n OPTICAL</item>
-        <item>\n PRESCRIPTION</item>
-
-    </array>
 
 
 </resources>

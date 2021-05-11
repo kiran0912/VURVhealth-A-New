@@ -12,12 +12,11 @@
 
 
     <ImageView
-        android:id="@+id/img_logo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="220dp"
+        android:layout_height="220dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="40dp"
-        android:src="@drawable/vurv_logo_tagline" />
+        android:src="@drawable/vurv_logo_r" />
 
     <ScrollView
         android:layout_width="match_parent"

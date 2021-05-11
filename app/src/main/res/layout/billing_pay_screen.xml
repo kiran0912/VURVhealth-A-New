@@ -159,7 +159,6 @@
                     android:padding="@dimen/margin_10dp">
 
                     <TextView
-                        android:id="@+id/tvhelpQ3"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center_vertical"
@@ -169,7 +168,6 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/tvhelpDesc3"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -196,7 +194,6 @@
                     android:padding="10dp">
 
                     <TextView
-                        android:id="@+id/tvhelpQ4"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center_vertical"
@@ -206,7 +203,6 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/tvhelpDesc4"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -224,7 +220,6 @@
                     android:background="@color/black" />
 
                 <LinearLayout
-                    android:id="@+id/llhelpQ5"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/white"
@@ -232,7 +227,6 @@
                     android:padding="10dp">
 
                     <TextView
-                        android:id="@+id/tvhelpQ5"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center_vertical"
@@ -242,7 +236,6 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/tvhelpDesc5"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -260,7 +253,6 @@
                     android:background="@color/black" />
 
                 <LinearLayout
-                    android:id="@+id/llhelpQ6"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/white"
@@ -268,7 +260,6 @@
                     android:padding="10dp">
 
                     <TextView
-                        android:id="@+id/tvhelpQ6"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center_vertical"
@@ -278,7 +269,6 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/tvhelpDesc6"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -296,7 +286,6 @@
                     android:background="@color/black" />
 
                 <LinearLayout
-                    android:id="@+id/llhelpQ7"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/white"
@@ -304,7 +293,6 @@
                     android:padding="10dp">
 
                     <TextView
-                        android:id="@+id/tvhelpQ7"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center_vertical"
@@ -314,7 +302,6 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/tvhelpDesc7"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -332,7 +319,6 @@
                     android:background="@color/black" />
 
                 <LinearLayout
-                    android:id="@+id/llhelpQ8"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/white"
@@ -340,7 +326,6 @@
                     android:padding="10dp">
 
                     <TextView
-                        android:id="@+id/tvhelpQ8"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center_vertical"
@@ -350,7 +335,6 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/tvhelpDesc8"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -368,7 +352,6 @@
                     android:background="@color/black" />
 
                 <LinearLayout
-                    android:id="@+id/llhelpQ9"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/white"
@@ -376,7 +359,6 @@
                     android:padding="10dp">
 
                     <TextView
-                        android:id="@+id/tvhelpQ9"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center_vertical"
@@ -386,7 +368,6 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/tvhelpDesc9"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -404,7 +385,6 @@
                     android:background="@color/black" />
 
                 <LinearLayout
-                    android:id="@+id/llhelpQ10"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/white"
@@ -412,7 +392,6 @@
                     android:padding="10dp">
 
                     <TextView
-                        android:id="@+id/tvhelpQ10"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center_vertical"
@@ -422,7 +401,6 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/tvhelpDesc10"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -440,7 +418,6 @@
                     android:background="@color/black" />
 
                 <LinearLayout
-                    android:id="@+id/llhelpQ11"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/white"
@@ -448,7 +425,6 @@
                     android:padding="10dp">
 
                     <TextView
-                        android:id="@+id/tvhelpQ11"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center_vertical"
@@ -458,7 +434,6 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/tvhelpDesc11"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -476,7 +451,6 @@
                     android:background="@color/black" />
 
                 <LinearLayout
-                    android:id="@+id/llhelpQ12"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/white"
@@ -484,7 +458,6 @@
                     android:padding="10dp">
 
                     <TextView
-                        android:id="@+id/tvhelpQ12"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center_vertical"
@@ -494,7 +467,6 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/tvhelpDesc12"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -512,7 +484,6 @@
                     android:background="@color/black" />
 
                 <LinearLayout
-                    android:id="@+id/llhelpQ13"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/white"
@@ -520,7 +491,6 @@
                     android:padding="10dp">
 
                     <TextView
-                        android:id="@+id/tvhelpQ13"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center_vertical"
@@ -530,7 +500,6 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/tvhelpDesc13"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -548,7 +517,6 @@
                     android:background="@color/black" />
 
                 <LinearLayout
-                    android:id="@+id/llhelpQ14"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/white"
@@ -556,7 +524,6 @@
                     android:padding="10dp">
 
                     <TextView
-                        android:id="@+id/tvhelpQ14"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center_vertical"
@@ -566,7 +533,6 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/tvhelpDesc14"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -584,7 +550,6 @@
                     android:background="@color/black" />
 
                 <LinearLayout
-                    android:id="@+id/llhelpQ15"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/white"
@@ -592,7 +557,6 @@
                     android:padding="10dp">
 
                     <TextView
-                        android:id="@+id/tvhelpQ15"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center_vertical"
@@ -602,7 +566,6 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/tvhelpDesc15"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -620,7 +583,6 @@
                     android:background="@color/black" />
 
                 <LinearLayout
-                    android:id="@+id/llhelpQ16"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/white"
@@ -628,7 +590,6 @@
                     android:padding="10dp">
 
                     <TextView
-                        android:id="@+id/tvhelpQ16"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center_vertical"
@@ -638,7 +599,6 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/tvhelpDesc16"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -656,7 +616,6 @@
                     android:background="@color/black" />
 
                 <LinearLayout
-                    android:id="@+id/llhelpQ17"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/white"
@@ -664,7 +623,6 @@
                     android:padding="10dp">
 
                     <TextView
-                        android:id="@+id/tvhelpQ17"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center_vertical"
@@ -674,7 +632,6 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/tvhelpDesc17"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -692,7 +649,6 @@
                     android:background="@color/black" />
 
                 <LinearLayout
-                    android:id="@+id/llhelpQ18"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/white"
@@ -700,7 +656,6 @@
                     android:padding="10dp">
 
                     <TextView
-                        android:id="@+id/tvhelpQ18"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center_vertical"
@@ -710,7 +665,6 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/tvhelpDesc18"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -728,7 +682,6 @@
                     android:background="@color/black" />
 
                 <LinearLayout
-                    android:id="@+id/llhelpQ19"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/white"
@@ -736,7 +689,6 @@
                     android:padding="10dp">
 
                     <TextView
-                        android:id="@+id/tvhelpQ19"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center_vertical"
@@ -746,7 +698,6 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/tvhelpDesc19"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -764,7 +715,6 @@
                     android:background="@color/black" />
 
                 <LinearLayout
-                    android:id="@+id/llhelpQ20"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/white"
@@ -772,7 +722,6 @@
                     android:padding="10dp">
 
                     <TextView
-                        android:id="@+id/tvhelpQ20"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center_vertical"
@@ -782,7 +731,6 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/tvhelpDesc20"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -800,7 +748,6 @@
                     android:background="@color/black" />
 
                 <LinearLayout
-                    android:id="@+id/llhelpQ21"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/white"
@@ -808,7 +755,6 @@
                     android:padding="10dp">
 
                     <TextView
-                        android:id="@+id/tvhelpQ21"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center_vertical"
@@ -818,7 +764,6 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/tvhelpDesc21"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -836,7 +781,6 @@
                     android:background="@color/black" />
 
                 <LinearLayout
-                    android:id="@+id/llhelpQ22"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/white"
@@ -844,7 +788,6 @@
                     android:padding="10dp">
 
                     <TextView
-                        android:id="@+id/tvhelpQ22"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center_vertical"
@@ -854,7 +797,6 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/tvhelpDesc22"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -872,7 +814,6 @@
                     android:background="@color/black" />
 
                 <LinearLayout
-                    android:id="@+id/llhelpQ23"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/white"
@@ -880,7 +821,6 @@
                     android:padding="10dp">
 
                     <TextView
-                        android:id="@+id/tvhelpQ23"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center_vertical"
@@ -890,7 +830,6 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/tvhelpDesc23"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -908,7 +847,6 @@
                     android:background="@color/black" />
 
                 <LinearLayout
-                    android:id="@+id/llhelpQ24"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/white"
@@ -916,7 +854,6 @@
                     android:padding="10dp">
 
                     <TextView
-                        android:id="@+id/tvhelpQ24"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center_vertical"
@@ -926,7 +863,6 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/tvhelpDesc24"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -944,7 +880,6 @@
                     android:background="@color/black" />
 
                 <LinearLayout
-                    android:id="@+id/llhelpQ25"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/white"
@@ -952,7 +887,6 @@
                     android:padding="10dp">
 
                     <TextView
-                        android:id="@+id/tvhelpQ25"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center_vertical"
@@ -962,7 +896,6 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/tvhelpDesc25"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -980,7 +913,6 @@
                     android:background="@color/black" />
 
                 <LinearLayout
-                    android:id="@+id/llhelpQ26"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/white"
@@ -988,7 +920,6 @@
                     android:padding="10dp">
 
                     <TextView
-                        android:id="@+id/tvhelpQ26"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center_vertical"
@@ -998,7 +929,6 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/tvhelpDesc26"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -1016,7 +946,6 @@
                     android:background="@color/black" />
 
                 <LinearLayout
-                    android:id="@+id/llhelpQ27"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/white"
@@ -1024,7 +953,6 @@
                     android:padding="10dp">
 
                     <TextView
-                        android:id="@+id/tvhelpQ27"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center_vertical"
@@ -1034,7 +962,6 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/tvhelpDesc27"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"

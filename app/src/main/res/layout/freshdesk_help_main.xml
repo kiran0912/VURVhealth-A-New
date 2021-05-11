@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:background="@color/view_bg"
-        android:gravity="top|center"
+        android:gravity="top"
         android:minHeight="?attr/actionBarSize"
         android:visibility="visible">
 
@@ -28,15 +28,14 @@
                 android:layout_gravity="center"
                 android:src="@drawable/back_btn"
                 android:text="@string/cancel"
+                android:visibility="gone"
                 android:textColor="@color/blue" />
 
             <TextView
                 android:id="@+id/tbName"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:layout_marginLeft="20dp"
-                android:gravity="center_vertical"
+                android:gravity="center|center_vertical"
                 android:text="Help"
                 android:textColor="@color/blue"
                 android:textSize="18dp"

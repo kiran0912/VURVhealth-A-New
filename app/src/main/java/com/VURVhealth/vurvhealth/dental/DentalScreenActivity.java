@@ -29,6 +29,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.VURVhealth.vurvhealth.freshdesk_help.FreshdeskMainListActivity;
 import com.VURVhealth.vurvhealth.medical.MedicalScreenActivity;
 import com.google.android.gms.maps.model.LatLng;
 import com.VURVhealth.vurvhealth.retrofit.Application_holder;
@@ -44,19 +45,14 @@ import com.VURVhealth.vurvhealth.retrofit.ApiClient;
 import com.VURVhealth.vurvhealth.retrofit.ApiInterface;
 import com.VURVhealth.vurvhealth.save.NoSavedItemActivity;
 import com.VURVhealth.vurvhealth.R;
-import com.VURVhealth.vurvhealth.help.HelpActivity;
 import com.VURVhealth.vurvhealth.myProfile.PrimaryAcntHolderActivity;
 import com.VURVhealth.vurvhealth.superappcompact.SuperAppCompactActivity;
-import com.VURVhealth.vurvhealth.upgrade.UpgradeSubscriptionActivity;
 import com.VURVhealth.vurvhealth.utilities.StatusResponseForTotalProject;
 import com.VURVhealth.vurvhealth.vision.pojos.SaveForLaterVision;
 import com.VURVhealth.vurvhealth.vurvidpackages.VurvPackageActivity;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.google.gson.Gson;
 
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
@@ -349,7 +345,7 @@ public class DentalScreenActivity extends SuperAppCompactActivity {
         });
         llHelp.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                startActivity(new Intent(DentalScreenActivity.this, HelpActivity.class));
+                startActivity(new Intent(DentalScreenActivity.this, FreshdeskMainListActivity.class));
                 finish();
             }
         });

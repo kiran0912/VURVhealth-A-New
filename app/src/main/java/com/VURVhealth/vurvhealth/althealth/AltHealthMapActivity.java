@@ -302,7 +302,7 @@ public class AltHealthMapActivity extends FragmentActivity implements OnMapReady
         @Override
         protected void onBeforeClusterItemRendered(AHSSearchResPayload.Datum item, MarkerOptions markerOptions) {
             super.onBeforeClusterItemRendered(item, markerOptions);
-            markerOptions.icon(BitmapDescriptorFactory.fromBitmap(getMarkerBitmapFromView(item.getName(), position)));
+            markerOptions.icon(BitmapDescriptorFactory.fromBitmap(getMarkerBitmapFromView(item.getName(),item.getDegree(), position)));
 
         }
 
@@ -346,7 +346,7 @@ public class AltHealthMapActivity extends FragmentActivity implements OnMapReady
         }
     }
 
-    private Bitmap getMarkerBitmapFromView(String name, int position) {
+    private Bitmap getMarkerBitmapFromView(String name, String degree, int position) {
         View customMarkerView = ((LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.custom_marker_facility, null);
         ImageView image = (ImageView) customMarkerView.findViewById(R.id.image);
         image.setBackgroundResource(R.drawable.map_selected_alt);
@@ -355,7 +355,7 @@ public class AltHealthMapActivity extends FragmentActivity implements OnMapReady
         } else {
             image.setBackgroundResource(R.drawable.map_alt);
         }*/
-        ((TextView) customMarkerView.findViewById(R.id.location_name)).setText(name);
+        ((TextView) customMarkerView.findViewById(R.id.location_name)).setText(name+", "+degree);
         customMarkerView.measure(0, 0);
         customMarkerView.layout(0, 0, customMarkerView.getMeasuredWidth(), customMarkerView.getMeasuredHeight());
         customMarkerView.buildDrawingCache();

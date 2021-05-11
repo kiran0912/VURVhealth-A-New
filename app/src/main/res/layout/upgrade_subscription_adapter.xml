@@ -15,7 +15,6 @@
         card_view:cardCornerRadius="4dp">
 
         <LinearLayout
-            android:id="@+id/llPackage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
@@ -73,7 +72,6 @@
                     android:orientation="vertical">
 
                     <ImageView
-                        android:id="@+id/imgPrescription"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -81,7 +79,6 @@
                         android:src="@drawable/rx_ic" />
 
                     <TextView
-                        android:id="@+id/tvPrescription"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/prescription"
@@ -99,7 +96,6 @@
                     android:orientation="vertical">
 
                     <ImageView
-                        android:id="@+id/imgDoctors"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -107,7 +103,6 @@
                         android:src="@drawable/doctors_ic" />
 
                     <TextView
-                        android:id="@+id/tvDoctors"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/doctors"
@@ -126,7 +121,6 @@
                     android:orientation="vertical">
 
                     <ImageView
-                        android:id="@+id/imgFacility"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -134,7 +128,6 @@
                         android:src="@drawable/facilities_ic" />
 
                     <TextView
-                        android:id="@+id/tvFacility"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/facilities"
@@ -154,7 +147,6 @@
                     android:orientation="vertical">
 
                     <ImageView
-                        android:id="@+id/imgDental"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -181,7 +173,6 @@
                     android:orientation="vertical">
 
                     <ImageView
-                        android:id="@+id/imgVision"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -190,7 +181,6 @@
                         android:src="@drawable/vision_ic" />
 
                     <TextView
-                        android:id="@+id/tvVision"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -212,7 +202,6 @@
                     android:orientation="vertical">
 
                     <ImageView
-                        android:id="@+id/imgAltHealth"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -220,7 +209,6 @@
                         android:src="@drawable/alt_ic" />
 
                     <TextView
-                        android:id="@+id/tvAltHealth"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"

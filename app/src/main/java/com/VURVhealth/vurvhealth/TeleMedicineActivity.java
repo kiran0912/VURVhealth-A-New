@@ -30,11 +30,16 @@ public class TeleMedicineActivity extends SuperAppCompactActivity {
     private WebView webView;
     private Context context = TeleMedicineActivity.this;
     private String url = "https://member.dialcare.com/login";
+    private String move;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tele_medicine);
+
+        if (getIntent()!=null){
+           move = getIntent().getStringExtra("move");
+        }
 
         llSaved = (LinearLayout) findViewById(R.id.llSaved);
         llVurv = (LinearLayout) findViewById(R.id.llVurv);
@@ -114,6 +119,18 @@ public class TeleMedicineActivity extends SuperAppCompactActivity {
         public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
             Log.e("Ssl Error:",handler.toString() + "error:" +  error);
            handler.proceed();
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        if (move.equalsIgnoreCase("startScreen")) {
+            startActivity(new Intent(context, StartScreenActivity.class));
+            finish();
+        }else if (move.equalsIgnoreCase("VurvPackage")){
+            startActivity(new Intent(context, VurvPackageActivity.class));
+            finish();
         }
     }
 }

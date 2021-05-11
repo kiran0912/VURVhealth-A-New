@@ -1,9 +1,11 @@
 package com.VURVhealth.vurvhealth.save;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -23,7 +25,6 @@ import com.VURVhealth.vurvhealth.althealth.pojos.AHSProviderDetailsRespayload;
 import com.VURVhealth.vurvhealth.dental.DentalSearchDetailActivity;
 import com.VURVhealth.vurvhealth.dental.pojos.DentalProviderDetailsResPayload;
 import com.VURVhealth.vurvhealth.freshdesk_help.FreshdeskMainListActivity;
-import com.VURVhealth.vurvhealth.help.HelpActivity;
 import com.VURVhealth.vurvhealth.medical.aboutDoctorPojos.AboutDoctorReqPayLoad;
 import com.VURVhealth.vurvhealth.medical.aboutDoctorPojos.AboutDoctorResPayLoad;
 import com.VURVhealth.vurvhealth.medical.doctors.DoctorsResultDetailsActivity;
@@ -507,10 +508,15 @@ public class SaveItemActivity extends SuperAppCompactActivity {
     }
 
     public void onBackPressed() {
-        super.onBackPressed();
-        Intent intent = new Intent(this, StartScreenActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        startActivity(intent);
-        finish();
+        new AlertDialog.Builder(this).setIcon((int) R.drawable.vurv_logo_r).setTitle((CharSequence) getString(R.string.app_name)).setMessage((CharSequence) "Are you sure you want to close this App?").setPositiveButton((CharSequence) "Yes", (DialogInterface.OnClickListener) new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialogInterface, int i) {
+                Intent intent = new Intent(Intent.ACTION_MAIN);
+                intent.addCategory(Intent.CATEGORY_HOME);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+                finish();
+                System.exit(0);
+            }
+        }).setNegativeButton((CharSequence) "No", (DialogInterface.OnClickListener) null).show();
     }
 }

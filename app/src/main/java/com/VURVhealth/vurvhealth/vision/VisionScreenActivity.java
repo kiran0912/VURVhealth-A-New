@@ -40,7 +40,7 @@ import android.widget.Toast;
 import com.VURVhealth.vurvhealth.DialogClass;
 import com.VURVhealth.vurvhealth.GPSTracker;
 import com.VURVhealth.vurvhealth.R;
-import com.VURVhealth.vurvhealth.help.HelpActivity;
+import com.VURVhealth.vurvhealth.freshdesk_help.FreshdeskMainListActivity;
 import com.VURVhealth.vurvhealth.medical.doctors.SpecialityScreenActivity;
 import com.VURVhealth.vurvhealth.medical.seekbar.RangeSliderView;
 import com.VURVhealth.vurvhealth.myProfile.PrimaryAcntHolderActivity;
@@ -276,7 +276,7 @@ public class VisionScreenActivity extends SuperAppCompactActivity implements OnI
         });
         llHelp.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
-                startActivity(new Intent(VisionScreenActivity.this, HelpActivity.class));
+                startActivity(new Intent(VisionScreenActivity.this, FreshdeskMainListActivity.class));
                 finish();
             }
         });

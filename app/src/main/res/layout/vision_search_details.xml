@@ -768,7 +768,6 @@
                             android:orientation="horizontal">
 
                             <TextView
-                                android:id="@+id/tvPhone"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:gravity="right"
@@ -834,7 +833,6 @@
                 android:src="@drawable/toolbar_call_ic" />
 
             <TextView
-                android:id="@+id/tvCall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/call"
@@ -875,13 +873,11 @@
             android:orientation="vertical">
 
             <ImageView
-                android:id="@+id/imgShare"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/toolbar_share_ic" />
 
             <TextView
-                android:id="@+id/tvShare"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:lines="1"
@@ -899,13 +895,11 @@
             android:orientation="vertical">
 
             <ImageView
-                android:id="@+id/imgDirections"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/toolbar_more_ic" />
 
             <TextView
-                android:id="@+id/tvDirection"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_10dp"

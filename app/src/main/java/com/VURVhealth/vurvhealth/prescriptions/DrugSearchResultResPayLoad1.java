@@ -23,7 +23,7 @@ public class DrugSearchResultResPayLoad1 {
     private Boolean errorOccurred;
     @SerializedName("ErrorMessage")
     @Expose
-    private Object errorMessage;
+    private String errorMessage;
     @SerializedName("ErrorSeverity")
     @Expose
     private String errorSeverity;
@@ -50,11 +50,11 @@ public class DrugSearchResultResPayLoad1 {
         this.errorOccurred = errorOccurred;
     }
 
-    public Object getErrorMessage() {
+    public String  getErrorMessage() {
         return errorMessage;
     }
 
-    public void setErrorMessage(Object errorMessage) {
+    public void setErrorMessage(String errorMessage) {
         this.errorMessage = errorMessage;
     }
 

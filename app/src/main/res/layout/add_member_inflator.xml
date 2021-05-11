@@ -14,7 +14,6 @@
         card_view:cardCornerRadius="4dp">
 
         <LinearLayout
-            android:id="@+id/llMember"
             android:layout_width="match_parent"
             android:layout_height="160dp"
             android:background="@drawable/border_line"

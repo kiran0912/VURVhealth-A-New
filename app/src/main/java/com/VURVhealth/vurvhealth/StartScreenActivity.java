@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.graphics.RectF;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.view.MotionEvent;
@@ -26,7 +25,6 @@ import com.VURVhealth.vurvhealth.circleView.CircleImageView;
 import com.VURVhealth.vurvhealth.circleView.CircleLayout;
 import com.VURVhealth.vurvhealth.dental.DentalScreenActivity;
 import com.VURVhealth.vurvhealth.freshdesk_help.FreshdeskMainListActivity;
-import com.VURVhealth.vurvhealth.help.HelpActivity;
 import com.VURVhealth.vurvhealth.medical.MedicalScreenActivity;
 import com.VURVhealth.vurvhealth.myProfile.MyMembersActivity;
 import com.VURVhealth.vurvhealth.myProfile.PrimaryAcntHolderActivity;
@@ -179,7 +177,9 @@ public class StartScreenActivity extends SuperAppCompactActivity implements Circ
                     if(intent == null) {
                         intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id="+packageName));
                     }*/
-                    startActivity(new Intent(StartScreenActivity.this, TeleMedicineActivity.class));
+                    Intent intent = new Intent(StartScreenActivity.this, TeleMedicineActivity.class);
+                    intent.putExtra("move","startScreen");
+                    startActivity(intent);
                     /*Uri uri = Uri.parse("https://member.dialcare.com/login"); // missing 'http://' will cause crashed
                     Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                     startActivity(intent);*/
@@ -202,6 +202,7 @@ public class StartScreenActivity extends SuperAppCompactActivity implements Circ
                 selected_item = "prescription";
                 main_rx_image = (ImageView) linearLayout.findViewById(R.id.main_rx_image);
                 main_rx_image.setImageResource(R.drawable.selected_ic_rx);
+                btn_next.setText(R.string.next);
                 tvRx = (TextView) linearLayout.findViewById(R.id.tvRx);
                 tvRx.setVisibility(View.GONE);
                 selectedTextView.setText(getResources().getString(R.string.prescription_caps));
@@ -238,6 +239,7 @@ public class StartScreenActivity extends SuperAppCompactActivity implements Circ
                 selected_item = "medical";
                 main_medical_image = (ImageView) linearLayout.findViewById(R.id.main_medical_image);
                 main_medical_image.setImageResource(R.drawable.selected_ic_doctors);
+                btn_next.setText(R.string.next);
                 tvMedical = (TextView) linearLayout.findViewById(R.id.tvMedical);
                 tvMedical.setVisibility(View.GONE);
                 selectedTextView.setText(getResources().getString(R.string.medical_caps));
@@ -274,6 +276,7 @@ public class StartScreenActivity extends SuperAppCompactActivity implements Circ
                 selected_item = "dental";
                 main_dental_image = (ImageView) linearLayout.findViewById(R.id.main_dental_image);
                 main_dental_image.setImageResource(R.drawable.selected_ic_dental);
+                btn_next.setText(R.string.next);
                 tvDental = (TextView) linearLayout.findViewById(R.id.tvDental);
                 tvDental.setVisibility(View.GONE);
                 selectedTextView.setText(getResources().getString(R.string.dental_caps));
@@ -310,6 +313,7 @@ public class StartScreenActivity extends SuperAppCompactActivity implements Circ
                 selected_item = "telemed";
                 main_telemed_image = (ImageView) linearLayout.findViewById(R.id.main_telemed_image);
                 main_telemed_image.setImageResource(R.drawable.selected_ic_alt);
+                btn_next.setText(R.string.next);
                 tvTelemed = (TextView) linearLayout.findViewById(R.id.tvTelemed);
                 tvTelemed.setVisibility(View.GONE);
                 selectedTextView.setText(getResources().getString(R.string.alt_caps));
@@ -346,6 +350,7 @@ public class StartScreenActivity extends SuperAppCompactActivity implements Circ
                 selected_item = "vision";
                 main_optical_image = (ImageView) linearLayout.findViewById(R.id.main_optical_image);
                 main_optical_image.setImageResource(R.drawable.selected_ic_vision);
+                btn_next.setText(R.string.next);
                 tvOptical = (TextView) linearLayout.findViewById(R.id.tvOptical);
                 tvOptical.setVisibility(View.GONE);
                 selectedTextView.setText(getResources().getString(R.string.vision_caps));
@@ -383,6 +388,7 @@ public class StartScreenActivity extends SuperAppCompactActivity implements Circ
                 main_telemedicince_image = (ImageView) linearLayout.findViewById(R.id.main_telemedicince_image);
                 main_telemedicince_image.setImageResource(R.drawable.telemedblue1);
                 tvTelemedicine = (TextView) linearLayout.findViewById(R.id.tvTelemedicine);
+                btn_next.setText(R.string.login);
                 tvTelemedicine.setVisibility(View.GONE);
                 selectedTextView.setText(getResources().getString(R.string.telemedecine2));
                 selectedTextView.setVisibility(View.VISIBLE);

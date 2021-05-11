@@ -190,13 +190,14 @@ public class LoginActivity extends SuperAppCompactActivity {
                             incorrect_login.setVisibility(View.VISIBLE);
                             return;
                         } */else {
-                            dismissProgressDialog();
                             incorrect_login.setVisibility(View.VISIBLE);
                             return;
                         }
+                    }else {
+                        Toast.makeText(LoginActivity.this, getResources().getString(R.string.server_not_found), Toast.LENGTH_SHORT).show();
                     }
                     dismissProgressDialog();
-                    incorrect_login.setVisibility(View.VISIBLE);
+                    //incorrect_login.setVisibility(View.VISIBLE);
                 }
 
                 public void onFailure(Call<LoginResPayLoad> call, Throwable t) {

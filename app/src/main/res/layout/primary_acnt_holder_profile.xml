@@ -128,7 +128,6 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/tvEditProfile"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/edit_txt"
                     android:layout_weight="1.0"
@@ -140,7 +139,6 @@
                     android:textSize="16.0dip" />
 
                 <ImageView
-                    android:id="@+id/imgEditProfileArrow"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -163,7 +161,6 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/tvChanhPsw"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/edit_txt"
                     android:layout_weight="1.0"
@@ -175,7 +172,6 @@
                     android:textSize="16.0dip" />
 
                 <ImageView
-                    android:id="@+id/ImgChanhPsw"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -210,7 +206,6 @@
                     android:textSize="16.0dip" />
 
                 <ImageView
-                    android:id="@+id/imgLanguage"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -233,7 +228,6 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/tvEditBilling"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/edit_txt"
                     android:layout_weight="1.0"
@@ -245,7 +239,6 @@
                     android:textSize="16.0dip" />
 
                 <ImageView
-                    android:id="@+id/imgEditBilling"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -271,7 +264,6 @@
                 android:visibility="gone">
 
                 <TextView
-                    android:id="@+id/tvChangPackg"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/edit_txt"
                     android:layout_weight="1.0"
@@ -283,7 +275,6 @@
                     android:textSize="16.0dip" />
 
                 <ImageView
-                    android:id="@+id/imgChangPackg"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -308,7 +299,6 @@
                 android:visibility="gone">
 
                 <TextView
-                    android:id="@+id/tvMyMembers"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/edit_txt"
                     android:layout_weight="1.0"
@@ -320,7 +310,6 @@
                     android:textSize="16.0dip" />
 
                 <ImageView
-                    android:id="@+id/imgMyMembers"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -345,7 +334,6 @@
                 android:visibility="visible">
 
                 <TextView
-                    android:id="@+id/tvTermsofService"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/edit_txt"
                     android:layout_weight="1.0"
@@ -380,7 +368,6 @@
                 android:visibility="visible">
 
                 <TextView
-                    android:id="@+id/tvMemberAgree"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/edit_txt"
                     android:layout_weight="1.0"
@@ -415,7 +402,6 @@
                 android:visibility="visible">
 
                 <TextView
-                    android:id="@+id/tvPrivacy"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/edit_txt"
                     android:layout_weight="1.0"
@@ -451,7 +437,6 @@
                 android:visibility="gone">
 
                 <TextView
-                    android:id="@+id/tvStopSub"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/edit_txt"
                     android:layout_weight="1.0"
@@ -463,7 +448,6 @@
                     android:textSize="16.0dip" />
 
                 <ImageView
-                    android:id="@+id/imgStopSub"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"

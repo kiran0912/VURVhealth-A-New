@@ -11,20 +11,6 @@
 
     </style>
 
-    <style name="MyCustomTabTextAppearance" parent="TextAppearance.Design.Tab">
-        <item name="android:textSize">15dp</item>
-        <item name="android:textColor">@color/black</item>
-        <item name="textAllCaps">false</item>
-    </style>
-
-
-    <style name="MyCustomTabLayout" parent="Widget.Design.TabLayout">
-        <item name="tabIndicatorHeight">0dp</item>
-        <item name="tabPaddingStart">12dp</item>
-        <item name="tabPaddingEnd">12dp</item>
-        <item name="tabBackground">@color/white</item>
-        <item name="tabTextAppearance">@style/MyCustomTabTextAppearance</item>
-    </style>
 
     <style name="Theme.AppCompat.Translucent">
         <item name="android:windowBackground">@android:color/transparent</item>
@@ -51,21 +37,8 @@
         <item name="android:backgroundDimEnabled">false</item>
     </style>-->
 
-    <style name="Theme.Transparent" parent="android:style/Theme.Translucent">
-        <item name="android:backgroundDimEnabled">true</item>
-        <item name="android:backgroundDimAmount">0.5</item>
-        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
-        <item name="android:background">@android:color/transparent</item>
-    </style>
-<!--<item android:drawable="@color/tab_background_selected" android:state_selected="true"/>
+    <!--<item android:drawable="@color/tab_background_selected" android:state_selected="true"/>
     <item android:drawable="@color/tab_background_unselected"/>-->
-
-    <style name="Dialog" parent="Theme.AppCompat.Dialog">
-        <item name="android:windowNoTitle">false</item>
-        <item name="android:textColor">@color/light_blue</item>
-        <item name="titleTextColor">@color/black</item>
-        <item name="android:windowIsFloating">true</item>
-    </style>
 
     <style name="AppBottomSheetDialogTheme"
         parent="Theme.Design.Light.BottomSheetDialog">

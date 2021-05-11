@@ -37,8 +37,14 @@ android {
             renderscriptDebuggable false
             minifyEnabled true
             shrinkResources true
-            proguardFile 'C:/Users/YQlabs/Desktop/26-03-2020/VURVhealth-A/app/proguard-rules.pro'
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            proguardFile 'D:/VURVhealth-A/app/proguard-rules.pro'
         }
+        /*debug {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'),
+                    'proguard-rules-debug.pro'
+        }*/
     }
 
     packagingOptions {
