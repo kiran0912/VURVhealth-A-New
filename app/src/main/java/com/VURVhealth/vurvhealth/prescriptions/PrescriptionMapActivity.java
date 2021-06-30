@@ -110,7 +110,10 @@ public class PrescriptionMapActivity extends FragmentActivity implements OnMapRe
             resultList.clear();
             resultList = BestPricesNearbyActivity.brandsearchResultResPayLoads1;
             if (BestPricesNearbyActivity.genericsearchResultResPayLoads1 != null && BestPricesNearbyActivity.genericsearchResultResPayLoads1.size() >0 && switchGeneric) {
-                resultList.addAll(BestPricesNearbyActivity.genericsearchResultResPayLoads1);
+                resultList.clear();
+                resultList =  BestPricesNearbyActivity.genericsearchResultResPayLoads1;
+                //resultList.addAll( BestPricesNearbyActivity.brandsearchResultResPayLoads1);
+
             }
         } else {
             if (BestPricesNearbyActivity.genericsearchResultResPayLoads1 != null && BestPricesNearbyActivity.genericsearchResultResPayLoads1.size() >0 && switchGeneric) {
@@ -157,16 +160,13 @@ public class PrescriptionMapActivity extends FragmentActivity implements OnMapRe
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(PrescriptionMapActivity.this, BestPricesNearbyActivity.class);
-                intent.putExtra("switchGeneric", switchGeneric);
                 startActivity(intent);
             }
         });
         backBtn.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(PrescriptionMapActivity.this, BestPricesNearbyActivity.class);
-                intent.putExtra("switchGeneric", switchGeneric);
-                startActivity(intent);
+                onBackPressed();
             }
         });
     }
@@ -177,15 +177,12 @@ public class PrescriptionMapActivity extends FragmentActivity implements OnMapRe
 
         mMap.setMyLocationEnabled(false);
         mMap.setMapType(1);
-        clusterManager = new ClusterManager<>(this, mMap);
-        mMap.setOnCameraIdleListener(clusterManager);
-        mMap.setOnMarkerClickListener(clusterManager);
         int i;
         if (resultList != null) {
             if (resultList.size()>10){
                 i = 0;
                 while (i < 10) {
-                    if (resultList.get(i).getPharmacy().getAddress().getLatitude() != null) {
+                    if (resultList.get(i).getPharmacy().getAddress().getLatitude() != null || resultList.get(i).getPharmacy().getAddress().getLatitude()!=0) {
                         addCustomMarker(new LatLng(resultList.get(i).getPharmacy().getAddress().getLatitude(), resultList.get(i).getPharmacy().getAddress().getLongitude()), (resultList.get(i)).getPrices().get(0).getPrice(), (resultList.get(i)).getPharmacy().getName().split("\\#")[0], i);
                     }
                     i++;
@@ -193,7 +190,7 @@ public class PrescriptionMapActivity extends FragmentActivity implements OnMapRe
             }else {
                 i = 0;
                 while (i < resultList.size()) {
-                    if (resultList.get(i).getPharmacy().getAddress().getLatitude() != null) {
+                    if (resultList.get(i).getPharmacy().getAddress().getLatitude() != null || resultList.get(i).getPharmacy().getAddress().getLatitude()!=0) {
                         addCustomMarker(new LatLng(resultList.get(i).getPharmacy().getAddress().getLatitude(), resultList.get(i).getPharmacy().getAddress().getLongitude()), (resultList.get(i)).getPrices().get(0).getPrice(), (resultList.get(i)).getPharmacy().getName().split("\\#")[0], i);
                     }
                     i++;
@@ -202,10 +199,9 @@ public class PrescriptionMapActivity extends FragmentActivity implements OnMapRe
 
         }
         if ($assertionsDisabled || resultList != null) {
-            if (!(resultList == null || (resultList.get(0)).getPharmacy().getAddress().getLatitude() == null)) {
-                mMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(resultList.get(0).getPharmacy().getAddress().getLatitude(), resultList.get(0).getPharmacy().getAddress().getLongitude())));
-            }
-            mMap.animateCamera(CameraUpdateFactory.zoomTo(8.0f));
+
+            mMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(resultList.get(0).getPharmacy().getAddress().getLatitude(), resultList.get(0).getPharmacy().getAddress().getLongitude())));
+            mMap.animateCamera(CameraUpdateFactory.zoomTo(12.0f));
             if (VERSION.SDK_INT < 23) {
                 buildGoogleApiClient();
                 return;
@@ -266,50 +262,15 @@ public class PrescriptionMapActivity extends FragmentActivity implements OnMapRe
                 }
             }
             minPrice = Collections.min(integerList);
-            //clusterManager.clearItems();
-            clusterManager.addItem(resultList.get(position));
-            clusterManager.setRenderer(new MyClusterRender(PrescriptionMapActivity.this, mMap, clusterManager, position, price, pharmacyName));
-            clusterManager.cluster();
-            clusterManager.setOnClusterClickListener(new ClusterManager.OnClusterClickListener<DrugSearchResultResPayLoad1.Result.PharmacyPricing>() {
+            markerStringHashMap.put(mMap.addMarker(new MarkerOptions().position(latLng).icon(BitmapDescriptorFactory.fromBitmap(getMarkerBitmapFromView(price, pharmacyName, position)))), resultList.get(position));
+            mMap.setOnMarkerClickListener(new OnMarkerClickListener() {
                 @Override
-                public boolean onClusterClick(Cluster<DrugSearchResultResPayLoad1.Result.PharmacyPricing> cluster) {
-                    if (cluster.getItems() != null && cluster.getItems().size() > 0) {
-                        dialog = new BottomSheetDialog(PrescriptionMapActivity.this, R.style.AppBottomSheetDialogTheme);
-                        dialog.setContentView(R.layout.layout_bottomsheet_doctors);
-                        TextView tvResults = (TextView) dialog.findViewById(R.id.tv_results);
-                        ImageView ivClose = (ImageView) dialog.findViewById(R.id.iv_close);
-                        RecyclerView rvClusterMapList = (RecyclerView) dialog.findViewById(R.id.rv_clusterMapList);
-                        LinearLayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
-                        rvClusterMapList.setLayoutManager(mLayoutManager);
-                        rvClusterMapList.setItemAnimator(new DefaultItemAnimator());
-                        clusterItemsList.clear();
-                        for (DrugSearchResultResPayLoad1.Result.PharmacyPricing resPayLoad : cluster.getItems()) {
-                            clusterItemsList.add(resPayLoad);
-                        }
-                        if (clusterItemsList != null && clusterItemsList.size() > 0) {
-                            tvResults.setText(clusterItemsList.size() + " Results");
-                            BestPriceNearbyAdapter1 mAdapter = new BestPriceNearbyAdapter1(PrescriptionMapActivity.this, clusterItemsList, "");
-                            rvClusterMapList.setAdapter(mAdapter);
-                        }
-                        ivClose.setOnClickListener(new OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                dialog.dismiss();
-                            }
-                        });
-                        dialog.show();
-                    }
-                    return true;
-                }
-            });
-            clusterManager.setOnClusterItemClickListener(new ClusterManager.OnClusterItemClickListener<DrugSearchResultResPayLoad1.Result.PharmacyPricing>() {
-                @Override
-                public boolean onClusterItemClick(DrugSearchResultResPayLoad1.Result.PharmacyPricing pharmacyPricing) {
+                public boolean onMarkerClick(Marker marker) {
                     llAddress.setVisibility(View.VISIBLE);
-                    eventInfo = pharmacyPricing;
+                    eventInfo = markerStringHashMap.get(marker);
                     tvPharmacy.setText(eventInfo.getPharmacy().getName());
                     tvPrice.setText("$" + eventInfo.getPrices().get(0).getPrice());
-                    tvAddress.setText(eventInfo.getPharmacy().getAddress().getAddress1() + "," + eventInfo.getPharmacy().getAddress().getState() + "," + eventInfo.getPharmacy().getAddress().getPostalCode());
+                    tvAddress.setText(eventInfo.getPharmacy().getAddress().getAddress1() + ", " + eventInfo.getPharmacy().getAddress().getState() + ", " + eventInfo.getPharmacy().getAddress().getPostalCode());
                     if (eventInfo.getPrices().get(0).getFormattedPrice() == null || Double.parseDouble(eventInfo.getPrices().get(0).getFormattedPrice()) == FirebaseRemoteConfig.DEFAULT_VALUE_FOR_DOUBLE) {
                         tvSaving.setText(String.valueOf(Math.round(FirebaseRemoteConfig.DEFAULT_VALUE_FOR_DOUBLE)) + getResources().getString(R.string.savings));
                         tvSaving.setVisibility(View.GONE);
@@ -320,31 +281,7 @@ public class PrescriptionMapActivity extends FragmentActivity implements OnMapRe
                     return true;
                 }
             });
-
-        }
-    }
-
-    private class MyClusterRender extends DefaultClusterRenderer<DrugSearchResultResPayLoad1.Result.PharmacyPricing> {
-        int position;
-        String price, pharmacyName;
-
-        public MyClusterRender(Context context, GoogleMap map, ClusterManager<DrugSearchResultResPayLoad1.Result.PharmacyPricing> clusterManager,
-                               int position, String price, String pharmacyName) {
-            super(context, map, clusterManager);
-            this.position = position;
-            this.price = price;
-            this.pharmacyName = pharmacyName;
-        }
-
-        @Override
-        protected void onBeforeClusterItemRendered(DrugSearchResultResPayLoad1.Result.PharmacyPricing item, MarkerOptions markerOptions) {
-            super.onBeforeClusterItemRendered(item, markerOptions);
-            markerOptions.icon(BitmapDescriptorFactory.fromBitmap(getMarkerBitmapFromView(item.getPrices().get(0).getPrice(), item.getPharmacy().getName(), item, position)));
-        }
-
-        @Override
-        protected void onClusterItemRendered(DrugSearchResultResPayLoad1.Result.PharmacyPricing clusterItem, Marker marker) {
-            super.onClusterItemRendered(clusterItem, marker);
+            //clusterManager.clearItems();
 
         }
     }
@@ -384,7 +321,7 @@ public class PrescriptionMapActivity extends FragmentActivity implements OnMapRe
         }
     }
 
-    private Bitmap getMarkerBitmapFromView(String price, String pharmacyName, DrugSearchResultResPayLoad1.Result.PharmacyPricing item, int position) {
+    private Bitmap getMarkerBitmapFromView(String price, String pharmacyName,int position) {
         View customMarkerView = ((LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.custom_marker, null);
         markerTextview = (TextView) customMarkerView.findViewById(R.id.cost);
         location_name = (TextView) customMarkerView.findViewById(R.id.location_name);
@@ -401,15 +338,15 @@ public class PrescriptionMapActivity extends FragmentActivity implements OnMapRe
             price1 = Float.parseFloat(price); //34.22
         }
 
-        if (price1 > 0 && minPrice == price1) {
+        if (price1!=0&& minPrice == price1) {
             markerTextview.setBackgroundResource(R.drawable.mapitemselected_ic);
             /*markerTextview.setMaxHeight(50);
             markerTextview.setMaxWidth(50);*/
-            markerTextview.setText("$" + price1);
+            markerTextview.setText("$" + price);
             location_name.setText(pharmacyName);
         } else {
             markerTextview.setBackgroundResource(R.drawable.mapitem_ic);
-            markerTextview.setText("$" + price1);
+            markerTextview.setText("$" + price);
             location_name.setText(pharmacyName);
         }
 
@@ -445,7 +382,7 @@ public class PrescriptionMapActivity extends FragmentActivity implements OnMapRe
     public void onBackPressed() {
         super.onBackPressed();
         Intent intent = new Intent(PrescriptionMapActivity.this, BestPricesNearbyActivity.class);
-        intent.putExtra("switchGeneric", switchGeneric);
         startActivity(intent);
+        finish();
     }
 }

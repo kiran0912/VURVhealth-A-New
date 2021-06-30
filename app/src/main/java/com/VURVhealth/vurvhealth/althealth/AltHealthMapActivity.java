@@ -30,6 +30,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.VURVhealth.vurvhealth.dental.DentalListAdapter;
+import com.VURVhealth.vurvhealth.dental.pojos.SearchForDentalResPayLoad;
 import com.fasterxml.jackson.core.util.MinimalPrettyPrinter;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -53,6 +55,7 @@ import com.google.maps.android.clustering.Cluster;
 import com.google.maps.android.clustering.ClusterManager;
 import com.google.maps.android.clustering.view.DefaultClusterRenderer;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -67,11 +70,11 @@ import retrofit2.Response;
 
 public class AltHealthMapActivity extends FragmentActivity implements OnMapReadyCallback, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
     public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
-    private ArrayList<AHSSearchResPayload.Datum> ahsSortedArray2;
+    private ArrayList<ArrayList<AHSSearchResPayload.Datum>> ahsSortedArray2;
     private ClusterManager<AHSSearchResPayload.Datum> clusterManager;
     private ImageView backBtn;
     private boolean click = false;
-    private AHSSearchResPayload.Datum eventInfo;
+    private ArrayList<AHSSearchResPayload.Datum> eventInfo = new ArrayList<>();
     private ImageView listBtn;
     private LinearLayout llAddress;
     private Marker mCurrLocationMarker;
@@ -79,7 +82,7 @@ public class AltHealthMapActivity extends FragmentActivity implements OnMapReady
     private Location mLastLocation;
     private LocationRequest mLocationRequest;
     private GoogleMap mMap;
-    private HashMap<Marker, AHSSearchResPayload.Datum> markerStringHashMap = new HashMap();
+    private HashMap<Marker, ArrayList<AHSSearchResPayload.Datum>> markerStringHashMap = new HashMap();
     private ProgressDialog pDialog;
     private TextView tvAddress;
     private TextView tvDoctorName;
@@ -88,8 +91,6 @@ public class AltHealthMapActivity extends FragmentActivity implements OnMapReady
     private TextView tvSpecialty;
     private TextView tvresult;
     private BottomSheetDialog dialog;
-    private AltHealthListAdapter mAdapter;
-    private ArrayList<AHSSearchResPayload.Datum> clusterItemsList = new ArrayList<>();
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -105,21 +106,49 @@ public class AltHealthMapActivity extends FragmentActivity implements OnMapReady
         llAddress = (LinearLayout) findViewById(R.id.llAddress);
         ArrayList<AHSSearchResPayload.Datum> ahsSortedArray = AltHealthScreenActivity.resPayloads;
         ahsSortedArray2 = new ArrayList();
+        ahsSortedArray2.clear();
         HashSet lookup = new HashSet();
+        ArrayList<Double> latlist = new ArrayList<>();
         for (int index = 0; index < ahsSortedArray.size(); index++) {
             AHSSearchResPayload.Datum searchAHSResPayLoad = (AHSSearchResPayload.Datum) ahsSortedArray.get(index);
             double lat = searchAHSResPayLoad.getLatitude();
             if (!lookup.contains(lat)) {
                 lookup.add(lat);
-                ahsSortedArray2.add(searchAHSResPayLoad);
+                latlist.add(lat);
+                ArrayList<AHSSearchResPayload.Datum> duplicateList = new ArrayList<>();
+                duplicateList.add(searchAHSResPayLoad);
+                ahsSortedArray2.add(duplicateList);
+            } else {
+                int index1 = latlist.indexOf(lat);
+                ArrayList<AHSSearchResPayload.Datum> duplicateList = ahsSortedArray2.get(index1);
+                duplicateList.add(searchAHSResPayLoad);
+                ahsSortedArray2.set(index1, duplicateList);
             }
         }
         llAddress.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                if (eventInfo == null || Integer.parseInt(eventInfo.getLocationcount()) <= 0) {
+                if (eventInfo != null && eventInfo.size() <= 1) {
                     getProviderDetails();
+                } else if (eventInfo != null && eventInfo.size() > 1) {
+                    dialog = new BottomSheetDialog(AltHealthMapActivity.this, R.style.AppBottomSheetDialogTheme);
+                    dialog.setContentView(R.layout.layout_bottomsheet_doctors);
+                    TextView tvResults = (TextView) dialog.findViewById(R.id.tv_results);
+                    ImageView ivClose = (ImageView) dialog.findViewById(R.id.iv_close);
+                    RecyclerView rvClusterMapList = (RecyclerView) dialog.findViewById(R.id.rv_clusterMapList);
+                    LinearLayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
+                    rvClusterMapList.setLayoutManager(mLayoutManager);
+                    rvClusterMapList.setItemAnimator(new DefaultItemAnimator());
+                    tvResults.setText(eventInfo.size() + " Results");
+                    AltHealthListAdapter mAdapter = new AltHealthListAdapter(AltHealthMapActivity.this, eventInfo);
+                    rvClusterMapList.setAdapter(mAdapter);
+                    ivClose.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            dialog.dismiss();
+                        }
+                    });
+                    dialog.show();
                 }
             }
         });
@@ -159,41 +188,43 @@ public class AltHealthMapActivity extends FragmentActivity implements OnMapReady
         mMap.setOnMarkerClickListener(clusterManager);
         int i;
         LatLng latLng;
-        String string;
+        String string, degree;
         if (ahsSortedArray2.size() > 10) {
             i = 0;
             while (i < 10) {
-                if (ahsSortedArray2.get(i).getLatitude() != 0 || (ahsSortedArray2.get(i)).getLatitude() == 0) {
-                    latLng = new LatLng((ahsSortedArray2.get(i).getLatitude()), (ahsSortedArray2.get(i)).getLongitude());
-                    if (Integer.parseInt(((AHSSearchResPayload.Datum) ahsSortedArray2.get(i)).getLocationcount()) > 0) {
+                if (ahsSortedArray2.get(i).get(0).getLatitude() != 0) {
+                    latLng = new LatLng((ahsSortedArray2.get(i).get(0).getLatitude()), (ahsSortedArray2.get(i).get(0)).getLongitude());
+                    degree = ahsSortedArray2.get(i).get(0).getDegree();
+                    if (ahsSortedArray2.get(i).size() > 1) {
                         string = getResources().getString(R.string.text_multiple_providers);
                     } else {
-                        string = ((AHSSearchResPayload.Datum) ahsSortedArray2.get(i)).getName();
+                        string = ((AHSSearchResPayload.Datum) ahsSortedArray2.get(i).get(0)).getName();
                     }
-                    addCustomMarker(latLng, string, i);
+                    addCustomMarker(latLng, string, i, degree);
                 }
                 i++;
             }
         } else {
             i = 0;
             while (i < ahsSortedArray2.size()) {
-                if ((ahsSortedArray2.get(i)).getLatitude() != 0 || (ahsSortedArray2.get(i)).getLatitude() == 0) {
-                    latLng = new LatLng((ahsSortedArray2.get(i)).getLatitude(), (ahsSortedArray2.get(i)).getLongitude());
-                    if (Integer.parseInt(((AHSSearchResPayload.Datum) ahsSortedArray2.get(i)).getLocationcount()) > 0) {
+                if (ahsSortedArray2.get(i).get(0).getLatitude() != 0 || (ahsSortedArray2.get(i).get(0)).getLatitude() == 0) {
+                    latLng = new LatLng((ahsSortedArray2.get(i).get(0).getLatitude()), (ahsSortedArray2.get(i).get(0)).getLongitude());
+                    degree = ahsSortedArray2.get(i).get(0).getDegree();
+                    if (ahsSortedArray2.get(i).size() > 1) {
                         string = getResources().getString(R.string.text_multiple_providers);
                     } else {
-                        string = ((AHSSearchResPayload.Datum) ahsSortedArray2.get(i)).getName();
+                        string = ((AHSSearchResPayload.Datum) ahsSortedArray2.get(i).get(0)).getName();
                     }
-                    addCustomMarker(latLng, string, i);
+                    addCustomMarker(latLng, string, i, degree);
                 }
                 i++;
             }
         }
         try {
-            if (ahsSortedArray2.get(0).getLatitude() != 0 || (ahsSortedArray2.get(0)).getLatitude() == 0) {
-                mMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(ahsSortedArray2.get(0).getLatitude(), ahsSortedArray2.get(0).getLongitude())));
+            if (ahsSortedArray2.get(0).get(0).getLatitude() != 0 || (ahsSortedArray2.get(0).get(0)).getLatitude() == 0) {
+                mMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(ahsSortedArray2.get(0).get(0).getLatitude(), ahsSortedArray2.get(0).get(0).getLongitude())));
             }
-            mMap.animateCamera(CameraUpdateFactory.zoomTo(8.0f));
+            mMap.animateCamera(CameraUpdateFactory.zoomTo(14.0f));
         } catch (NumberFormatException e) {
         }
         if (Build.VERSION.SDK_INT < 23) {
@@ -222,64 +253,29 @@ public class AltHealthMapActivity extends FragmentActivity implements OnMapReady
     public void onConnectionSuspended(int i) {
     }
 
-    private void addCustomMarker(LatLng latLng, String name, int position) {
+    private void addCustomMarker(LatLng latLng, String name, int position, String degree) {
         Log.d("TAG", "addCustomMarker()");
         if (mMap != null) {
-            //markerStringHashMap.put(mMap.addMarker(new MarkerOptions().position(latLng).icon(BitmapDescriptorFactory.fromBitmap(getMarkerBitmapFromView(name, position)))), ahsSortedArray2.get(position));
-            clusterManager.addItem(ahsSortedArray2.get(position));
-            clusterManager.setRenderer(new MyClusterRenderer(AltHealthMapActivity.this, mMap, clusterManager, position));
-            clusterManager.cluster();
-            clusterManager.setOnClusterClickListener(new ClusterManager.OnClusterClickListener<AHSSearchResPayload.Datum>() {
+            markerStringHashMap.put(mMap.addMarker(new MarkerOptions().position(latLng).icon(BitmapDescriptorFactory.fromBitmap(getMarkerBitmapFromView(name, position, degree)))), ahsSortedArray2.get(position));
+            mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
                 @Override
-                public boolean onClusterClick(Cluster<AHSSearchResPayload.Datum> cluster) {
-                    if (cluster.getItems() != null && cluster.getItems().size() > 0) {
-                        dialog = new BottomSheetDialog(AltHealthMapActivity.this, R.style.AppBottomSheetDialogTheme);
-                        dialog.setContentView(R.layout.layout_bottomsheet_doctors);
-                        TextView tvResults = (TextView) dialog.findViewById(R.id.tv_results);
-                        ImageView ivClose = (ImageView) dialog.findViewById(R.id.iv_close);
-                        RecyclerView rvClusterMapList = (RecyclerView) dialog.findViewById(R.id.rv_clusterMapList);
-                        LinearLayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
-                        rvClusterMapList.setLayoutManager(mLayoutManager);
-                        rvClusterMapList.setItemAnimator(new DefaultItemAnimator());
-                        clusterItemsList.clear();
-                        for (AHSSearchResPayload.Datum resPayLoad : cluster.getItems()) {
-                            clusterItemsList.add(resPayLoad);
-                        }
-                        if (clusterItemsList != null && clusterItemsList.size() > 0) {
-                            tvResults.setText(clusterItemsList.size() + " Results");
-                            mAdapter = new AltHealthListAdapter(AltHealthMapActivity.this, clusterItemsList);
-                            rvClusterMapList.setAdapter(mAdapter);
-                        }
-                        ivClose.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                dialog.dismiss();
-                            }
-                        });
-                        dialog.show();
-                    }
-                    return true;
-                }
-            });
-            clusterManager.setOnClusterItemClickListener(new ClusterManager.OnClusterItemClickListener<AHSSearchResPayload.Datum>() {
-                @Override
-                public boolean onClusterItemClick(AHSSearchResPayload.Datum datum) {
-                    eventInfo = datum;
+                public boolean onMarkerClick(Marker marker) {
                     llAddress.setVisibility(View.VISIBLE);
-                    if (Integer.parseInt(eventInfo.getLocationcount()) > 0) {
+                    eventInfo = markerStringHashMap.get(marker);
+                    if (eventInfo != null && eventInfo.size() <= 1) {
+                        tvSpecialty.setVisibility(View.VISIBLE);
+                        tvLanguage.setVisibility(View.VISIBLE);
+                        tvDoctorName.setText(eventInfo.get(0).getName());
+                        tvSpecialty.setText(eventInfo.get(0).getClinicName());
+                        tvLanguage.setText(eventInfo.get(0).getSpecialty());
+                        tvGender.setVisibility(View.GONE);
+                        tvAddress.setText(eventInfo.get(0).getAddress());
+                    } else {
                         tvDoctorName.setText(getResources().getString(R.string.text_multiple_providers));
-                        tvAddress.setText(eventInfo.getAddress());
+                        tvAddress.setText(eventInfo.get(0).getAddress());
                         tvSpecialty.setVisibility(View.INVISIBLE);
                         tvLanguage.setVisibility(View.INVISIBLE);
                         tvGender.setVisibility(View.INVISIBLE);
-                    } else {
-                        tvSpecialty.setVisibility(View.VISIBLE);
-                        tvLanguage.setVisibility(View.VISIBLE);
-                        tvDoctorName.setText(eventInfo.getName());
-                        tvSpecialty.setText(eventInfo.getClinicName());
-                        tvLanguage.setText(eventInfo.getSpecialty());
-                        tvGender.setVisibility(View.GONE);
-                        tvAddress.setText(eventInfo.getAddress());
                     }
                     return true;
                 }
@@ -290,29 +286,6 @@ public class AltHealthMapActivity extends FragmentActivity implements OnMapReady
     public void onConnectionFailed(ConnectionResult connectionResult) {
     }
 
-    private class MyClusterRenderer extends DefaultClusterRenderer<AHSSearchResPayload.Datum> {
-        int position;
-
-        public MyClusterRenderer(Context context, GoogleMap map,
-                                 ClusterManager<AHSSearchResPayload.Datum> clusterManager, int position) {
-            super(context, map, clusterManager);
-            this.position = position;
-        }
-
-        @Override
-        protected void onBeforeClusterItemRendered(AHSSearchResPayload.Datum item, MarkerOptions markerOptions) {
-            super.onBeforeClusterItemRendered(item, markerOptions);
-            markerOptions.icon(BitmapDescriptorFactory.fromBitmap(getMarkerBitmapFromView(item.getName(),item.getDegree(), position)));
-
-        }
-
-        @Override
-        protected void onClusterItemRendered(final AHSSearchResPayload.Datum clusterItem, Marker marker) {
-            super.onClusterItemRendered(clusterItem, marker);
-
-        }
-
-    }
 
     public boolean checkLocationPermission() {
         if (ContextCompat.checkSelfPermission(this, "android.permission.ACCESS_FINE_LOCATION") == 0) {
@@ -346,16 +319,18 @@ public class AltHealthMapActivity extends FragmentActivity implements OnMapReady
         }
     }
 
-    private Bitmap getMarkerBitmapFromView(String name, String degree, int position) {
+    private Bitmap getMarkerBitmapFromView(String name, int position, String degree) {
         View customMarkerView = ((LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.custom_marker_facility, null);
         ImageView image = (ImageView) customMarkerView.findViewById(R.id.image);
-        image.setBackgroundResource(R.drawable.map_selected_alt);
-        /*if (position == 0) {
-            image.setBackgroundResource(R.drawable.map_selected_alt);
+       /* if (ahsSortedArray2 != null && ahsSortedArray2.get(0).get(0).getName().equalsIgnoreCase(ahsSortedArray2.get(position).get(0).getName())) {
+            //image.setBackgroundResource(R.drawable.map_selected_alt);
+            ((TextView) customMarkerView.findViewById(R.id.location_name)).setText(name + ", " + degree);
         } else {
             image.setBackgroundResource(R.drawable.map_alt);
+            ((TextView) customMarkerView.findViewById(R.id.location_name)).setText(name);
         }*/
-        ((TextView) customMarkerView.findViewById(R.id.location_name)).setText(name+", "+degree);
+        image.setBackgroundResource(R.drawable.map_alt);
+        ((TextView) customMarkerView.findViewById(R.id.location_name)).setText(name + ", " + degree);
         customMarkerView.measure(0, 0);
         customMarkerView.layout(0, 0, customMarkerView.getMeasuredWidth(), customMarkerView.getMeasuredHeight());
         customMarkerView.buildDrawingCache();
@@ -387,7 +362,7 @@ public class AltHealthMapActivity extends FragmentActivity implements OnMapReady
         showProgressDialog(this);
         ApiInterface apiService = (ApiInterface) ApiClient.getClient(this).create(ApiInterface.class);
         AboutDoctorReqPayLoad aboutDoctorReqPayLoad = new AboutDoctorReqPayLoad();
-        aboutDoctorReqPayLoad.setProviderId(eventInfo.getAHSProviderId());
+        aboutDoctorReqPayLoad.setProviderId(eventInfo.get(0).getAHSProviderId());
         ArrayList<AboutDoctorReqPayLoad> reqPayLoads = new ArrayList();
         reqPayLoads.add(aboutDoctorReqPayLoad);
         apiService.getAHSProviderDetails(reqPayLoads).enqueue(new Callback<ArrayList<AHSProviderDetailsRespayload>>() {
@@ -399,9 +374,9 @@ public class AltHealthMapActivity extends FragmentActivity implements OnMapReady
                     Intent intent = new Intent(AltHealthMapActivity.this, AltHealthSearchDetailsActivity.class);
                     Bundle b = new Bundle();
                     b.putParcelable("SearchResultObject", (Parcelable) ahsProviderDetailsRespayloads.get(0));
-                    b.putInt("position", AltHealthScreenActivity.resPayloads.indexOf(eventInfo));
+                    b.putInt("position", AltHealthScreenActivity.resPayloads.indexOf(eventInfo.get(0)));
                     b.putString("activity", "AHSListActivity");
-                    b.putInt("savedItem", eventInfo.isSavedStatus());
+                    b.putInt("savedItem", eventInfo.get(0).isSavedStatus());
                     intent.putExtras(b);
                     startActivity(intent);
                 }

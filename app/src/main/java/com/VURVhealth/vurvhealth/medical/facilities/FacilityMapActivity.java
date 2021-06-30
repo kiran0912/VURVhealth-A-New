@@ -151,22 +151,12 @@ public class FacilityMapActivity extends FragmentActivity implements OnMapReadyC
 
     }
 
-    /**
-     * Manipulates the map once available.
-     * This callback is triggered when the map is ready to be used.
-     * This is where we can add markers or lines, add listeners or move the camera. In this case,
-     * we just add a marker near Sydney, Australia.
-     * If Google Play services is not installed on the device, the user will be prompted to install
-     * it inside the SupportMapFragment. This method will only be triggered once the user has
-     * installed Google Play services and returned to the app.
-     */
     @SuppressLint("MissingPermission")
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         mMap.setMyLocationEnabled(false);
         mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-        clusterManager = new ClusterManager<>(this, mMap);
         mMap.setOnCameraIdleListener(clusterManager);
         mMap.setOnMarkerClickListener(clusterManager);
         if (MedicalScreenActivity.resPayloadsForFacilities.size() > 10) {
@@ -186,7 +176,7 @@ public class FacilityMapActivity extends FragmentActivity implements OnMapReadyC
         }
         mMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(MedicalScreenActivity.resPayloadsForFacilities.get(0).getLat(),
                 MedicalScreenActivity.resPayloadsForFacilities.get(0).getLng())));
-        mMap.animateCamera(CameraUpdateFactory.zoomTo(8.0f));
+        mMap.animateCamera(CameraUpdateFactory.zoomTo(12.0f));
 
         //Initialize Google Play Services
         if (VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -278,46 +268,19 @@ public class FacilityMapActivity extends FragmentActivity implements OnMapReadyC
         if (mMap == null) {
             return;
         }
-        clusterManager.addItem(MedicalScreenActivity.resPayloadsForFacilities.get(position));
-        clusterManager.setRenderer(new MyClusterRender(FacilityMapActivity.this, mMap, clusterManager, position, name));
-        clusterManager.cluster();
-        clusterManager.setOnClusterClickListener(new ClusterManager.OnClusterClickListener<SearchFacilitiesResPayLoad>() {
+        // adding a marker on map with image from  drawable
+        Marker marker = mMap.addMarker(new MarkerOptions()
+                .position(latLng)
+                .icon(BitmapDescriptorFactory.fromBitmap(getMarkerBitmapFromView(name, position))));
+        markerStringHashMap.put(marker, MedicalScreenActivity.resPayloadsForFacilities.get(position));
+
+        mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+
             @Override
-            public boolean onClusterClick(Cluster<SearchFacilitiesResPayLoad> cluster) {
-                if (cluster.getItems() != null && cluster.getItems().size() > 0) {
-                    dialog = new BottomSheetDialog(FacilityMapActivity.this, R.style.AppBottomSheetDialogTheme);
-                    dialog.setContentView(R.layout.layout_bottomsheet_doctors);
-                    TextView tvResults = (TextView) dialog.findViewById(R.id.tv_results);
-                    ImageView ivClose = (ImageView) dialog.findViewById(R.id.iv_close);
-                    RecyclerView rvClusterMapList = (RecyclerView) dialog.findViewById(R.id.rv_clusterMapList);
-                    LinearLayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
-                    rvClusterMapList.setLayoutManager(mLayoutManager);
-                    rvClusterMapList.setItemAnimator(new DefaultItemAnimator());
-                    clusterItemsList.clear();
-                    for (SearchFacilitiesResPayLoad resPayLoad : cluster.getItems()) {
-                        clusterItemsList.add(resPayLoad);
-                    }
-                    if (clusterItemsList != null && clusterItemsList.size() > 0) {
-                        tvResults.setText(clusterItemsList.size() + " Results");
-                        FacilityResultAdapter mAdapter = new FacilityResultAdapter(FacilityMapActivity.this, clusterItemsList, "");
-                        rvClusterMapList.setAdapter(mAdapter);
-                    }
-                    ivClose.setOnClickListener(new OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            dialog.dismiss();
-                        }
-                    });
-                    dialog.show();
-                }
-                return true;
-            }
-        });
-        clusterManager.setOnClusterItemClickListener(new ClusterManager.OnClusterItemClickListener<SearchFacilitiesResPayLoad>() {
-            @Override
-            public boolean onClusterItemClick(SearchFacilitiesResPayLoad searchFacilitiesResPayLoad) {
+            public boolean onMarkerClick(Marker arg0) {
+
                 llAddress.setVisibility(View.VISIBLE);
-                eventInfo = searchFacilitiesResPayLoad;
+                eventInfo = markerStringHashMap.get(arg0);
 
                 tvDoctorName.setText(eventInfo.getFacilityName());
                 tvSpecialty.setText(eventInfo.getFacilityType());
@@ -326,33 +289,9 @@ public class FacilityMapActivity extends FragmentActivity implements OnMapReadyC
                 tvAddress.setText(eventInfo.getAddress());
                 return true;
             }
+
         });
 
-    }
-
-    private class MyClusterRender extends DefaultClusterRenderer<SearchFacilitiesResPayLoad> {
-        int position;
-        String name;
-
-        public MyClusterRender(Context context, GoogleMap map,
-                               ClusterManager<SearchFacilitiesResPayLoad> clusterManager, int position, String name) {
-            super(context, map, clusterManager);
-            this.position = position;
-            this.name = name;
-        }
-
-        @Override
-        protected void onBeforeClusterItemRendered(SearchFacilitiesResPayLoad item, MarkerOptions markerOptions) {
-            super.onBeforeClusterItemRendered(item, markerOptions);
-
-            markerOptions.icon(BitmapDescriptorFactory.fromBitmap(getMarkerBitmapFromView(item,item.getFacilityName(), position)));// for marker
-
-        }
-
-        @Override
-        protected void onClusterItemRendered(SearchFacilitiesResPayLoad clusterItem, Marker marker) {
-            super.onClusterItemRendered(clusterItem, marker);
-        }
     }
 
     @Override
@@ -485,18 +424,18 @@ public class FacilityMapActivity extends FragmentActivity implements OnMapReadyC
 
 
     //set custom marker to mapview
-    private Bitmap getMarkerBitmapFromView(SearchFacilitiesResPayLoad item,String name, int position) {
+    private Bitmap getMarkerBitmapFromView(String name, int position) {
 
         View customMarkerView = ((LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.custom_marker_facility, null);
         ImageView image = (ImageView) customMarkerView.findViewById(R.id.image);
-
-        image.setBackgroundResource(R.drawable.map_selected_facilities_ic);
         TextView markerTextview = (TextView) customMarkerView.findViewById(R.id.location_name);
         markerTextview.setText(name);
-//        if(click)
-//            markerTextview.setBackgroundResource(R.drawable.ic_mapitemselected_ic);
-//        else
-//            markerTextview.setBackgroundResource(R.drawable.ic_mapitem_ic2);
+        /*if(MedicalScreenActivity.resPayloadsForFacilities!=null&&MedicalScreenActivity.resPayloadsForFacilities.get(0).getFacilityName().equalsIgnoreCase(MedicalScreenActivity.resPayloadsForFacilities.get(position).getFacilityName())) {
+            image.setBackgroundResource(R.drawable.map_selected_facilities_ic);
+        } else {
+            image.setBackgroundResource(R.drawable.map_facilities_ic);
+        }*/
+        image.setBackgroundResource(R.drawable.map_facilities_ic);
         customMarkerView.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
         customMarkerView.layout(0, 0, customMarkerView.getMeasuredWidth(), customMarkerView.getMeasuredHeight());
         customMarkerView.buildDrawingCache();

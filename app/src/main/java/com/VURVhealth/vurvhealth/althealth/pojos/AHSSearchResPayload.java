@@ -23,7 +23,15 @@ public class AHSSearchResPayload {
     private String status;
 
     public class Datum implements Parcelable, ClusterItem {
-        public final Creator<Datum> CREATOR = new C03101();
+        public final Creator<Datum> CREATOR = new Creator<Datum>() {
+            public Datum createFromParcel(Parcel in) {
+                return new Datum(in);
+            }
+
+            public Datum[] newArray(int size) {
+                return new Datum[size];
+            }
+        };
         @SerializedName("AHSProviderId")
         @Expose
         private String aHSProviderId;
@@ -86,19 +94,6 @@ public class AHSSearchResPayload {
             return null;
         }
 
-        /* renamed from: com.VURVhealth.VURVhealth.althealth.pojos.AHSSearchResPayload$Datum$1 */
-        class C03101 implements Creator<Datum> {
-            C03101() {
-            }
-
-            public Datum createFromParcel(Parcel in) {
-                return new Datum(in);
-            }
-
-            public Datum[] newArray(int size) {
-                return new Datum[size];
-            }
-        }
 
         public int isSavedStatus() {
             return this.savedStatus;

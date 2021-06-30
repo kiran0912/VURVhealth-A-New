@@ -34,6 +34,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.VURVhealth.vurvhealth.upgrade.UpgradeDentalFlipActivity;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationRequest;
@@ -68,27 +69,28 @@ import retrofit2.Response;
 
 public class DentalSearchDetailActivity extends FragmentActivity implements OnMapReadyCallback,
         GoogleApiClient.ConnectionCallbacks,
-        GoogleApiClient.OnConnectionFailedListener{
+        GoogleApiClient.OnConnectionFailedListener {
 
     private GoogleMap mMap;
     private GoogleApiClient mGoogleApiClient;
     private Marker mCurrLocationMarker;
     private Location mLastLocation;
     private LocationRequest mLocationRequest;
-//    private LinearLayout llAbout, llContactInfo, llShare, ll_more, ll_call;
+    //    private LinearLayout llAbout, llContactInfo, llShare, ll_more, ll_call;
     private FrameLayout flBanner1, flBanner2;
-    private LinearLayout llAbout, llContactInfo, llShare, ll_more, ll_call,ll_save;
-//    private Button flBanner1, flBanner2;
+    private LinearLayout llAbout, llContactInfo, llShare, ll_more, ll_call, ll_save, ll_direction;
+    ;
+    //    private Button flBanner1, flBanner2;
     double latitude;
     double longitude;
     private ProgressDialog pDialog;
     private DentalProviderDetailsResPayload mCurrentListing;
 
 
-    private ImageView backBtn,imgSave;
+    private ImageView backBtn, imgSave;
     private Button btnAbout, btnContactInfo;
     private TextView tvDentalFacility, tvGenderType, tvCenter, tvStatus, tvCode, tvPracticeType,
-            doctor_name, tvLanguageType, tvStreet, tvCity, tvZipcode, tvPhoneNumber,tvSave;
+            doctor_name, tvLanguageType, tvStreet, tvCity, tvZipcode, tvPhoneNumber, tvSave;
     private LatLng latLng;
     private static final int PERMISSION_REQUEST_CONTACT = 100;
     public SharedPreferences prefsLoginData;
@@ -127,6 +129,7 @@ public class DentalSearchDetailActivity extends FragmentActivity implements OnMa
         btnAbout = (Button) findViewById(R.id.btnAbout);
         llAbout = (LinearLayout) findViewById(R.id.llAbout);
         llContactInfo = (LinearLayout) findViewById(R.id.llContactInfo);
+        ll_direction = (LinearLayout) findViewById(R.id.ll_direction);
         ll_more = (LinearLayout) findViewById(R.id.ll_more);
         llShare = (LinearLayout) findViewById(R.id.llShare);
         ll_call = (LinearLayout) findViewById(R.id.ll_call);
@@ -148,7 +151,7 @@ public class DentalSearchDetailActivity extends FragmentActivity implements OnMa
 
         tvLanguageType = (TextView) findViewById(R.id.tvLanguageType);
 
-        if ( savedItemStatus == 1) {
+        if (savedItemStatus == 1) {
             imgSave.setImageDrawable(getResources().getDrawable(R.drawable.toolbar_saved_ic));
             tvSave.setTextColor(getResources().getColor(R.color.light_blue));
             tvSave.setText("Saved");
@@ -162,7 +165,7 @@ public class DentalSearchDetailActivity extends FragmentActivity implements OnMa
         tvPracticeType.setText(mCurrentListing.getPracticeType());
         tvDentalFacility.setText(mCurrentListing.getSpec());
 
-        tvStreet.setText(mCurrentListing.getAddr1().replace("   ","") +" ,"
+        tvStreet.setText(mCurrentListing.getAddr1().replace("   ", "") + " ,"
                 + mCurrentListing.getCity() + ", " + mCurrentListing.getState() + " ," + mCurrentListing.getZipCode());
 
 //        tvCity.setText(mCurrentListing.getCity() + ", " + mCurrentListing.getState());
@@ -185,15 +188,15 @@ public class DentalSearchDetailActivity extends FragmentActivity implements OnMa
             public void onClick(View v) {
 //                Intent callIntent = new Intent(Intent.ACTION_CALL);
                 Intent callIntent = new Intent(Intent.ACTION_CALL);
-                callIntent.setData(Uri.parse("tel:"+mCurrentListing.getPhoneNo()));
+                callIntent.setData(Uri.parse("tel:" + mCurrentListing.getPhoneNo()));
                 try {
                     onCall();
                     /*Intent callIntent = new Intent(Intent.ACTION_CALL);
                     callIntent.setData(Uri.parse("tel:" + mCurrentListing.getPhone()));
 
                     startActivity(callIntent);*/
-                }catch (Exception e){
-                    Log.v("Call>>",e.getMessage());
+                } catch (Exception e) {
+                    Log.v("Call>>", e.getMessage());
                 }
             }
         });
@@ -257,7 +260,7 @@ public class DentalSearchDetailActivity extends FragmentActivity implements OnMa
         flBanner1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(DentalSearchDetailActivity.this, DentalVURVBannerActivity.class));
+                startActivity(new Intent(DentalSearchDetailActivity.this, UpgradeDentalFlipActivity.class));
             }
         });
 
@@ -265,7 +268,7 @@ public class DentalSearchDetailActivity extends FragmentActivity implements OnMa
         flBanner2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(DentalSearchDetailActivity.this, DentalVURVBannerActivity.class));
+                startActivity(new Intent(DentalSearchDetailActivity.this, UpgradeDentalFlipActivity.class));
             }
         });
 
@@ -289,7 +292,12 @@ public class DentalSearchDetailActivity extends FragmentActivity implements OnMa
                 customAlertDialog();
             }
         });
-
+        ll_direction.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent("android.intent.action.VIEW", Uri.parse("http://maps.google.com/maps?daddr=" + mCurrentListing.getLatitude() + "," + mCurrentListing.getLongitude())));
+            }
+        });
 
     }
 
@@ -300,7 +308,7 @@ public class DentalSearchDetailActivity extends FragmentActivity implements OnMa
                 ApiClient.getClient(DentalSearchDetailActivity.this).create(ApiInterface.class);
         ArrayList<SaveForLaterVision> saveForLaterRequestList = new ArrayList<SaveForLaterVision>();
         SaveForLaterVision saveForLaterRequest = new SaveForLaterVision();
-        saveForLaterRequest.setUserId(String.valueOf(prefsLoginData.getInt("userId",1)));
+        saveForLaterRequest.setUserId(String.valueOf(prefsLoginData.getInt("userId", 1)));
         saveForLaterRequest.setFlag("1");
         saveForLaterRequest.setProviderId(mCurrentListing.getProviderId());
 
@@ -314,18 +322,18 @@ public class DentalSearchDetailActivity extends FragmentActivity implements OnMa
                 ArrayList<StatusResponseForTotalProject> insertRecentSearchRespPayLoad = response.body();
                 dismissProgressDialog();
 //                Toast.makeText(getApplicationContext(),insertRecentSearchRespPayLoad.get(0).getStatus(),Toast.LENGTH_SHORT).show();
-                Toast.makeText(getApplicationContext(),"Added as favourite",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Added as favourite", Toast.LENGTH_SHORT).show();
                 imgSave.setImageDrawable(getResources().getDrawable(R.drawable.toolbar_saved_ic));
                 tvSave.setTextColor(getResources().getColor(R.color.light_blue));
                 tvSave.setText("Saved");
                 if (activity.equalsIgnoreCase("DentalListActivity")) {
-                    for (int i = 0; i< DentalScreenActivity.resPayloads.size(); i++) {
-                        if (DentalScreenActivity.resPayloads.get(i).getProviderId().equalsIgnoreCase(mCurrentListing.getProviderId())){
+                    for (int i = 0; i < DentalScreenActivity.resPayloads.size(); i++) {
+                        if (DentalScreenActivity.resPayloads.get(i).getProviderId().equalsIgnoreCase(mCurrentListing.getProviderId())) {
                             DentalScreenActivity.resPayloads.get(i).setSavedStatus(1);
                             if (DentalListActivity.searchForDentalResPayLoads != null) {
                                 DentalListActivity.searchForDentalResPayLoads.get(clickedPosition).setSavedStatus(1);
                             }
-                            sqLiteDbHelper.updateSavedStatusFlag("filter_dental",1,mCurrentListing.getProviderId());
+                            sqLiteDbHelper.updateSavedStatusFlag("filter_dental", 1, mCurrentListing.getProviderId());
                             break;
                         }
                     }
@@ -350,7 +358,7 @@ public class DentalSearchDetailActivity extends FragmentActivity implements OnMa
                 ApiClient.getClient(DentalSearchDetailActivity.this).create(ApiInterface.class);
         ArrayList<SaveForLaterVision> saveForLaterRequestList = new ArrayList<SaveForLaterVision>();
         SaveForLaterVision saveForLaterRequest = new SaveForLaterVision();
-        saveForLaterRequest.setUserId(String.valueOf(prefsLoginData.getInt("userId",1)));
+        saveForLaterRequest.setUserId(String.valueOf(prefsLoginData.getInt("userId", 1)));
         saveForLaterRequest.setFlag("0");
         saveForLaterRequest.setProviderId(mCurrentListing.getProviderId());
 
@@ -360,28 +368,28 @@ public class DentalSearchDetailActivity extends FragmentActivity implements OnMa
         call.enqueue(new Callback<ArrayList<StatusResponseForTotalProject>>() {
             @Override
             public void onResponse(Call<ArrayList<StatusResponseForTotalProject>> call, Response<ArrayList<StatusResponseForTotalProject>> response) {
-               if (response.isSuccessful()) {
-                   imgSave.setImageDrawable(getResources().getDrawable(R.drawable.toolbar_star_ic));
-                   tvSave.setTextColor(getResources().getColor(R.color.black));
-                   tvSave.setText("Save for Later");
-                   if (activity.equalsIgnoreCase("DentalListActivity")) {
-                       if (activity.equalsIgnoreCase("DentalListActivity")) {
-                           for (int i = 0; i< DentalScreenActivity.resPayloads.size(); i++) {
-                               if (DentalScreenActivity.resPayloads.get(i).getProviderId().equalsIgnoreCase(mCurrentListing.getProviderId())){
-                                   DentalScreenActivity.resPayloads.get(i).setSavedStatus(0);
-                                   if (DentalListActivity.searchForDentalResPayLoads != null) {
-                                       DentalListActivity.searchForDentalResPayLoads.get(clickedPosition).setSavedStatus(0);
-                                   }
-                                   sqLiteDbHelper.updateSavedStatusFlag("filter_dental",0,mCurrentListing.getProviderId());
-                                   break;
-                               }
-                           }
+                if (response.isSuccessful()) {
+                    imgSave.setImageDrawable(getResources().getDrawable(R.drawable.toolbar_star_ic));
+                    tvSave.setTextColor(getResources().getColor(R.color.black));
+                    tvSave.setText("Save for Later");
+                    if (activity.equalsIgnoreCase("DentalListActivity")) {
+                        if (activity.equalsIgnoreCase("DentalListActivity")) {
+                            for (int i = 0; i < DentalScreenActivity.resPayloads.size(); i++) {
+                                if (DentalScreenActivity.resPayloads.get(i).getProviderId().equalsIgnoreCase(mCurrentListing.getProviderId())) {
+                                    DentalScreenActivity.resPayloads.get(i).setSavedStatus(0);
+                                    if (DentalListActivity.searchForDentalResPayLoads != null) {
+                                        DentalListActivity.searchForDentalResPayLoads.get(clickedPosition).setSavedStatus(0);
+                                    }
+                                    sqLiteDbHelper.updateSavedStatusFlag("filter_dental", 0, mCurrentListing.getProviderId());
+                                    break;
+                                }
+                            }
 //                    DentalScreenActivity.resPayloads.get(clickedPosition).setSavedStatus(1);
-                       }
+                        }
 //                       DentalScreenActivity.resPayloads.get(clickedPosition).setSavedStatus(0);
-                   }
-                   ArrayList<StatusResponseForTotalProject> insertRecentSearchRespPayLoad = response.body();
-               }
+                    }
+                    ArrayList<StatusResponseForTotalProject> insertRecentSearchRespPayLoad = response.body();
+                }
 //                Toast.makeText(getApplicationContext(),insertRecentSearchRespPayLoad.get(0).getStatus(),Toast.LENGTH_SHORT).show();
                 dismissProgressDialog();
             }
@@ -409,15 +417,16 @@ public class DentalSearchDetailActivity extends FragmentActivity implements OnMa
         }
 
     }
-    protected void showProgressDialog(Context context){
+
+    protected void showProgressDialog(Context context) {
         pDialog = new ProgressDialog(context);
         pDialog.setMessage("Please wait...");
         pDialog.setCancelable(false);
         pDialog.show();
     }
 
-    protected void dismissProgressDialog(){
-        if(pDialog != null)
+    protected void dismissProgressDialog() {
+        if (pDialog != null)
             pDialog.dismiss();
     }
 
@@ -447,6 +456,16 @@ public class DentalSearchDetailActivity extends FragmentActivity implements OnMa
     public void onMapReady(GoogleMap googleMap) {
 
         mMap = googleMap;
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
         mMap.setMyLocationEnabled(false);
         mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
 
