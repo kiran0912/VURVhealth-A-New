@@ -50,26 +50,6 @@ public class DentalVURVBannerActivity extends AppCompatActivity {
     private String vurvName;
     private TextView vurv_id;
 
-    /* renamed from: com.VURVhealth.VURVhealth.dental.DentalVURVBannerActivity$1 */
-    class C03781 implements View.OnClickListener {
-        C03781() {
-        }
-
-        public void onClick(View v) {
-            DentalVURVBannerActivity.this.finish();
-        }
-    }
-
-    /* renamed from: com.VURVhealth.VURVhealth.dental.DentalVURVBannerActivity$2 */
-    class C03792 implements View.OnClickListener {
-        C03792() {
-        }
-
-        public void onClick(View v) {
-            DentalVURVBannerActivity.this.startActivity(new Intent(DentalVURVBannerActivity.this, UpgradeDentalFlipActivity.class));
-        }
-    }
-
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.vurvid_banner_screen);
@@ -146,14 +126,24 @@ public class DentalVURVBannerActivity extends AppCompatActivity {
         this.rxPcnNum.setVisibility(View.GONE);
         String dobFormat = null;
         try {
-            dobFormat = new SimpleDateFormat("MM/dd/yyyy").format(new SimpleDateFormat("yyyy-MM-dd").parse(prefsData.getString("subscription_end_date", "12/12/2017")));
+            dobFormat = new SimpleDateFormat("MM/dd/yyyy").format(new SimpleDateFormat("yyyy-MM-dd").parse(prefsData.getString("vurv_mem_exp_date", "12/12/2017")));
         } catch (Exception e) {
             e.printStackTrace();
         }
         this.tvExp.setText(getResources().getString(R.string.expires) + MinimalPrettyPrinter.DEFAULT_ROOT_VALUE_SEPARATOR + dobFormat);
         this.tvPlan.setText(getString(R.string.plan) + " CARE");
-        this.img_cancelBtn.setOnClickListener(new C03781());
-        this.openBtn.setOnClickListener(new C03792());
+        this.img_cancelBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DentalVURVBannerActivity.this.finish();
+            }
+        });
+        this.openBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DentalVURVBannerActivity.this.startActivity(new Intent(DentalVURVBannerActivity.this, UpgradeDentalFlipActivity.class));
+            }
+        });
     }
 
     public void onBackPressed() {

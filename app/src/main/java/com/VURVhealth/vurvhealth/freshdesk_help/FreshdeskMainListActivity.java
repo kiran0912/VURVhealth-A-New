@@ -4,7 +4,9 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.net.Uri;
+import android.net.http.SslError;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -17,9 +19,13 @@ import android.text.Html;
 import android.text.SpannableStringBuilder;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.SslErrorHandler;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -27,12 +33,20 @@ import android.widget.Toast;
 
 import com.VURVhealth.vurvhealth.R;
 import com.VURVhealth.vurvhealth.StartScreenActivity;
+import com.VURVhealth.vurvhealth.althealth.AltHealthScreenActivity;
+import com.VURVhealth.vurvhealth.dental.DentalScreenActivity;
 import com.VURVhealth.vurvhealth.freshdesk_help.pojos.FreshDeskMainListRes;
+import com.VURVhealth.vurvhealth.medical.MedicalScreenActivity;
 import com.VURVhealth.vurvhealth.myProfile.PrimaryAcntHolderActivity;
+import com.VURVhealth.vurvhealth.prescriptions.PrescriptionSearchActivity;
 import com.VURVhealth.vurvhealth.retrofit.ApiInterface;
 import com.VURVhealth.vurvhealth.retrofit.Application_holder;
 import com.VURVhealth.vurvhealth.save.NoSavedItemActivity;
+import com.VURVhealth.vurvhealth.save.SaveItemActivity;
 import com.VURVhealth.vurvhealth.superappcompact.SuperAppCompactActivity;
+import com.VURVhealth.vurvhealth.telemed.TeleMedicineActivity;
+import com.VURVhealth.vurvhealth.telemed.TeleMedicineActivity1;
+import com.VURVhealth.vurvhealth.vision.VisionScreenActivity;
 import com.VURVhealth.vurvhealth.vurvidpackages.VurvPackageActivity;
 import com.fasterxml.jackson.core.util.MinimalPrettyPrinter;
 import com.freshchat.consumer.sdk.Freshchat;
@@ -67,7 +81,10 @@ public class FreshdeskMainListActivity extends SuperAppCompactActivity {
     private LinearLayout llSearch, llSaved, llProfile, llVurv;
     private FloatingActionButton freshChatbtn;
     private SharedPreferences prefsData;
-
+    private WebView webView;
+    private Context context = FreshdeskMainListActivity.this;
+    private String url = "https://vurvhealth.com/help/";
+    private String move = "";
 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -87,6 +104,8 @@ public class FreshdeskMainListActivity extends SuperAppCompactActivity {
         llVurv = (LinearLayout) findViewById(R.id.llVurv);
         llProfile = (LinearLayout) findViewById(R.id.llProfile);
 
+        if (getIntent()!=null);
+            move = getIntent().getStringExtra("move");
 
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,10 +117,9 @@ public class FreshdeskMainListActivity extends SuperAppCompactActivity {
         prefsData = getSharedPreferences(Application_holder.LOGIN_PREFERENCES, Context.MODE_PRIVATE);
 
 
-        getFreshdeskMainhelp();
+        //getFreshdeskMainhelp();
 
-        customTextView(tvInquiry);
-
+        //customTextView(tvInquiry);
         //getFreshchat();
 
 
@@ -147,9 +165,38 @@ public class FreshdeskMainListActivity extends SuperAppCompactActivity {
             }
         });
 
-
+        showProgressDialog(context);
+        webView = (WebView) findViewById(R.id.webview);
+        webView.setWebViewClient(new MyBrowser());
+        webView.getSettings().setLoadsImagesAutomatically(true);
+        webView.getSettings().setJavaScriptEnabled(true);
+        webView.getSettings().setDomStorageEnabled(true);
+        webView.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
+        webView.loadUrl(url);
     }
 
+    private class MyBrowser extends WebViewClient {
+
+        @Override
+        public boolean shouldOverrideUrlLoading(WebView view, String url) {
+            view.loadUrl(url);
+            //webView.loadUrl(url);
+            return true;
+        }
+
+        @Override
+        public void onPageFinished(WebView view, String url) {
+            super.onPageFinished(view, url);
+            dismissProgressDialog();
+        }
+
+        @Override
+        public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
+            Log.e("Ssl Error:",handler.toString() + "error:" +  error);
+            handler.proceed();
+            dismissProgressDialog();
+        }
+    }
 
     private void customTextView(TextView view) {
         final String url = "www.VURVhealth.com/help";
@@ -216,7 +263,6 @@ public class FreshdeskMainListActivity extends SuperAppCompactActivity {
 
     private void getFreshdeskMainhelp() {
 
-
         try {
 
 
@@ -255,7 +301,6 @@ public class FreshdeskMainListActivity extends SuperAppCompactActivity {
 
         } catch (Exception e) {
             e.getMessage();
-
             dismissProgressDialog();
 
         }
@@ -348,20 +393,49 @@ public class FreshdeskMainListActivity extends SuperAppCompactActivity {
 
         Freshchat.getInstance(FreshdeskMainListActivity.this).setUser(user);
 
-
     }
 
     public void onBackPressed() {
-        new AlertDialog.Builder(this).setIcon((int) R.drawable.vurv_logo_r).setTitle((CharSequence) getString(R.string.app_name)).setMessage((CharSequence) "Are you sure you want to close this App?").setPositiveButton((CharSequence) "Yes", (DialogInterface.OnClickListener) new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialogInterface, int i) {
-                Intent intent = new Intent(Intent.ACTION_MAIN);
-                intent.addCategory(Intent.CATEGORY_HOME);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
-                finish();
-                System.exit(0);
-            }
-        }).setNegativeButton((CharSequence) "No", (DialogInterface.OnClickListener) null).show();
+        if (move.equalsIgnoreCase("StartScreen")){
+            startActivity(new Intent(context, StartScreenActivity.class));
+            finish();
+        }else if(move.equalsIgnoreCase("SaveItemScreen")) {
+            startActivity(new Intent(context, SaveItemActivity.class));
+            finish();
+        }
+        else if(move.equalsIgnoreCase("VurvPackageActivity")) {
+            startActivity(new Intent(context, VurvPackageActivity.class));
+            finish();
+        }else if(move.equalsIgnoreCase("PrimaryAcntHolderActivity")) {
+            startActivity(new Intent(context, PrimaryAcntHolderActivity.class));
+            finish();
+        }else if(move.equalsIgnoreCase("AltHealthScreenActivity")) {
+            startActivity(new Intent(context, AltHealthScreenActivity.class));
+            finish();
+        }else if(move.equalsIgnoreCase("DentalScreenActivity")) {
+            startActivity(new Intent(context, DentalScreenActivity.class));
+            finish();
+        }else if(move.equalsIgnoreCase("MedicalScreenActivity")) {
+            startActivity(new Intent(context, MedicalScreenActivity.class));
+            finish();
+        }else if(move.equalsIgnoreCase("PrescriptionSearchActivity")) {
+            startActivity(new Intent(context, PrescriptionSearchActivity.class));
+            finish();
+        }else if(move.equalsIgnoreCase("NoSavedItemActivity")) {
+            startActivity(new Intent(context, NoSavedItemActivity.class));
+            finish();
+        }else if(move.equalsIgnoreCase("TeleMedicineActivity")) {
+            startActivity(new Intent(context, TeleMedicineActivity.class));
+            finish();
+        }else if(move.equalsIgnoreCase("VisionScreenActivity")) {
+            startActivity(new Intent(context, VisionScreenActivity.class));
+            finish();
+        }else if(move.equalsIgnoreCase("TeleMedicineActivity1")) {
+            startActivity(new Intent(context, TeleMedicineActivity1.class));
+            finish();
+        }
+
+
     }
 
 

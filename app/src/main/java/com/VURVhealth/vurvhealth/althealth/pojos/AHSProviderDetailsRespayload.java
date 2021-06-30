@@ -7,7 +7,15 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class AHSProviderDetailsRespayload implements Parcelable {
-    public static final Creator<AHSProviderDetailsRespayload> CREATOR = new C03091();
+    public static final Creator<AHSProviderDetailsRespayload> CREATOR = new Creator<AHSProviderDetailsRespayload>() {
+        public AHSProviderDetailsRespayload createFromParcel(Parcel in) {
+            return new AHSProviderDetailsRespayload(in);
+        }
+
+        public AHSProviderDetailsRespayload[] newArray(int size) {
+            return new AHSProviderDetailsRespayload[size];
+        }
+    };
     @SerializedName("AHSProviderId")
     @Expose
     private String aHSProviderId;
@@ -47,20 +55,6 @@ public class AHSProviderDetailsRespayload implements Parcelable {
     @SerializedName("State")
     @Expose
     private String state;
-
-    /* renamed from: com.VURVhealth.VURVhealth.althealth.pojos.AHSProviderDetailsRespayload$1 */
-    static class C03091 implements Creator<AHSProviderDetailsRespayload> {
-        C03091() {
-        }
-
-        public AHSProviderDetailsRespayload createFromParcel(Parcel in) {
-            return new AHSProviderDetailsRespayload(in);
-        }
-
-        public AHSProviderDetailsRespayload[] newArray(int size) {
-            return new AHSProviderDetailsRespayload[size];
-        }
-    }
 
     protected AHSProviderDetailsRespayload(Parcel in) {
         this.aHSProviderId = in.readString();

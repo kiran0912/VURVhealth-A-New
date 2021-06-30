@@ -7,6 +7,7 @@ import android.content.SharedPreferences.Editor;
 import android.graphics.Color;
 import android.location.Address;
 import android.location.Geocoder;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Editable;
@@ -57,12 +58,14 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -86,7 +89,7 @@ public class AltHealthScreenActivity extends SuperAppCompactActivity {
     private LinearLayout llSaved;
     private LinearLayout llVurv;
     private double longitude = FirebaseRemoteConfig.DEFAULT_VALUE_FOR_DOUBLE;
-    private int miles;
+    private int miles=0;
     private RangeSliderView seekbar;
     private Spinner spinnerState;
     private String state;
@@ -199,10 +202,9 @@ public class AltHealthScreenActivity extends SuperAppCompactActivity {
         llHelp.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-//                startActivity(new Intent(AltHealthScreenActivity.this, HelpActivity.class));
-
-                startActivity(new Intent(AltHealthScreenActivity.this, FreshdeskMainListActivity.class));
-                finish();
+                Uri uri = Uri.parse(Application_holder.help_url); // missing 'http://' will cause crashed
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(intent);
             }
         });
         tv_zipcode.setOnClickListener(new OnClickListener() {
@@ -219,7 +221,10 @@ public class AltHealthScreenActivity extends SuperAppCompactActivity {
         });
         btn_search_active.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
-                if (tv_zipcode.getText().toString().trim().length() > 0 && tv_zipcode.getText().toString().trim().length() < 3) {
+                if (tv_zipcode.getText().toString().isEmpty()){
+                    Toast.makeText(getApplicationContext(), getResources().getString(R.string.enter_zip), Toast.LENGTH_SHORT).show();
+                }
+                else if (tv_zipcode.getText().toString().trim().length() > 0 && tv_zipcode.getText().toString().trim().length() < 3) {
                     Toast.makeText(getApplicationContext(), getResources().getString(R.string.valid_zip), Toast.LENGTH_SHORT).show();
                 } else if (checkInternet()) {
                     savedAHSService();
@@ -386,16 +391,23 @@ public class AltHealthScreenActivity extends SuperAppCompactActivity {
 
     private void searchAHSService() {
         String stateAHS;
-        String cityAHS = etCity.getText().toString().length() == 0 ? "" : etCity.getText().toString();
+        String cityAHS = etCity.getText().toString();
         if (spinnerState.getSelectedItemPosition() == 0) {
             stateAHS = "";
         } else {
             stateAHS = spinnerState.getSelectedItem().toString();
         }
         ApiInterface apiService = (ApiInterface) ApiClient.getClient(AltHealthScreenActivity.this).create(ApiInterface.class);
-        LatLng latLng = zipToLanLong(tv_zipcode.getText().toString());
+        LatLng latLng = zipToLanLong(tv_zipcode.getText().toString().length() ==0 ? "": tv_zipcode.getText().toString());
         AHSSearchReqPayload ahsSearchReqPayload = new AHSSearchReqPayload();
-        ahsSearchReqPayload.setZipCode(tv_zipcode.getText().toString());
+        ahsSearchReqPayload.setZipCode(tv_zipcode.getText().toString().length() ==0 ? "": tv_zipcode.getText().toString());
+        if (miles == 0) {
+            ahsSearchReqPayload.setLat("");
+            ahsSearchReqPayload.setLong("");
+        }else {
+            ahsSearchReqPayload.setLat(String.valueOf(latLng.latitude));
+            ahsSearchReqPayload.setLong(String.valueOf(latLng.longitude));
+        }
         ahsSearchReqPayload.setCity(cityAHS);
         ahsSearchReqPayload.setState(stateAHS);
         if (cityAHS.length() <= 0 || stateAHS.length() <= 0) {
@@ -403,19 +415,14 @@ public class AltHealthScreenActivity extends SuperAppCompactActivity {
         } else {
             ahsSearchReqPayload.setRange("0");
         }
-        if (miles == 0) {
-            ahsSearchReqPayload.setLat("");
-            ahsSearchReqPayload.setLong("");
-        } else {
-            ahsSearchReqPayload.setLat(String.valueOf(latLng.latitude));
-            ahsSearchReqPayload.setLong(String.valueOf(latLng.longitude));
-        }
+
         ahsSearchReqPayload.setSpecialty(tvSpecialty.getText().toString());
         ahsSearchReqPayload.setFirstName(tvFirstName.getText().toString().length() == 0 ? "" : tvFirstName.getText().toString());
         ahsSearchReqPayload.setLastName(tvLastName.getText().toString().length() == 0 ? "" : tvLastName.getText().toString());
         ahsSearchReqPayload.setType("A1");
         ArrayList<AHSSearchReqPayload> ahsSearchReqPayloads = new ArrayList();
         ahsSearchReqPayloads.add(ahsSearchReqPayload);
+        Log.v("Althealth", "ReqPayload: "+new Gson().toJson(ahsSearchReqPayloads));
         apiService.searchForAHSProvider(ahsSearchReqPayloads).enqueue(new Callback<AHSSearchResPayload>() {
             public void onResponse(Call<AHSSearchResPayload> call, Response<AHSSearchResPayload> response) {
                 if (response.isSuccessful()) {
@@ -528,6 +535,7 @@ public class AltHealthScreenActivity extends SuperAppCompactActivity {
         super.onBackPressed();
         finish();
     }
+
     public class GetZipAyncTask extends AsyncTask {
         Context context;
         double latitude;

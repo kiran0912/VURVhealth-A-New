@@ -9,6 +9,7 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.location.Address;
 import android.location.Geocoder;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Editable;
@@ -31,6 +32,7 @@ import android.widget.Toast;
 
 import com.VURVhealth.vurvhealth.freshdesk_help.FreshdeskMainListActivity;
 import com.VURVhealth.vurvhealth.medical.MedicalScreenActivity;
+import com.VURVhealth.vurvhealth.save.SaveItemActivity;
 import com.google.android.gms.maps.model.LatLng;
 import com.VURVhealth.vurvhealth.retrofit.Application_holder;
 import com.VURVhealth.vurvhealth.GPSTracker;
@@ -345,8 +347,9 @@ public class DentalScreenActivity extends SuperAppCompactActivity {
         });
         llHelp.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                startActivity(new Intent(DentalScreenActivity.this, FreshdeskMainListActivity.class));
-                finish();
+                Uri uri = Uri.parse(Application_holder.help_url); // missing 'http://' will cause crashed
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(intent);
             }
         });
         tvSpecialty.setOnClickListener(new View.OnClickListener() {
@@ -584,8 +587,7 @@ public class DentalScreenActivity extends SuperAppCompactActivity {
                                 createDAlertDialog(getString(R.string.we_are_sorry));
                             }
                         }
-                        dismissProgressDialog();
-                        return;
+
                     }
                     dismissProgressDialog();
                 }
@@ -597,6 +599,8 @@ public class DentalScreenActivity extends SuperAppCompactActivity {
                 }
             });
         } catch (Exception e) {
+            Log.v("Dental","Error: "+e.getMessage());
+            dismissProgressDialog();
         }
     }
 
@@ -644,7 +648,7 @@ public class DentalScreenActivity extends SuperAppCompactActivity {
                 insertRecentSearchRespPayLoad = response.body();
                 searchForDentalService();
                /*Srikanth*/
-                dentalPastSearch();
+                //dentalPastSearch();
             }
 
             public void onFailure(Call<ArrayList<StatusResponseForTotalProject>> call, Throwable t) {

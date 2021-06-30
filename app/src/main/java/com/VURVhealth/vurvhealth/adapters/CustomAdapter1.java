@@ -83,6 +83,7 @@ public class CustomAdapter1 extends RecyclerView.Adapter<CustomAdapter1.MyViewHo
                 if (page.equalsIgnoreCase("prescription")) {
                     if(recentlist != null && recentlist.equalsIgnoreCase("recentlist")) {
                         recentlist = null;
+
                         ((PrescriptionSearchActivity) context).recentDrugList(searchList.get(position).getSeoName(), position, true);
                     }else {
                         ((PrescriptionSearchActivity) context).recentDrugList(searchList.get(position).getSeoName(), position, false);

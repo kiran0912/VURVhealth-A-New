@@ -249,7 +249,7 @@ public class SqLiteDbHelper extends SQLiteOpenHelper {
         int count = this.sqLiteDatabase.rawQuery("SELECT  * FROM filter_doctor", null).getCount();
         Cursor cursor = this.sqLiteDatabase.rawQuery(query, null);
         if (cursor.moveToFirst()) {
-           /* do {
+            do {
                 SearchPractitionerResPayLoad searchPractitionerResPayLoad = new SearchPractitionerResPayLoad();
                 searchPractitionerResPayLoad.setOpenOnWeekend(cursor.getString(cursor.getColumnIndex(OPEN_WEEKENDS)));
                 searchPractitionerResPayLoad.setPrac_ADAaccessibilityFlag(cursor.getString(cursor.getColumnIndex(ADA_ACCESSIBLE)));
@@ -258,8 +258,8 @@ public class SqLiteDbHelper extends SQLiteOpenHelper {
                 searchPractitionerResPayLoad.setClinicalEducation(cursor.getString(cursor.getColumnIndex(CLINICAL_EDUCATION)));
                 searchPractitionerResPayLoad.setGender(cursor.getString(cursor.getColumnIndex(GENDER)));
                 searchPractitionerResPayLoad.setLanguage(cursor.getString(cursor.getColumnIndex("language")));
-                searchPractitionerResPayLoad.setLat(cursor.getString(cursor.getColumnIndex(LATITUDE)));
-                searchPractitionerResPayLoad.setLng(cursor.getString(cursor.getColumnIndex(LONGITUDE)));
+                searchPractitionerResPayLoad.setLat(Double.valueOf(cursor.getString(cursor.getColumnIndex(LATITUDE))));
+                searchPractitionerResPayLoad.setLng(Double.valueOf(cursor.getString(cursor.getColumnIndex(LONGITUDE))));
                 searchPractitionerResPayLoad.setMobileNo(cursor.getString(cursor.getColumnIndex(MOBILE_NO)));
                 searchPractitionerResPayLoad.setName(cursor.getString(cursor.getColumnIndex(NAME)));
                 searchPractitionerResPayLoad.setPracAddressesId(cursor.getString(cursor.getColumnIndex(ADDRESS_ID)));
@@ -267,7 +267,7 @@ public class SqLiteDbHelper extends SQLiteOpenHelper {
                 searchPractitionerResPayLoad.setRadius(cursor.getString(cursor.getColumnIndex(RADIUS)));
                 searchPractitionerResPayLoad.setSpeciality(cursor.getString(cursor.getColumnIndex(SPECIALITY)));
                 this.searchPractitionerResPayLoads.add(searchPractitionerResPayLoad);
-            } while (cursor.moveToNext());*/
+            } while (cursor.moveToNext());
         }
         return this.searchPractitionerResPayLoads;
     }
@@ -279,22 +279,22 @@ public class SqLiteDbHelper extends SQLiteOpenHelper {
         int count = this.sqLiteDatabase.rawQuery("SELECT  * FROM filter_facility", null).getCount();
         Cursor cursor = this.sqLiteDatabase.rawQuery(query, null);
         if (cursor.moveToFirst()) {
-            /*do {
+            do {
                 SearchFacilitiesResPayLoad searchFacilitiesResPayLoad = new SearchFacilitiesResPayLoad();
                 searchFacilitiesResPayLoad.setFacilityName(cursor.getString(cursor.getColumnIndex(FACILITY_NAME)));
                 searchFacilitiesResPayLoad.setAddress(cursor.getString(cursor.getColumnIndex(ADDRESS)));
                 searchFacilitiesResPayLoad.setProviderID(cursor.getString(cursor.getColumnIndex(PROVIDER_ID)));
                 searchFacilitiesResPayLoad.setMobileNo(cursor.getString(cursor.getColumnIndex(MOBILE_NO)));
                 searchFacilitiesResPayLoad.setFacilityType(cursor.getString(cursor.getColumnIndex(FACILITY_TYPE)));
-                searchFacilitiesResPayLoad.setLat(cursor.getString(cursor.getColumnIndex(LATITUDE)));
-                searchFacilitiesResPayLoad.setLng(cursor.getString(cursor.getColumnIndex(LONGITUDE)));
+                searchFacilitiesResPayLoad.setLat(Double.parseDouble(cursor.getString(cursor.getColumnIndex(LATITUDE))));
+                searchFacilitiesResPayLoad.setLng(Double.parseDouble(cursor.getString(cursor.getColumnIndex(LONGITUDE))));
                 searchFacilitiesResPayLoad.setRadius(cursor.getString(cursor.getColumnIndex(RADIUS)));
                 searchFacilitiesResPayLoad.setHandicapped_Flag(cursor.getString(cursor.getColumnIndex(HANDICAPPED)));
                 searchFacilitiesResPayLoad.setFac_ECPProvider(cursor.getString(cursor.getColumnIndex(EC_PROVIDER)));
                 searchFacilitiesResPayLoad.setFac_JCAHOAccrediated(cursor.getString(cursor.getColumnIndex(JCAHO_ACCREDIATED)));
                 searchFacilitiesResPayLoad.setSavedStatus(cursor.getInt(cursor.getColumnIndex(SAVEDSTATUS)));
                 this.searchFacilityResPayLoads.add(searchFacilitiesResPayLoad);
-            } while (cursor.moveToNext());*/
+            } while (cursor.moveToNext());
         }
         return this.searchFacilityResPayLoads;
     }
@@ -306,7 +306,7 @@ public class SqLiteDbHelper extends SQLiteOpenHelper {
         int count = this.sqLiteDatabase.rawQuery("SELECT  * FROM filter_dental", null).getCount();
         Cursor cursor = this.sqLiteDatabase.rawQuery(query, null);
         if (cursor.moveToFirst()) {
-           /* do {
+            do {
                 SearchForDentalResPayLoad.Datum searchForDentalResPayLoad = new SearchForDentalResPayLoad.Datum();
                 searchForDentalResPayLoad.setFirstName(cursor.getString(cursor.getColumnIndex(FIRST_NAME)));
                 searchForDentalResPayLoad.setMidInitName(cursor.getString(cursor.getColumnIndex(MIDDLE_NAME)));
@@ -319,8 +319,8 @@ public class SqLiteDbHelper extends SQLiteOpenHelper {
                 searchForDentalResPayLoad.setAdd2(cursor.getString(cursor.getColumnIndex(ADD2)));
                 searchForDentalResPayLoad.setCity(cursor.getString(cursor.getColumnIndex(CITY)));
                 searchForDentalResPayLoad.setState(cursor.getString(cursor.getColumnIndex(STATE)));
-                searchForDentalResPayLoad.setLatitude(cursor.getString(cursor.getColumnIndex(LATITUDE)));
-                searchForDentalResPayLoad.setLongitude(cursor.getString(cursor.getColumnIndex(LONGITUDE)));
+                searchForDentalResPayLoad.setLatitude(Double.parseDouble(cursor.getString(cursor.getColumnIndex(LATITUDE))));
+                searchForDentalResPayLoad.setLongitude(Double.parseDouble(cursor.getString(cursor.getColumnIndex(LONGITUDE))));
                 searchForDentalResPayLoad.setSsnOrTin(cursor.getString(cursor.getColumnIndex(SSN_OR_TIN)));
                 searchForDentalResPayLoad.setGdOrSpCode(cursor.getString(cursor.getColumnIndex(GD_OR_SP_CODE)));
                 searchForDentalResPayLoad.setSpec(cursor.getString(cursor.getColumnIndex(SPEC)));
@@ -334,7 +334,7 @@ public class SqLiteDbHelper extends SQLiteOpenHelper {
                 searchForDentalResPayLoad.setDist(cursor.getString(cursor.getColumnIndex(DIST)));
                 searchForDentalResPayLoad.setSavedStatus(cursor.getInt(cursor.getColumnIndex(SAVEDSTATUS)));
                 this.searchForDentalResPayLoads.add(searchForDentalResPayLoad);
-            } while (cursor.moveToNext());*/
+            } while (cursor.moveToNext());
         }
         return this.searchForDentalResPayLoads;
     }

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.VURVhealth.vurvhealth" >
+    package="com.VURVhealth.vurvhealth">
 
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -25,9 +25,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
-        tools:replace="android:allowBackup">
-        <activity android:name=".TeleMedicineActivity" >
-        </activity>
+        tools:replace="android:label"
+        tools:node="merge">
+        <activity android:name=".telemed.TeleMedicineActivity"></activity>
+        <activity android:name=".telemed.TeleMedicineActivity1"></activity>
 
         <uses-library
             android:name="org.apache.http.legacy"
@@ -38,7 +39,7 @@
         <activity
             android:name=".splash.SplashScreenActivity"
             android:exported="true"
-            android:launchMode="singleTask" >
+            android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -273,31 +274,7 @@
             android:name=".myProfile.EditSecondaryMemberActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".help.HelpDocFacActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".help.HelpPrescriptionActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".help.HelpDentalActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".help.HelpVisionActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".help.GeneralQtnActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".help.MoreQtnActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".help.HelpAltHealthActivity"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".help.BillingandPaymentActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".help.HelpPackagesActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".help.AppManagmentActivity"
@@ -401,7 +378,7 @@
             android:name="android.support.v4.content.FileProvider"
             android:authorities="com.VURVhealth.vurvhealth.provider"
             android:exported="false"
-            android:grantUriPermissions="true" >
+            android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_provider_paths" />

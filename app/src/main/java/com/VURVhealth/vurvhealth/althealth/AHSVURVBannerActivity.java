@@ -71,9 +71,7 @@ public class AHSVURVBannerActivity extends AppCompatActivity {
         cardImg.setBackgroundResource(R.drawable.card_alt_new);
         tvPatient.setText(Html.fromHtml(getResources().getString(R.string.alt_vurv_txt)));
         tvPatient.setTextColor(ContextCompat.getColor(this, R.color.black));
-        tvPatient.setGravity(17);
         tvHealth.setText(Html.fromHtml(getResources().getString(R.string.alt_vurv_txt1)));
-        tvHealth.setGravity(17);
         SharedPreferences prefsData = getSharedPreferences("VURVProfileDetails", 0);
         vurvName = prefsData.getString("firstName", "");
         lastName = prefsData.getString("lastName", "");
@@ -129,7 +127,7 @@ public class AHSVURVBannerActivity extends AppCompatActivity {
         rxPcnNum.setVisibility(View.GONE);
         String dobFormat = null;
         try {
-            dobFormat = new SimpleDateFormat("MM/dd/yyyy").format(new SimpleDateFormat("yyyy-MM-dd").parse(prefsData.getString("subscription_end_date", "12/12/2017")));
+            dobFormat = new SimpleDateFormat("MM/dd/yyyy").format(new SimpleDateFormat("yyyy-MM-dd").parse(prefsData.getString("vurv_mem_exp_date", "12/12/2017")));
         } catch (Exception e) {
             e.printStackTrace();
         }

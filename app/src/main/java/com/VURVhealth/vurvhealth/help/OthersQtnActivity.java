@@ -37,60 +37,6 @@ public class OthersQtnActivity extends SuperAppCompactActivity {
     private TextView txtweb;
     private WebView webView;
 
-
-    class C03891 implements View.OnClickListener {
-        C03891() {
-        }
-
-        public void onClick(View v) {
-            finish();
-        }
-    }
-
-
-    class C03912 implements Callback<String> {
-
-
-        class C03901 extends WebViewClient {
-            C03901() {
-            }
-
-            public void onPageStarted(WebView view, String url, Bitmap favicon) {
-                super.onPageStarted(view, url, favicon);
-            }
-
-            public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                if (url.contains("https://www.vurvhealth.com/my-members/")) {
-                    Intent intent = new Intent(OthersQtnActivity.this, MyMembersActivity.class);
-                    intent.putExtra("activity", "GeneralQtnActivity");
-                    startActivity(intent);
-                }
-                return true;
-            }
-
-            public void onPageFinished(WebView view, String url) {
-                super.onPageFinished(view, url);
-            }
-        }
-
-        C03912() {
-        }
-
-        public void onResponse(Call<String> call, Response<String> response) {
-            if (response.isSuccessful()) {
-                dismissProgressDialog();
-                webView.loadDataWithBaseURL(null, (String) response.body(), "text/html", "utf-8", null);
-                webView.setWebViewClient(new C03901());
-            }
-            dismissProgressDialog();
-        }
-
-        public void onFailure(Call<String> call, Throwable t) {
-            dismissProgressDialog();
-            Toast.makeText(OthersQtnActivity.this, getResources().getString(R.string.server_not_found), Toast.LENGTH_SHORT).show();
-        }
-    }
-
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.vurv_t_and_c);
@@ -109,7 +55,12 @@ public class OthersQtnActivity extends SuperAppCompactActivity {
         } else {
             webView.setLayerType(1, null);
         }
-        backBtn.setOnClickListener(new C03891());
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
         getTermsAndCondition();
     }
@@ -121,9 +72,47 @@ public class OthersQtnActivity extends SuperAppCompactActivity {
     private void getTermsAndCondition() {
         showProgressDialog(this);
         try {
-            ((ApiInterface) retrofit.create(ApiInterface.class)).getPageContent(Application_holder.BASE_URL == "https://www.vurvhealth.com/" ? requestVURVTerms() : requestVURVTerms1()).enqueue(new C03912());
+            ((ApiInterface) retrofit.create(ApiInterface.class)).getPageContent(Application_holder.BASE_URL == "https://www.vurvhealth.com/" ? requestVURVTerms() : requestVURVTerms1()).enqueue(new Callback<String>() {
+                @Override
+                public void onResponse(Call<String> call, Response<String> response) {
+
+                        if (response.isSuccessful()) {
+                            dismissProgressDialog();
+                            webView.loadDataWithBaseURL(null, (String) response.body(), "text/html", "utf-8", null);
+                            webView.setWebViewClient(new MyWebViewClient());
+                        }
+                        dismissProgressDialog();
+
+                }
+
+                @Override
+                public void onFailure(Call<String> call, Throwable t) {
+                    dismissProgressDialog();
+                    Toast.makeText(OthersQtnActivity.this, getResources().getString(R.string.server_not_found), Toast.LENGTH_SHORT).show();
+                }
+            });
         } catch (Exception e) {
             Log.v("Upgrad", e.getMessage());
+        }
+    }
+
+    class MyWebViewClient extends WebViewClient {
+
+        public void onPageStarted(WebView view, String url, Bitmap favicon) {
+            super.onPageStarted(view, url, favicon);
+        }
+
+        public boolean shouldOverrideUrlLoading(WebView view, String url) {
+            if (url.contains("https://www.vurvhealth.com/my-members/")) {
+                Intent intent = new Intent(OthersQtnActivity.this, MyMembersActivity.class);
+                intent.putExtra("activity", "GeneralQtnActivity");
+                startActivity(intent);
+            }
+            return true;
+        }
+
+        public void onPageFinished(WebView view, String url) {
+            super.onPageFinished(view, url);
         }
     }
 

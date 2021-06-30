@@ -146,8 +146,6 @@ public class LoginActivity extends SuperAppCompactActivity {
                         if (loginResPayLoads.getStatus().equalsIgnoreCase("ok")) {
                             if (loginResPayLoads.getUser().getId() == null || loginResPayLoads.getPackageInfo() == null) {
                                 incorrect_login.setVisibility(View.VISIBLE);
-                                dismissProgressDialog();
-                                return;
                             }
                             SharedPreferences.Editor editor = getSharedPreferences("VURVProfileDetails", 0).edit();
                             editor.putString("ProfileImageURl", "https://www.vurvhealth.com/wp-content/uploads" + loginResPayLoads.getPackageInfo().getImagePath());
@@ -177,27 +175,20 @@ public class LoginActivity extends SuperAppCompactActivity {
                             loginEditor.putString("subPackageId", loginResPayLoads.getPackageInfo().getSubPackageId());
                             loginEditor.putString("packageId", loginResPayLoads.getPackageInfo().getPackageId());
                             loginEditor.putString("parent_id", loginResPayLoads.getPackageInfo().getParentId());
-                            loginEditor.putString("subscription_end_date", loginResPayLoads.getPackageInfo().getSubscriptionEndDate());
+                            loginEditor.putString("vurv_mem_exp_date", loginResPayLoads.getPackageInfo().getVurvMemExpDate());
                             if (loginResPayLoads.getPackageInfo().getOrderId() != null) {
                                 loginEditor.putString("orderId", loginResPayLoads.getPackageInfo().getOrderId());
                             }
                             loginEditor.putString("logout", "");
                             loginEditor.commit();
                             myUserDetailsService();
-                            return;
-                        } /*else if (loginResPayLoads.getStatus().equalsIgnoreCase(MediaRouteProviderProtocol.SERVICE_DATA_ERROR)) {
-                            dismissProgressDialog();
+                        } else {
                             incorrect_login.setVisibility(View.VISIBLE);
-                            return;
-                        } */else {
-                            incorrect_login.setVisibility(View.VISIBLE);
-                            return;
                         }
                     }else {
                         Toast.makeText(LoginActivity.this, getResources().getString(R.string.server_not_found), Toast.LENGTH_SHORT).show();
                     }
                     dismissProgressDialog();
-                    //incorrect_login.setVisibility(View.VISIBLE);
                 }
 
                 public void onFailure(Call<LoginResPayLoad> call, Throwable t) {
@@ -349,8 +340,8 @@ public class LoginActivity extends SuperAppCompactActivity {
                         loginEditor.putString("childCount", ((UserDetailDataResPayload) ((ArrayList) userInfoResPayload.get(0)).get(0)).getChild_count());
                         loginEditor.putString("search_type", ((UserDetailDataResPayload) ((ArrayList) userInfoResPayload.get(0)).get(0)).getSearch_type());
                         loginEditor.putString("IsPasswordResetFlag", ((UserDetailDataResPayload) ((ArrayList) userInfoResPayload.get(0)).get(0)).getIsPasswordResetFlag());
-                        if (((UserDetailDataResPayload) ((ArrayList) userInfoResPayload.get(0)).get(0)).getSubscriptionEndDate() != null) {
-                            loginEditor.putString("subscription_end_date", ((UserDetailDataResPayload) ((ArrayList) userInfoResPayload.get(0)).get(0)).getSubscriptionEndDate());
+                        if (((UserDetailDataResPayload) ((ArrayList) userInfoResPayload.get(0)).get(0)).getVurvMemExpDate() != null) {
+                            loginEditor.putString("vurv_mem_exp_date", ((UserDetailDataResPayload) ((ArrayList) userInfoResPayload.get(0)).get(0)).getVurvMemExpDate());
                         }
                         loginEditor.putString("logout", "");
                         loginEditor.commit();
@@ -359,13 +350,14 @@ public class LoginActivity extends SuperAppCompactActivity {
                             i = new Intent(LoginActivity.this, ChangePasswordScreen.class);
                             i.putExtra("activity", "LoginActivity");
                             startActivity(i);
-                            return;
+
+                        }else {
+                            i = new Intent(LoginActivity.this, StartScreenActivity.class);
+                            i.putExtra("firstName", loginResPayLoads.getPackageInfo().getFirstName());
+                            startActivity(i);
+                            finish();
                         }
-                        i = new Intent(LoginActivity.this, StartScreenActivity.class);
-                        i.putExtra("firstName", loginResPayLoads.getPackageInfo().getFirstName());
-                        startActivity(i);
-                        finish();
-                        return;
+
                     } else if (userInfoResPayload.size() == 0) {
                         Toast.makeText(getApplicationContext(), getResources().getString(R.string.server_not_found), Toast.LENGTH_SHORT).show();
                         return;

@@ -100,6 +100,9 @@ public class SearchForDentalResPayLoad {
         @Expose
         private String zipCode;
 
+        public Datum () {
+
+        }
 
         public Datum(Parcel in) {
             add1 = in.readString();

@@ -7,7 +7,15 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class DentalProviderDetailsResPayload implements Parcelable {
-    public static final Creator<DentalProviderDetailsResPayload> CREATOR = new C03801();
+    public static final Creator<DentalProviderDetailsResPayload> CREATOR = new Creator<DentalProviderDetailsResPayload>() {
+        public DentalProviderDetailsResPayload createFromParcel(Parcel in) {
+            return new DentalProviderDetailsResPayload(in);
+        }
+
+        public DentalProviderDetailsResPayload[] newArray(int size) {
+            return new DentalProviderDetailsResPayload[size];
+        }
+    };
     @SerializedName("Addr1")
     @Expose
     private String addr1;
@@ -78,19 +86,6 @@ public class DentalProviderDetailsResPayload implements Parcelable {
     @Expose
     private String zipCode;
 
-    /* renamed from: com.VURVhealth.VURVhealth.dental.pojos.DentalProviderDetailsResPayload$1 */
-    static class C03801 implements Creator<DentalProviderDetailsResPayload> {
-        C03801() {
-        }
-
-        public DentalProviderDetailsResPayload createFromParcel(Parcel in) {
-            return new DentalProviderDetailsResPayload(in);
-        }
-
-        public DentalProviderDetailsResPayload[] newArray(int size) {
-            return new DentalProviderDetailsResPayload[size];
-        }
-    }
 
     protected DentalProviderDetailsResPayload(Parcel in) {
         this.providerId = in.readString();

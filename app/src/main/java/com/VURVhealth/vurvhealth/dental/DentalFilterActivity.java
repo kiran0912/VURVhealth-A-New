@@ -154,4 +154,10 @@ public class DentalFilterActivity extends AppCompatActivity {
             }
         }
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        startActivity(new Intent(DentalFilterActivity.this, DentalListActivity.class));
+    }
 }
