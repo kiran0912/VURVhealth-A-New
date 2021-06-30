@@ -7,7 +7,18 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class FacilityDeatilResPayload implements Parcelable {
-    public static final Creator<FacilityDeatilResPayload> CREATOR = new C04971();
+
+    public static final Creator<FacilityDeatilResPayload> CREATOR = new Creator<FacilityDeatilResPayload>() {
+        @Override
+        public FacilityDeatilResPayload createFromParcel(Parcel parcel) {
+            return new FacilityDeatilResPayload(parcel);
+        }
+
+        @Override
+        public FacilityDeatilResPayload[] newArray(int i) {
+            return new FacilityDeatilResPayload[i];
+        }
+    };
     @SerializedName("Fac_AddLat")
     @Expose
     private String facAddLat;
@@ -53,20 +64,6 @@ public class FacilityDeatilResPayload implements Parcelable {
     @SerializedName("Fac_ZipCode")
     @Expose
     private String facZipCode;
-
-    /* renamed from: com.VURVhealth.VURVhealth.medical.facilityTypePojos.FacilityDeatilResPayload$1 */
-    static class C04971 implements Creator<FacilityDeatilResPayload> {
-        C04971() {
-        }
-
-        public FacilityDeatilResPayload createFromParcel(Parcel in) {
-            return new FacilityDeatilResPayload(in);
-        }
-
-        public FacilityDeatilResPayload[] newArray(int size) {
-            return new FacilityDeatilResPayload[size];
-        }
-    }
 
     public String getFacAddressType() {
         return this.facAddressType;

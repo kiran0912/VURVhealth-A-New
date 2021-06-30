@@ -150,7 +150,15 @@ public class SearchResultReqPayLoad {
     }
 
     public static class Result implements Parcelable {
-        public static final Creator<Result> CREATOR = new C06321();
+        public static final Creator<Result> CREATOR = new Creator<Result>() {
+            public Result createFromParcel(Parcel in) {
+                return new Result(in);
+            }
+
+            public Result[] newArray(int size) {
+                return new Result[size];
+            }
+        };
         @SerializedName("4Digit")
         @Expose
         private String _4Digit;
@@ -196,20 +204,6 @@ public class SearchResultReqPayLoad {
         @SerializedName("ZIP")
         @Expose
         private String zIP;
-
-        /* renamed from: com.VURVhealth.VURVhealth.prescriptions.SearchResultReqPayLoad$Result$1 */
-        static class C06321 implements Creator<Result> {
-            C06321() {
-            }
-
-            public Result createFromParcel(Parcel in) {
-                return new Result(in);
-            }
-
-            public Result[] newArray(int size) {
-                return new Result[size];
-            }
-        }
 
         protected Result(Parcel in) {
             this.nCPDP = in.readString();

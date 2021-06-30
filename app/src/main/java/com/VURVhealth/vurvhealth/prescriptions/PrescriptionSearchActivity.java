@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.location.Address;
 import android.location.Geocoder;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.BottomSheetDialog;
@@ -72,6 +73,7 @@ import com.VURVhealth.vurvhealth.retrofit.ApiClient;
 import com.VURVhealth.vurvhealth.retrofit.ApiInterface;
 import com.VURVhealth.vurvhealth.retrofit.Application_holder;
 import com.VURVhealth.vurvhealth.save.NoSavedItemActivity;
+import com.VURVhealth.vurvhealth.save.SaveItemActivity;
 import com.VURVhealth.vurvhealth.superappcompact.SuperAppCompactActivity;
 import com.VURVhealth.vurvhealth.utilities.UserSharedPreferences;
 import com.VURVhealth.vurvhealth.vurvidpackages.VurvPackageActivity;
@@ -127,7 +129,7 @@ public class PrescriptionSearchActivity extends SuperAppCompactActivity {
     private int pos;
     private String drugGenNDC;
     private String drugId;
-    private String drugNDC, drugNDC1, drugFormName;
+    private String drugNDC = "", drugNDC1 = "", drugFormName;
     private String drug_name = "", token = "";
     ArrayList<RecentDrugPojo> drugs;
     private boolean firstClick = false;
@@ -151,7 +153,7 @@ public class PrescriptionSearchActivity extends SuperAppCompactActivity {
     private RecyclerView search_list;
     private SwitchCompat switchDrug;
     private Context context = PrescriptionSearchActivity.this;
-    private  UserSharedPreferences sharedPreferences;
+    private UserSharedPreferences sharedPreferences;
 
 
     private TextView tvClear;
@@ -164,18 +166,21 @@ public class PrescriptionSearchActivity extends SuperAppCompactActivity {
     private Spinner str_of_drug_spinner, qnt_of_drug_spinner, type_of_drug_spinner;
     private TextView qnt_txt, str_txt;
     private ArrayList<String> drug_str_array = new ArrayList();
+    private ArrayList<String> drug_str_array1 = new ArrayList();
     private ArrayList<Integer> drug_id_array = new ArrayList();
     private ArrayList<String> drug_str_array_forms = new ArrayList<>();
+    private ArrayList<String> drug_str_array_forms1 = new ArrayList<>();
     private ArrayList<String> drug_qnt_array = new ArrayList();
+    private ArrayList<String> drug_qnt_array1 = new ArrayList();
     private ArrayList<Integer> drug_qnt_id_array = new ArrayList();
     private ArrayAdapter<String> strengthArrayAdapter;
 
     private StrengthSpinner strengthBaseAdapter;
     private QuantitySpinner quantitiyBaseAdapter;
-    private int perviousPos;
+    private int perviousPos, perviousPos1;
     private LinearLayout strength_ll_spinner, type_ll_spinner;
     private String TAG = "PrescriptionSearch";
-    private int drugFormPostion, drugQntyPosition;
+    private int drugFormPostion, drugFormPostion1, drugQntyPosition, drugQntyPosition1;
 
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -240,7 +245,6 @@ public class PrescriptionSearchActivity extends SuperAppCompactActivity {
 
         generateToken(Application_holder.client_code, Application_holder.client_secret);
 
-
         drug_str_array.add(getResources().getString(R.string.str_drug));
         strengthBaseAdapter = new StrengthSpinner(drug_str_array);
         str_of_drug_spinner.setAdapter(strengthBaseAdapter);
@@ -275,11 +279,16 @@ public class PrescriptionSearchActivity extends SuperAppCompactActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
 
-                if (drug_str_array.size() != 1&& drug_id_array!=null && drug_id_array.size()>0) {
+                if (drug_str_array.size() != 1 && drug_id_array != null && drug_id_array.size() > 0) {
                     perviousPos = drug_id_array.get(pos);
-
+                    if (drug_str_array1 != null && drug_str_array1.size() > 0) {
+                        String Strngth = drug_str_array.get(str_of_drug_spinner.getSelectedItemPosition());
+                        perviousPos1 = drug_str_array1.indexOf(Strngth);
+                    } else {
+                        perviousPos1 = -1;
+                    }
                     //getDrugQntService(tv_DrugName.getText().toString(), drug_str_array.get(pos));
-                    getDrugQntService1(token, tv_DrugName.getText().toString(), perviousPos);
+                    getDrugQntService1(token, tv_DrugName.getText().toString(), perviousPos, perviousPos1);
                 } else {
                     perviousPos = 0;
                 }
@@ -319,8 +328,19 @@ public class PrescriptionSearchActivity extends SuperAppCompactActivity {
         qnt_of_drug_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
-                if (drug_qnt_array.size() > 1 && drug_qnt_id_array!=null && drug_qnt_id_array.size()>0) {
+                if (drug_qnt_array.size() > 1 && drug_qnt_id_array != null && drug_qnt_id_array.size() > 0) {
                     drugQntyPosition = drug_qnt_id_array.get(pos);
+                    if (drug_qnt_array1 != null && drug_qnt_array1.size() > 0) {
+                        String Qunty = drug_qnt_array.get(qnt_of_drug_spinner.getSelectedItemPosition());
+                        if (drug_qnt_array1.contains(Qunty)) {
+                            drugQntyPosition1 = drug_qnt_array1.indexOf(Qunty);
+                        } else {
+                            drugQntyPosition1 = -1;
+                            drugQntyPosition1 = -1;
+                        }
+                    } else {
+                        drugQntyPosition1 = -1;
+                    }
                     if (strength_ll_spinner.getVisibility() == View.VISIBLE) {
                         //getDrugNdcService(tv_DrugName.getText().toString(), drug_str_array.get(str_of_drug_spinner.getSelectedItemPosition()), drug_qnt_array.get(pos));
                         getDrugNdcService1(token, tv_DrugName.getText().toString(), 0);
@@ -406,9 +426,9 @@ public class PrescriptionSearchActivity extends SuperAppCompactActivity {
         llHelp.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(PrescriptionSearchActivity.this, FreshdeskMainListActivity.class));
-//                startActivity(new Intent(PrescriptionSearchActivity.this, HelpActivity.class));
-                finish();
+                Uri uri = Uri.parse(Application_holder.help_url); // missing 'http://' will cause crashed
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(intent);
             }
         });
         btn_search.setOnClickListener(new OnClickListener() {
@@ -431,8 +451,8 @@ public class PrescriptionSearchActivity extends SuperAppCompactActivity {
                     Toast.makeText(getApplicationContext(), getResources().getString(R.string.plz_qnt_drug), Toast.LENGTH_SHORT).show();
                 } else if (tv_CityorZipcode.getText().toString().trim().length() < 5) {
                     Toast.makeText(getApplicationContext(), getResources().getString(R.string.valid_zip), Toast.LENGTH_SHORT).show();
-                }else {
-                    if(drug_qnt_array!=null) {
+                } else {
+                    if (drug_qnt_array != null) {
                         Editor editor = getSharedPreferences("SearchData", 0).edit();
                         editor.putString("drugId", drugId);
                         editor.putString("drugDose", drugDose);
@@ -446,10 +466,11 @@ public class PrescriptionSearchActivity extends SuperAppCompactActivity {
                         editor.putString("token", token);
                         editor.putString("drugNDC1", drugNDC1);
                         editor.putString("quantity", drug_qnt_array.get(qnt_of_drug_spinner.getSelectedItemPosition()));
+                        editor.putBoolean("switchGeneric", switchGeneric);
                         editor.commit();
                         hideKeyboard(PrescriptionSearchActivity.this);
                         startActivity(new Intent(context, BestPricesNearbyActivity.class));
-                    }else {
+                    } else {
                         Toast.makeText(context, R.string.server_not_found, Toast.LENGTH_SHORT).show();
                     }
                 }
@@ -564,7 +585,8 @@ public class PrescriptionSearchActivity extends SuperAppCompactActivity {
         gps.showSettingsAlert(PrescriptionSearchActivity.this);
     }
 
-    private void onResponseAppend(List<DrugNameRes1> allDrugs) {
+    private void onResponseAppend(List<DrugNameRes1> allDrugs, String query) {
+
         customAdapter1 = new CustomAdapter1(PrescriptionSearchActivity.this, allDrugs, "drugsFiled", "prescription");
         search_list.setAdapter(customAdapter1);
         //customAdapter.filter(drug_name);
@@ -572,8 +594,12 @@ public class PrescriptionSearchActivity extends SuperAppCompactActivity {
         search_list.setVisibility(View.VISIBLE);
         llswitch.setVisibility(View.GONE);
         llCitySearch.setVisibility(View.GONE);
-
         spinner_list_ll.setVisibility(View.GONE);
+
+        if (query.length()>8 && !drugNamesArray1.contains(query)){ //trifexsis
+            DialogClass.createDAlertDialog(context,getResources().getString(R.string.drug_not_found1));
+            search_list.setVisibility(View.GONE);
+        }
     }
 
     public void recentDrugList(String searchStr, int position, boolean recentItemClick) {
@@ -1144,7 +1170,7 @@ public class PrescriptionSearchActivity extends SuperAppCompactActivity {
         });
     }
 
-    private void getDrugNameService1(String token, String query, final String recentDrug) {
+    private void getDrugNameService1(String token, final String query, final String recentDrug) {
         ApiInterface apiService = ApiClient.getClient1(context).create(ApiInterface.class);
         apiService.getDrugName1(token, query).enqueue(new Callback<ArrayList<DrugNameRes1>>() {
             @Override
@@ -1161,8 +1187,11 @@ public class PrescriptionSearchActivity extends SuperAppCompactActivity {
                             stringList.add((drugNamesArray1.get(i)));
                         }
                         if (drugNamesArray1.size() > 0 && !recentDrug.equalsIgnoreCase("recentDrug") && tv_DrugName.getText().toString().length() > 2) {
-                            onResponseAppend(stringList);
+                            onResponseAppend(stringList, query);
                         }
+
+
+
                     } else if (tv_DrugName.getText().toString().length() > 2) {
                         llDrugSearch.setVisibility(View.GONE);
                         search_list.setVisibility(View.GONE);
@@ -1196,9 +1225,12 @@ public class PrescriptionSearchActivity extends SuperAppCompactActivity {
                     List<DrugNdcRes1.Drug.Value> ndcvalues = new ArrayList<>();
                     List<DrugNdcRes1.Drug.Value.Value_> ndcValues1 = new ArrayList<>();
                     List<DrugNdcRes1.Drug.Value.Value_.Value__> ndcValues2 = new ArrayList<>();
+                    ndcRes1List.clear();
+                    ndcvalues.clear();
+                    ndcValues1.clear();
+                    ndcValues2.clear();
                     ndcRes1List = response.body().getResult().getDrugs();
-                    Gson gson = new Gson();
-                    String dat = gson.toJson(response.body());
+                    String dat = new Gson().toJson(response.body());
                     Log.v("TAG", "Response getDrugNdc -->" + dat);
 
                     if (response != null && response.body() != null && ndcRes1List != null
@@ -1209,12 +1241,17 @@ public class PrescriptionSearchActivity extends SuperAppCompactActivity {
                             ndcValues2 = ndcValues1.get(perviousPos).getValues();
                             drugNDC = ndcValues2.get(drugQntyPosition).getValue().getNDC();
 
-                            if (ndcRes1List.size() > 1) {
+                            if (ndcRes1List.size() > 1 && drugQntyPosition1 != -1 && drugFormPostion1 != -1
+                                    && perviousPos1 != -1) {
+                                ndcvalues.clear();
+                                ndcValues1.clear();
+                                ndcValues2.clear();
                                 ndcvalues = ndcRes1List.get(1).getValues();
-                                ndcValues1 = ndcvalues.get(0).getValues();
-                                ndcValues2 = ndcValues1.get(0).getValues();
-                                if (ndcValues2!=null && ndcValues2.size()>0) {
-                                    drugNDC1 = ndcValues2.get(0).getValue().getNDC();
+                                ndcValues1 = ndcvalues.get(drugFormPostion1).getValues();
+                                ndcValues2 = ndcValues1.get(perviousPos1).getValues();
+                                if (ndcValues2 != null && ndcValues2.size() > 0) {
+
+                                    drugNDC1 = ndcValues2.get(drugQntyPosition1).getValue().getNDC();
                                 }
                             }
                         }
@@ -1265,6 +1302,15 @@ public class PrescriptionSearchActivity extends SuperAppCompactActivity {
                         drug_str_array_forms.add(ndcvalues.get(i).getForm());
                     }
 
+                    if (ndcRes1List != null && ndcRes1List.size() > 1) {
+                        ndcvalues.clear();
+                        drug_str_array_forms1.clear();
+                        ndcvalues = ndcRes1List.get(1).getValues();
+                        for (int i = 0; i < ndcvalues.size(); i++) {
+                            drug_str_array_forms1.add(ndcvalues.get(i).getForm());
+                        }
+                    }
+
                     if (drug_str_array_forms.size() > 0) {
                         CustomAdapter2 adapter = new CustomAdapter2(drug_str_array_forms);
                         search_list.setAdapter(adapter);
@@ -1294,7 +1340,7 @@ public class PrescriptionSearchActivity extends SuperAppCompactActivity {
         });
     }
 
-    private void getDrugStrengthService1(final String token, String seoName, final int position) {
+    private void getDrugStrengthService1(final String token, String seoName, final int position, final int position1) {
         showProgressDialog(context);
         ApiInterface apiService = ApiClient.getClient1(context).create(ApiInterface.class);
         apiService.getDrugNdc1(token, seoName, 0).enqueue(new Callback<DrugNdcRes1>() {
@@ -1305,6 +1351,8 @@ public class PrescriptionSearchActivity extends SuperAppCompactActivity {
                     List<DrugNdcRes1.Drug> ndcRes1List = new ArrayList<>();
                     List<DrugNdcRes1.Drug.Value> ndcvalues = new ArrayList<>();
                     List<DrugNdcRes1.Drug.Value.Value_> ndcValues1 = new ArrayList<>();
+                    List<DrugNdcRes1.Drug.Value> ndcvalues1 = new ArrayList<>();
+                    List<DrugNdcRes1.Drug.Value.Value_> ndcValues11 = new ArrayList<>();
                     ndcRes1List = response.body().getResult().getDrugs();
                     Gson gson = new Gson();
                     String dat = gson.toJson(response.body());
@@ -1319,6 +1367,16 @@ public class PrescriptionSearchActivity extends SuperAppCompactActivity {
                         for (int k = 0; k < ndcValues1.size(); k++) {
                             drug_str_array.add(ndcValues1.get(k).getDosage());
                             drug_id_array.add(k);
+                        }
+
+                        if (ndcRes1List.size() > 1 && isGeneric == false && position1 != -1) {
+                            ndcvalues1 = ndcRes1List.get(1).getValues();
+                            ndcValues11 = ndcvalues1.get(position1).getValues();
+                            drug_str_array1.clear();
+                            //drug_str_array1.add("Drug strength");
+                            for (int k = 0; k < ndcValues11.size(); k++) {
+                                drug_str_array1.add(ndcValues11.get(k).getDosage());
+                            }
                         }
 
                         if (drug_str_array.size() > 1) { // again change SpinnerList
@@ -1352,7 +1410,7 @@ public class PrescriptionSearchActivity extends SuperAppCompactActivity {
         });
     }
 
-    private void getDrugQntService1(String token, String seoName, final int position) {
+    private void getDrugQntService1(String token, String seoName, final int position, final int position1) {
         showProgressDialog(context);
         ApiInterface apiService = ApiClient.getClient1(context).create(ApiInterface.class);
         apiService.getDrugNdc1(token, seoName, 0).enqueue(new Callback<DrugNdcRes1>() {
@@ -1364,6 +1422,9 @@ public class PrescriptionSearchActivity extends SuperAppCompactActivity {
                     List<DrugNdcRes1.Drug.Value> ndcvalues = new ArrayList<>();
                     List<DrugNdcRes1.Drug.Value.Value_> ndcValues1 = new ArrayList<>();
                     List<DrugNdcRes1.Drug.Value.Value_.Value__> ndcValues2 = new ArrayList<>();
+                    List<DrugNdcRes1.Drug.Value> ndcvalues1 = new ArrayList<>();
+                    List<DrugNdcRes1.Drug.Value.Value_> ndcValues11 = new ArrayList<>();
+                    List<DrugNdcRes1.Drug.Value.Value_.Value__> ndcValues21 = new ArrayList<>();
                     ndcRes1List = response.body().getResult().getDrugs();
                     Gson gson = new Gson();
                     String dat = gson.toJson(response.body());
@@ -1383,7 +1444,21 @@ public class PrescriptionSearchActivity extends SuperAppCompactActivity {
                             isGeneric = ndcValues2.get(k).getValue().getIsGeneric();
 
                         }
+
+                        if (ndcRes1List.size() > 1 && isGeneric == false
+                                && drugFormPostion1 != -1 && position1 != -1) {
+                            drug_qnt_array1.clear();
+                            //drug_qnt_array1.add(getResources().getString(R.string.qnt_drug));
+                            ndcvalues1 = ndcRes1List.get(1).getValues();
+                            ndcValues11 = ndcvalues1.get(drugFormPostion1).getValues();
+                            ndcValues21 = ndcValues11.get(position1).getValues();
+                            for (int k = 0; k < ndcValues21.size(); k++) {
+                                drug_qnt_array1.add(ndcValues21.get(k).getQuantity());
+                            }
+                        }
                     }
+
+
                     dismissProgressDialog();
                 } else {
                     Toast.makeText(getApplicationContext(), getResources().getString(R.string.server_not_found), Toast.LENGTH_SHORT).show();
@@ -1442,10 +1517,17 @@ public class PrescriptionSearchActivity extends SuperAppCompactActivity {
                     Log.v(TAG, "drugFormName: " + drugFormName);
                     drugFormPostion = position;
                     Log.v(TAG, "drugFormPostion: " + drugFormPostion);
+
+                    if (drug_str_array_forms1 != null && drug_str_array_forms1.size() > 0 && drug_str_array_forms1.contains(drugFormName)) {
+                        drugFormPostion1 = drug_str_array_forms1.indexOf(drugFormName);
+                    } else {
+                        drugFormPostion1 = -1;
+                    }
+
                     spinner_list_ll.setVisibility(View.VISIBLE);
                     search_list.setVisibility(View.GONE);
                     hideKeyboard(PrescriptionSearchActivity.this);
-                    getDrugStrengthService1(token, tv_DrugName.getText().toString(), position);
+                    getDrugStrengthService1(token, tv_DrugName.getText().toString(), position, drugFormPostion1);
                 }
             });
         }

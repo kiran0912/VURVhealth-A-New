@@ -22,95 +22,75 @@ public class VisionFilterActivity extends AppCompatActivity {
     private TextView tvApply;
     private TextView tvReset;
 
-    /* renamed from: com.VURVhealth.VURVhealth.vision.VisionFilterActivity$1 */
-    class C08031 implements OnClickListener {
-        C08031() {
-        }
-
-        public void onClick(View v) {
-            if (VisionFilterActivity.this.sort_check1.getVisibility() == View.VISIBLE) {
-                VisionFilterActivity.this.sort_check1.setVisibility(View.INVISIBLE);
-                VisionFilterActivity.maleClick = false;
-                return;
-            }
-            VisionFilterActivity.maleClick = true;
-            VisionFilterActivity.this.sort_check1.setVisibility(View.VISIBLE);
-        }
-    }
-
-    /* renamed from: com.VURVhealth.VURVhealth.vision.VisionFilterActivity$2 */
-    class C08042 implements OnClickListener {
-        C08042() {
-        }
-
-        public void onClick(View v) {
-            if (VisionFilterActivity.this.sort_check2.getVisibility() == View.VISIBLE) {
-                VisionFilterActivity.femaleClick = false;
-                VisionFilterActivity.this.sort_check2.setVisibility(View.INVISIBLE);
-                return;
-            }
-            VisionFilterActivity.femaleClick = true;
-            VisionFilterActivity.this.sort_check2.setVisibility(View.VISIBLE);
-        }
-    }
-
-    /* renamed from: com.VURVhealth.VURVhealth.vision.VisionFilterActivity$3 */
-    class C08053 implements OnClickListener {
-        C08053() {
-        }
-
-        public void onClick(View v) {
-            VisionFilterActivity.femaleClick = false;
-            VisionFilterActivity.maleClick = false;
-            VisionFilterActivity.this.sort_check1.setVisibility(View.INVISIBLE);
-            VisionFilterActivity.this.sort_check2.setVisibility(View.INVISIBLE);
-        }
-    }
-
-    /* renamed from: com.VURVhealth.VURVhealth.vision.VisionFilterActivity$4 */
-    class C08064 implements OnClickListener {
-        C08064() {
-        }
-
-        public void onClick(View v) {
-            Intent i = new Intent(VisionFilterActivity.this, VisionListActivity.class);
-            i.putExtra("male", VisionFilterActivity.this.sort_check1.getVisibility() == View.VISIBLE ? "male" : "");
-            i.putExtra("female", VisionFilterActivity.this.sort_check2.getVisibility() == View.VISIBLE ? "female" : "");
-            VisionFilterActivity.this.setResult(101, i);
-            VisionFilterActivity.this.finish();
-        }
-    }
-
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.filter_prescription_screen);
-        this.tvApply = (TextView) findViewById(R.id.tvApply);
-        this.tvReset = (TextView) findViewById(R.id.tvReset);
-        this.male = (TextView) findViewById(R.id.tvPrice);
-        this.female = (TextView) findViewById(R.id.tvDistance);
-        this.ll_male = (LinearLayout) findViewById(R.id.llPrice);
-        this.llFemale = (LinearLayout) findViewById(R.id.llDistance);
-        this.sort_check1 = (ImageView) findViewById(R.id.sort_check2);
-        this.sort_check2 = (ImageView) findViewById(R.id.sort_check1);
-        this.male.setText(getResources().getString(R.string.male));
-        this.female.setText(getResources().getString(R.string.female));
-        this.ll_male.setOnClickListener(new C08031());
-        this.llFemale.setOnClickListener(new C08042());
-        this.tvReset.setOnClickListener(new C08053());
-        this.tvApply.setOnClickListener(new C08064());
+        tvApply = (TextView) findViewById(R.id.tvApply);
+        tvReset = (TextView) findViewById(R.id.tvReset);
+        male = (TextView) findViewById(R.id.tvPrice);
+        female = (TextView) findViewById(R.id.tvDistance);
+        ll_male = (LinearLayout) findViewById(R.id.llPrice);
+        llFemale = (LinearLayout) findViewById(R.id.llDistance);
+        sort_check1 = (ImageView) findViewById(R.id.sort_check2);
+        sort_check2 = (ImageView) findViewById(R.id.sort_check1);
+        male.setText(getResources().getString(R.string.male));
+        female.setText(getResources().getString(R.string.female));
+        ll_male.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (sort_check1.getVisibility() == View.VISIBLE) {
+                    sort_check1.setVisibility(View.INVISIBLE);
+                    maleClick = false;
+                    return;
+                }
+                maleClick = true;
+                sort_check1.setVisibility(View.VISIBLE);
+            }
+        });
+        llFemale.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (sort_check2.getVisibility() == View.VISIBLE) {
+                    femaleClick = false;
+                    sort_check2.setVisibility(View.INVISIBLE);
+                    return;
+                }
+                femaleClick = true;
+                sort_check2.setVisibility(View.VISIBLE);
+            }
+        });
+        tvReset.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                femaleClick = false;
+                maleClick = false;
+                sort_check1.setVisibility(View.INVISIBLE);
+                sort_check2.setVisibility(View.INVISIBLE);
+            }
+        });
+        tvApply.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(VisionFilterActivity.this, VisionListActivity.class);
+                i.putExtra("male", sort_check1.getVisibility() == View.VISIBLE ? "male" : "");
+                i.putExtra("female", sort_check2.getVisibility() == View.VISIBLE ? "female" : "");
+                setResult(101, i);
+                finish();
+            }
+        });
     }
 
     protected void onResume() {
         super.onResume();
         if (maleClick) {
-            this.sort_check1.setVisibility(View.VISIBLE);
+            sort_check1.setVisibility(View.VISIBLE);
         } else {
-            this.sort_check1.setVisibility(View.GONE);
+            sort_check1.setVisibility(View.GONE);
         }
         if (femaleClick) {
-            this.sort_check2.setVisibility(View.VISIBLE);
+            sort_check2.setVisibility(View.VISIBLE);
         } else {
-            this.sort_check2.setVisibility(View.GONE);
+            sort_check2.setVisibility(View.GONE);
         }
     }
 

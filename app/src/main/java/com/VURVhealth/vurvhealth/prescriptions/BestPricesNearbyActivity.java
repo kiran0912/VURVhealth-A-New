@@ -110,9 +110,9 @@ public class BestPricesNearbyActivity extends SuperAppCompactActivity {
             }
         });
 
-        if (getIntent() != null) {
+        /*if (getIntent() != null) {
             switchGeneric = getIntent().getBooleanExtra("switchGeneric", true);
-        }
+        }*/
 
         SharedPreferences getSharedData = getSharedPreferences("SearchData", 0);
         if (getSharedData != null) {
@@ -126,6 +126,7 @@ public class BestPricesNearbyActivity extends SuperAppCompactActivity {
             drugDose = getSharedData.getString("drugDose", "");
             location = getSharedData.getString(Param.LOCATION, "");
             drugType = getSharedData.getString("drugType", "");
+            switchGeneric = getSharedData.getBoolean("switchGeneric", true);
             Log.v("BestPrice", "NDCData: " + drugNDC);
             Log.v("BestPrice", "NDCData1: " + drugNDC1);
         }
@@ -141,9 +142,9 @@ public class BestPricesNearbyActivity extends SuperAppCompactActivity {
         genericsearchResultResPayLoads1.clear();
 
         if (checkInternet()) {
-            if (isGeneric == false) {
+            if (isGeneric == false && drugNDC.length() != 0 && zipCode.length() != 0 && quantity.length() != 0) {
                 getBrandSearchResultService1(token, drugNDC, zipCode, quantity);
-                if (drugNDC1 != null && drugNDC1.length() != 0) {
+                if (drugNDC1 != null && drugNDC1.length() != 0 && switchGeneric == true) {
                     getGenericSearchResultService1(token, drugNDC1, zipCode, quantity);
                 } else {
                     txt_generic.setVisibility(View.GONE);
@@ -186,9 +187,7 @@ public class BestPricesNearbyActivity extends SuperAppCompactActivity {
                 if (brandsearchResultResPayLoads1 != null && brandsearchResultResPayLoads1.size() > 0 ||
                         genericsearchResultResPayLoads1 != null && genericsearchResultResPayLoads1.size() > 0) {
                     Intent intent = new Intent(BestPricesNearbyActivity.this, PrescriptionMapActivity.class);
-                    intent.putExtra("switchGeneric", switchGeneric);
                     startActivity(intent);
-                    finish();
                 } else {
                     Toast.makeText(BestPricesNearbyActivity.this, R.string.no_data_found, Toast.LENGTH_SHORT).show();
                 }
@@ -210,52 +209,55 @@ public class BestPricesNearbyActivity extends SuperAppCompactActivity {
         apiService.getPrice1(token, ndc, zipCode, quantity).enqueue(new Callback<DrugSearchResultResPayLoad1>() {
             @Override
             public void onResponse(Call<DrugSearchResultResPayLoad1> call, Response<DrugSearchResultResPayLoad1> response) {
+                if (response.isSuccessful()) {
+                    if (response.body().getResult() != null) {
+                        if (response.body().getResult().getPharmacyPricings() != null && response.body().getResult().getPharmacyPricings().size() > 0) {
+                            for (int i = 0; i < response.body().getResult().getPharmacyPricings().size(); i++) {
+                                DrugSearchResultResPayLoad1.Result.PharmacyPricing pharmacyPricing = new DrugSearchResultResPayLoad1.Result.PharmacyPricing();
 
-                if (response.body().getResult() != null) {
-                    if (response.body().getResult().getPharmacyPricings() != null && response.body().getResult().getPharmacyPricings().size() > 0) {
-                        for (int i = 0; i < response.body().getResult().getPharmacyPricings().size(); i++) {
-                            DrugSearchResultResPayLoad1.Result.PharmacyPricing pharmacyPricing = new DrugSearchResultResPayLoad1.Result.PharmacyPricing();
+                                DrugSearchResultResPayLoad1.Result.PharmacyPricing.Pharmacy pharmacy = new DrugSearchResultResPayLoad1.Result.PharmacyPricing.Pharmacy();
+                                pharmacy.setName(response.body().getResult().getPharmacyPricings().get(i).getPharmacy().getName());
+                                pharmacy.setDistance(response.body().getResult().getPharmacyPricings().get(i).getPharmacy().getDistance());
 
-                            DrugSearchResultResPayLoad1.Result.PharmacyPricing.Pharmacy pharmacy = new DrugSearchResultResPayLoad1.Result.PharmacyPricing.Pharmacy();
-                            pharmacy.setName(response.body().getResult().getPharmacyPricings().get(i).getPharmacy().getName());
-                            pharmacy.setDistance(response.body().getResult().getPharmacyPricings().get(i).getPharmacy().getDistance());
+                                DrugSearchResultResPayLoad1.Result.PharmacyPricing.Pharmacy.Address address = new DrugSearchResultResPayLoad1.Result.PharmacyPricing.Pharmacy.Address();
+                                address.setCity(response.body().getResult().getPharmacyPricings().get(i).getPharmacy().getAddress().getCity());
+                                address.setState(response.body().getResult().getPharmacyPricings().get(i).getPharmacy().getAddress().getState());
+                                address.setPostalCode(response.body().getResult().getPharmacyPricings().get(i).getPharmacy().getAddress().getPostalCode());
+                                address.setLatitude(response.body().getResult().getPharmacyPricings().get(i).getPharmacy().getAddress().getLatitude());
+                                address.setLongitude(response.body().getResult().getPharmacyPricings().get(i).getPharmacy().getAddress().getLongitude());
+                                address.setFullAddress(response.body().getResult().getPharmacyPricings().get(i).getPharmacy().getAddress().getFullAddress());
+                                address.setAddress1(response.body().getResult().getPharmacyPricings().get(i).getPharmacy().getAddress().getAddress1());
+                                pharmacy.setAddress(address);
 
-                            DrugSearchResultResPayLoad1.Result.PharmacyPricing.Pharmacy.Address address = new DrugSearchResultResPayLoad1.Result.PharmacyPricing.Pharmacy.Address();
-                            address.setCity(response.body().getResult().getPharmacyPricings().get(i).getPharmacy().getAddress().getCity());
-                            address.setState(response.body().getResult().getPharmacyPricings().get(i).getPharmacy().getAddress().getState());
-                            address.setPostalCode(response.body().getResult().getPharmacyPricings().get(i).getPharmacy().getAddress().getPostalCode());
-                            address.setLatitude(response.body().getResult().getPharmacyPricings().get(i).getPharmacy().getAddress().getLatitude());
-                            address.setLongitude(response.body().getResult().getPharmacyPricings().get(i).getPharmacy().getAddress().getLongitude());
-                            address.setFullAddress(response.body().getResult().getPharmacyPricings().get(i).getPharmacy().getAddress().getFullAddress());
-                            address.setAddress1(response.body().getResult().getPharmacyPricings().get(i).getPharmacy().getAddress().getAddress1());
-                            pharmacy.setAddress(address);
+                                pharmacyPricing.setDrugType("Brand");
+                                pharmacyPricing.setPrices(response.body().getResult().getPharmacyPricings().get(i).getPrices());
+                                pharmacyPricing.setPharmacy(pharmacy);
+                                brandsearchResultResPayLoads1.add(pharmacyPricing);
 
-                            pharmacyPricing.setDrugType("Brand");
-                            pharmacyPricing.setPrices(response.body().getResult().getPharmacyPricings().get(i).getPrices());
-                            pharmacyPricing.setPharmacy(pharmacy);
-                            brandsearchResultResPayLoads1.add(pharmacyPricing);
+                            }
+                            if (brandsearchResultResPayLoads1 != null && brandsearchResultResPayLoads1.size() > 0) {
+                                //Collections.sort(brandsearchResultResPayLoads1, priceSort1);
+                                rv_brand.setVisibility(View.VISIBLE);
+                                no_data_brand.setVisibility(View.GONE);
+                                tvZipcode.setText(userSharedPreferences.getData("zipCode") == null ? " " : userSharedPreferences.getData("zipCode") + ", " + (brandsearchResultResPayLoads1.get(0).getPharmacy().getAddress().getState()));
+                                mAdapter = new BestPriceNearbyAdapter1(context, brandsearchResultResPayLoads1, "");
+                                rv_brand.setAdapter(mAdapter);
+                                UserSharedPreferences.getInstance(context).SaveData("zipCode", zipCode);
+                                //filterByPrice();
 
-                        }
-                        if (brandsearchResultResPayLoads1 != null && brandsearchResultResPayLoads1.size() > 0) {
-                            //Collections.sort(brandsearchResultResPayLoads1, priceSort1);
-                            rv_brand.setVisibility(View.VISIBLE);
-                            no_data_brand.setVisibility(View.GONE);
-                            tvZipcode.setText(userSharedPreferences.getData("zipCode") == null ? " " : userSharedPreferences.getData("zipCode") + ", " + (brandsearchResultResPayLoads1.get(0).getPharmacy().getAddress().getState()));
-                            mAdapter = new BestPriceNearbyAdapter1(context, brandsearchResultResPayLoads1, "");
-                            rv_brand.setAdapter(mAdapter);
-                            UserSharedPreferences.getInstance(context).SaveData("zipCode", zipCode);
-                            //filterByPrice();
-
+                            } else {
+                                tv_brand.setVisibility(View.VISIBLE);
+                                no_data_brand.setVisibility(View.VISIBLE);
+                                rv_brand.setVisibility(View.GONE);
+                            }
                         } else {
-                            tv_brand.setVisibility(View.VISIBLE);
-                            no_data_brand.setVisibility(View.VISIBLE);
-                            rv_brand.setVisibility(View.GONE);
+                            DialogClass.createDAlertDialog(context, drugNDC == "" ? getResources().getString(R.string.drug_not_found) : getResources().getString(R.string.no_pharma));
                         }
                     } else {
-                        DialogClass.createDAlertDialog(context, drugNDC == "" ? getResources().getString(R.string.drug_not_found) : getResources().getString(R.string.no_pharma));
+                        Toast.makeText(context, response.body().getErrorMessage(), Toast.LENGTH_SHORT).show();
                     }
                 } else {
-                    Toast.makeText(context, response.body().getErrorMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(BestPricesNearbyActivity.this, R.string.server_not_found, Toast.LENGTH_SHORT).show();
                 }
 
                 dismissProgressDialog();
@@ -264,7 +266,7 @@ public class BestPricesNearbyActivity extends SuperAppCompactActivity {
             @Override
             public void onFailure(Call<DrugSearchResultResPayLoad1> call, Throwable t) {
                 dismissProgressDialog();
-                DialogClass.createDActionAlertDialog(context, "Server not found");
+                DialogClass.createDActionAlertDialog(context, getResources().getString(R.string.server_not_found));
             }
         });
     }
@@ -277,66 +279,70 @@ public class BestPricesNearbyActivity extends SuperAppCompactActivity {
         apiService.getPrice1(token, ndc, zipCode, quantity).enqueue(new Callback<DrugSearchResultResPayLoad1>() {
             @Override
             public void onResponse(Call<DrugSearchResultResPayLoad1> call, Response<DrugSearchResultResPayLoad1> response) {
-                if (response.body().getResult() != null) {
-                    if (genericsearchResultResPayLoads1 != null && response.body().getResult().getPharmacyPricings().size() > 0) {
-                        for (int i = 0; i < response.body().getResult().getPharmacyPricings().size(); i++) {
-                            DrugSearchResultResPayLoad1.Result.PharmacyPricing pharmacyPricing = new DrugSearchResultResPayLoad1.Result.PharmacyPricing();
+                if (response.isSuccessful()) {
+                    if (response.body().getResult() != null) {
+                        if (response.body().getResult().getPharmacyPricings() != null && response.body().getResult().getPharmacyPricings().size() > 0) {
+                            for (int i = 0; i < response.body().getResult().getPharmacyPricings().size(); i++) {
+                                DrugSearchResultResPayLoad1.Result.PharmacyPricing pharmacyPricing = new DrugSearchResultResPayLoad1.Result.PharmacyPricing();
 
-                            DrugSearchResultResPayLoad1.Result.PharmacyPricing.Pharmacy pharmacy = new DrugSearchResultResPayLoad1.Result.PharmacyPricing.Pharmacy();
-                            pharmacy.setName(response.body().getResult().getPharmacyPricings().get(i).getPharmacy().getName());
-                            pharmacy.setDistance(response.body().getResult().getPharmacyPricings().get(i).getPharmacy().getDistance());
+                                DrugSearchResultResPayLoad1.Result.PharmacyPricing.Pharmacy pharmacy = new DrugSearchResultResPayLoad1.Result.PharmacyPricing.Pharmacy();
+                                pharmacy.setName(response.body().getResult().getPharmacyPricings().get(i).getPharmacy().getName());
+                                pharmacy.setDistance(response.body().getResult().getPharmacyPricings().get(i).getPharmacy().getDistance());
 
-                            DrugSearchResultResPayLoad1.Result.PharmacyPricing.Pharmacy.Address address = new DrugSearchResultResPayLoad1.Result.PharmacyPricing.Pharmacy.Address();
-                            address.setCity(response.body().getResult().getPharmacyPricings().get(i).getPharmacy().getAddress().getCity());
-                            address.setState(response.body().getResult().getPharmacyPricings().get(i).getPharmacy().getAddress().getState());
-                            address.setPostalCode(response.body().getResult().getPharmacyPricings().get(i).getPharmacy().getAddress().getPostalCode());
-                            address.setLatitude(response.body().getResult().getPharmacyPricings().get(i).getPharmacy().getAddress().getLatitude());
-                            address.setLongitude(response.body().getResult().getPharmacyPricings().get(i).getPharmacy().getAddress().getLongitude());
-                            address.setFullAddress(response.body().getResult().getPharmacyPricings().get(i).getPharmacy().getAddress().getFullAddress());
-                            address.setAddress1(response.body().getResult().getPharmacyPricings().get(i).getPharmacy().getAddress().getAddress1());
-                            pharmacy.setAddress(address);
+                                DrugSearchResultResPayLoad1.Result.PharmacyPricing.Pharmacy.Address address = new DrugSearchResultResPayLoad1.Result.PharmacyPricing.Pharmacy.Address();
+                                address.setCity(response.body().getResult().getPharmacyPricings().get(i).getPharmacy().getAddress().getCity());
+                                address.setState(response.body().getResult().getPharmacyPricings().get(i).getPharmacy().getAddress().getState());
+                                address.setPostalCode(response.body().getResult().getPharmacyPricings().get(i).getPharmacy().getAddress().getPostalCode());
+                                address.setLatitude(response.body().getResult().getPharmacyPricings().get(i).getPharmacy().getAddress().getLatitude());
+                                address.setLongitude(response.body().getResult().getPharmacyPricings().get(i).getPharmacy().getAddress().getLongitude());
+                                address.setFullAddress(response.body().getResult().getPharmacyPricings().get(i).getPharmacy().getAddress().getFullAddress());
+                                address.setAddress1(response.body().getResult().getPharmacyPricings().get(i).getPharmacy().getAddress().getAddress1());
+                                pharmacy.setAddress(address);
 
-                            pharmacyPricing.setDrugType("Generic");
-                            pharmacyPricing.setPrices(response.body().getResult().getPharmacyPricings().get(i).getPrices());
-                            pharmacyPricing.setPharmacy(pharmacy);
-                            genericsearchResultResPayLoads1.add(pharmacyPricing);
-                        }
-                        if (genericsearchResultResPayLoads1.size() > 0) {
-                            UserSharedPreferences.getInstance(context).SaveData("zipCode", zipCode);
-                            //insertRecentSeach();
-                            if (switchGeneric == true) {
-                                if (genericsearchResultResPayLoads1 == null || genericsearchResultResPayLoads1.size() <= 0) {
-                                    no_data_generic.setVisibility(View.VISIBLE);
-                                    txt_generic.setVisibility(View.VISIBLE);
-                                    rv_place.setVisibility(View.GONE);
+                                pharmacyPricing.setDrugType("Generic");
+                                pharmacyPricing.setPrices(response.body().getResult().getPharmacyPricings().get(i).getPrices());
+                                pharmacyPricing.setPharmacy(pharmacy);
+                                genericsearchResultResPayLoads1.add(pharmacyPricing);
+                            }
+                            if (genericsearchResultResPayLoads1.size() > 0) {
+                                UserSharedPreferences.getInstance(context).SaveData("zipCode", zipCode);
+                                //insertRecentSeach();
+                                if (switchGeneric == true) {
+                                    if (genericsearchResultResPayLoads1 == null || genericsearchResultResPayLoads1.size() <= 0) {
+                                        no_data_generic.setVisibility(View.VISIBLE);
+                                        txt_generic.setVisibility(View.VISIBLE);
+                                        rv_place.setVisibility(View.GONE);
+                                    } else {
+                                        //Collections.sort(genericsearchResultResPayLoads1, priceSort1);
+                                        tvZipcode.setText(userSharedPreferences.getData("zipCode") == null ? " " : userSharedPreferences.getData("zipCode") + ", " + (genericsearchResultResPayLoads1.get(0).getPharmacy().getAddress().getState()));
+                                        mAdapterGeneric = new BestPriceNearbyAdapter1(context, genericsearchResultResPayLoads1, "");
+                                        rv_place.setAdapter(mAdapterGeneric);
+                                        rv_place.setVisibility(View.VISIBLE);
+                                        no_data_generic.setVisibility(View.GONE);
+                                        PrescriptionFilterActivity.checkedItem = Param.PRICE;
+                                        //filterByPrice();
+                                    }
                                 } else {
-                                    //Collections.sort(genericsearchResultResPayLoads1, priceSort1);
-                                    tvZipcode.setText(userSharedPreferences.getData("zipCode") == null ? " " : userSharedPreferences.getData("zipCode") + ", " + (genericsearchResultResPayLoads1.get(0).getPharmacy().getAddress().getState()));
-                                    mAdapterGeneric = new BestPriceNearbyAdapter1(context, genericsearchResultResPayLoads1, "");
-                                    rv_place.setAdapter(mAdapterGeneric);
-                                    rv_place.setVisibility(View.VISIBLE);
-                                    no_data_generic.setVisibility(View.GONE);
-                                    PrescriptionFilterActivity.checkedItem = Param.PRICE;
-                                    //filterByPrice();
+                                    txt_generic.setVisibility(View.GONE);
+                                    rv_place.setVisibility(View.GONE);
+                                    rv_brand.setVisibility(View.GONE);
+                                    tv_brand.setVisibility(View.VISIBLE);
+                                    no_data_brand.setVisibility(View.VISIBLE);
                                 }
                             } else {
-                                txt_generic.setVisibility(View.GONE);
+                                no_data_generic.setVisibility(View.VISIBLE);
+                                txt_generic.setVisibility(View.VISIBLE);
                                 rv_place.setVisibility(View.GONE);
-                                rv_brand.setVisibility(View.GONE);
-                                tv_brand.setVisibility(View.VISIBLE);
-                                no_data_brand.setVisibility(View.VISIBLE);
+                                //DialogClass.createDAlertDialog(context, drugNDC == "" ? getResources().getString(R.string.drug_not_found) : getResources().getString(R.string.no_pharma));
                             }
                         } else {
-                            no_data_generic.setVisibility(View.VISIBLE);
-                            txt_generic.setVisibility(View.VISIBLE);
-                            rv_place.setVisibility(View.GONE);
-                            //DialogClass.createDAlertDialog(context, drugNDC == "" ? getResources().getString(R.string.drug_not_found) : getResources().getString(R.string.no_pharma));
+                            DialogClass.createDAlertDialog(context, drugNDC == "" ? getResources().getString(R.string.drug_not_found) : getResources().getString(R.string.no_pharma));
                         }
                     } else {
-                        DialogClass.createDAlertDialog(context, drugNDC == "" ? getResources().getString(R.string.drug_not_found) : getResources().getString(R.string.no_pharma));
+                        Toast.makeText(context, response.body().getErrorMessage(), Toast.LENGTH_SHORT).show();
                     }
                 } else {
-                    Toast.makeText(context, response.body().getErrorMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(BestPricesNearbyActivity.this, R.string.server_not_found, Toast.LENGTH_SHORT).show();
                 }
 
                 if (pDialog1 != null && pDialog1.isShowing()) {

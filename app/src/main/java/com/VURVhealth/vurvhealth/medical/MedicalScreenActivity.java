@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.SharedPreferences.Editor;
 import android.location.Address;
 import android.location.Geocoder;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
@@ -63,6 +64,7 @@ import com.VURVhealth.vurvhealth.retrofit.ApiClient;
 import com.VURVhealth.vurvhealth.retrofit.ApiInterface;
 import com.VURVhealth.vurvhealth.retrofit.Application_holder;
 import com.VURVhealth.vurvhealth.save.NoSavedItemActivity;
+import com.VURVhealth.vurvhealth.save.SaveItemActivity;
 import com.VURVhealth.vurvhealth.superappcompact.SuperAppCompactActivity;
 import com.VURVhealth.vurvhealth.utilities.StatusResponseForTotalProject;
 import com.VURVhealth.vurvhealth.vurvidpackages.VurvPackageActivity;
@@ -184,6 +186,7 @@ public class MedicalScreenActivity extends SuperAppCompactActivity implements On
         } else {
             tvBanner.setVisibility(View.VISIBLE);
         }
+        hideKeyboard(MedicalScreenActivity.this);
         seekbarDoctors = (RangeSliderView) findViewById(R.id.seekbarDoctors);
         RangeSliderView.OnSlideListener listener = (RangeSliderView.OnSlideListener) new RangeSliderView.OnSlideListener() {
             @Override
@@ -306,9 +309,9 @@ public class MedicalScreenActivity extends SuperAppCompactActivity implements On
         llHelp.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MedicalScreenActivity.this, FreshdeskMainListActivity.class));
-//                startActivity(new Intent(MedicalScreenActivity.this, HelpActivity.class));
-                finish();
+                Uri uri = Uri.parse(Application_holder.help_url); // missing 'http://' will cause crashed
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(intent);
             }
         });
         tv_language.setOnClickListener(new OnClickListener() {
@@ -463,6 +466,7 @@ public class MedicalScreenActivity extends SuperAppCompactActivity implements On
             public void onNothingSelected(AdapterView<?> adapterView) {
             }
         });
+
     }
 
     private void getFacilityTypeService() {
@@ -841,6 +845,7 @@ public class MedicalScreenActivity extends SuperAppCompactActivity implements On
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (data == null) {
+
             return;
         }
         if (requestCode == 100) {
@@ -851,6 +856,7 @@ public class MedicalScreenActivity extends SuperAppCompactActivity implements On
         } else {
             tvHospitalAffiliation.setText(data.getStringExtra("fieldValue"));
         }
+        hideKeyboard(MedicalScreenActivity.this);
     }
 
     protected void facilityCustomAlertDialog(Context context, ArrayList<String> facility_list_data) {

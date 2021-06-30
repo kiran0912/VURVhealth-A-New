@@ -35,6 +35,7 @@ import com.VURVhealth.vurvhealth.retrofit.ApiClient;
 import com.VURVhealth.vurvhealth.retrofit.ApiInterface;
 import com.VURVhealth.vurvhealth.retrofit.Application_holder;
 import com.VURVhealth.vurvhealth.save.NoSavedItemActivity;
+import com.VURVhealth.vurvhealth.upgrade.UpgradeMedicalFlipActivity;
 import com.VURVhealth.vurvhealth.utilities.StatusResponseForTotalProject;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -68,12 +69,12 @@ public class FacilityResultDetailsActivity extends FragmentActivity implements O
     private Location mLastLocation;
     private LocationRequest mLocationRequest;
 
-    private ImageView backBtn,imgSave;
+    private ImageView backBtn, imgSave;
     private FrameLayout flBanner;
-//    private SearchFacilitiesResPayLoad mCurrentListing;
+    //    private SearchFacilitiesResPayLoad mCurrentListing;
     private FacilityDeatilResPayload mCurrentListing;
-    private TextView tvresult,tvStreet,tvCity,tvPhoneNumber,tvProcedure,tvSave;
-    private LinearLayout ll_call,llShare,ll_direction,ll_save;
+    private TextView tvresult, tvStreet, tvCity, tvPhoneNumber, tvProcedure, tvSave;
+    private LinearLayout ll_call, llShare, ll_direction, ll_save;
     private LatLng latLng;
     private ProgressDialog pDialog;
     public SharedPreferences prefsLoginData;
@@ -91,13 +92,13 @@ public class FacilityResultDetailsActivity extends FragmentActivity implements O
         sqLiteDbHelper = new SqLiteDbHelper(FacilityResultDetailsActivity.this);
 
         prefsLoginData = getSharedPreferences(Application_holder.LOGIN_PREFERENCES, Context.MODE_PRIVATE);
-        if(checkInternet()) {
+        if (checkInternet()) {
             SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                     .findFragmentById(R.id.map);
             mapFragment.getMapAsync(this);
-        }else {
+        } else {
 //            DialogClass.createDAlertDialog(PrescriptionResultsDetailsActivity.this, getResources().getString(R.string.no_network));
-            Toast.makeText(getApplicationContext(),getResources().getString(R.string.no_network),Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), getResources().getString(R.string.no_network), Toast.LENGTH_SHORT).show();
 
         }
         try {
@@ -128,7 +129,7 @@ public class FacilityResultDetailsActivity extends FragmentActivity implements O
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Intent.ACTION_VIEW,
-                        Uri.parse("http://maps.google.com/maps?daddr="+mCurrentListing.getFacAddLat()+","+mCurrentListing.getFacAddLong()));
+                        Uri.parse("http://maps.google.com/maps?daddr=" + mCurrentListing.getFacAddLat() + "," + mCurrentListing.getFacAddLong()));
                 startActivity(intent); //33.643446, -117.596786
             }
         });
@@ -138,7 +139,7 @@ public class FacilityResultDetailsActivity extends FragmentActivity implements O
         tvProcedure = (TextView) findViewById(R.id.tvProcedure);
         tvSave = (TextView) findViewById(R.id.tvSave);
 
-        if ( savedItemStatus == 1) {
+        if (savedItemStatus == 1) {
             imgSave.setImageDrawable(getResources().getDrawable(R.drawable.toolbar_saved_ic));
             tvSave.setTextColor(getResources().getColor(R.color.light_blue));
             tvSave.setText("Saved");
@@ -150,7 +151,7 @@ public class FacilityResultDetailsActivity extends FragmentActivity implements O
 //        String street[] = address[0].split("\\s+", 2);
 
         tvStreet.setText(mCurrentListing.getFacAddressLine1());
-        tvCity.setText(mCurrentListing.getFacCity()+", "+mCurrentListing.getFacState()+", "+mCurrentListing.getFacZipCode());
+        tvCity.setText(mCurrentListing.getFacCity() + ", " + mCurrentListing.getFacState() + ", " + mCurrentListing.getFacZipCode());
 //        tvZipcode.setText(address[3]);
 
         try {
@@ -162,7 +163,7 @@ public class FacilityResultDetailsActivity extends FragmentActivity implements O
             stringBuilder.append("-");
             stringBuilder.append(mCurrentListing.getFacPhoneNumber().substring(6, 10));
             tvPhoneNumber.setText(stringBuilder);
-        }catch (ArrayIndexOutOfBoundsException e){
+        } catch (ArrayIndexOutOfBoundsException e) {
             tvPhoneNumber.setText(mCurrentListing.getFacPhoneNumber());
         }
         tvProcedure.setText(mCurrentListing.getFacFacilitySubType());
@@ -172,15 +173,15 @@ public class FacilityResultDetailsActivity extends FragmentActivity implements O
             public void onClick(View v) {
 //                Intent callIntent = new Intent(Intent.ACTION_CALL);
                 Intent callIntent = new Intent(Intent.ACTION_CALL);
-                callIntent.setData(Uri.parse("tel:"+mCurrentListing.getFacPhoneNumber()));
+                callIntent.setData(Uri.parse("tel:" + mCurrentListing.getFacPhoneNumber()));
                 try {
                     onCall();
                     /*Intent callIntent = new Intent(Intent.ACTION_CALL);
                     callIntent.setData(Uri.parse("tel:" + mCurrentListing.getPhone()));
 
                     startActivity(callIntent);*/
-                }catch (Exception e){
-                    Log.v("Call>>",e.getMessage());
+                } catch (Exception e) {
+                    Log.v("Call>>", e.getMessage());
                 }
             }
         });
@@ -215,7 +216,9 @@ public class FacilityResultDetailsActivity extends FragmentActivity implements O
             @Override
             public void onClick(View v) {
 
-                startActivity(new Intent(FacilityResultDetailsActivity.this, DoctorVURVBannerActivity.class));
+                Intent intent = new Intent(FacilityResultDetailsActivity.this, UpgradeMedicalFlipActivity.class);
+                intent.putExtra("activity", "DoctorVURVBannerActivity");
+                startActivity(intent);
             }
         });
         ll_save.setOnClickListener(new View.OnClickListener() {
@@ -230,15 +233,15 @@ public class FacilityResultDetailsActivity extends FragmentActivity implements O
 
     }
 
-    protected void showProgressDialog(Context context){
+    protected void showProgressDialog(Context context) {
         pDialog = new ProgressDialog(context);
         pDialog.setMessage("Please wait...");
         pDialog.setCancelable(false);
         pDialog.show();
     }
 
-    protected void dismissProgressDialog(){
-        if(pDialog != null)
+    protected void dismissProgressDialog() {
+        if (pDialog != null)
             pDialog.dismiss();
     }
 
@@ -247,7 +250,7 @@ public class FacilityResultDetailsActivity extends FragmentActivity implements O
                 ApiClient.getClient(FacilityResultDetailsActivity.this).create(ApiInterface.class);
         ArrayList<SaveForLaterFacility> saveForLaterRequestList = new ArrayList<SaveForLaterFacility>();
         SaveForLaterFacility saveForLaterRequest = new SaveForLaterFacility();
-        saveForLaterRequest.setUserId(String.valueOf(prefsLoginData.getInt("userId",1)));
+        saveForLaterRequest.setUserId(String.valueOf(prefsLoginData.getInt("userId", 1)));
         saveForLaterRequest.setFlag("1");
         saveForLaterRequest.setFacilityProviderId(Application_holder.providerId);
 
@@ -259,17 +262,17 @@ public class FacilityResultDetailsActivity extends FragmentActivity implements O
             public void onResponse(Call<ArrayList<StatusResponseForTotalProject>> call, Response<ArrayList<StatusResponseForTotalProject>> response) {
 
                 ArrayList<StatusResponseForTotalProject> insertRecentSearchRespPayLoad = response.body();
-                Toast.makeText(getApplicationContext(),"Added as favourite",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Added as favourite", Toast.LENGTH_SHORT).show();
                 imgSave.setImageDrawable(getResources().getDrawable(R.drawable.toolbar_saved_ic));
                 tvSave.setText("Saved");
                 if (activity.equalsIgnoreCase("FacilitySearchResults")) {
-                    for (int i = 0; i< MedicalScreenActivity.resPayloadsForFacilities.size(); i++) {
-                        if (MedicalScreenActivity.resPayloadsForFacilities.get(i).getProviderID().equalsIgnoreCase(Application_holder.providerId)){
+                    for (int i = 0; i < MedicalScreenActivity.resPayloadsForFacilities.size(); i++) {
+                        if (MedicalScreenActivity.resPayloadsForFacilities.get(i).getProviderID().equalsIgnoreCase(Application_holder.providerId)) {
                             MedicalScreenActivity.resPayloadsForFacilities.get(i).setSavedStatus(1);
                             if (FacilitySearchResult.searchPractitionerResPayLoads != null) {
                                 FacilitySearchResult.searchPractitionerResPayLoads.get(clickedPosition).setSavedStatus(1);
                             }
-                            sqLiteDbHelper.updateSavedStatusFlag("filter_facility",1,Application_holder.providerId);
+                            sqLiteDbHelper.updateSavedStatusFlag("filter_facility", 1, Application_holder.providerId);
                             break;
                         }
                     }
@@ -293,7 +296,7 @@ public class FacilityResultDetailsActivity extends FragmentActivity implements O
                 ApiClient.getClient(FacilityResultDetailsActivity.this).create(ApiInterface.class);
         ArrayList<SaveForLaterFacility> saveForLaterRequestList = new ArrayList<SaveForLaterFacility>();
         SaveForLaterFacility saveForLaterRequest = new SaveForLaterFacility();
-        saveForLaterRequest.setUserId(String.valueOf(prefsLoginData.getInt("userId",1)));
+        saveForLaterRequest.setUserId(String.valueOf(prefsLoginData.getInt("userId", 1)));
         saveForLaterRequest.setFlag("0");
         saveForLaterRequest.setFacilityProviderId(Application_holder.providerId);
 
@@ -309,13 +312,13 @@ public class FacilityResultDetailsActivity extends FragmentActivity implements O
                 tvSave.setTextColor(getResources().getColor(R.color.black));
                 tvSave.setText("Save for Later");
                 if (activity.equalsIgnoreCase("FacilitySearchResults")) {
-                    for (int i=0;i<MedicalScreenActivity.resPayloadsForFacilities.size(); i++) {
-                        if (MedicalScreenActivity.resPayloadsForFacilities.get(i).getProviderID().equalsIgnoreCase(Application_holder.providerId)){
+                    for (int i = 0; i < MedicalScreenActivity.resPayloadsForFacilities.size(); i++) {
+                        if (MedicalScreenActivity.resPayloadsForFacilities.get(i).getProviderID().equalsIgnoreCase(Application_holder.providerId)) {
                             MedicalScreenActivity.resPayloadsForFacilities.get(i).setSavedStatus(0);
                             if (FacilitySearchResult.searchPractitionerResPayLoads != null) {
                                 FacilitySearchResult.searchPractitionerResPayLoads.get(clickedPosition).setSavedStatus(0);
                             }
-                            sqLiteDbHelper.updateSavedStatusFlag("filter_facility",0,Application_holder.providerId);
+                            sqLiteDbHelper.updateSavedStatusFlag("filter_facility", 0, Application_holder.providerId);
                             break;
                         }
                     }
@@ -363,6 +366,16 @@ public class FacilityResultDetailsActivity extends FragmentActivity implements O
     public void onMapReady(GoogleMap googleMap) {
 
         mMap = googleMap;
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
         mMap.setMyLocationEnabled(false);
         mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
 

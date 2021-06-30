@@ -696,7 +696,7 @@ public class PulseAnnualConfPaymentActivity extends SuperAppCompactActivity {
                     loginEditor.putString("subPackageId", userInfoResPayload.get(0).get(0).getSubPackageId());
                     loginEditor.putString("orderId", userInfoResPayload.get(0).get(0).getOrderId());
                     loginEditor.putString("post_title", userInfoResPayload.get(0).get(0).getPostTitle());
-                    loginEditor.putString("subscription_end_date", userInfoResPayload.get(0).get(0).getSubscriptionEndDate());
+                    loginEditor.putString("vurv_mem_exp_date", userInfoResPayload.get(0).get(0).getVurvMemExpDate());
                     loginEditor.putString("logout", "");
                     loginEditor.commit();
 

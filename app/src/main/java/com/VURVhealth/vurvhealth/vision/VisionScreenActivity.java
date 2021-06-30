@@ -10,6 +10,7 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.location.Address;
 import android.location.Geocoder;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Editable;
@@ -49,6 +50,7 @@ import com.VURVhealth.vurvhealth.retrofit.ApiClient;
 import com.VURVhealth.vurvhealth.retrofit.ApiInterface;
 import com.VURVhealth.vurvhealth.retrofit.Application_holder;
 import com.VURVhealth.vurvhealth.save.NoSavedItemActivity;
+import com.VURVhealth.vurvhealth.save.SaveItemActivity;
 import com.VURVhealth.vurvhealth.superappcompact.SuperAppCompactActivity;
 import com.VURVhealth.vurvhealth.utilities.StatusResponseForTotalProject;
 import com.VURVhealth.vurvhealth.vision.pojos.DoctorSpecialtyResPayload;
@@ -109,6 +111,7 @@ public class VisionScreenActivity extends SuperAppCompactActivity implements OnI
     private RangeSliderView seekbar;
     private Spinner spinnerState;
     private String state;
+
     private TextWatcher textWatcher = new TextWatcher() {
         public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
         }
@@ -120,6 +123,7 @@ public class VisionScreenActivity extends SuperAppCompactActivity implements OnI
         public void afterTextChanged(Editable editable) {
         }
     };
+
     private EditText tvFirstName;
     private EditText tvLastName;
     private TextView tvUpgradeBanner;
@@ -276,8 +280,9 @@ public class VisionScreenActivity extends SuperAppCompactActivity implements OnI
         });
         llHelp.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
-                startActivity(new Intent(VisionScreenActivity.this, FreshdeskMainListActivity.class));
-                finish();
+                Uri uri = Uri.parse(Application_holder.help_url); // missing 'http://' will cause crashed
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(intent);
             }
         });
         doc_speciality.setOnClickListener(new OnClickListener() {

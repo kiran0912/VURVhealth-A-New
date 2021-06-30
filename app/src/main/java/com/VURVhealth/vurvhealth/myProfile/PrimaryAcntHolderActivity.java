@@ -40,6 +40,7 @@ import com.VURVhealth.vurvhealth.save.NoSavedItemActivity;
 import com.VURVhealth.vurvhealth.superappcompact.SuperAppCompactActivity;
 import com.VURVhealth.vurvhealth.upgrade.UpgradeSubscriptionActivity;
 import com.VURVhealth.vurvhealth.vurvidpackages.VurvPackageActivity;
+import com.bumptech.glide.Glide;
 import com.fasterxml.jackson.core.util.MinimalPrettyPrinter;
 import com.google.firebase.analytics.FirebaseAnalytics.Param;
 import com.squareup.picasso.MemoryPolicy;
@@ -167,8 +168,12 @@ public class PrimaryAcntHolderActivity extends SuperAppCompactActivity {
         }
         sharedPreferences = getSharedPreferences("VURVProfileDetails", 0);
         editor = sharedPreferences.edit();
-        profileImageUril = Uri.parse(sharedPreferences.getString("ProfileImageURl", "http://").replace("http://", "https://"));
-        Picasso.with(this).load(profileImageUril).error(R.drawable.profile_noimage_ic).placeholder(R.drawable.profile_noimage_ic).networkPolicy(NetworkPolicy.NO_CACHE, new NetworkPolicy[0]).memoryPolicy(MemoryPolicy.NO_STORE, new MemoryPolicy[0]).resize(200, 200).centerCrop().into(img_prf);
+        //profileImageUril = Uri.parse(sharedPreferences.getString("ProfileImageURl", ""));
+        /*Glide.with(this)
+                .load(profileImageUril)
+                .error(R.drawable.profile_noimage_ic)
+                .placeholder(R.drawable.profile_noimage_ic)
+                .centerCrop().into(img_prf);*/
         llSearch.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -193,8 +198,9 @@ public class PrimaryAcntHolderActivity extends SuperAppCompactActivity {
         llHelp.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(PrimaryAcntHolderActivity.this, FreshdeskMainListActivity.class));
-//                startActivity(new Intent(PrimaryAcntHolderActivity.this, HelpActivity.class));
+                Intent intent = new Intent(PrimaryAcntHolderActivity.this, FreshdeskMainListActivity.class);
+                intent.putExtra("move","PrimaryAcntHolderActivity");
+                startActivity(intent);
                 finish();
             }
         });
@@ -312,8 +318,9 @@ public class PrimaryAcntHolderActivity extends SuperAppCompactActivity {
             public void onResponse(Call<EditPhotoResPayload> call, Response<EditPhotoResPayload> response) {
                 if (response.isSuccessful()) {
                     if(response.body().getImageLink()!=null) {
-                        Picasso.with(PrimaryAcntHolderActivity.this).load((response.body()).getImageLink().replace("https://", "http://")).error(R.drawable.profilepic_ic).placeholder(R.drawable.profilepic_ic).networkPolicy(NetworkPolicy.NO_CACHE, new NetworkPolicy[0]).memoryPolicy(MemoryPolicy.NO_STORE, new MemoryPolicy[0]).resize(200, 200).centerCrop().into(img_prf);
-                        editor.putString("ProfileImageURl", ((EditPhotoResPayload) response.body()).getImageLink());
+                        String url = response.body().getImageLink().replace("https://www.vurvhealth.com/","https://www.vurvhealth.com/v2/api/");
+                        Glide.with(PrimaryAcntHolderActivity.this).load(url).error(R.drawable.profilepic_ic).placeholder(R.drawable.profilepic_ic).centerCrop().into(img_prf);
+                        editor.putString("ProfileImageURl", url);
                         editor.commit();
                     }
                 }
@@ -334,8 +341,8 @@ public class PrimaryAcntHolderActivity extends SuperAppCompactActivity {
 
     protected void onResume() {
         super.onResume();
-        profileImageUril = Uri.parse(sharedPreferences.getString("ProfileImageURl", "http://").replace("https://", "http://"));
-        Picasso.with(PrimaryAcntHolderActivity.this).load(profileImageUril).error(R.drawable.profile_noimage_ic).placeholder(R.drawable.profile_noimage_ic).networkPolicy(NetworkPolicy.NO_CACHE, new NetworkPolicy[0]).memoryPolicy(MemoryPolicy.NO_STORE, new MemoryPolicy[0]).resize(200, 200).centerCrop().into(img_prf);
+        profileImageUril = Uri.parse(sharedPreferences.getString("ProfileImageURl", ""));
+        Glide.with(PrimaryAcntHolderActivity.this).load(profileImageUril).error(R.drawable.profile_noimage_ic).placeholder(R.drawable.profile_noimage_ic).centerCrop().into(img_prf);
         myUserDetailsService();
     }
 
@@ -397,7 +404,7 @@ public class PrimaryAcntHolderActivity extends SuperAppCompactActivity {
                     loginEditor.putString("post_title", ((UserDetailDataResPayload) ((ArrayList) userInfoResPayload.get(0)).get(0)).getPostTitle());
                     loginEditor.putString(Param.PRICE, ((UserDetailDataResPayload) ((ArrayList) userInfoResPayload.get(0)).get(0)).getPrice());
                     loginEditor.putString("childCount", ((UserDetailDataResPayload) ((ArrayList) userInfoResPayload.get(0)).get(0)).getChild_count());
-                    loginEditor.putString("subscription_end_date", ((UserDetailDataResPayload) ((ArrayList) userInfoResPayload.get(0)).get(0)).getSubscriptionEndDate());
+                    loginEditor.putString("vurv_mem_exp_date", ((UserDetailDataResPayload) ((ArrayList) userInfoResPayload.get(0)).get(0)).getVurvMemExpDate());
                     loginEditor.putString("parent_id", ((UserDetailDataResPayload) ((ArrayList) userInfoResPayload.get(0)).get(0)).getParentId());
                     loginEditor.putString("orderId", ((UserDetailDataResPayload) ((ArrayList) userInfoResPayload.get(0)).get(0)).getOrderId());
                     loginEditor.putString("search_type", ((UserDetailDataResPayload) ((ArrayList) userInfoResPayload.get(0)).get(0)).getSearch_type());

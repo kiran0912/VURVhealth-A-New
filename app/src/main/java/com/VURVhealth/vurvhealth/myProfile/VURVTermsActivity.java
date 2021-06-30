@@ -69,12 +69,12 @@ public class VURVTermsActivity extends SuperAppCompactActivity {
         showProgressDialog(this);
         try {
 
-            ((ApiInterface) retrofit.create(ApiInterface.class)).getPageContent(Application_holder.BASE_URL == "https://www.vurvhealth.com/" ? requestVURVTerms() : requestVURVTerms1() ).enqueue(new Callback<String>() {
+            ((ApiInterface) retrofit.create(ApiInterface.class)).getPageContent(Application_holder.AUTH_BASE_URL == "https://www.vurvhealth.com/v2/api/api/" ? requestVURVTerms() : requestVURVTerms1() ).enqueue(new Callback<String>() {
                 @Override
                 public void onResponse(Call<String> call, Response<String> response) {
                     if (response.isSuccessful()) {
                         dismissProgressDialog();
-                        tvTC.loadData((String) response.body(), "text/html", "utf-8");
+                        tvTC.loadDataWithBaseURL(null, (String) response.body(), "text/html", "utf-8", null);
                     }
                     dismissProgressDialog();
                 }

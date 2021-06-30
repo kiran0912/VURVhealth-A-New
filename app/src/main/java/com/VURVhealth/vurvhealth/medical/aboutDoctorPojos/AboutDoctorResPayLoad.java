@@ -7,7 +7,15 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class AboutDoctorResPayLoad implements Parcelable {
-    public static final Creator<AboutDoctorResPayLoad> CREATOR = new C04361();
+    public static final Creator<AboutDoctorResPayLoad> CREATOR = new Creator<AboutDoctorResPayLoad>() {
+        public AboutDoctorResPayLoad createFromParcel(Parcel in) {
+            return new AboutDoctorResPayLoad(in);
+        }
+
+        public AboutDoctorResPayLoad[] newArray(int size) {
+            return new AboutDoctorResPayLoad[size];
+        }
+    };
     @SerializedName("Long")
     @Expose
     private String _long;
@@ -95,20 +103,6 @@ public class AboutDoctorResPayLoad implements Parcelable {
     @SerializedName("zipextension")
     @Expose
     private String zipextension;
-
-    /* renamed from: com.VURVhealth.VURVhealth.medical.aboutDoctorPojos.AboutDoctorResPayLoad$1 */
-    static class C04361 implements Creator<AboutDoctorResPayLoad> {
-        C04361() {
-        }
-
-        public AboutDoctorResPayLoad createFromParcel(Parcel in) {
-            return new AboutDoctorResPayLoad(in);
-        }
-
-        public AboutDoctorResPayLoad[] newArray(int size) {
-            return new AboutDoctorResPayLoad[size];
-        }
-    }
 
     protected AboutDoctorResPayLoad(Parcel in) {
         this.providerID = in.readString();

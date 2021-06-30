@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
@@ -24,6 +25,7 @@ import com.VURVhealth.vurvhealth.freshdesk_help.FreshdeskMainListActivity;
 import com.VURVhealth.vurvhealth.myProfile.PrimaryAcntHolderActivity;
 import com.VURVhealth.vurvhealth.retrofit.ApiClient;
 import com.VURVhealth.vurvhealth.retrofit.ApiInterface;
+import com.VURVhealth.vurvhealth.retrofit.Application_holder;
 import com.VURVhealth.vurvhealth.save.pojos.SaveForLaterAllRequestPojo;
 import com.VURVhealth.vurvhealth.save.pojos.SaveForLaterAllResponsePojo;
 import com.VURVhealth.vurvhealth.superappcompact.SuperAppCompactActivity;
@@ -80,8 +82,9 @@ public class NoSavedItemActivity extends SuperAppCompactActivity {
         llHelp.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(NoSavedItemActivity.this, FreshdeskMainListActivity.class));
-                finish();
+                Uri uri = Uri.parse(Application_holder.help_url); // missing 'http://' will cause crashed
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(intent);
             }
         });
         if (checkInternet()) {

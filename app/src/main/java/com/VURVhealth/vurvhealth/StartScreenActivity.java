@@ -6,8 +6,10 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.graphics.RectF;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -24,7 +26,6 @@ import com.VURVhealth.vurvhealth.althealth.AltHealthScreenActivity;
 import com.VURVhealth.vurvhealth.circleView.CircleImageView;
 import com.VURVhealth.vurvhealth.circleView.CircleLayout;
 import com.VURVhealth.vurvhealth.dental.DentalScreenActivity;
-import com.VURVhealth.vurvhealth.freshdesk_help.FreshdeskMainListActivity;
 import com.VURVhealth.vurvhealth.medical.MedicalScreenActivity;
 import com.VURVhealth.vurvhealth.myProfile.MyMembersActivity;
 import com.VURVhealth.vurvhealth.myProfile.PrimaryAcntHolderActivity;
@@ -36,9 +37,11 @@ import com.VURVhealth.vurvhealth.retrofit.ApiInterface;
 import com.VURVhealth.vurvhealth.retrofit.Application_holder;
 import com.VURVhealth.vurvhealth.save.NoSavedItemActivity;
 import com.VURVhealth.vurvhealth.superappcompact.SuperAppCompactActivity;
+import com.VURVhealth.vurvhealth.telemed.TeleMedicineActivity;
 import com.VURVhealth.vurvhealth.vision.VisionScreenActivity;
 import com.VURVhealth.vurvhealth.vurvidpackages.VurvPackageActivity;
 import com.fasterxml.jackson.core.util.MinimalPrettyPrinter;
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.analytics.FirebaseAnalytics.Param;
 
 import java.util.ArrayList;
@@ -79,9 +82,12 @@ public class StartScreenActivity extends SuperAppCompactActivity implements Circ
     private ArrayList<ArrayList<UserDetailDataResPayload>> userInfoResPayload;
     private String vurvId;
     private LinearLayout ll;
+    private FirebaseAnalytics firebaseAnalytics;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.start_screen);
+        firebaseAnalytics = FirebaseAnalytics.getInstance(StartScreenActivity.this);
         String activity = getIntent().getStringExtra("activity");
         if (activity != null && activity.equals("ConfirmPaymentActivity")) {
             thanksDialog();
@@ -103,6 +109,14 @@ public class StartScreenActivity extends SuperAppCompactActivity implements Circ
         firstName = prefsData.getString("firstName", "No name");
         lastName = prefsData.getString("lastName", "No name");
         vurvId = prefsData.getString("vurvId", "No name");
+        Log.v("StartScreen","UserId: "+prefsData.getInt("userId", 1));
+
+        Bundle bundle = new Bundle();
+        bundle.putString(FirebaseAnalytics.Param.ITEM_ID, vurvId);
+        bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, firstName);
+        bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE, "image");
+        firebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle);
+
         tvName.setText(getResources().getString(R.string.hi_name) + MinimalPrettyPrinter.DEFAULT_ROOT_VALUE_SEPARATOR + firstName + "!");
         circleLayout = (CircleLayout) findViewById(R.id.circle_layout);
         circleLayout.setOnItemSelectedListener(this);
@@ -148,9 +162,9 @@ public class StartScreenActivity extends SuperAppCompactActivity implements Circ
         llHelp.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(StartScreenActivity.this, FreshdeskMainListActivity.class));
-//                startActivity(new Intent(StartScreenActivity.this, HelpActivity.class));
-                finish();
+                Uri uri = Uri.parse(Application_holder.help_url); // missing 'http://' will cause crashed
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(intent);
             }
         });
         circleImg = (ImageView) findViewById(R.id.circleImg);
@@ -178,11 +192,9 @@ public class StartScreenActivity extends SuperAppCompactActivity implements Circ
                         intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id="+packageName));
                     }*/
                     Intent intent = new Intent(StartScreenActivity.this, TeleMedicineActivity.class);
-                    intent.putExtra("move","startScreen");
+                    intent.putExtra("move","StartScreenActivity");
                     startActivity(intent);
-                    /*Uri uri = Uri.parse("https://member.dialcare.com/login"); // missing 'http://' will cause crashed
-                    Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                    startActivity(intent);*/
+
                 }
             }
         });
@@ -388,7 +400,7 @@ public class StartScreenActivity extends SuperAppCompactActivity implements Circ
                 main_telemedicince_image = (ImageView) linearLayout.findViewById(R.id.main_telemedicince_image);
                 main_telemedicince_image.setImageResource(R.drawable.telemedblue1);
                 tvTelemedicine = (TextView) linearLayout.findViewById(R.id.tvTelemedicine);
-                btn_next.setText(R.string.login);
+                btn_next.setText(R.string.next);
                 tvTelemedicine.setVisibility(View.GONE);
                 selectedTextView.setText(getResources().getString(R.string.telemedecine2));
                 selectedTextView.setVisibility(View.VISIBLE);
@@ -494,8 +506,8 @@ public class StartScreenActivity extends SuperAppCompactActivity implements Circ
                         loginEditor.putString(Param.PRICE, ((UserDetailDataResPayload) ((ArrayList) userInfoResPayload.get(0)).get(0)).getPrice());
                         loginEditor.putString("childCount", ((UserDetailDataResPayload) ((ArrayList) userInfoResPayload.get(0)).get(0)).getChild_count());
                         loginEditor.putString("search_type", ((UserDetailDataResPayload) ((ArrayList) userInfoResPayload.get(0)).get(0)).getSearch_type());
-                        if (((UserDetailDataResPayload) ((ArrayList) userInfoResPayload.get(0)).get(0)).getSubscriptionEndDate() != null) {
-                            loginEditor.putString("subscription_end_date", ((UserDetailDataResPayload) ((ArrayList) userInfoResPayload.get(0)).get(0)).getSubscriptionEndDate());
+                        if (((UserDetailDataResPayload) ((ArrayList) userInfoResPayload.get(0)).get(0)).getVurvMemExpDate()!= null) {
+                            loginEditor.putString("vurv_mem_exp_date", ((UserDetailDataResPayload) ((ArrayList) userInfoResPayload.get(0)).get(0)).getVurvMemExpDate());
                         }
                         loginEditor.putString("logout", "");
                         loginEditor.commit();
@@ -596,7 +608,7 @@ public class StartScreenActivity extends SuperAppCompactActivity implements Circ
         vurv_id.setText("VURV ID: " + prefsLoginData.getString("vurvId", "926View.GONE"));
         tvWelcome.setText("Thanks, ");
         expires.setVisibility(View.VISIBLE);
-        expires.setText("Expires: " + prefsLoginData.getString("subscription_end_date", "12/12/2017"));
+        expires.setText("Expires: " + prefsLoginData.getString("vurv_mem_exp_date", "12/12/2017"));
         name.setText(prefsLoginData.getString("fullName", ""));
         tvMemberId.setText("Your upgrade is complete.");
         tvpresentId.setText("Present your VURV ID at a participating health provider to receive your discount.");
@@ -652,4 +664,5 @@ public class StartScreenActivity extends SuperAppCompactActivity implements Circ
             }
         }).setNegativeButton((CharSequence) "No", (DialogInterface.OnClickListener) null).show();
     }
+
 }

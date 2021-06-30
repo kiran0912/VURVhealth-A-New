@@ -41,8 +41,10 @@ public class PrivacyActivity extends SuperAppCompactActivity {
         tvheader.setText(getResources().getString(R.string.privacy));
         tvTC.getSettings();
         tvTC.getSettings().setDomStorageEnabled(true);
-        //tvTC.setBackgroundColor(0);
         tvTC.getSettings().setJavaScriptEnabled(true);
+        tvTC.getSettings().setLoadsImagesAutomatically(true);
+        tvTC.getSettings().setDomStorageEnabled(true);
+        tvTC.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
         backBtn.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -59,11 +61,11 @@ public class PrivacyActivity extends SuperAppCompactActivity {
     private void getTermsAndCondition() {
         showProgressDialog(this);
         try {
-            ((ApiInterface) retrofit.create(ApiInterface.class)).getPageContent(Application_holder.BASE_URL == "https://www.vurvhealth.com/" ? requestPRODVURVTerms() : requestRXVURVTerms()).enqueue(new Callback<String>() {
+            ((ApiInterface) retrofit.create(ApiInterface.class)).getPageContent(Application_holder.AUTH_BASE_URL == "https://www.vurvhealth.com/v2/api/api/" ? requestPRODVURVTerms() : requestRXVURVTerms()).enqueue(new Callback<String>() {
                 @Override
                 public void onResponse(Call<String> call, Response<String> response) {
                     if (response.isSuccessful()) {
-                        tvTC.loadData((String) response.body(), "text/html", "utf-8");
+                        tvTC.loadDataWithBaseURL(null,response.body(), "text/html", "utf-8",null);
                     }
                     dismissProgressDialog();
                 }

@@ -50,16 +50,19 @@ import com.VURVhealth.vurvhealth.myProfile.pojos.EditPhotoResPayload;
 import com.VURVhealth.vurvhealth.myProfile.pojos.EmailStatusReqPayload;
 import com.VURVhealth.vurvhealth.myProfile.pojos.MobileStatusReqPayload;
 import com.VURVhealth.vurvhealth.myProfile.pojos.MobileStatusResPayload;
+import com.VURVhealth.vurvhealth.myProfile.pojos.MyMemberListPayload;
 import com.VURVhealth.vurvhealth.retrofit.ApiClient;
 import com.VURVhealth.vurvhealth.retrofit.ApiInterface;
 import com.VURVhealth.vurvhealth.superappcompact.SuperAppCompactActivity;
 import com.VURVhealth.vurvhealth.utilities.FileUtils;
 import com.VURVhealth.vurvhealth.utilities.PhoneNumberTextWatcher;
 import com.VURVhealth.vurvhealth.utilities.Utility;
+import com.bumptech.glide.Glide;
 import com.fasterxml.jackson.core.util.MinimalPrettyPrinter;
 import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -71,6 +74,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 import java.util.regex.Pattern;
+
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.MultipartBody.Part;
@@ -119,7 +123,7 @@ public class EditProfileActivity extends SuperAppCompactActivity {
         }
         sharedPreferences = getSharedPreferences("VURVProfileDetails", 0);
         editor = sharedPreferences.edit();
-        profileImageUril = Uri.parse(sharedPreferences.getString("ProfileImageURl", "http://").replace("https://", "http://"));
+        profileImageUril = Uri.parse(sharedPreferences.getString("ProfileImageURl", ""));
         tvDone = (TextView) findViewById(R.id.tvDone);
         tvCancel = (TextView) findViewById(R.id.tvCancel);
         tvEditPhoto = (TextView) findViewById(R.id.tvEditPhoto);
@@ -132,12 +136,13 @@ public class EditProfileActivity extends SuperAppCompactActivity {
         chkMale = (CheckBox) findViewById(R.id.chkMale);
         chkFemale = (CheckBox) findViewById(R.id.chkFemale);
         img_prf = (ImageView) findViewById(R.id.img_prf);
-        Picasso.with(this).load(profileImageUril).error(R.drawable.profile_noimage_ic).placeholder(R.drawable.profile_noimage_ic).networkPolicy(NetworkPolicy.NO_CACHE, new NetworkPolicy[0]).memoryPolicy(MemoryPolicy.NO_STORE, new MemoryPolicy[0]).resize(200, 200).centerCrop().into(img_prf);
+
+        //Picasso.with(this).load(profileImageUril).error(R.drawable.profile_noimage_ic).placeholder(R.drawable.profile_noimage_ic).networkPolicy(NetworkPolicy.NO_CACHE, new NetworkPolicy[0]).memoryPolicy(MemoryPolicy.NO_STORE, new MemoryPolicy[0]).resize(200, 200).centerCrop().into(img_prf);
         prefsData = getSharedPreferences("VURVProfileDetails", 0);
-        if (prefsData.getString("gender", "M").equalsIgnoreCase("M")) {
+        if (prefsData.getString("gender", "").equalsIgnoreCase("M")) {
             chkMale.setChecked(true);
             chkFemale.setChecked(false);
-        } else {
+        } else if (prefsData.getString("gender", "").equalsIgnoreCase("F")) {
             chkMale.setChecked(false);
             chkFemale.setChecked(true);
         }
@@ -213,6 +218,12 @@ public class EditProfileActivity extends SuperAppCompactActivity {
                 selectImage();
             }
         });
+        if (checkInternet()) {
+            displayPhoto();
+        } else {
+            Toast.makeText(this, R.string.no_network, Toast.LENGTH_SHORT).show();
+        }
+
     }
 
     private void editPersonalInfoService() {
@@ -413,6 +424,7 @@ public class EditProfileActivity extends SuperAppCompactActivity {
             startActivityForResult(cameraIntent, REQUEST_CAMERA);
         }
     }
+
     private File createImageFile() throws IOException {
 // Create an image file name
         File fileNougat = new File(Environment.getExternalStorageDirectory(), "vurv_" +
@@ -461,7 +473,7 @@ public class EditProfileActivity extends SuperAppCompactActivity {
             cursor = context.getContentResolver().query(contentUri, null, null, null, null);
             if (cursor == null) {
                 return contentUri.getPath();
-            }else{
+            } else {
                 return contentUri.getPath();
             }
             /*cursor.moveToFirst();
@@ -489,8 +501,8 @@ public class EditProfileActivity extends SuperAppCompactActivity {
                 dismissProgressDialog();
                 if (response.isSuccessful()) {
                     String photoUrl = (response.body()).getImageLink().replace("uploads//", "uploads/");
-                    editor.putString("ProfileImageURl", photoUrl);
-                    editor.commit();
+                    /*editor.putString("ProfileImageURl", photoUrl);
+                    editor.commit();*/
                     Picasso.with(EditProfileActivity.this).load(photoUrl).error(R.drawable.profilepic_ic).placeholder(R.drawable.profilepic_ic).networkPolicy(NetworkPolicy.NO_CACHE, new NetworkPolicy[0]).memoryPolicy(MemoryPolicy.NO_STORE, new MemoryPolicy[0]).resize(200, 200).centerCrop().into(img_prf);
                     Toast.makeText(EditProfileActivity.this, getString(R.string.profile_updated), Toast.LENGTH_SHORT).show();
                     return;
@@ -650,7 +662,7 @@ public class EditProfileActivity extends SuperAppCompactActivity {
             } catch (Exception e) {
 
 
-                result =contentURI.getPath();
+                result = contentURI.getPath();
             }
             cursor.close();
         }
@@ -679,6 +691,7 @@ public class EditProfileActivity extends SuperAppCompactActivity {
 
     public void onBackPressed() {
         super.onBackPressed();
+        startActivity(new Intent(EditProfileActivity.this, PrimaryAcntHolderActivity.class));
         finish();
     }
 
@@ -688,6 +701,7 @@ public class EditProfileActivity extends SuperAppCompactActivity {
         }
         return false;
     }
+
     final OnDateSetListener date = new OnDateSetListener() {
         final long today = System.currentTimeMillis() - 1000;
 
@@ -710,4 +724,38 @@ public class EditProfileActivity extends SuperAppCompactActivity {
         }
 
     };
+
+    protected void onResume() {
+        super.onResume();
+        profileImageUril = Uri.parse(sharedPreferences.getString("ProfileImageURl", ""));
+        Glide.with(EditProfileActivity.this).load(profileImageUril).error(R.drawable.profile_noimage_ic).placeholder(R.drawable.profile_noimage_ic).centerCrop().into(img_prf);
+
+    }
+
+    private void displayPhoto() {
+        showProgressDialog(EditProfileActivity.this);
+        ApiInterface apiService = (ApiInterface) ApiClient.getClient(EditProfileActivity.this).create(ApiInterface.class);
+        ArrayList<MyMemberListPayload> displayPhotopojo = new ArrayList();
+        MyMemberListPayload displayPhotopayload = new MyMemberListPayload();
+        displayPhotopayload.setUserId(String.valueOf(userId));
+        displayPhotopojo.add(displayPhotopayload);
+        apiService.displayPhotoService(displayPhotopojo).enqueue(new Callback<EditPhotoResPayload>() {
+            public void onResponse(Call<EditPhotoResPayload> call, Response<EditPhotoResPayload> response) {
+                if (response.isSuccessful()) {
+                    if (response.body().getImageLink() != null) {
+                        String url = response.body().getImageLink().replace("https://www.vurvhealth.com/", "https://www.vurvhealth.com/v2/api/");
+                        Glide.with(EditProfileActivity.this).load(url).error(R.drawable.profilepic_ic).placeholder(R.drawable.profilepic_ic).centerCrop().into(img_prf);
+                        editor.putString("ProfileImageURl", url);
+                        editor.commit();
+                    }
+                }
+                dismissProgressDialog();
+            }
+
+            public void onFailure(Call<EditPhotoResPayload> call, Throwable t) {
+                Toast.makeText(getApplicationContext(), getResources().getString(R.string.server_not_found), Toast.LENGTH_SHORT).show();
+                dismissProgressDialog();
+            }
+        });
+    }
 }

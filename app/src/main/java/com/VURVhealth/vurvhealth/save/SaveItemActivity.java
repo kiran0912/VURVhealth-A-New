@@ -2,6 +2,7 @@ package com.VURVhealth.vurvhealth.save;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.annotation.Nullable;
@@ -107,9 +108,9 @@ public class SaveItemActivity extends SuperAppCompactActivity {
        llHelp.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(SaveItemActivity.this, FreshdeskMainListActivity.class));
-//                startActivity(new Intent(SaveItemActivity.this, HelpActivity.class));
-                finish();
+                Uri uri = Uri.parse(Application_holder.help_url); // missing 'http://' will cause crashed
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(intent);
             }
         });
     }

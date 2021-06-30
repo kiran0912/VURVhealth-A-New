@@ -302,7 +302,7 @@ public class MyMembersActivity extends SuperAppCompactActivity {
                     loginEditor.putString("post_title", ((UserDetailDataResPayload) ((ArrayList) userInfoResPayload.get(0)).get(0)).getPostTitle());
                     loginEditor.putString(Param.PRICE, ((UserDetailDataResPayload) ((ArrayList) userInfoResPayload.get(0)).get(0)).getPrice());
                     loginEditor.putString("childCount", ((UserDetailDataResPayload) ((ArrayList) userInfoResPayload.get(0)).get(0)).getChild_count());
-                    loginEditor.putString("subscription_end_date", ((UserDetailDataResPayload) ((ArrayList) userInfoResPayload.get(0)).get(0)).getSubscriptionEndDate());
+                    loginEditor.putString("vurv_mem_exp_date", ((UserDetailDataResPayload) ((ArrayList) userInfoResPayload.get(0)).get(0)).getVurvMemExpDate());
                     loginEditor.putString("parent_id", ((UserDetailDataResPayload) ((ArrayList) userInfoResPayload.get(0)).get(0)).getParentId());
                     loginEditor.putString("orderId", ((UserDetailDataResPayload) ((ArrayList) userInfoResPayload.get(0)).get(0)).getOrderId());
                     loginEditor.putString("search_type", ((UserDetailDataResPayload) ((ArrayList) userInfoResPayload.get(0)).get(0)).getSearch_type());
@@ -403,7 +403,7 @@ public class MyMembersActivity extends SuperAppCompactActivity {
             String packageName = userSharedPreferences.getData("packageName");
             userSharedPreferences.SaveData("secondaryUserName", myMembersResponse.getFirstName() + MinimalPrettyPrinter.DEFAULT_ROOT_VALUE_SEPARATOR + myMembersResponse.getLastName());
             userSharedPreferences.SaveData("secondaryUserVurvId", myMembersResponse.getMemberId());
-            userSharedPreferences.SaveData("expiresDate", myMembersResponse.getSubscriptionEndDate());
+            userSharedPreferences.SaveData("expiresDate", myMembersResponse.getVurvMemExpDate());
             Intent intent;
             if (packageName.equalsIgnoreCase("Rx")) {
                 intent = new Intent(MyMembersActivity.this, UpgradeRxFlipActivity.class);

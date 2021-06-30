@@ -129,7 +129,7 @@ public class UpgradeMedicalFlipActivity extends AppCompatActivity implements Fra
             } else {
                 dobFormat = null;
                 try {
-                    dobFormat = new SimpleDateFormat("MM/dd/yyyy").format(new SimpleDateFormat("yyyy-MM-dd").parse(UpgradeMedicalFlipActivity.prefsData.getString("subscription_end_date", "12/12/2017")));
+                    dobFormat = new SimpleDateFormat("MM/dd/yyyy").format(new SimpleDateFormat("yyyy-MM-dd").parse(UpgradeMedicalFlipActivity.prefsData.getString("vurv_mem_exp_date", "12/12/2017")));
                 } catch (Exception e2) {
                     e2.printStackTrace();
                 }
@@ -173,7 +173,7 @@ public class UpgradeMedicalFlipActivity extends AppCompatActivity implements Fra
         cardClose = (ImageView) findViewById(R.id.cardClose);
         cardFlip = (ImageView) findViewById(R.id.cardFlip);
         prefsData = getSharedPreferences("VURVProfileDetails", 0);
-        this.userSharedPreferences = UserSharedPreferences.getInstance(this);
+        userSharedPreferences = UserSharedPreferences.getInstance(this);
         getIntentData();
         if (savedInstanceState == null) {
             getFragmentManager().beginTransaction().add(R.id.container, new CardFrontFragment(this.activity, this.userSharedPreferences.getData("secondaryUserName"), this.userSharedPreferences.getData("secondaryUserVurvId"), this.userSharedPreferences.getData("expiresDate"))).commit();

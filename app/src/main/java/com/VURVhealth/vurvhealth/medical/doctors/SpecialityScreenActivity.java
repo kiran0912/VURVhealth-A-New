@@ -643,8 +643,8 @@ public class SpecialityScreenActivity extends SuperAppCompactActivity {
                 }else if (activity.equalsIgnoreCase("medicalScreen")) {
                     Intent intent = new Intent(SpecialityScreenActivity.this, MedicalScreenActivity.class);
                     intent.putExtra("fieldValue", specialtyValue);
-
                     setResult(101, intent);
+                    hideKeyboard(SpecialityScreenActivity.this);
                     finish();
                 }
             }

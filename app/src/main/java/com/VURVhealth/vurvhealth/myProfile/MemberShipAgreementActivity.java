@@ -70,7 +70,7 @@ public class MemberShipAgreementActivity extends SuperAppCompactActivity {
 
                 @Override
                 public void onFailure(Call<String> call, Throwable t) {
-
+                    Log.v("Upgrad", t.getMessage());
                 }
             });
         } catch (Exception e) {
@@ -98,12 +98,20 @@ public class MemberShipAgreementActivity extends SuperAppCompactActivity {
                         }
                         String dobFormat = null;
                         try {
-                            dobFormat = new SimpleDateFormat("MM/dd/yyyy").format(new SimpleDateFormat("yyyy-MM-dd").parse(prefsLoginData.getString("subscription_end_date", "12/12/2017")));
+                            dobFormat = new SimpleDateFormat("MM/dd/yyyy").format(new SimpleDateFormat("yyyy-MM-dd").parse(prefsLoginData.getString("vurv_mem_exp_date", "12/12/2017")));
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
                         String memberText = (String) response.body();
-                        tvTC.loadData(memberText1 + "<br />" + (getString(R.string.memberid) + MinimalPrettyPrinter.DEFAULT_ROOT_VALUE_SEPARATOR + vurvId + "<br />" + getString(R.string.memName) + "<br />" + fullName + "<br />" + address + "<br />" + getString(R.string.effect_date) + MinimalPrettyPrinter.DEFAULT_ROOT_VALUE_SEPARATOR + dobFormat + "<br />" + getString(R.string.term) + MinimalPrettyPrinter.DEFAULT_ROOT_VALUE_SEPARATOR + post_title + "<br />" + getString(R.string.total_fee) + MinimalPrettyPrinter.DEFAULT_ROOT_VALUE_SEPARATOR + getString(R.string.total_fee_text) + "<br />") + "<br />" + memberText, "text/html", "utf-8");
+                        tvTC.loadDataWithBaseURL(null,memberText1 + "<br />" +
+                                (getString(R.string.memberid) + MinimalPrettyPrinter.DEFAULT_ROOT_VALUE_SEPARATOR +
+                                        vurvId + "<br />" + getString(R.string.memName) + "<br />" +
+                                        fullName + "<br />" + address + "<br />" + getString(R.string.effect_date) +
+                                        MinimalPrettyPrinter.DEFAULT_ROOT_VALUE_SEPARATOR + dobFormat + "<br />" +
+                                        getString(R.string.term) + MinimalPrettyPrinter.DEFAULT_ROOT_VALUE_SEPARATOR +
+                                        post_title + "<br />" + getString(R.string.total_fee) +
+                                        MinimalPrettyPrinter.DEFAULT_ROOT_VALUE_SEPARATOR + getString(R.string.total_fee_text) +
+                                        "<br />") + "<br />" + memberText, "text/html", "utf-8",null);
                         dismissProgressDialog();
                     }
                     dismissProgressDialog();

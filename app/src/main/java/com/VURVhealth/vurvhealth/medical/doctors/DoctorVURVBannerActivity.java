@@ -124,15 +124,15 @@ public class DoctorVURVBannerActivity extends AppCompatActivity {
         rxPcnNum.setVisibility(View.GONE);
         String dobFormat = null;
         try {
-            dobFormat = new SimpleDateFormat("MM/dd/yyyy").format(new SimpleDateFormat("yyyy-MM-dd").parse(prefsData.getString("subscription_end_date", "12/12/2017")));
+            dobFormat = new SimpleDateFormat("MM/dd/yyyy").format(new SimpleDateFormat("yyyy-MM-dd").parse(prefsData.getString("vurv_mem_exp_date", "12/12/2017")));
         } catch (Exception e) {
             e.printStackTrace();
         }
         tvExp.setText(getResources().getString(R.string.expires) + MinimalPrettyPrinter.DEFAULT_ROOT_VALUE_SEPARATOR + dobFormat);
         tvPlan.setText(getString(R.string.plan) + " PULSE");
-        tvPatient.setText(Html.fromHtml(getResources().getString(R.string.dental_txt_card)));
+        tvPatient.setText(Html.fromHtml(getResources().getString(R.string.medical_txt_card)));
         tvPatient.setTextColor(ContextCompat.getColor(this, R.color.black));
-        tvHealth.setText(Html.fromHtml(getResources().getString(R.string.dental_txt_card2)));
+        tvHealth.setText(Html.fromHtml(getResources().getString(R.string.medical_txt_card2)));
         img_cancelBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

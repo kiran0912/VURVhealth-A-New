@@ -64,6 +64,7 @@ public class UpgradeRxFlipActivity extends AppCompatActivity implements OnBackSt
         vurvId = userSharedPreferences.getData("secondaryUserVurvId");
 
         getIntentData();
+
         if (savedInstanceState == null) {
             getFragmentManager().beginTransaction().add(R.id.container, new CardFrontFragment(activity, fullname, vurvId)).commit();
         } else {
@@ -86,10 +87,8 @@ public class UpgradeRxFlipActivity extends AppCompatActivity implements OnBackSt
     }
 
     private void getIntentData() {
-        try {
+        if (getIntent()!=null) {
             activity = getIntent().getStringExtra("activity");
-        } catch (Exception e) {
-            activity = "";
         }
     }
 
@@ -162,7 +161,7 @@ public class UpgradeRxFlipActivity extends AppCompatActivity implements OnBackSt
             expires.setVisibility(View.GONE);
             vurv_id.setVisibility(View.INVISIBLE);
             cardImg.setBackgroundResource(R.drawable.card_rx_large2);
-            if (this.activity.equalsIgnoreCase("MyMembersActivity")) {
+            if (activity.equalsIgnoreCase("MyMembersActivity")) {
                 name.setText(this.fullName);
 
                 /*srikanth*/

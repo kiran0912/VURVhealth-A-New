@@ -10,7 +10,15 @@ import com.google.gson.annotations.SerializedName;
 import com.google.maps.android.clustering.ClusterItem;
 
 public class SearchFacilitiesResPayLoad implements Parcelable, ClusterItem {
-    public static final Creator<SearchFacilitiesResPayLoad> CREATOR = new C04981();
+    public static final Creator<SearchFacilitiesResPayLoad> CREATOR = new Creator<SearchFacilitiesResPayLoad>() {
+        public SearchFacilitiesResPayLoad createFromParcel(Parcel in) {
+            return new SearchFacilitiesResPayLoad(in);
+        }
+
+        public SearchFacilitiesResPayLoad[] newArray(int size) {
+            return new SearchFacilitiesResPayLoad[size];
+        }
+    };
     @SerializedName("Fac_ECPProvider")
     @Expose
     private String Fac_ECPProvider;
@@ -61,20 +69,6 @@ public class SearchFacilitiesResPayLoad implements Parcelable, ClusterItem {
         return null;
     }
 
-    /* renamed from: com.VURVhealth.VURVhealth.medical.pojos.SearchFacilitiesResPayLoad$1 */
-    static class C04981 implements Creator<SearchFacilitiesResPayLoad> {
-        C04981() {
-        }
-
-        public SearchFacilitiesResPayLoad createFromParcel(Parcel in) {
-            return new SearchFacilitiesResPayLoad(in);
-        }
-
-        public SearchFacilitiesResPayLoad[] newArray(int size) {
-            return new SearchFacilitiesResPayLoad[size];
-        }
-    }
-
     public int getSavedItem() {
         return this.savedItem;
     }
@@ -105,6 +99,10 @@ public class SearchFacilitiesResPayLoad implements Parcelable, ClusterItem {
 
     public void setFac_JCAHOAccrediated(String fac_JCAHOAccrediated) {
         this.Fac_JCAHOAccrediated = fac_JCAHOAccrediated;
+    }
+
+    public SearchFacilitiesResPayLoad(){
+
     }
 
     public SearchFacilitiesResPayLoad(Parcel in) {

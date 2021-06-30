@@ -99,8 +99,8 @@ public class DoctorsFilterActivity extends AppCompatActivity {
         llMale.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                checkedList.remove("male");
                 if (male_check.getVisibility() == View.VISIBLE) {
+                    checkedList.remove("male");
                     male_check.setVisibility(View.INVISIBLE);
 
                 } else {

@@ -3,6 +3,7 @@ package com.VURVhealth.vurvhealth.medical.doctors;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
@@ -28,7 +29,6 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -56,6 +56,7 @@ import com.VURVhealth.vurvhealth.retrofit.ApiClient;
 import com.VURVhealth.vurvhealth.retrofit.ApiInterface;
 import com.VURVhealth.vurvhealth.retrofit.Application_holder;
 import com.VURVhealth.vurvhealth.save.NoSavedItemActivity;
+import com.VURVhealth.vurvhealth.upgrade.UpgradeMedicalFlipActivity;
 import com.VURVhealth.vurvhealth.utilities.StatusResponseForTotalProject;
 import com.VURVhealth.vurvhealth.utilities.Utility;
 import com.google.android.gms.common.ConnectionResult;
@@ -229,8 +230,8 @@ public class DoctorsResultDetailsActivity extends FragmentActivity implements On
         flBanner.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(DoctorsResultDetailsActivity.this, DoctorVURVBannerActivity.class);
-                intent.putExtra("activity", "medicalScreen");
+                Intent intent = new Intent(DoctorsResultDetailsActivity.this, UpgradeMedicalFlipActivity.class);
+                intent.putExtra("activity", "DoctorVURVBannerActivity");
                 startActivity(intent);
             }
         });
@@ -259,6 +260,7 @@ public class DoctorsResultDetailsActivity extends FragmentActivity implements On
                 }
             }
         });
+
     }
 
     private void saveForLaterDoctors() {
@@ -455,7 +457,7 @@ public class DoctorsResultDetailsActivity extends FragmentActivity implements On
         });
         save_contact.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                askForContactPermission();
+                requestContactPermission();
                 Toast.makeText(DoctorsResultDetailsActivity.this, getResources().getString(R.string.contact_saved), Toast.LENGTH_SHORT).show();
                 customDialog.dismiss();
                 customDialog.cancel();
@@ -483,40 +485,53 @@ public class DoctorsResultDetailsActivity extends FragmentActivity implements On
         updateUri = getContentResolver().insert(updateUri, values);
     }
 
-    public void askForContactPermission() {
-        if (Build.VERSION.SDK_INT < 23) {
-            getContact();
-        } else if (ContextCompat.checkSelfPermission(this, "android.permission.READ_CONTACTS") == 0) {
-            getContact();
-        } else if (ActivityCompat.shouldShowRequestPermissionRationale(this, "android.permission.READ_CONTACTS")) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle("Contacts access needed");
-            builder.setPositiveButton(getResources().getString(R.string.ok), null);
-            builder.setMessage("Please confirm Contacts access");
-            builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
-                @TargetApi(23)
-                public void onDismiss(DialogInterface dialog) {
-                    requestPermissions(new String[]{"android.permission.READ_CONTACTS"}, 100);
+    public void requestContactPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && Build.VERSION.SDK_INT >= 23) {
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_CONTACTS) != PackageManager.PERMISSION_GRANTED) {
+                if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.WRITE_CONTACTS)) {
+                    final android.app.AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                    builder.setTitle("Read Contacts permission");
+                    builder.setPositiveButton(android.R.string.ok, null);
+                    builder.setMessage("Please enable access to contacts.");
+                    builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                        @TargetApi(Build.VERSION_CODES.M)
+                        @Override
+                        public void onDismiss(DialogInterface dialog) {
+                            requestPermissions(
+                                    new String[]
+                                            {Manifest.permission.WRITE_CONTACTS}
+                                    , 100);
+                        }
+                    });
+                    builder.show();
+                } else {
+                    ActivityCompat.requestPermissions(this,
+                            new String[]{Manifest.permission.WRITE_CONTACTS},
+                            100);
                 }
-            });
-            builder.show();
+            } else {
+                getContact();
+            }
         } else {
-            ActivityCompat.requestPermissions(this, new String[]{"android.permission.READ_CONTACTS"}, 100);
+            getContact();
         }
     }
 
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           String permissions[], int[] grantResults) {
         switch (requestCode) {
-            case 100:
-                if (grantResults.length <= 0 || grantResults[0] != 0) {
-                    Toast.makeText(this, "No permission for contacts", Toast.LENGTH_SHORT).show();
-                    return;
-                } else {
-                    getContact();
+            case 100: {
+                if (permissions[0].equals(Manifest.permission.WRITE_CONTACTS)) {
+                    if (grantResults.length > 0
+                            && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                        getContact();
+                    } else {
+                        Toast.makeText(this, "You have disabled a contacts permission", Toast.LENGTH_LONG).show();
+                    }
                     return;
                 }
-            default:
-                return;
+            }
         }
     }
 

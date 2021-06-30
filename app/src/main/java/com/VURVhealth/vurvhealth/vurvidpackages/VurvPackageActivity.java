@@ -13,7 +13,6 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.text.Html;
-import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.method.LinkMovementMethod;
@@ -27,7 +26,10 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.VURVhealth.vurvhealth.TeleMedicineActivity;
+import com.VURVhealth.vurvhealth.retrofit.Application_holder;
+import com.VURVhealth.vurvhealth.save.SaveItemActivity;
+import com.VURVhealth.vurvhealth.telemed.TeleMedicineActivity;
+import com.VURVhealth.vurvhealth.telemed.TeleMedicineActivity1;
 import com.VURVhealth.vurvhealth.freshdesk_help.FreshdeskMainListActivity;
 import com.VURVhealth.vurvhealth.myProfile.MyMembersActivity;
 import com.VURVhealth.vurvhealth.myProfile.pojos.CurrentPackageResPayload;
@@ -263,9 +265,9 @@ public class VurvPackageActivity extends SuperAppCompactActivity {
         llHelp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(VurvPackageActivity.this, FreshdeskMainListActivity.class));
-//                startActivity(new Intent(VurvPackageActivity.this, HelpActivity.class));
-                finish();
+                Uri uri = Uri.parse(Application_holder.help_url); // missing 'http://' will cause crashed
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(intent);
             }
         });
     }
@@ -309,8 +311,8 @@ public class VurvPackageActivity extends SuperAppCompactActivity {
             packageData = new PackageData();
             packageData.setImages(R.drawable.card_medical_new);
             packageData.setCardName("Medical");
-            packageData.setHeading(getResources().getString(R.string.dental_txt_card));
-            packageData.setDescription(getResources().getString(R.string.dental_txt_card2));
+            packageData.setHeading(getResources().getString(R.string.medical_txt_card));
+            packageData.setDescription(getResources().getString(R.string.medical_txt_card2));
             packageData.setActiveStatus(true);
             packagesList.add(packageData);
         } else {
@@ -449,7 +451,7 @@ public class VurvPackageActivity extends SuperAppCompactActivity {
     }
 
     private void moveToTelemedActivity() {
-        Intent intent = new Intent(VurvPackageActivity.this, TeleMedicineActivity.class);
+        Intent intent = new Intent(VurvPackageActivity.this, TeleMedicineActivity1.class);
         startActivity(intent);
     }
 
@@ -575,7 +577,6 @@ public class VurvPackageActivity extends SuperAppCompactActivity {
                         Intent intent = new Intent(VurvPackageActivity.this, TeleMedicineActivity.class);
                         intent.putExtra("move","VurvPackage");
                         startActivity(intent);
-                        finish();
                     }
                 }
             });
@@ -598,7 +599,7 @@ public class VurvPackageActivity extends SuperAppCompactActivity {
             tvCardProvider.setVisibility(View.GONE);
             String dobFormat = null;
             try {
-                dobFormat = new SimpleDateFormat("MM/dd/yyyy").format(new SimpleDateFormat("yyyy-MM-dd").parse(prefsLoginData.getString("subscription_end_date", "12/12/2017")));
+                dobFormat = new SimpleDateFormat("MM/dd/yyyy").format(new SimpleDateFormat("yyyy-MM-dd").parse(prefsLoginData.getString("vurv_mem_exp_date", "12/12/2017")));
             } catch (Exception e) {
                 e.printStackTrace();
             }

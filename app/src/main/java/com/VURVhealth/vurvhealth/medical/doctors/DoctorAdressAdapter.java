@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.VURVhealth.vurvhealth.R;
 import com.VURVhealth.vurvhealth.medical.aboutDoctorPojos.AboutDoctorResPayLoad;
+import com.VURVhealth.vurvhealth.upgrade.UpgradeMedicalFlipActivity;
 
 import java.util.ArrayList;
 
@@ -22,18 +23,6 @@ public class DoctorAdressAdapter extends Adapter<DoctorAdressAdapter.DataObjectH
     private Context context;
     private ArrayList<AboutDoctorResPayLoad> mCurrentListing;
     public SharedPreferences prefsLoginData;
-
-    /* renamed from: com.VURVhealth.VURVhealth.medical.doctors.DoctorAdressAdapter$1 */
-    class C04371 implements OnClickListener {
-        C04371() {
-        }
-
-        public void onClick(View v) {
-            Intent intent = new Intent(DoctorAdressAdapter.this.context, DoctorVURVBannerActivity.class);
-            intent.putExtra("activity", "medicalScreen");
-            DoctorAdressAdapter.this.context.startActivity(intent);
-        }
-    }
 
     public static class DataObjectHolder extends ViewHolder implements OnClickListener {
         private FrameLayout flBanner2;
@@ -86,19 +75,19 @@ public class DoctorAdressAdapter extends Adapter<DoctorAdressAdapter.DataObjectH
     }
 
     public void onBindViewHolder(DataObjectHolder holder, int position) {
-        holder.tvStreet.setText(((AboutDoctorResPayLoad) this.mCurrentListing.get(position)).getAddline1());
-        holder.tvCity.setText(((AboutDoctorResPayLoad) this.mCurrentListing.get(position)).getCity() + ", " + ((AboutDoctorResPayLoad) this.mCurrentListing.get(position)).getState() + ", " + ((AboutDoctorResPayLoad) this.mCurrentListing.get(position)).getZipcode());
-        holder.tvMon.setText(((AboutDoctorResPayLoad) this.mCurrentListing.get(position)).getMonday());
-        holder.tvTue.setText(((AboutDoctorResPayLoad) this.mCurrentListing.get(position)).getTuesday());
-        holder.tvWed.setText(((AboutDoctorResPayLoad) this.mCurrentListing.get(position)).getWednesDay());
-        holder.tvThu.setText(((AboutDoctorResPayLoad) this.mCurrentListing.get(position)).getThursDay());
-        holder.tvFri.setText(((AboutDoctorResPayLoad) this.mCurrentListing.get(position)).getFriDay());
-        holder.tvSat.setText(((AboutDoctorResPayLoad) this.mCurrentListing.get(position)).getSaturDay());
-        holder.tvSun.setText(((AboutDoctorResPayLoad) this.mCurrentListing.get(position)).getSunDay());
-        holder.tvWaiTime.setText(((AboutDoctorResPayLoad) this.mCurrentListing.get(position)).getWaitTimeRoutineVisit());
-        holder.tvRoutinevisits.setText(((AboutDoctorResPayLoad) this.mCurrentListing.get(position)).getWaitTimeRoutineVisit());
-        holder.tvUrgentCare.setText(((AboutDoctorResPayLoad) this.mCurrentListing.get(position)).getWaitTimeUrgentCare());
-        holder.tvPatientVisit.setText(((AboutDoctorResPayLoad) this.mCurrentListing.get(position)).getWaitTimeNewPatients());
+        holder.tvStreet.setText((mCurrentListing.get(position)).getAddline1());
+        holder.tvCity.setText((mCurrentListing.get(position)).getCity() + ", " + (mCurrentListing.get(position)).getState() + ", " + (mCurrentListing.get(position)).getZipcode());
+        holder.tvMon.setText((mCurrentListing.get(position)).getMonday());
+        holder.tvTue.setText((mCurrentListing.get(position)).getTuesday());
+        holder.tvWed.setText((mCurrentListing.get(position)).getWednesDay());
+        holder.tvThu.setText((mCurrentListing.get(position)).getThursDay());
+        holder.tvFri.setText((mCurrentListing.get(position)).getFriDay());
+        holder.tvSat.setText((mCurrentListing.get(position)).getSaturDay());
+        holder.tvSun.setText((mCurrentListing.get(position)).getSunDay());
+        holder.tvWaiTime.setText((mCurrentListing.get(position)).getWaitTimeRoutineVisit());
+        holder.tvRoutinevisits.setText((mCurrentListing.get(position)).getWaitTimeRoutineVisit());
+        holder.tvUrgentCare.setText((mCurrentListing.get(position)).getWaitTimeUrgentCare());
+        holder.tvPatientVisit.setText((mCurrentListing.get(position)).getWaitTimeNewPatients());
         this.prefsLoginData = this.context.getSharedPreferences("VURVProfileDetails", 0);
         if (this.prefsLoginData.getString("search_type", "").contains("Doctors")) {
             holder.flBanner2.setVisibility(View.VISIBLE);
@@ -108,21 +97,28 @@ public class DoctorAdressAdapter extends Adapter<DoctorAdressAdapter.DataObjectH
         try {
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.append("(");
-            stringBuilder.append(((AboutDoctorResPayLoad) this.mCurrentListing.get(position)).getMobileNo().substring(0, 3));
+            stringBuilder.append((mCurrentListing.get(position)).getMobileNo().substring(0, 3));
             stringBuilder.append(") ");
-            stringBuilder.append(((AboutDoctorResPayLoad) this.mCurrentListing.get(position)).getMobileNo().substring(3, 6));
+            stringBuilder.append((mCurrentListing.get(position)).getMobileNo().substring(3, 6));
             stringBuilder.append("-");
-            stringBuilder.append(((AboutDoctorResPayLoad) this.mCurrentListing.get(position)).getMobileNo().substring(6, 10));
+            stringBuilder.append((mCurrentListing.get(position)).getMobileNo().substring(6, 10));
             holder.tvPhoneNumber.setText(stringBuilder);
         } catch (ArrayIndexOutOfBoundsException e) {
-            holder.tvPhoneNumber.setText(((AboutDoctorResPayLoad) this.mCurrentListing.get(position)).getMobileNo());
+            holder.tvPhoneNumber.setText((mCurrentListing.get(position)).getMobileNo());
         }
         if (this.mCurrentListing.size() - 1 == position) {
             holder.flBanner2.setVisibility(View.VISIBLE);
         } else {
             holder.flBanner2.setVisibility(View.GONE);
         }
-        holder.flBanner2.setOnClickListener(new C04371());
+        holder.flBanner2.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, UpgradeMedicalFlipActivity.class);
+                intent.putExtra("activity", "DoctorVURVBannerActivity");
+                context.startActivity(intent);
+            }
+        });
     }
 
     public void deleteItem(int index) {

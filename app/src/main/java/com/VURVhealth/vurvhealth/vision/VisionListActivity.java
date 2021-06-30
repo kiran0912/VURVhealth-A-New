@@ -51,111 +51,83 @@ public class VisionListActivity extends SuperAppCompactActivity {
     private TextView tvGender;
     private TextView tvPlace;
     private TextView tvTabletName;
-
-    /* renamed from: com.VURVhealth.VURVhealth.vision.VisionListActivity$1 */
-    class C08071 implements OnClickListener {
-        C08071() {
-        }
-
-        public void onClick(View v) {
-            VisionListActivity.this.startActivityForResult(new Intent(VisionListActivity.this, VisionFilterActivity.class), 100);
-        }
-    }
-
-    /* renamed from: com.VURVhealth.VURVhealth.vision.VisionListActivity$2 */
-    class C08082 implements OnClickListener {
-        C08082() {
-        }
-
-        public void onClick(View v) {
-            VisionListActivity.this.startActivity(new Intent(VisionListActivity.this, VisionMapActivity.class));
-            VisionListActivity.this.finish();
-        }
-    }
-
-    /* renamed from: com.VURVhealth.VURVhealth.vision.VisionListActivity$3 */
-    class C08093 implements OnClickListener {
-        C08093() {
-        }
-
-        public void onClick(View v) {
-            VisionListActivity.this.finish();
-        }
-    }
-
-    /* renamed from: com.VURVhealth.VURVhealth.vision.VisionListActivity$4 */
-    class C08104 implements Callback<ArrayList<VisionProviderIdResPayload>> {
-        C08104() {
-        }
-
-        public void onResponse(Call<ArrayList<VisionProviderIdResPayload>> call, Response<ArrayList<VisionProviderIdResPayload>> response) {
-            if (response.isSuccessful()) {
-                VisionListActivity.this.dismissProgressDialog();
-            }
-        }
-
-        public void onFailure(Call<ArrayList<VisionProviderIdResPayload>> call, Throwable t) {
-            Toast.makeText(VisionListActivity.this, VisionListActivity.this.getResources().getString(R.string.server_not_found), Toast.LENGTH_SHORT).show();
-            Log.e("", t.toString());
-            VisionListActivity.this.dismissProgressDialog();
-        }
-    }
+    
 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.doctor_result_screen);
         SharedPreferences sharedPreferences = getSharedPreferences("visionType", 0);
-        this.city = sharedPreferences.getString("city", "");
-        this.state = sharedPreferences.getString("state", "");
-        this.place = sharedPreferences.getString("zipCode", "");
-        this.doctorSpeciality = sharedPreferences.getString("doctorSpecialty", "");
-        this.officeSpeciality = sharedPreferences.getString("officeSpecialty", "");
-        this.count = (TextView) findViewById(R.id.count);
-        this.tvTabletName = (TextView) findViewById(R.id.tvTabletName);
-        this.tvGender = (TextView) findViewById(R.id.tvGender);
-        this.tvPlace = (TextView) findViewById(R.id.tvPlace);
-        this.no_data = (TextView) findViewById(R.id.no_data);
-        this.no_data.setVisibility(View.GONE);
-        this.filter_btn = (ImageView) findViewById(R.id.filter_btn);
-        this.mapBtn = (ImageView) findViewById(R.id.mapBtn);
-        this.backBtn = (ImageView) findViewById(R.id.backBtn);
-        this.rv_place = (RecyclerView) findViewById(R.id.rv_place);
-        this.mLayoutManager = new LinearLayoutManager(getApplicationContext());
-        this.rv_place.setLayoutManager(this.mLayoutManager);
-        this.rv_place.setItemAnimator(new DefaultItemAnimator());
-        this.mAdapter = new VisionListAdapter(VisionListActivity.this, VisionScreenActivity.resPayloads);
-        this.rv_place.setAdapter(this.mAdapter);
-        this.count.setText(VisionScreenActivity.resPayloads.size() + MinimalPrettyPrinter.DEFAULT_ROOT_VALUE_SEPARATOR + getResources().getString(R.string.results));
-        if (this.doctorSpeciality.length() > 0) {
-            this.tvTabletName.setVisibility(View.VISIBLE);
-            this.tvTabletName.setText(this.doctorSpeciality);
-        } else {
-            this.tvTabletName.setVisibility(View.GONE);
+        city = sharedPreferences.getString("city", "");
+        state = sharedPreferences.getString("state", "");
+        place = sharedPreferences.getString("zipCode", "");
+        doctorSpeciality = sharedPreferences.getString("doctorSpecialty", "");
+        officeSpeciality = sharedPreferences.getString("officeSpecialty", "");
+        count = (TextView) findViewById(R.id.count);
+        tvTabletName = (TextView) findViewById(R.id.tvTabletName);
+        tvGender = (TextView) findViewById(R.id.tvGender);
+        tvPlace = (TextView) findViewById(R.id.tvPlace);
+        no_data = (TextView) findViewById(R.id.no_data);
+        no_data.setVisibility(View.GONE);
+        filter_btn = (ImageView) findViewById(R.id.filter_btn);
+        mapBtn = (ImageView) findViewById(R.id.mapBtn);
+        backBtn = (ImageView) findViewById(R.id.backBtn);
+        rv_place = (RecyclerView) findViewById(R.id.rv_place);
+        mLayoutManager = new LinearLayoutManager(getApplicationContext());
+        rv_place.setLayoutManager(mLayoutManager);
+        rv_place.setItemAnimator(new DefaultItemAnimator());
+        mAdapter = new VisionListAdapter(this, VisionScreenActivity.resPayloads);
+        rv_place.setAdapter(mAdapter);
+        if (VisionScreenActivity.resPayloads!=null) {
+            count.setText(VisionScreenActivity.resPayloads.size() + MinimalPrettyPrinter.DEFAULT_ROOT_VALUE_SEPARATOR + getResources().getString(R.string.results));
         }
-        if (this.officeSpeciality.length() > 0) {
-            this.tvGender.setVisibility(View.VISIBLE);
-            this.tvGender.setText(this.officeSpeciality);
+        if (doctorSpeciality.length() > 0) {
+            tvTabletName.setVisibility(View.VISIBLE);
+            tvTabletName.setText(doctorSpeciality);
         } else {
-            this.tvGender.setVisibility(View.GONE);
+            tvTabletName.setVisibility(View.GONE);
         }
-        this.tvPlace.setText(this.city + ", " + this.state + "\n" + this.place);
-        this.filter_btn.setOnClickListener(new C08071());
-        this.mapBtn.setOnClickListener(new C08082());
-        this.backBtn.setOnClickListener(new C08093());
-        if (VisionScreenActivity.searchForVisionResPayload.getStatus().equalsIgnoreCase("3")) {
-            StringBuffer statesList = new StringBuffer();
-            Iterator it = VisionScreenActivity.searchForVisionResPayload.getStateList().iterator();
-            while (it.hasNext()) {
-                statesList.append(((SearchForVisionResPayload.StateList) it.next()).getRestrictedState() + ", ");
-                statesList.setLength(statesList.length() - 2);
-                DialogClass.createDAlertDialog(this, getString(R.string.some_providers) + MinimalPrettyPrinter.DEFAULT_ROOT_VALUE_SEPARATOR + statesList);
+        if (officeSpeciality.length() > 0) {
+            tvGender.setVisibility(View.VISIBLE);
+            tvGender.setText(officeSpeciality);
+        } else {
+            tvGender.setVisibility(View.GONE);
+        }
+        tvPlace.setText(city + ", " + state + "\n" + place);
+        filter_btn.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivityForResult(new Intent(VisionListActivity.this, VisionFilterActivity.class), 100);
+            }
+        });
+        mapBtn.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(VisionListActivity.this, VisionMapActivity.class));
+                finish();
+            }
+        });
+        backBtn.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+        if (VisionScreenActivity.searchForVisionResPayload!=null) {
+            if (VisionScreenActivity.searchForVisionResPayload.getStatus().equalsIgnoreCase("3")) {
+                StringBuffer statesList = new StringBuffer();
+                Iterator it = VisionScreenActivity.searchForVisionResPayload.getStateList().iterator();
+                while (it.hasNext()) {
+                    statesList.append(((SearchForVisionResPayload.StateList) it.next()).getRestrictedState() + ", ");
+                    statesList.setLength(statesList.length() - 2);
+                    DialogClass.createDAlertDialog(this, getString(R.string.some_providers) + MinimalPrettyPrinter.DEFAULT_ROOT_VALUE_SEPARATOR + statesList);
+                }
             }
         }
     }
 
     protected void onResume() {
         super.onResume();
-        this.mAdapter.notifyDataSetChanged();
+        mAdapter.notifyDataSetChanged();
     }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -164,45 +136,45 @@ public class VisionListActivity extends SuperAppCompactActivity {
             return;
         }
         if ((data.getStringExtra("male").length() > 0 && data.getStringExtra("female").length() > 0) || (data.getStringExtra("male").trim().length() == 0 && data.getStringExtra("female").trim().length() == 0)) {
-            this.mAdapter = new VisionListAdapter(this, VisionScreenActivity.resPayloads);
-            this.rv_place.setAdapter(this.mAdapter);
-            this.count.setText(VisionScreenActivity.resPayloads.size() + MinimalPrettyPrinter.DEFAULT_ROOT_VALUE_SEPARATOR + getResources().getString(R.string.results));
+            mAdapter = new VisionListAdapter(this, VisionScreenActivity.resPayloads);
+            rv_place.setAdapter(mAdapter);
+            count.setText(VisionScreenActivity.resPayloads.size() + MinimalPrettyPrinter.DEFAULT_ROOT_VALUE_SEPARATOR + getResources().getString(R.string.results));
         } else if (data.getStringExtra("male").length() > 0) {
-            this.filterVisionList.clear();
+            filterVisionList.clear();
             for (int i = 0; i < VisionScreenActivity.resPayloads.size(); i++) {
                 if (data.getStringExtra("male").equalsIgnoreCase(((SearchForVisionResPayload.Datum) VisionScreenActivity.resPayloads.get(i)).getGender())) {
-                    this.filterVisionList.add(VisionScreenActivity.resPayloads.get(i));
+                    filterVisionList.add(VisionScreenActivity.resPayloads.get(i));
                 }
             }
-            if (this.filterVisionList.size() > 0) {
-                this.mAdapter = new VisionListAdapter(this, this.filterVisionList);
-                this.rv_place.setAdapter(this.mAdapter);
-                this.count.setText(this.filterVisionList.size() + MinimalPrettyPrinter.DEFAULT_ROOT_VALUE_SEPARATOR + getResources().getString(R.string.results));
-                this.no_data.setVisibility(View.GONE);
-                this.rv_place.setVisibility(View.VISIBLE);
+            if (filterVisionList.size() > 0) {
+                mAdapter = new VisionListAdapter(this, filterVisionList);
+                rv_place.setAdapter(mAdapter);
+                count.setText(filterVisionList.size() + MinimalPrettyPrinter.DEFAULT_ROOT_VALUE_SEPARATOR + getResources().getString(R.string.results));
+                no_data.setVisibility(View.GONE);
+                rv_place.setVisibility(View.VISIBLE);
                 return;
             }
-            this.count.setText(getResources().getString(R.string.no_results));
-            this.no_data.setVisibility(View.VISIBLE);
-            this.rv_place.setVisibility(View.GONE);
+            count.setText(getResources().getString(R.string.no_results));
+            no_data.setVisibility(View.VISIBLE);
+            rv_place.setVisibility(View.GONE);
         } else if (data.getStringExtra("female").length() > 0) {
-            this.filterVisionList.clear();
+            filterVisionList.clear();
             for (int i = 0; i < VisionScreenActivity.resPayloads.size(); i++) {
                 if (data.getStringExtra("female").equalsIgnoreCase(((SearchForVisionResPayload.Datum) VisionScreenActivity.resPayloads.get(i)).getGender())) {
-                    this.filterVisionList.add(VisionScreenActivity.resPayloads.get(i));
+                    filterVisionList.add(VisionScreenActivity.resPayloads.get(i));
                 }
             }
-            if (this.filterVisionList.size() > 0) {
-                this.mAdapter = new VisionListAdapter(this, this.filterVisionList);
-                this.rv_place.setAdapter(this.mAdapter);
-                this.count.setText(this.filterVisionList.size() + MinimalPrettyPrinter.DEFAULT_ROOT_VALUE_SEPARATOR + getResources().getString(R.string.results));
-                this.no_data.setVisibility(View.GONE);
-                this.rv_place.setVisibility(View.VISIBLE);
+            if (filterVisionList.size() > 0) {
+                mAdapter = new VisionListAdapter(this, filterVisionList);
+                rv_place.setAdapter(mAdapter);
+                count.setText(filterVisionList.size() + MinimalPrettyPrinter.DEFAULT_ROOT_VALUE_SEPARATOR + getResources().getString(R.string.results));
+                no_data.setVisibility(View.GONE);
+                rv_place.setVisibility(View.VISIBLE);
                 return;
             }
-            this.count.setText(getResources().getString(R.string.no_results));
-            this.no_data.setVisibility(View.VISIBLE);
-            this.rv_place.setVisibility(View.GONE);
+            count.setText(getResources().getString(R.string.no_results));
+            no_data.setVisibility(View.VISIBLE);
+            rv_place.setVisibility(View.GONE);
         }
     }
 
@@ -218,6 +190,20 @@ public class VisionListActivity extends SuperAppCompactActivity {
         searchForVisionReqPayload.setProviderId(((SearchForVisionResPayload.Datum) VisionScreenActivity.resPayloads.get(0)).getVisProviderId());
         ArrayList<AboutDoctorReqPayLoad> reqPayLoads = new ArrayList();
         reqPayLoads.add(searchForVisionReqPayload);
-        apiService.getVisionProviderDetails(reqPayLoads).enqueue(new C08104());
+        apiService.getVisionProviderDetails(reqPayLoads).enqueue(new Callback<ArrayList<VisionProviderIdResPayload>>() {
+            @Override
+            public void onResponse(Call<ArrayList<VisionProviderIdResPayload>> call, Response<ArrayList<VisionProviderIdResPayload>> response) {
+                if (response.isSuccessful()) {
+                    dismissProgressDialog();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ArrayList<VisionProviderIdResPayload>> call, Throwable t) {
+                Toast.makeText(VisionListActivity.this, getResources().getString(R.string.server_not_found), Toast.LENGTH_SHORT).show();
+                Log.e("", t.toString());
+                dismissProgressDialog();
+            }
+        });
     }
 }

@@ -309,7 +309,15 @@ public class DrugSearchResultResPayLoad {
 
 
     public static class Datum implements Parcelable {
-        public static final Creator<Datum> CREATOR = new C06041();
+        public static final Creator<Datum> CREATOR = new Creator<Datum>() {
+            public Datum createFromParcel(Parcel in) {
+                return new Datum(in);
+            }
+
+            public Datum[] newArray(int size) {
+                return new Datum[size];
+            }
+        };
         @SerializedName("4Digit")
         @Expose
         private String _4Digit;
@@ -357,20 +365,6 @@ public class DrugSearchResultResPayLoad {
 
         public Datum() {
 
-        }
-
-        //         renamed from: com.VURVhealth.VURVhealth.prescriptions.DrugSearchResultResPayLoad$Datum$1
-        static class C06041 implements Creator<Datum> {
-            C06041() {
-            }
-
-            public Datum createFromParcel(Parcel in) {
-                return new Datum(in);
-            }
-
-            public Datum[] newArray(int size) {
-                return new Datum[size];
-            }
         }
 
         protected Datum(Parcel in) {

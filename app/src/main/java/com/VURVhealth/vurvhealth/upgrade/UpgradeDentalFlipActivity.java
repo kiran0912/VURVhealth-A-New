@@ -52,18 +52,6 @@ public class UpgradeDentalFlipActivity extends AppCompatActivity implements OnBa
         private String secondaryUserName;
         private String secondaryUserVurvId;
 
-        /* renamed from: com.VURVhealth.VURVhealth.upgrade.UpgradeDentalFlipActivity$CardFrontFragment$1 */
-        class C07831 implements OnClickListener {
-            C07831() {
-            }
-
-            public void onClick(View v) {
-                Intent i = new Intent("android.intent.action.VIEW");
-                i.setData(Uri.parse("https://www.vurvhealth.com/validate"));
-                CardFrontFragment.this.startActivity(i);
-            }
-        }
-
         public CardFrontFragment(String activity, String secondaryUserName, String secondaryUserVurvId, String expiresDate) {
             this.activity = activity;
             this.secondaryUserName = secondaryUserName;
@@ -110,7 +98,7 @@ public class UpgradeDentalFlipActivity extends AppCompatActivity implements OnBa
             if (this.activity == null || !this.activity.equalsIgnoreCase("MyMembersActivity")) {
                 dobFormat = null;
                 try {
-                    dobFormat = new SimpleDateFormat("MM/dd/yyyy").format(new SimpleDateFormat("yyyy-MM-dd").parse(UpgradeDentalFlipActivity.prefsData.getString("subscription_end_date", "12-12-2017")));
+                    dobFormat = new SimpleDateFormat("MM/dd/yyyy").format(new SimpleDateFormat("yyyy-MM-dd").parse(UpgradeDentalFlipActivity.prefsData.getString("vurv_mem_exp_date", "12-12-2017")));
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -161,7 +149,14 @@ public class UpgradeDentalFlipActivity extends AppCompatActivity implements OnBa
 
         private void customTextView(TextView view) {
             view.setText(Html.fromHtml(getString(R.string.provider) + MinimalPrettyPrinter.DEFAULT_ROOT_VALUE_SEPARATOR + getString(R.string.visit) + " <b> <font color=\"#005fb6\"> https://www.vurvhealth.com/validate</font></b>"));
-            view.setOnClickListener(new C07831());
+            view.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent i = new Intent("android.intent.action.VIEW");
+                    i.setData(Uri.parse("https://www.vurvhealth.com/validate"));
+                    CardFrontFragment.this.startActivity(i);
+                }
+            });
         }
     }
 

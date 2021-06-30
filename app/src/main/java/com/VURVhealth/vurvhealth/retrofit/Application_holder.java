@@ -1,3 +1,4 @@
+
 package com.VURVhealth.vurvhealth.retrofit;
 
 
@@ -17,40 +18,42 @@ public class Application_holder {
     public static final String SIGN_UP_URL = "https://www.vurvhealth.com/mobile-app-signup/";
 
     //development
-    public static final String DRUG_ARGUS = "http://104.130.4.118/vurv_server/";
+    //public static final String DRUG_ARGUS = "http://104.130.4.118/vurv_server/";
 
     //production
-    //public static final String DRUG_ARGUS = "https://www.vurvhealth.com/";
+    public static final String DRUG_ARGUS = "https://www.vurvhealth.com/v2/";
 
     //development
-    public static final String AUTH_BASE_URL = "http://104.130.4.118/v2/api/api/";
+    //public static final String AUTH_BASE_URL = "http://104.130.4.118/v2/api/api/";
 
     //production
-        //public static final String AUTH_BASE_URL = "https://www.vurvhealth.com/api/";
+    public static final String AUTH_BASE_URL = "https://www.vurvhealth.com/v2/api/api/";
 
     //development
-    public static final String BASE_URL = "http://104.130.4.118/VURVHealth3/api/";
+    //public static final String BASE_URL = "http://104.130.4.118/VURVHealth3/api/";
 
     //production
-    //public  static final String BASE_URL = "https://www.vurvhealth.com/VURVhealth_Prod_API/api/";
+    public  static final String BASE_URL = "https://www.vurvhealth.com/VURVHealth3/api/";
     public static final String BASE_URL_VISION = "https://rx.vurvhealth.com/VURVhealth2/api/vision/";
 
     //development
-    public static final String BASE_URL1 = "https://uatapi-gateway.rxsense.com/";
+    //public static final String BASE_URL1 = "https://uatapi-gateway.rxsense.com/";
 
     //production
-    //public static final String BASE_URL1 = "https://api-gateway.rxsense.com/";
+    public static final String BASE_URL1 = "https://api-gateway.rxsense.com/";
 
     //development
-    public static final String client_secret = "0UWMCLWTD6F9";
+    //public static final String client_secret = "0UWMCLWTD6F9";
 
     //development
     //production
     public static final int client_code = 79;
 
     //production
-    //public static final String client_secret = "INQGYV2OA9ZC";
+    public static final String client_secret = "INQGYV2OA9ZC";
 
+    //help
+    public static final String help_url = "https://vurvhealth.com/help/";
 
     //    Authorize.net URL
     public static final String PAYMENT_BASE_URL = "https://apitest.authorize.net/xml/";

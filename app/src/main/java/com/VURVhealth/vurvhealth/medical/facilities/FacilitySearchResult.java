@@ -48,80 +48,65 @@ public class FacilitySearchResult extends AppCompatActivity {
     private TextView tvPlace;
     private TextView tvTabletName;
 
-    /* renamed from: com.VURVhealth.VURVhealth.medical.facilities.FacilitySearchResult$1 */
-    class C04941 implements View.OnClickListener {
-        C04941() {
-        }
-
-        public void onClick(View v) {
-            FacilitySearchResult.this.startActivityForResult(new Intent(FacilitySearchResult.this, FacilityFilterActivity.class), FacilitySearchResult.REQUEST_CODE);
-        }
-    }
-
-    /* renamed from: com.VURVhealth.VURVhealth.medical.facilities.FacilitySearchResult$2 */
-    class C04952 implements View.OnClickListener {
-        C04952() {
-        }
-
-        public void onClick(View v) {
-            FacilitySearchResult.this.startActivity(new Intent(FacilitySearchResult.this, FacilityMapActivity.class));
-            FacilitySearchResult.this.finish();
-        }
-    }
-
-    /* renamed from: com.VURVhealth.VURVhealth.medical.facilities.FacilitySearchResult$3 */
-    class C04963 implements View.OnClickListener {
-        C04963() {
-        }
-
-        public void onClick(View v) {
-            FacilitySearchResult.this.finish();
-        }
-    }
-
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.doctor_result_screen);
-        this.recentDbHelper = new SqLiteDbHelper(this);
+        recentDbHelper = new SqLiteDbHelper(this);
         SharedPreferences sharedPreferences = getSharedPreferences("facilityPref", 0);
-        this.place = sharedPreferences.getString("zipCode", "");
-        this.city = sharedPreferences.getString("city", "");
-        this.state = sharedPreferences.getString("state", "");
-        this.facilityType = sharedPreferences.getString("facilityType", "");
-        this.subFacility = sharedPreferences.getString("subFacility", "");
-        this.tvTabletName = (TextView) findViewById(R.id.tvTabletName);
-        this.tvGender = (TextView) findViewById(R.id.tvGender);
-        this.tvPlace = (TextView) findViewById(R.id.tvPlace);
-        this.count = (TextView) findViewById(R.id.count);
-        this.no_data = (TextView) findViewById(R.id.no_data);
-        this.no_data.setVisibility(View.GONE);
-        this.filter_btn = (ImageView) findViewById(R.id.filter_btn);
-        this.mapBtn = (ImageView) findViewById(R.id.mapBtn);
-        this.backBtn = (ImageView) findViewById(R.id.backBtn);
-        this.tvTabletName.setVisibility(View.VISIBLE);
-        this.tvGender.setVisibility(View.VISIBLE);
-        this.rv_place = (RecyclerView) findViewById(R.id.rv_place);
-        this.mLayoutManager = new LinearLayoutManager(getApplicationContext());
-        this.rv_place.setLayoutManager(this.mLayoutManager);
-        this.rv_place.setItemAnimator(new DefaultItemAnimator());
-        this.mAdapter = new FacilityResultAdapter(this, MedicalScreenActivity.resPayloadsForFacilities, this.subFacility);
-        this.rv_place.setAdapter(this.mAdapter);
-        this.count.setText(MedicalScreenActivity.resPayloadsForFacilities.size() + MinimalPrettyPrinter.DEFAULT_ROOT_VALUE_SEPARATOR + getResources().getString(R.string.results));
-        if (this.facilityType.length() > 0) {
-            this.tvTabletName.setText(this.facilityType);
+        place = sharedPreferences.getString("zipCode", "");
+        city = sharedPreferences.getString("city", "");
+        state = sharedPreferences.getString("state", "");
+        facilityType = sharedPreferences.getString("facilityType", "");
+        subFacility = sharedPreferences.getString("subFacility", "");
+        tvTabletName = (TextView) findViewById(R.id.tvTabletName);
+        tvGender = (TextView) findViewById(R.id.tvGender);
+        tvPlace = (TextView) findViewById(R.id.tvPlace);
+        count = (TextView) findViewById(R.id.count);
+        no_data = (TextView) findViewById(R.id.no_data);
+        no_data.setVisibility(View.GONE);
+        filter_btn = (ImageView) findViewById(R.id.filter_btn);
+        mapBtn = (ImageView) findViewById(R.id.mapBtn);
+        backBtn = (ImageView) findViewById(R.id.backBtn);
+        tvTabletName.setVisibility(View.VISIBLE);
+        tvGender.setVisibility(View.VISIBLE);
+        rv_place = (RecyclerView) findViewById(R.id.rv_place);
+        mLayoutManager = new LinearLayoutManager(getApplicationContext());
+        rv_place.setLayoutManager(mLayoutManager);
+        rv_place.setItemAnimator(new DefaultItemAnimator());
+        mAdapter = new FacilityResultAdapter(this, MedicalScreenActivity.resPayloadsForFacilities, subFacility);
+        rv_place.setAdapter(mAdapter);
+        count.setText(MedicalScreenActivity.resPayloadsForFacilities.size() + MinimalPrettyPrinter.DEFAULT_ROOT_VALUE_SEPARATOR + getResources().getString(R.string.results));
+        if (facilityType.length() > 0) {
+            tvTabletName.setText(facilityType);
         } else {
-            this.tvTabletName.setVisibility(View.GONE);
+            tvTabletName.setVisibility(View.GONE);
         }
-        if (this.subFacility.length() > 0) {
-            this.tvGender.setText(this.subFacility);
+        if (subFacility.length() > 0) {
+            tvGender.setText(subFacility);
         } else {
-            this.tvGender.setVisibility(View.VISIBLE);
+            tvGender.setVisibility(View.VISIBLE);
         }
         String[] adress = ((SearchFacilitiesResPayLoad) MedicalScreenActivity.resPayloadsForFacilities.get(0)).getAddress().split(", ");
-        this.tvPlace.setText(this.city + ", " + this.state + "\n" + this.place);
-        this.filter_btn.setOnClickListener(new C04941());
-        this.mapBtn.setOnClickListener(new C04952());
-        this.backBtn.setOnClickListener(new C04963());
+        tvPlace.setText(city + ", " + state + "\n" + place);
+        filter_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivityForResult(new Intent(FacilitySearchResult.this, FacilityFilterActivity.class), REQUEST_CODE);
+            }
+        });
+        mapBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(FacilitySearchResult.this, FacilityMapActivity.class));
+                finish();
+            }
+        });
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
     }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -132,23 +117,23 @@ public class FacilitySearchResult extends AppCompatActivity {
     }
 
     private void filterData(String handicapped, String communityProvider, String accredited) {
-        searchPractitionerResPayLoads = this.recentDbHelper.filterFacilitysData(handicapped, communityProvider, accredited);
+        searchPractitionerResPayLoads = recentDbHelper.filterFacilitysData(handicapped, communityProvider, accredited);
         if (searchPractitionerResPayLoads.size() > 0) {
-            this.mAdapter = new FacilityResultAdapter(this, searchPractitionerResPayLoads, this.subFacility);
-            this.rv_place.setAdapter(this.mAdapter);
-            this.count.setText("" + searchPractitionerResPayLoads.size() + MinimalPrettyPrinter.DEFAULT_ROOT_VALUE_SEPARATOR + getResources().getString(R.string.results));
-            this.rv_place.setVisibility(View.VISIBLE);
-            this.no_data.setVisibility(View.GONE);
+            mAdapter = new FacilityResultAdapter(this, searchPractitionerResPayLoads, subFacility);
+            rv_place.setAdapter(mAdapter);
+            count.setText("" + searchPractitionerResPayLoads.size() + MinimalPrettyPrinter.DEFAULT_ROOT_VALUE_SEPARATOR + getResources().getString(R.string.results));
+            rv_place.setVisibility(View.VISIBLE);
+            no_data.setVisibility(View.GONE);
             return;
         }
-        this.count.setText(MinimalPrettyPrinter.DEFAULT_ROOT_VALUE_SEPARATOR + getResources().getString(R.string.no_results));
-        this.rv_place.setVisibility(View.GONE);
-        this.no_data.setVisibility(View.VISIBLE);
+        count.setText(MinimalPrettyPrinter.DEFAULT_ROOT_VALUE_SEPARATOR + getResources().getString(R.string.no_results));
+        rv_place.setVisibility(View.GONE);
+        no_data.setVisibility(View.VISIBLE);
     }
 
     protected void onResume() {
         super.onResume();
-        this.mAdapter.notifyDataSetChanged();
+        mAdapter.notifyDataSetChanged();
     }
 
     public void onBackPressed() {

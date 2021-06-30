@@ -30,6 +30,7 @@ import com.VURVhealth.vurvhealth.retrofit.ApiClient;
 import com.VURVhealth.vurvhealth.retrofit.ApiInterface;
 import com.VURVhealth.vurvhealth.save.NoSavedItemActivity;
 import com.VURVhealth.vurvhealth.save.pojos.SaveForLaterRequestPojo;
+import com.VURVhealth.vurvhealth.upgrade.UpgradeRxFlipActivity;
 import com.VURVhealth.vurvhealth.utilities.StatusResponseForTotalProject;
 import com.VURVhealth.vurvhealth.utilities.Utility;
 import com.google.android.gms.common.ConnectionResult;
@@ -240,7 +241,9 @@ public class PrescriptionResultsDetailsActivity extends FragmentActivity impleme
         flBanner.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(PrescriptionResultsDetailsActivity.this, PrescriptionBannerActivity.class));
+                Intent intent = new Intent(PrescriptionResultsDetailsActivity.this, UpgradeRxFlipActivity.class);
+                intent.putExtra("activity", "PrescriptionBannerActivity");
+                startActivity(intent);
             }
         });
         ll_save.setOnClickListener(new OnClickListener() {

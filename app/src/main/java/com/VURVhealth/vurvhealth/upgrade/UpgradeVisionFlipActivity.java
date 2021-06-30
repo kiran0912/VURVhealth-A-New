@@ -122,7 +122,7 @@ public class UpgradeVisionFlipActivity extends AppCompatActivity implements OnBa
             } else if (this.activity.equalsIgnoreCase("VisionVURVBannerActivity")) {
                 dobFormat = null;
                 try {
-                    dobFormat = new SimpleDateFormat("MM/dd/yyyy").format(new SimpleDateFormat("yyyy-MM-dd").parse(UpgradeVisionFlipActivity.prefsData.getString("subscription_end_date", "12-12-2017")));
+                    dobFormat = new SimpleDateFormat("MM/dd/yyyy").format(new SimpleDateFormat("yyyy-MM-dd").parse(UpgradeVisionFlipActivity.prefsData.getString("vurv_mem_exp_date", "12-12-2017")));
                 } catch (Exception e2) {
                     e2.printStackTrace();
                 }
@@ -147,7 +147,7 @@ public class UpgradeVisionFlipActivity extends AppCompatActivity implements OnBa
             } else {
                 dobFormat = null;
                 try {
-                    dobFormat = new SimpleDateFormat("MM/dd/yyyy").format(new SimpleDateFormat("yyyy-MM-dd").parse(UpgradeVisionFlipActivity.prefsData.getString("subscription_end_date", "12-12-2017")));
+                    dobFormat = new SimpleDateFormat("MM/dd/yyyy").format(new SimpleDateFormat("yyyy-MM-dd").parse(UpgradeVisionFlipActivity.prefsData.getString("vurv_mem_exp_date", "12-12-2017")));
                 } catch (Exception e22) {
                     e22.printStackTrace();
                 }
