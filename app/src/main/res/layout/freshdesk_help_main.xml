@@ -13,12 +13,13 @@
         android:background="@color/view_bg"
         android:gravity="top"
         android:minHeight="?attr/actionBarSize"
-        android:visibility="visible">
+        android:visibility="gone">
 
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
+            android:visibility="gone"
             android:orientation="horizontal">
 
             <ImageView
@@ -57,6 +58,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/margin_10dp"
             android:gravity="center"
+            android:visibility="gone"
             android:text="@string/general_inquiries"
             android:textColor="@color/black" />
 
@@ -66,6 +68,7 @@
             android:layout_width="match_parent"
             android:layout_height="7dp"
             android:layout_marginTop="5dp"
+            android:visibility="gone"
             android:background="@drawable/gradient_vurv" />
 
     </LinearLayout>
@@ -76,14 +79,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-
-
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/view_bg"
-        android:layout_margin="@dimen/margin_10dp"
         android:orientation="vertical">
 
 
@@ -93,7 +92,7 @@
             android:layout_height="match_parent"
             android:scrollbars="none"
             android:layout_marginBottom="45dp"
-            android:visibility="visible"/>
+            android:visibility="gone"/>
         <TextView
             android:id="@+id/no_data"
             android:layout_width="match_parent"
@@ -104,6 +103,12 @@
             android:text="No data found"
             android:textColor="@color/hintColor"
             android:visibility="gone"/>
+
+        <WebView
+            android:id="@+id/webview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="64dp"/>
 
     </LinearLayout>
 

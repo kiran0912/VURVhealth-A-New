@@ -25,6 +25,9 @@
     <!--<string name="alt_vurv_txt1">有关更多信息，请访问 &lt;a href="www.vurvhealth.com/home/help">www.vurvhealth.com/home/help &lt;a> 或致电&lt;b&gt;800) 290-0523 &lt;/ b&gt;为进一步协助.</string>-->
     <string name="alt_vurv_txt1">如需帮助，请拨打以下电话：&lt;b&gt;(800) 290-0523 &lt;/ b&gt;</string>
     <string name="ammount">Total</string>
+    <string name="app_qtn1A">Updating your information is quick and easy. Simply login to your account through your VURVhealth app or on the website, and update the information directly. Your information will instantly save and update.</string>
+    <string name="app_qtn2">How do I change my password?</string>
+    <string name="app_qtn2A">You can change your password directly in the profile section of the VURVhealth app or within your account on a desktop computer.</string>
     <string name="annual_subscription">Pulse Single Monthly Subscription</string>
     <string name="application_language">应用语言</string>
     <string name="apply">应用</string>
@@ -79,9 +82,9 @@
     <string name="dental_plan">牙科计划不包括在内</string>
     <string name="dental_txt">在美国最大的网络中享受高达50％的牙科手术折扣。现在，这是一个值得微笑的事情。现在搜索。</string>
     <string name="dental_txt1">Find the right dentist for preventative and diagnostic care, routine procedures, oral surgery and dental specialties.</string>
-    <string name="dental_txt_card">&lt;b&gt;患者&lt;/b&gt;：使用搜索工具查找参与的提供商。将此卡出示给参与的医疗保健提供者，即可享受您的医疗服务折扣。</string>
-    <string name="dental_txt_card2">&lt;b&gt;保健提供者：&lt;/b&gt; 必须出示卡才能享受计划的利益。
-有关报销信息，请拨打以下电话： &lt;b&gt;(888) 858-7427&lt;/b&gt; 报销信息。</string>
+    <string name="medical_txt_card">&lt;b&gt;患者&lt;/b&gt;：使用搜索工具查找参与的提供商。将此卡出示给参与的医疗保健提供者，即可享受您的医疗服务折扣。</string>
+    <string name="medical_txt_card2">&lt;b&gt;保健提供者：&lt;/b&gt; 必须出示卡才能享受计划的利益。
+如有疑问或信息，请拨打以下电话： &lt;b&gt;(888) 858-7427&lt;/b&gt; 报销信息。</string>
     <string name="dental_vurv_txt">&lt;b&gt;病人:&lt;/b&gt; 使用搜索工具查找参与的提供商。将此卡出示给参与活动的Careington牙科网络提供商，即可获得牙科服务折扣。</string>
     <string name="dental_vurv_txt1">如需帮助，请拨打以下电话：&lt;b&gt;(800) 290-0523&lt;/b&gt;</string>
     <string name="desc360">&lt;b&gt;VURV360&lt;/b&gt; has you totally covered! Enjoy all savings of &lt;b&gt;VURVPULSE&lt;/b&gt; and &lt;b&gt;VURVCARE&lt;/b&gt; in one ultimate package and see what a difference this easy, affordable discount plan makes to manage your and your family\'s good health. It\'s as easy as sign-up and show up with your card. That\'s it!</string>
@@ -94,6 +97,7 @@
     <string name="doent_match">密码不匹配。</string>
     <string name="done">完成</string>
     <string name="drug_not_found">没有药物发现</string>
+    <string name="drug_not_found1">我们目前不涵盖该药物，但我们正在努力尽快添加它！</string>
     <string name="each_member">Each member will be an additional $XX.XX to your annual bill.</string>
     <string name="edit_photo">编辑照片</string>
     <string name="edit_profile">编辑个人资料</string>
@@ -307,7 +311,7 @@
     <string name="their_first_name">名字</string>
     <string name="their_last_name">姓</string>
     <string name="their_middle_name">中间名字</string>
-    <string name="this_is_not_insurance">这是DOM健康计划。这不是保险。</string>
+    <string name="this_is_not_insurance">这是DMO健康计划。&lt;br /&gt;这不是保险。</string>
     <string name="thu">THU:</string>
     <string name="timinghours">时间：</string>
     <string name="total">Total</string>
@@ -398,4 +402,5 @@
     <string name="telemental">远程/心理</string>
     <string name="specialty_req">专业（必填）</string>
     <string name="phone_telemed">(855) 335-2255.</string>
+    <string name="telemed_heading">远程/心理健康</string>
 </resources>

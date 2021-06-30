@@ -887,11 +887,34 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/ll_direction"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.0"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/toolbar_getdirections_ic" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:lines="1"
+                android:text="@string/get_directions"
+                android:textColor="@color/black"
+                android:textSize="11.0dip" />
+        </LinearLayout>
+
+        <LinearLayout
             android:id="@+id/ll_more"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1.0"
             android:gravity="center"
+            android:visibility="gone"
             android:orientation="vertical">
 
             <ImageView

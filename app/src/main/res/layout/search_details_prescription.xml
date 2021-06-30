@@ -56,11 +56,7 @@
         android:layout_height="match_parent"
         android:layout_weight="1.4" />
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:scrollbars="none">
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -70,6 +66,11 @@
             android:background="@drawable/package_border"
             android:orientation="vertical">
 
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:scrollbars="none">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -83,6 +84,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical"
+                    android:layout_marginBottom="@dimen/margin_20dp"
                     android:padding="@dimen/margin_10dp">
 
 
@@ -286,26 +288,6 @@
 
                     </LinearLayout>
 
-                    <FrameLayout
-                        android:id="@+id/flBanner"
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:layout_marginTop="@dimen/margin_10dp"
-                        android:background="@drawable/banner_bg">
-
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:gravity="center"
-                            android:paddingLeft="50dp"
-                            android:text="@string/present_your_vurv_id_to_the_health_n_care_provider_to_receive_a_discount"
-                            android:textColor="@color/white"
-                            android:textSize="12dp" />
-
-
-                    </FrameLayout>
 
 
                 </LinearLayout>
@@ -313,10 +295,29 @@
 
             </LinearLayout>
 
+            </ScrollView>
+            <FrameLayout
+                android:id="@+id/flBanner"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="20dp"
+                android:layout_margin="@dimen/margin_10dp"
+                android:background="@drawable/banner_bg">
 
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:paddingLeft="50dp"
+                    android:text="@string/present_your_vurv_id_to_the_health_n_care_provider_to_receive_a_discount"
+                    android:textColor="@color/white"
+                    android:textSize="12dp" />
+
+
+            </FrameLayout>
         </LinearLayout>
-
-    </ScrollView>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -324,7 +325,6 @@
         android:layout_marginBottom="@dimen/margin_10dp"
         android:layout_marginLeft="12dp"
         android:layout_marginRight="12dp"
-        android:layout_marginTop="@dimen/margin_10dp"
         android:background="@drawable/package_border"
         android:gravity="center"
         android:orientation="horizontal">

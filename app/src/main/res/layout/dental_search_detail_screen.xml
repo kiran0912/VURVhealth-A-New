@@ -79,8 +79,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
         android:layout_marginTop="10dp"
+        android:layout_marginRight="20dp"
         android:background="@color/light_blue"
         android:orientation="horizontal">
 
@@ -111,32 +111,23 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
         android:layout_weight="1"
         android:orientation="vertical">
 
 
         <LinearLayout
             android:id="@+id/llAbout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="10dp"
-            android:layout_weight="1"
+            android:layout_width="fill_parent"
+            android:layout_height="0.0dip"
+            android:layout_marginLeft="@dimen/margin_10dp"
+            android:layout_marginTop="@dimen/margin_10dp"
+            android:layout_marginRight="@dimen/margin_10dp"
+            android:layout_marginBottom="0.0dip"
+            android:layout_weight="1.0"
             android:orientation="vertical"
             android:visibility="visible">
-
-            <ScrollView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/margin_10dp"
-                    android:orientation="vertical">
-
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -200,16 +191,17 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="bottom"
+                        android:layout_gravity="top"
+                        android:layout_weight="1"
                         android:layout_marginBottom="@dimen/margin_10dp"
                         android:background="@drawable/package_border"
                         android:orientation="vertical">
 
-
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
+                            android:layout_height="wrap_content"
                             android:layout_margin="@dimen/margin_10dp"
+                            android:layout_weight="1"
                             android:orientation="vertical">
 
 
@@ -334,40 +326,31 @@
                                     android:textStyle="bold" />
                             </LinearLayout>
 
-
-                            <FrameLayout
-                                android:id="@+id/flBanner1"
-                                android:layout_width="match_parent"
-                                android:layout_height="50dp"
-                                android:layout_marginTop="20dp"
-                                android:background="@drawable/banner_bg">
-
-
-
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:gravity="center"
-                                    android:paddingLeft="50dp"
-                                    android:text="Present your VURV ID to the health \n care provider to receive discount."
-                                    android:textColor="@color/white"
-                                    android:textSize="12dp"
-                                    android:textStyle="bold" />
-
-
-                            </FrameLayout>
-
-
                         </LinearLayout>
 
+                        <FrameLayout
+                            android:id="@+id/flBanner1"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_margin="@dimen/margin_10dp"
+                            android:background="@drawable/banner_bg">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:gravity="center"
+                                android:paddingLeft="50dp"
+                                android:text="Present your VURV ID to the health \n care provider to receive discount."
+                                android:textColor="@color/white"
+                                android:textSize="12dp"
+                                android:textStyle="bold" />
+
+
+                        </FrameLayout>
 
                     </LinearLayout>
 
-
-                </LinearLayout>
-
-            </ScrollView>
         </LinearLayout>
 
         <LinearLayout
@@ -510,7 +493,7 @@
                                 android:text="San francisco, CA"
                                 android:textColor="@color/blue"
                                 android:textStyle="bold"
-                                android:visibility="gone"/>
+                                android:visibility="gone" />
 
                             <TextView
                                 android:id="@+id/tvZipcode"
@@ -520,7 +503,7 @@
                                 android:text="94110"
                                 android:textColor="@color/blue"
                                 android:textStyle="bold"
-                                android:visibility="gone"/>
+                                android:visibility="gone" />
 
                         </LinearLayout>
 
@@ -670,12 +653,35 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/ll_direction"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.0"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/toolbar_getdirections_ic" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:lines="1"
+                android:text="@string/get_directions"
+                android:textColor="@color/black"
+                android:textSize="11.0dip" />
+        </LinearLayout>
+
+        <LinearLayout
             android:id="@+id/ll_more"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:visibility="gone">
 
             <ImageView
                 android:layout_width="wrap_content"

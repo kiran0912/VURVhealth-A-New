@@ -11,12 +11,10 @@
         android:background="@drawable/gradient_vurv"/>
 
     <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:src="@drawable/ic_vurv_logo"
-        android:layout_gravity="center"
+        android:layout_width="250dp"
+        android:layout_height="220dp"
+        android:src="@drawable/vurv_logo_r"
         android:layout_centerVertical="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

@@ -27,6 +27,10 @@
     <!--<string name="alt_vurv_txt1">For additional information please visit &lt;a href="www.vurvhealth.com/home/help">www.vurvhealth.com/home/help &lt;a> &gt;  or call &lt;b>(800) 290-0523&lt;/b> for further assistance.</string>-->
     <!--<string name="alt_vurv_txt1">For additional information, visit www.VURVhealth.com or call &lt;b>(866) 770–4151&lt;/b>.</string>-->
     <string name="ammount">Total</string>
+    <string name="app_qtn1" translatable="false">How do I update my information?</string>
+    <string name="app_qtn1A">Updating your information is quick and easy. Simply login to your account through your VURVhealth app or on the website, and update the information directly. Your information will instantly save and update.</string>
+    <string name="app_qtn2">How do I change my password?</string>
+    <string name="app_qtn2A">You can change your password directly in the profile section of the VURVhealth app or within your account on a desktop computer.</string>
     <string name="annual_subscription">Pulse Single Monthly Subscription</string>
     <string name="app_name" translatable="false">VURVhealth</string>
     <string name="application_language">Application Language</string>
@@ -83,10 +87,8 @@
     <string name="dental_txt">Get up to 50% off dental procedures in the largest network in America.  Now that’s something to smile about.  Search now.</string>
     <string name="dental_txt1">Find the right dentist for preventative and diagnostic care, routine procedures, oral surgery and dental specialties.</string>
 
-    <string name="dental_txt_card">&lt;b>Patient:&lt;/b> Use the Search tool to locate a participating provider. Present this card to a participating healthcare provider to receive a discount on your medical services.</string>
-    <string name="dental_txt_card2">&lt;b>Healthcare Provider:&lt;/b>  Card must be presented to receive program benefits.
-For reimbursement information, call the following number:
-         &lt;br /&gt; &lt;b> (888) 858-7427&lt;/b> </string>
+    <string name="medical_txt_card">&lt;b>Patient:&lt;/b> Use the Search tool to locate a participating provider. Present this card to a participating healthcare provider to receive a discount on your medical services.</string>
+    <string name="medical_txt_card2">For questions or information call the following number: &lt;b> (888) 858-7427&lt;/b> </string>
 
     <!--<string name="dental_txt_card">&lt;b>Patient:&lt;/b> Present this card to a participating ChooseHealthy provider for savings off regular fees to a wide variety of credentialed specialty health care practitioners.</string>-->
     <!--<string name="dental_txt_card2">For additional information, visit www.VURVhealth.com or call &lt;b>(866) 770–4151&lt;/b>.</string>-->
@@ -108,6 +110,7 @@ For reimbursement information, call the following number:
     <string name="doent_match">Password does not match.</string>
     <string name="done">Done</string>
     <string name="drug_not_found">No drug found</string>
+    <string name="drug_not_found1">We don’t cover that drug currently, but we’re working hard on adding it soon!</string>
     <string name="each_member">Each member will be an additional $XX.XX to your annual bill.</string>
     <string name="edit_photo">Edit Photo</string>
     <string name="edit_profile">Edit Profile</string>
@@ -332,8 +335,8 @@ For reimbursement information, call the following number:
     <string name="their_first_name">First Name</string>
     <string name="their_last_name">Last Name</string>
     <string name="their_middle_name">Middle Name</string>
-    <string name="this_is_not_insurance">THIS IS A DOM HEALTHPLAN. THIS IS NOT INSURANCE .</string>
-    <!--<string name="this_is_not_insurance">THIS IS NOT INSURANCE</string>-->
+    <string name="this_is_not_insurance">THIS IS A DMO HEALTHPLAN.\nTHIS IS NOT INSURANCE.</string>
+    <!--<string name="this_is_not_insurance">THIS IS NOTINSURANCE</string>-->
     <string name="thu">THU:</string>
     <string name="timinghours">Timing Hours:</string>
     <string name="total">Total</string>
@@ -388,6 +391,8 @@ For reimbursement information, call the following number:
     <string name="plese_try_again">Please try again</string>
     <string name="select_member">Select Member</string>
     <string name="their_dob_txt">Date of Birth (MM / DD / YY)</string>
+    <string name="others_qtns">Other Questions</string>
+    <string name="hi_sec_name">Welcome, Brain</string>
 
     <!--billing & account management-->
     <string name="billing_qun1">What is my VURVhealth Billing Account?</string>
@@ -444,7 +449,8 @@ For reimbursement information, call the following number:
     <string name="billing_ans26">Your VURVhealth active subscription will automatically attempt to charge the default payment method on file based on the date of your original subscription. For example, if you signed up on the 5<sup>th</sup> of the month, your future rebilling date will be on the 5th of the next month. You can determine your future billing dates by logging into the VURVhealth Member Portal with your username and password. From there you can see your current invoice as well as navigate to future invoices on the dashboard calendar.</string>
     <string name="billing_qun27">Is it possible to prepay future invoices?</string>
     <string name="billing_ans27">Yes! You can prepay any future invoices for your current number of active members by logging into the VURVhealth <a href="https://www.vurvhealth.com/home/login/">Member Portal</a> and selecting the dashboard link to navigate the calendar to view the desired month you wish to prepay. To do this, click the arrows on the top right of the calendar to the desired month and select the upcoming payment due date. Once selected, (if you have more than one payment option) select the payment method of choice by using the drop down menu under “Invoice Options”, then press the blue “Use Card” button. Next, click the green “Pay Invoice” button. You will then be asked to confirm payment.</string>
-
+    <string name="others_qun1">My question wasn’t answered in the FAQ, how do I get help?</string>
+    <string name="others_ans1">We’re always here to help. Use the Contact Us page on our website to get in touch or shoot us a note at <b>support@VURVhealth.com</b>.</string>
     <!--Other Questions-->
 
     <string name="general_qu">General/How It Works</string>
@@ -498,6 +504,23 @@ For reimbursement information, call the following number:
     <string name="telemental">Tele/Mental</string>
     <string name="specialty_req">Specialty (Required)</string>
     <string name="phone_telemed">&lt;b>(855) 335-2255.&lt;/b></string>
+    <string name="telemed_heading">Telemed/Mental Health</string>
+    <string name="telemed1">Telemed</string>
+    <string name="telemed_subhead">Login below to speak directly to a docter for:</string>
+    <string name="telemed_subhead_txt">&#8226;&#160;&#160;General Visit</string>
+    <string name="telemed_subhead_txt1">&#8226;&#160;&#160;UITs</string>
+    <string name="telemed_subhead_txt2">&#8226;&#160;&#160;Cold &amp; Flu</string>
+    <string name="telemed_subhead_txt3">&#8226;&#160;&#160;Allergies</string>
+    <string name="telemed_subhead_txt4">&#8226;&#160;&#160;&amp; more</string>
+    <string name="mental_health">Mental Health</string>
+    <string name="mh_subhead">Login below to schedule an online therapist visit for help with:</string>
+    <string name="mh_subhead_txt1">&#8226;&#160;&#160;Depression</string>
+    <string name="mh_subhead_txt">&#8226;&#160;&#160;Stress</string>
+    <string name="mh_subhead_txt2">&#8226;&#160;&#160;Anxiety</string>
+    <string name="mh_subhead_txt3">&#8226;&#160;&#160;Loss</string>
+    <string name="mh_subhead_txt4">&#8226;&#160;&#160;Grief</string>
+    <string name="mh_subhead_txt5">&#8226;&#160;&#160;Addiction</string>
+    <string name="telemed_info_text">For full HIPPA patient privacy, a new mobile browser window to login to DialCare will open</string>
 
 
 </resources>

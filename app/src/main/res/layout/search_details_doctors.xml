@@ -476,5 +476,6 @@
                 android:textColor="@color/black"
                 android:textSize="11.0dip" />
         </LinearLayout>
+
     </LinearLayout>
 </LinearLayout>
