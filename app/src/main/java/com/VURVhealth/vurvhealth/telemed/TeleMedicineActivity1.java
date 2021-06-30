@@ -1,34 +1,36 @@
-package com.VURVhealth.vurvhealth;
+package com.VURVhealth.vurvhealth.telemed;
 
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.net.http.SslError;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.webkit.SslErrorHandler;
-import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.LinearLayout;
 
+import com.VURVhealth.vurvhealth.R;
+import com.VURVhealth.vurvhealth.StartScreenActivity;
 import com.VURVhealth.vurvhealth.freshdesk_help.FreshdeskMainListActivity;
-import com.VURVhealth.vurvhealth.help.WebViewActivity;
 import com.VURVhealth.vurvhealth.myProfile.PrimaryAcntHolderActivity;
+import com.VURVhealth.vurvhealth.retrofit.Application_holder;
 import com.VURVhealth.vurvhealth.save.NoSavedItemActivity;
+import com.VURVhealth.vurvhealth.save.SaveItemActivity;
 import com.VURVhealth.vurvhealth.superappcompact.SuperAppCompactActivity;
 import com.VURVhealth.vurvhealth.vurvidpackages.VurvPackageActivity;
 
-public class TeleMedicineActivity extends SuperAppCompactActivity {
+public class TeleMedicineActivity1 extends SuperAppCompactActivity {
     private LinearLayout llHelp;
     private LinearLayout llProfile;
     private LinearLayout llSaved;
     private LinearLayout llVurv;
     private LinearLayout llSearch;
     private WebView webView;
-    private Context context = TeleMedicineActivity.this;
+    private Context context = TeleMedicineActivity1.this;
     private String url = "https://member.dialcare.com/login";
     private String move;
 
@@ -87,9 +89,9 @@ public class TeleMedicineActivity extends SuperAppCompactActivity {
         llHelp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(context, FreshdeskMainListActivity.class));
-//                startActivity(new Intent(context, HelpActivity.class));
-                finish();
+                Uri uri = Uri.parse(Application_holder.help_url); // missing 'http://' will cause crashed
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(intent);
             }
         });
     }
@@ -126,7 +128,7 @@ public class TeleMedicineActivity extends SuperAppCompactActivity {
     public void onBackPressed() {
         super.onBackPressed();
         if (move.equalsIgnoreCase("startScreen")) {
-            startActivity(new Intent(context, StartScreenActivity.class));
+            startActivity(new Intent(context, TeleMedicineActivity.class));
             finish();
         }else if (move.equalsIgnoreCase("VurvPackage")){
             startActivity(new Intent(context, VurvPackageActivity.class));
