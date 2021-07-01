@@ -7,7 +7,15 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class VisionProviderIdResPayload implements Parcelable {
-    public static final Creator<VisionProviderIdResPayload> CREATOR = new C08391();
+    public static final Creator<VisionProviderIdResPayload> CREATOR = new Creator<VisionProviderIdResPayload>() {
+        public VisionProviderIdResPayload createFromParcel(Parcel in) {
+            return new VisionProviderIdResPayload(in);
+        }
+
+        public VisionProviderIdResPayload[] newArray(int size) {
+            return new VisionProviderIdResPayload[size];
+        }
+    };
     @SerializedName("AddressLine1")
     @Expose
     private String addressLine1;
@@ -101,20 +109,6 @@ public class VisionProviderIdResPayload implements Parcelable {
     @SerializedName("ZipCode")
     @Expose
     private String zipCode;
-
-    /* renamed from: com.VURVhealth.VURVhealth.vision.pojos.VisionProviderIdResPayload$1 */
-    static class C08391 implements Creator<VisionProviderIdResPayload> {
-        C08391() {
-        }
-
-        public VisionProviderIdResPayload createFromParcel(Parcel in) {
-            return new VisionProviderIdResPayload(in);
-        }
-
-        public VisionProviderIdResPayload[] newArray(int size) {
-            return new VisionProviderIdResPayload[size];
-        }
-    }
 
     protected VisionProviderIdResPayload(Parcel in) {
         this.visProviderId = in.readString();

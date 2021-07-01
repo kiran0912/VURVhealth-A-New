@@ -116,6 +116,18 @@ public class LoginResPayLoad {
         @SerializedName("subscription_end_date")
         @Expose
         private String subscriptionEndDate;
+        @SerializedName("enrolled_date")
+        @Expose
+        private String enrolledDate;
+        @SerializedName("cc_last_run_date")
+        @Expose
+        private String ccLastRunDate;
+        @SerializedName("cc_next_run_date")
+        @Expose
+        private String ccNextRunDate;
+        @SerializedName("vurv_mem_exp_date")
+        @Expose
+        private String vurvMemExpDate;
         @SerializedName("role_id")
         @Expose
         private String roleId;
@@ -294,6 +306,38 @@ public class LoginResPayLoad {
 
         public void setSubscriptionEndDate(String subscriptionEndDate) {
             this.subscriptionEndDate = subscriptionEndDate;
+        }
+
+        public String getEnrolledDate() {
+            return enrolledDate;
+        }
+
+        public void setEnrolledDate(String enrolledDate) {
+            this.enrolledDate = enrolledDate;
+        }
+
+        public String getCcLastRunDate() {
+            return ccLastRunDate;
+        }
+
+        public void setCcLastRunDate(String ccLastRunDate) {
+            this.ccLastRunDate = ccLastRunDate;
+        }
+
+        public String getCcNextRunDate() {
+            return ccNextRunDate;
+        }
+
+        public void setCcNextRunDate(String ccNextRunDate) {
+            this.ccNextRunDate = ccNextRunDate;
+        }
+
+        public String getVurvMemExpDate() {
+            return vurvMemExpDate;
+        }
+
+        public void setVurvMemExpDate(String vurvMemExpDate) {
+            this.vurvMemExpDate = vurvMemExpDate;
         }
 
         public String getRoleId() {

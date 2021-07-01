@@ -39,10 +39,10 @@ public class SearchFacilitiesResPayLoad implements Parcelable, ClusterItem {
     private String facilityType;
     @SerializedName("lat")
     @Expose
-    private double lat;
+    private Double lat;
     @SerializedName("lng")
     @Expose
-    private double lng;
+    private Double lng;
     @SerializedName("MobileNo")
     @Expose
     private String mobileNo;
@@ -156,19 +156,19 @@ public class SearchFacilitiesResPayLoad implements Parcelable, ClusterItem {
         this.facilityType = facilityType;
     }
 
-    public double getLat() {
+    public Double getLat() {
         return this.lat;
     }
 
-    public void setLat(double lat) {
+    public void setLat(Double lat) {
         this.lat = lat;
     }
 
-    public double getLng() {
+    public Double getLng() {
         return this.lng;
     }
 
-    public void setLng(double lng) {
+    public void setLng(Double lng) {
         this.lng = lng;
     }
 

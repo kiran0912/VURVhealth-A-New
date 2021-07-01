@@ -58,13 +58,13 @@ public class SearchForDentalResPayLoad {
         private String lastName;
         @SerializedName("Latitude")
         @Expose
-        private double latitude;
+        private Double latitude;
         @SerializedName("locationcount")
         @Expose
         private String locationcount;
         @SerializedName("Longitude")
         @Expose
-        private double longitude;
+        private Double longitude;
         @SerializedName("MidInitName")
         @Expose
         private String midInitName;
@@ -323,19 +323,19 @@ public class SearchForDentalResPayLoad {
             this.dedicatedFlag = dedicatedFlag;
         }
 
-        public double getLatitude() {
+        public Double getLatitude() {
             return this.latitude;
         }
 
-        public void setLatitude(double latitude) {
+        public void setLatitude(Double latitude) {
             this.latitude = latitude;
         }
 
-        public double getLongitude() {
+        public Double getLongitude() {
             return this.longitude;
         }
 
-        public void setLongitude(double longitude) {
+        public void setLongitude(Double longitude) {
             this.longitude = longitude;
         }
 

@@ -23,7 +23,15 @@ public class SearchForVisionResPayload {
     private String status;
 
     public class Datum implements Parcelable, ClusterItem {
-        public final Creator<Datum> CREATOR = new C08381();
+        public final Creator<Datum> CREATOR = new Creator<Datum>() {
+            public Datum createFromParcel(Parcel in) {
+                return new Datum(in);
+            }
+
+            public Datum[] newArray(int size) {
+                return new Datum[size];
+            }
+        };
         @SerializedName("AddressLine1")
         @Expose
         private String addressLine1;
@@ -71,13 +79,13 @@ public class SearchForVisionResPayload {
         private String gender;
         @SerializedName("Latitude")
         @Expose
-        private double latitude;
+        private Double latitude;
         @SerializedName("locationcount")
         @Expose
         private String locationcount;
         @SerializedName("Longitude")
         @Expose
-        private double longitude;
+        private Double longitude;
         @SerializedName("OfficeFridayHours")
         @Expose
         private String officeFridayHours;
@@ -135,20 +143,6 @@ public class SearchForVisionResPayload {
         @Override
         public String getSnippet() {
             return null;
-        }
-
-        /* renamed from: com.VURVhealth.VURVhealth.vision.pojos.SearchForVisionResPayload$Datum$1 */
-        class C08381 implements Creator<Datum> {
-            C08381() {
-            }
-
-            public Datum createFromParcel(Parcel in) {
-                return new Datum(in);
-            }
-
-            public Datum[] newArray(int size) {
-                return new Datum[size];
-            }
         }
 
         public int isSavedStatus() {
@@ -467,19 +461,19 @@ public class SearchForVisionResPayload {
             this.officeHours = officeHours;
         }
 
-        public double getLatitude() {
+        public Double getLatitude() {
             return this.latitude;
         }
 
-        public void setLatitude(double latitude) {
+        public void setLatitude(Double latitude) {
             this.latitude = latitude;
         }
 
-        public double getLongitude() {
+        public Double getLongitude() {
             return this.longitude;
         }
 
-        public void setLongitude(double longitude) {
+        public void setLongitude(Double longitude) {
             this.longitude = longitude;
         }
 

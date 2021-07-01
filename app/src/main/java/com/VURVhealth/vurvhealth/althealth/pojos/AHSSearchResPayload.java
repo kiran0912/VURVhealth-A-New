@@ -55,13 +55,13 @@ public class AHSSearchResPayload {
         private String distance;
         @SerializedName("Latitude")
         @Expose
-        private double latitude;
+        private Double latitude;
         @SerializedName("locationcount")
         @Expose
         private String locationcount;
         @SerializedName("Longitude")
         @Expose
-        private double longitude;
+        private Double longitude;
         @SerializedName("Name")
         @Expose
         private String name;
@@ -210,19 +210,19 @@ public class AHSSearchResPayload {
             this.phoneNumber = phoneNumber;
         }
 
-        public double getLatitude() {
+        public Double getLatitude() {
             return this.latitude;
         }
 
-        public void setLatitude(double latitude) {
+        public void setLatitude(Double latitude) {
             this.latitude = latitude;
         }
 
-        public double getLongitude() {
+        public Double getLongitude() {
             return this.longitude;
         }
 
-        public void setLongitude(double longitude) {
+        public void setLongitude(Double longitude) {
             this.longitude = longitude;
         }
 
