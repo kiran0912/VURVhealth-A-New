@@ -159,24 +159,29 @@ public class FacilityMapActivity extends FragmentActivity implements OnMapReadyC
         mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
         mMap.setOnCameraIdleListener(clusterManager);
         mMap.setOnMarkerClickListener(clusterManager);
-        if (MedicalScreenActivity.resPayloadsForFacilities.size() > 10) {
-            for (int i = 0; i < 10; i++) {
-                if (MedicalScreenActivity.resPayloadsForFacilities.get(i).getLat() != 0)
-                    addCustomMarker(new LatLng(MedicalScreenActivity.resPayloadsForFacilities.get(i).getLat(),
-                                    MedicalScreenActivity.resPayloadsForFacilities.get(i).getLng()),
-                            MedicalScreenActivity.resPayloadsForFacilities.get(i).getFacilityName(), i);
+
+        if (MedicalScreenActivity.resPayloadsForFacilities !=null) {
+            if (MedicalScreenActivity.resPayloadsForFacilities.size() > 10) {
+                for (int i = 0; i < 10; i++) {
+                    if (MedicalScreenActivity.resPayloadsForFacilities.get(i).getLat() != null || MedicalScreenActivity.resPayloadsForFacilities.get(i).getLat() != 0)
+                        addCustomMarker(new LatLng(MedicalScreenActivity.resPayloadsForFacilities.get(i).getLat(),
+                                        MedicalScreenActivity.resPayloadsForFacilities.get(i).getLng()),
+                                MedicalScreenActivity.resPayloadsForFacilities.get(i).getFacilityName(), i);
+                }
+            } else {
+                for (int i = 0; i < MedicalScreenActivity.resPayloadsForFacilities.size(); i++) {
+                    if (MedicalScreenActivity.resPayloadsForFacilities.get(i).getLat() != null || MedicalScreenActivity.resPayloadsForFacilities.get(i).getLat() != 0)
+                        addCustomMarker(new LatLng(MedicalScreenActivity.resPayloadsForFacilities.get(i).getLat(),
+                                        MedicalScreenActivity.resPayloadsForFacilities.get(i).getLng()),
+                                MedicalScreenActivity.resPayloadsForFacilities.get(i).getFacilityName(), i);
+                }
             }
-        } else {
-            for (int i = 0; i < MedicalScreenActivity.resPayloadsForFacilities.size(); i++) {
-                if (MedicalScreenActivity.resPayloadsForFacilities.get(i).getLat() != 0)
-                    addCustomMarker(new LatLng(MedicalScreenActivity.resPayloadsForFacilities.get(i).getLat(),
-                                    MedicalScreenActivity.resPayloadsForFacilities.get(i).getLng()),
-                            MedicalScreenActivity.resPayloadsForFacilities.get(i).getFacilityName(), i);
+            if (MedicalScreenActivity.resPayloadsForFacilities.get(0).getLat() != null || MedicalScreenActivity.resPayloadsForFacilities.get(0).getLat() != 0) {
+                mMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(MedicalScreenActivity.resPayloadsForFacilities.get(0).getLat(),
+                        MedicalScreenActivity.resPayloadsForFacilities.get(0).getLng())));
+                mMap.animateCamera(CameraUpdateFactory.zoomTo(12.0f));
             }
         }
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(MedicalScreenActivity.resPayloadsForFacilities.get(0).getLat(),
-                MedicalScreenActivity.resPayloadsForFacilities.get(0).getLng())));
-        mMap.animateCamera(CameraUpdateFactory.zoomTo(12.0f));
 
         //Initialize Google Play Services
         if (VERSION.SDK_INT >= Build.VERSION_CODES.M) {

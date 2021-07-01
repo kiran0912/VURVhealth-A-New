@@ -206,7 +206,7 @@ public class VisionMapActivity extends FragmentActivity implements OnMapReadyCal
             if (duplicateVisionResPayloads2.size() > 10) {
                 i = 0;
                 while (i < 10) {
-                    if (duplicateVisionResPayloads2.get(i).get(0).getLatitude() != 0) {
+                    if (duplicateVisionResPayloads2.get(i).get(0).getLatitude()!=null || duplicateVisionResPayloads2.get(i).get(0).getLatitude() != 0) {
                         latLng = new LatLng(duplicateVisionResPayloads2.get(i).get(0).getLatitude(), duplicateVisionResPayloads2.get(i).get(0).getLongitude());
                         if (Integer.parseInt(((SearchForVisionResPayload.Datum) duplicateVisionResPayloads2.get(i).get(0)).getLocationcount()) > 0) {
                             string = getResources().getString(R.string.text_multiple_providers);
@@ -220,7 +220,7 @@ public class VisionMapActivity extends FragmentActivity implements OnMapReadyCal
             } else {
                 i = 0;
                 while (i < duplicateVisionResPayloads2.size()) {
-                    if (duplicateVisionResPayloads2.get(i).get(0).getLatitude() != 0) {
+                    if (duplicateVisionResPayloads2.get(i).get(0).getLatitude()!=null || duplicateVisionResPayloads2.get(i).get(0).getLatitude() != 0) {
                         latLng = new LatLng(duplicateVisionResPayloads2.get(i).get(0).getLatitude(), duplicateVisionResPayloads2.get(i).get(0).getLongitude());
                         if (Integer.parseInt(((SearchForVisionResPayload.Datum) duplicateVisionResPayloads2.get(i).get(0)).getLocationcount()) > 0) {
                             string = getResources().getString(R.string.text_multiple_providers);
@@ -235,7 +235,7 @@ public class VisionMapActivity extends FragmentActivity implements OnMapReadyCal
         } catch (Exception e) {
             Log.v("Vision Map", "error>>>" + e.getMessage());
         }
-        if (duplicateVisionResPayloads2.get(0).get(0).getLatitude() != 0 || duplicateVisionResPayloads2.get(0).get(0).getLatitude() == 0) {
+        if (duplicateVisionResPayloads2.get(0).get(0).getLatitude() != 0 || duplicateVisionResPayloads2.get(0).get(0).getLatitude() !=null) {
             mMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(duplicateVisionResPayloads2.get(0).get(0).getLatitude(), duplicateVisionResPayloads2.get(0).get(0).getLongitude())));
         }
         mMap.animateCamera(CameraUpdateFactory.zoomTo(14.0f));

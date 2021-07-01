@@ -68,7 +68,7 @@ import java.util.List;
 import static com.VURVhealth.vurvhealth.prescriptions.BestPricesNearbyActivity.brandsearchResultResPayLoads1;
 
 public class PrescriptionMapActivity extends FragmentActivity implements OnMapReadyCallback, ConnectionCallbacks, OnConnectionFailedListener, LocationListener {
-    static final /* synthetic */ boolean $assertionsDisabled = (!PrescriptionMapActivity.class.desiredAssertionStatus());
+    static final boolean $assertionsDisabled = (!PrescriptionMapActivity.class.desiredAssertionStatus());
     public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
     private ImageView backBtn;
     private boolean click = false;

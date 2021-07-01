@@ -190,7 +190,7 @@ public class DentalMapActivity extends FragmentActivity implements OnMapReadyCal
         if (dentalSortedArray2.size() > 10) {
             i = 0;
             while (i < 10) {
-                if (dentalSortedArray2.get(i).get(0).getLatitude() != 0) {
+                if (dentalSortedArray2.get(i).get(0).getLatitude() != 0 || dentalSortedArray2.get(i).get(0).getLatitude()!=null) {
                     latLng = new LatLng(dentalSortedArray2.get(i).get(0).getLatitude(), dentalSortedArray2.get(i).get(0).getLongitude());
                     if (dentalSortedArray2.get(i).size() > 1) {
                         string = getResources().getString(R.string.text_multiple_dentists);

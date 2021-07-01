@@ -192,7 +192,7 @@ public class AltHealthMapActivity extends FragmentActivity implements OnMapReady
         if (ahsSortedArray2.size() > 10) {
             i = 0;
             while (i < 10) {
-                if (ahsSortedArray2.get(i).get(0).getLatitude() != 0) {
+                if (ahsSortedArray2.get(i).get(0).getLatitude() != 0 || ahsSortedArray2.get(i).get(0).getLatitude()!=null) {
                     latLng = new LatLng((ahsSortedArray2.get(i).get(0).getLatitude()), (ahsSortedArray2.get(i).get(0)).getLongitude());
                     degree = ahsSortedArray2.get(i).get(0).getDegree();
                     if (ahsSortedArray2.get(i).size() > 1) {
@@ -207,7 +207,7 @@ public class AltHealthMapActivity extends FragmentActivity implements OnMapReady
         } else {
             i = 0;
             while (i < ahsSortedArray2.size()) {
-                if (ahsSortedArray2.get(i).get(0).getLatitude() != 0 || (ahsSortedArray2.get(i).get(0)).getLatitude() == 0) {
+                if (ahsSortedArray2.get(i).get(0).getLatitude() != 0 || (ahsSortedArray2.get(i).get(0)).getLatitude() !=null) {
                     latLng = new LatLng((ahsSortedArray2.get(i).get(0).getLatitude()), (ahsSortedArray2.get(i).get(0)).getLongitude());
                     degree = ahsSortedArray2.get(i).get(0).getDegree();
                     if (ahsSortedArray2.get(i).size() > 1) {
@@ -221,7 +221,7 @@ public class AltHealthMapActivity extends FragmentActivity implements OnMapReady
             }
         }
         try {
-            if (ahsSortedArray2.get(0).get(0).getLatitude() != 0 || (ahsSortedArray2.get(0).get(0)).getLatitude() == 0) {
+            if (ahsSortedArray2.get(0).get(0).getLatitude() != 0 || (ahsSortedArray2.get(0).get(0)).getLatitude() !=null) {
                 mMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(ahsSortedArray2.get(0).get(0).getLatitude(), ahsSortedArray2.get(0).get(0).getLongitude())));
             }
             mMap.animateCamera(CameraUpdateFactory.zoomTo(14.0f));
